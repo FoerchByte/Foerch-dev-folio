@@ -1,0 +1,88 @@
+/*
+  EN: This stylesheet provides the styling for the Memory Game. The design is clean,
+  focused, and responsive, ensuring a pleasant user experience on any device.
+  It showcases the ability to create dynamic and interactive game elements with CSS.
+  PL: Ten arkusz stylów zapewnia stylizację dla gry pamięciowej. Projekt jest czysty,
+  skoncentrowany i responsywny, co zapewnia przyjemne wrażenia użytkownika na
+  każdym urządzeniu. Demonstruje on umiejętności w tworzeniu dynamicznych i
+  interaktywnych elementów gry za pomocą CSS.
+*/
+.memory-game-app {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+    /* ZMIANA: Upewniamy się, że aplikacja nie wyjdzie poza ekran */
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.memory-game-info {
+    display: flex;
+    gap: 2rem;
+    font-size: 1.2rem;
+    font-weight: 500;
+}
+
+/* ZMIANA: Uczynienie siatki responsywną */
+.memory-game-board {
+    display: grid;
+    /* Używamy 4 elastycznych kolumn */
+    grid-template-columns: repeat(4, 1fr);
+    /* Zmniejszamy odstępy na mniejszych ekranach */
+    gap: 0.5rem;
+    perspective: 1000px;
+    /* Ograniczamy maksymalną szerokość na dużych ekranach, aby nie była zbyt duża */
+    width: 100%;
+    max-width: 450px;
+    box-sizing: border-box;
+}
+
+/* ZMIANA: Uczynienie kart responsywnymi */
+.memory-card {
+    /* Szerokość karty będzie zależeć od szerokości kolumny siatki */
+    width: 100%;
+    /* Utrzymujemy kwadratowy kształt karty dzięki aspect-ratio */
+    aspect-ratio: 1 / 1;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.6s;
+    cursor: pointer;
+}
+
+.memory-card.flipped {
+    transform: rotateY(180deg);
+}
+
+.card-face {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* ZMIANA: Responsywna wielkość czcionki (ikony), dopasowująca się do rozmiaru karty */
+    font-size: clamp(1.5rem, 10vw, 3rem);
+    border: 1px solid var(--border-color);
+}
+
+.card-front {
+    background-color: var(--primary-color);
+}
+
+.card-back {
+    background-color: var(--card-background);
+    transform: rotateY(180deg);
+}
+
+#restart-memory-game-btn {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    border-radius: 6px;
+    cursor: pointer;
+}

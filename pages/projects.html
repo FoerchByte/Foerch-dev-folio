@@ -1,0 +1,19 @@
+<!--
+  EN: A dynamic showcase of Michał's projects. This page acts as a filterable gallery
+  where users can explore his work by category. It's a testament to the versatility
+  of his skills, from specialist tools to creative applications and games.
+  PL: Dynamiczna galeria projektów Michała. Strona ta działa jak filtrowana galeria,
+  w której użytkownicy mogą odkrywać jego prace według kategorii. Jest to świadectwo
+  wszechstronności jego umiejętności, od specjalistycznych narzędzi po kreatywne
+  aplikacje i gry.
+-->
+<h2 class="section-title">{{projectsTitle}}</h2>
+<p>{{projectsSubtitle}}</p>
+<div class="project-filters">
+    <button data-filter="all" class="active">{{projectsCategoryAll}}</button>
+    <button data-filter="specialist">{{projectsCategorySpecialist}}</button>
+    <button data-filter="tools">{{projectsCategoryTools}}</button>
+    <button data-filter="creative">{{projectsCategoryCreative}}</button>
+    <button data-filter="games">{{projectsCategoryGames}}</button>
+</div>
+<div class="projects-grid" id="projects-grid"></div>

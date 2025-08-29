@@ -1,0 +1,24 @@
+# Ostateczna, najbardziej jawna konfiguracja dla Twojego projektu
+
+[build]
+  # KLUCZOWA ZMIANA: Ta komenda zmusza Netlify do uruchomienia pełnego procesu
+  # budowania, nawet przy wdrażaniu "przeciągnij i upuść". Dzięki temu
+  # przeczyta on poniższe ustawienia dotyczące funkcji.
+  command = "echo 'Build command initiated'"
+  # Folder, który Netlify ma opublikować (zawiera index.html)
+  publish = "."
+  # Folder, w którym znajdują się Twoje funkcje serwerowe
+  functions = "netlify/functions"
+
+# Kontekst dla wdrożeń produkcyjnych
+[context.production.environment]
+  # Wymuszamy na Netlify użycie Node.js w wersji 18.
+  NODE_VERSION = "18"
+  # Dodatkowe, jawne ustawienie środowiska uruchomieniowego Lambda.
+  AWS_LAMBDA_JS_RUNTIME = "nodejs18.x"
+
+# Reguła przekierowania dla aplikacji SPA.
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200

@@ -1,0 +1,18 @@
+<!--
+  EN: A fun and challenging Memory Game. This project demonstrates skills in
+  DOM manipulation, event handling, and algorithm implementation for card shuffling
+  and matching logic. It's a great example of an interactive web application.
+  PL: Zabawna i wymagająca gra Memory. Ten projekt demonstruje umiejętności w
+  manipulacji DOM, obsłudze zdarzeń oraz implementacji algorytmu do tasowania
+  kart i logiki dopasowywania. To świetny przykład interaktywnej aplikacji webowej.
+-->
+<a href="/projects" class="project-title-link">{{backToProjects}}</a>
+<h2 class="project-page-title">{{memoryGameTitle}}</h2>
+<div class="memory-game-app">
+    <div class="memory-game-info">
+        <div class="info-item">{{memoryGameMoves}}: <span id="moves-counter">0</span></div>
+        <div class="info-item">{{memoryGameTime}}: <span id="time-counter">0</span>s</div>
+    </div>
+    <div class="memory-game-board" id="memory-game-board"></div>
+    <button id="restart-memory-game-btn">{{memoryGameRestart}}</button>
+</div>

@@ -1,0 +1,23 @@
+<!--
+  EN: A specialized tool for data validation. This page demonstrates the ability
+  to process user input and perform complex business logic directly in the browser.
+  It highlights skills in data processing and user feedback.
+  PL: Specjalistyczne narzędzie do walidacji danych. Ta strona demonstruje zdolność
+  do przetwarzania danych wprowadzonych przez użytkownika i wykonywania złożonej
+  logiki biznesowej bezpośrednio w przeglądarce. Podkreśla umiejętności w
+  przetwarzaniu danych i przekazywaniu informacji zwrotnej użytkownikowi.
+-->
+<a href="/projects" class="project-title-link">{{backToProjects}}</a>
+<h2 class="project-page-title">{{budgetValidatorTitle}}</h2>
+<p>{{budgetValidatorSubtitle}}</p>
+<div class="budget-validator">
+    <div class="budget-validator__form">
+        <label for="data-input" class="budget-validator__label">{{budgetValidatorTextareaLabel}}</label>
+        <textarea id="data-input" class="budget-validator__textarea" rows="10" placeholder="Wklej tutaj swoje dane..."></textarea>
+        <button id="validate-btn" class="budget-validator__button">{{budgetValidatorValidateBtn}}</button>
+    </div>
+    <div id="result-container" class="budget-validator__result" style="display: none;" aria-live="polite">
+        <h3 class="budget-validator__result-title">{{budgetValidatorResultTitle}}</h3>
+        <div id="result-content"></div>
+    </div>
+</div>

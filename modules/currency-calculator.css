@@ -1,0 +1,18 @@
+/*
+  EN: This stylesheet creates the visual foundation for the Currency Calculator.
+  The design focuses on a clean and intuitive user interface, making a complex
+  task of currency conversion simple and fast.
+  PL: Ten arkusz stylów tworzy podstawę wizualną dla kalkulatora walut. Projekt
+  koncentruje się na czystym i intuicyjnym interfejsie użytkownika, sprawiając,
+  że złożone zadanie przeliczania walut staje się proste i szybkie.
+*/
+.currency-converter-app { background-color: var(--card-background); padding: 2rem; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.07); }
+.converter-wrapper { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 1rem; }
+.converter-wrapper input, .converter-wrapper select { padding: 0.75rem; font-size: 1rem; border: 1px solid var(--border-color); border-radius: 6px; background-color: var(--background-color); color: var(--text-color); }
+.swap-button { background: none; border: 1px solid var(--border-color); border-radius: 50%; width: 40px; height: 40px; cursor: pointer; display: flex; align-items: center; justify-content: center; color: var(--primary-color); }
+#conversion-result { margin-top: 2rem; text-align: center; min-height: 3.5rem; }
+#total-conversion-result { font-size: 1.5rem; font-weight: 500; margin: 0; }
+.data-source-info { text-align: center; margin-top: 1.5rem; font-size: 0.85rem; color: var(--completed-text); }
+.skeleton { background-color: var(--completed-bg); border-radius: 4px; animation: pulse 1.5s infinite ease-in-out; }
+@keyframes pulse { 0% { background-color: var(--completed-bg); } 50% { background-color: var(--border-color); } 100% { background-color: var(--completed-bg); } }
+.skeleton-text { height: 1.2em; margin-bottom: 0.75em; }

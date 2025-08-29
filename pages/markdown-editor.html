@@ -1,0 +1,22 @@
+<!--
+  EN: A simple yet powerful Markdown Editor. This project demonstrates real-time
+  text parsing and rendering using a third-party library. It showcases skills
+  in handling user input and dynamic content display.
+  PL: Prosty, ale potężny edytor Markdown. Ten projekt demonstruje przetwarzanie
+  i renderowanie tekstu w czasie rzeczywistym przy użyciu zewnętrznej biblioteki.
+  Pokazuje umiejętności w obsłudze danych wprowadzanych przez użytkownika i
+  dynamicznym wyświetlaniu treści.
+-->
+<a href="/projects" class="project-title-link">{{backToProjects}}</a>
+<h2 class="project-page-title">{{markdownEditorTitle}}</h2>
+<p>{{markdownEditorSubtitle}}</p>
+
+<!-- ZMIANA: Dodano kontener na przyciski sterujace -->
+<div class="markdown-editor-controls">
+    <button id="spellcheck-toggle-btn" class="editor-btn">{{markdownSpellcheckEnable}}</button>
+</div>
+
+<div class="markdown-editor-app">
+    <textarea id="markdown-input" placeholder="Wpisz tekst w Markdown..." spellcheck="false"></textarea>
+    <div id="markdown-output" class="markdown-body"></div>
+</div>

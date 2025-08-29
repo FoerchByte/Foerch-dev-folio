@@ -1,0 +1,23 @@
+<!--
+  EN: A modern weather application that fetches and displays real-time weather
+  data from an external API. This project showcases skills in asynchronous
+  programming, API integration, and creating a dynamic, responsive user interface.
+  PL: Nowoczesna aplikacja pogodowa, która pobiera i wyświetla dane pogodowe
+  w czasie rzeczywistym z zewnętrznego API. Ten projekt demonstruje umiejętności
+  w programowaniu asynchronicznym, integracji z API oraz tworzeniu dynamicznego,
+  responsywnego interfejsu użytkownika.
+-->
+<a href="/projects" class="project-title-link">{{backToProjects}}</a>
+<h2 class="project-page-title">{{weatherTitle}}</h2>
+<div class="weather-app">
+    <div class="weather-app__search">
+        <input type="text" id="city-input" class="weather-app__input" placeholder="{{weatherPlaceholder}}">
+        <button id="search-weather-btn" class="weather-app__button">{{weatherSearchBtn}}</button>
+        <button id="geolocation-btn" class="weather-app__button weather-app__button--geo">{{weatherGeoBtn}}</button>
+    </div>
+    <div id="weather-result-container" class="weather-app__result" aria-live="polite"></div>
+    <div id="forecast-container-wrapper" class="weather-app__forecast-wrapper" style="display: none;">
+        <h3 class="weather-app__forecast-title">{{weatherForecastTitle}}</h3>
+        <div class="weather-app__forecast-grid" id="forecast-container"></div>
+    </div>
+</div>

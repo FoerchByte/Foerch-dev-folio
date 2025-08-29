@@ -1,0 +1,130 @@
+/*
+  EN: This stylesheet is the visual story of the Statutory Interest Calculator.
+  It provides a structured and professional layout for displaying complex
+  financial data. It is an example of a clean, functional design that enhances
+  data readability.
+  PL: Ten arkusz stylów to wizualna opowieść o kalkulatorze odsetek ustawowych.
+  Zapewnia on ustrukturyzowany i profesjonalny układ do wyświetlania złożonych
+  danych finansowych. Jest to przykład czystego, funkcjonalnego projektu, który
+  poprawia czytelność danych.
+*/
+.tax-calculator {
+    background-color: var(--card-background);
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.07);
+    max-width: 700px;
+    margin: 0 auto;
+}
+.tax-calculator__form {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+    align-items: flex-end;
+    margin-bottom: 2rem;
+}
+.tax-calculator__group {
+    display: flex;
+    flex-direction: column;
+}
+.tax-calculator__label {
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    font-size: 0.9rem;
+}
+.tax-calculator__input {
+    padding: 0.75rem;
+    font-size: 1rem;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    background-color: var(--background-color);
+    color: var(--text-color);
+}
+.tax-calculator__button {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    border-radius: 6px;
+    cursor: pointer;
+    height: fit-content;
+    transition: background-color 0.2s;
+}
+.tax-calculator__button:hover {
+    background-color: var(--primary-hover-color);
+}
+.tax-calculator__result-title {
+    border-bottom: 2px solid var(--primary-color);
+    padding-bottom: 0.5rem;
+    margin-bottom: 1.5rem;
+}
+.tax-calculator__summary {
+    display: flex;
+    gap: 2rem;
+    margin-bottom: 2rem;
+    background-color: var(--background-color);
+    padding: 1.5rem;
+    border-radius: 8px;
+}
+.tax-calculator__summary-item {
+    display: flex;
+    flex-direction: column;
+}
+.tax-calculator__summary-item span {
+    font-size: 0.9rem;
+    color: var(--completed-text);
+}
+.tax-calculator__summary-item strong {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--primary-color);
+}
+.tax-calculator__details h4 {
+    margin-bottom: 1rem;
+}
+.tax-calculator__table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9rem;
+}
+.tax-calculator__table th,
+.tax-calculator__table td {
+    padding: 0.75rem;
+    text-align: left;
+    border-bottom: 1px solid var(--border-color);
+}
+.tax-calculator__table th {
+    background-color: var(--background-color);
+}
+.tax-calculator__table tbody tr:last-child td {
+    border-bottom: none;
+}
+.tax-calculator__message,
+.tax-calculator__error {
+    margin-top: 1.5rem;
+    padding: 1rem;
+    border-radius: 6px;
+    text-align: center;
+}
+.tax-calculator__message {
+    background-color: var(--completed-bg);
+    color: var(--completed-text);
+}
+.tax-calculator__error {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}
+.dark-mode .tax-calculator__error {
+    background-color: #492226;
+    color: #f8d7da;
+    border-color: #721c24;
+}
+.tax-calculator__data-source {
+    margin-top: 2rem;
+    text-align: center;
+    font-size: 0.8rem;
+    color: var(--completed-text);
+    font-style: italic;
+}

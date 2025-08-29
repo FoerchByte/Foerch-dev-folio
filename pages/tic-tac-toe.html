@@ -1,0 +1,32 @@
+<!--
+  EN: A classic Tic-Tac-Toe game showcasing skills in game logic and state
+  management. It's a testament to creating simple, interactive experiences
+  with a focus on clean, intuitive gameplay.
+  PL: Klasyczna gra w Kółko i Krzyżyk, demonstrująca umiejętności w logice gry
+  i zarządzaniu jej stanem. Jest to świadectwo tworzenia prostych, interaktywnych
+  doświadczeń z naciskiem na czystą i intuicyjną rozgrywkę.
+-->
+<a href="/projects" class="project-title-link">{{backToProjects}}</a>
+<h2 class="project-page-title">{{ticTacToeTitle}}</h2>
+<div class="tic-tac-toe-app">
+    <div class="game-setup" id="game-setup">
+        <div class="game-controls">
+            <div class="game-mode-selector" id="game-mode-selector">
+                <button data-mode="pvp" class="active">{{ticTacToeModePVP}}</button>
+                <button data-mode="pvc">{{ticTacToeModePVC}}</button>
+            </div>
+            <div class="side-selector" id="side-selector">
+                <span>{{ticTacToeChooseSide}}</span>
+                <button data-side="X" class="active">X</button>
+                <button data-side="O">O</button>
+            </div>
+        </div>
+        <button id="start-game-btn">{{ticTacToePlay}}</button>
+    </div>
+    <div class="game-view" id="game-view" style="display: none;">
+        <div id="scoreboard"></div>
+        <div id="game-status" aria-live="polite"></div>
+        <div id="game-board"></div>
+        <button id="restart-game-btn">{{ticTacToeRestart}}</button>
+    </div>
+</div>

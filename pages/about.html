@@ -1,0 +1,140 @@
+<!--
+  EN: The narrative core of Foerch-dev-folio. This page is designed to introduce
+  Michał Herbich, showcasing his skills, experience, and the story behind the
+  portfolio. It's built as a dynamic biography that captivates and informs.
+  PL: Narracyjne serce Foerch-dev-folio. Ta strona ma na celu przedstawienie
+  Michała Herbicha, pokazując jego umiejętności, doświadczenie oraz historię
+  stworzenia portfolio. Zbudowana jako dynamiczna biografia, która intryguje i informuje.
+-->
+<div class="about-me-layout">
+    <div class="about-me-photo">
+        <img src="Day.jpg" alt="Michał Herbich" class="photo-light">
+        <img src="Night.jpg" alt="Michał Herbich - wersja ciemna" class="photo-dark">
+    </div>
+    <div class="about-me-content">
+        <h1>{{aboutTitle}}</h1>
+        <p class="about-subtitle">{{aboutSubtitle}}</p>
+        <p class="about-description">{{aboutContent}}</p>
+        <h3>{{aboutSkillsTitle}}</h3>
+        <div class="skills-icons">
+            <div class="skill-item"><img src="https://www.vectorlogo.zone/logos/w3_html5/w3_html5-icon.svg" alt="HTML5"><span>HTML5</span></div>
+            <div class="skill-item"><img src="https://www.vectorlogo.zone/logos/w3_css/w3_css-icon.svg" alt="CSS3"><span>CSS3</span></div>
+            <div class="skill-item"><img src="https://www.vectorlogo.zone/logos/javascript/javascript-icon.svg" alt="JavaScript"><span>JavaScript</span></div>
+        </div>
+        <div class="about-cta">
+            <a href="/projects" class="cta-button">{{aboutCtaProjects}}</a>
+            <a href="CV_M.Herbich.pdf" class="cta-button secondary" download="CV_Michal_Herbich.pdf">{{aboutCtaCv}}</a>
+        </div>
+    </div>
+</div>
+<div class="timeline-section collapsible">
+    <h2 class="section-title collapsible-header">{{timelineTitle}}</h2>
+    <div class="timeline-container">
+        <!-- Doświadczenie Zawodowe -->
+        <div class="timeline-item" data-type="work">
+            <div class="timeline-dot"></div>
+            <div class="timeline-card">
+                <div class="timeline-header">
+                    <div class="timeline-details">
+                        <h4 class="timeline-title">{{timelineWork5Title}}</h4>
+                        <p class="timeline-place">{{timelineWork5Place}}</p>
+                    </div>
+                    <span class="timeline-date">{{timelineWork5Date}}</span>
+                </div>
+                <div class="timeline-content"><p>{{timelineWork5Desc}}</p></div>
+            </div>
+        </div>
+        <div class="timeline-item" data-type="work">
+            <div class="timeline-dot"></div>
+            <div class="timeline-card">
+                <div class="timeline-header">
+                    <div class="timeline-details">
+                        <h4 class="timeline-title">{{timelineWork4Title}}</h4>
+                        <p class="timeline-place">{{timelineWork4Place}}</p>
+                    </div>
+                    <span class="timeline-date">{{timelineWork4Date}}</span>
+                </div>
+                <div class="timeline-content"><p>{{timelineWork4Desc}}</p></div>
+            </div>
+        </div>
+        <div class="timeline-item" data-type="work">
+            <div class="timeline-dot"></div>
+            <div class="timeline-card">
+                <div class="timeline-header">
+                    <div class="timeline-details">
+                        <h4 class="timeline-title">{{timelineWork3Title}}</h4>
+                        <p class="timeline-place">{{timelineWork3Place}}</p>
+                    </div>
+                    <span class="timeline-date">{{timelineWork3Date}}</span>
+                </div>
+                <div class="timeline-content"><p>{{timelineWork3Desc}}</p></div>
+            </div>
+        </div>
+        <div class="timeline-item" data-type="work">
+            <div class="timeline-dot"></div>
+            <div class="timeline-card">
+                <div class="timeline-header">
+                    <div class="timeline-details">
+                        <h4 class="timeline-title">{{timelineWork2Title}}</h4>
+                        <p class="timeline-place">{{timelineWork2Place}}</p>
+                    </div>
+                    <span class="timeline-date">{{timelineWork2Date}}</span>
+                </div>
+                <div class="timeline-content"><p>{{timelineWork2Desc}}</p></div>
+            </div>
+        </div>
+        <div class="timeline-item" data-type="work">
+            <div class="timeline-dot"></div>
+            <div class="timeline-card">
+                <div class="timeline-header">
+                    <div class="timeline-details">
+                        <h4 class="timeline-title">{{timelineWork1Title}}</h4>
+                        <p class="timeline-place">{{timelineWork1Place}}</p>
+                    </div>
+                    <span class="timeline-date">{{timelineWork1Date}}</span>
+                </div>
+                <div class="timeline-content"><p>{{timelineWork1Desc}}</p></div>
+            </div>
+        </div>
+        <!-- Edukacja -->
+        <div class="timeline-item" data-type="education">
+            <div class="timeline-dot"></div>
+            <div class="timeline-card">
+                <div class="timeline-header">
+                    <div class="timeline-details">
+                        <h4 class="timeline-title">{{timelineEdu3Title}}</h4>
+                        <p class="timeline-place">{{timelineEdu3Place}}</p>
+                    </div>
+                    <span class="timeline-date">{{timelineEdu3Date}}</span>
+                </div>
+                <div class="timeline-content"><p>{{timelineEdu3Desc}}</p></div>
+            </div>
+        </div>
+        <div class="timeline-item" data-type="education">
+            <div class="timeline-dot"></div>
+            <div class="timeline-card">
+                <div class="timeline-header">
+                    <div class="timeline-details">
+                        <h4 class="timeline-title">{{timelineEdu2Title}}</h4>
+                        <p class="timeline-place">{{timelineEdu2Place}}</p>
+                    </div>
+                    <span class="timeline-date">{{timelineEdu2Date}}</span>
+                </div>
+                <div class="timeline-content"><p>{{timelineEdu2Desc}}</p></div>
+            </div>
+        </div>
+        <div class="timeline-item" data-type="education">
+            <div class="timeline-dot"></div>
+            <div class="timeline-card">
+                <div class="timeline-header">
+                    <div class="timeline-details">
+                        <h4 class="timeline-title">{{timelineEdu1Title}}</h4>
+                        <p class="timeline-place">{{timelineEdu1Place}}</p>
+                    </div>
+                    <span class="timeline-date">{{timelineEdu1Date}}</span>
+                </div>
+                <div class="timeline-content"><p>{{timelineEdu1Desc}}</p></div>
+            </div>
+        </div>
+    </div>
+</div>

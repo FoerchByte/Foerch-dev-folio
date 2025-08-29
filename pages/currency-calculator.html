@@ -1,0 +1,24 @@
+<!--
+  EN: A live currency converter that fetches data from an external API. This
+  project demonstrates skills in asynchronous programming, handling real-time
+  data, and creating a clean, functional user interface.
+  PL: Kalkulator walut, który pobiera dane z zewnętrznego API. Ten projekt
+  demonstruje umiejętności w programowaniu asynchronicznym, obsłudze danych
+  w czasie rzeczywistym oraz tworzeniu czystego, funkcjonalnego interfejsu.
+-->
+<a href="/projects" class="project-title-link">{{backToProjects}}</a>
+<h2 class="project-page-title">{{currencyTitle}}</h2>
+<div class="currency-converter-app">
+    <div class="converter-wrapper">
+        <input type="number" id="amount-input" value="1" aria-label="{{currencyAmount}}">
+        <select id="from-currency-select" aria-label="{{currencyFrom}}"></select>
+        <button id="swap-currency-btn" class="swap-button" aria-label="Swap currencies">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><polyline points="19 12 12 19 5 12"></polyline></svg>
+        </button>
+        <select id="to-currency-select" aria-label="{{currencyTo}}"></select>
+    </div>
+    <div id="conversion-result">
+        <p id="total-conversion-result" aria-live="polite"></p>
+    </div>
+    <p class="data-source-info">{{currencyDataSource}}</p>
+</div>

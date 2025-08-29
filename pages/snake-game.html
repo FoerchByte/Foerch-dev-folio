@@ -1,0 +1,29 @@
+<!--
+  EN: An engaging and accessible classic. This page features a fully functional
+  Snake game, demonstrating skills in game logic, state management, and Canvas API.
+  It's a testament to the playful and creative side of coding.
+  PL: Wciągający i dostępny klasyk. Ta strona zawiera w pełni funkcjonalną
+  grę w Snake'a, demonstrując umiejętności w logice gry, zarządzaniu stanem
+  i API Canvas. Jest to świadectwo kreatywnej strony programowania.
+-->
+<a href="/projects" class="project-title-link">{{backToProjects}}</a>
+<h2 class="project-page-title">{{snakeGameTitle}}</h2>
+<div class="snake-game">
+    <div class="snake-game__info">
+        <span>{{snakeGameScore}}: <span id="snake-score">0</span></span>
+        <span>{{snakeGameHighScore}}: <span id="snake-high-score">0</span></span>
+    </div>
+    <div class="snake-game__board-wrapper">
+        <canvas id="snake-canvas" class="snake-game__board" width="400" height="400"></canvas>
+        <div id="snake-start-message" class="snake-game__start-message">
+            <p>{{snakeGameStartMsg}}</p>
+        </div>
+        <div id="snake-game-over" class="snake-game__game-over hidden">
+            <p class="snake-game__game-over-text">{{snakeGameOver}}</p>
+            <button id="restart-snake-game-btn" class="snake-game__button">{{snakeGameRestart}}</button>
+        </div>
+    </div>
+    <div class="snake-game__controls-info">
+        <p>{{snakeGameControls}}</p>
+    </div>
+</div>

@@ -1,0 +1,45 @@
+<!--
+  EN: A productivity tool to enhance focus and time management. This Pomodoro
+  Timer showcases skills in managing timers, dynamic UI updates, and local storage.
+  It's a practical example of a tool built for daily use.
+  PL: Narzędzie do zwiększania produktywności i zarządzania czasem. Ten Timer Pomodoro
+  demonstruje umiejętności w zarządzaniu licznikami czasu, dynamicznymi aktualizacjami
+  interfejsu użytkownika i pamięcią lokalną. To praktyczny przykład narzędzia
+  stworzonego do codziennego użytku.
+-->
+<a href="/projects" class="project-title-link">{{backToProjects}}</a>
+<h2 class="project-page-title">{{pomodoroTimerTitle}}</h2>
+<div class="pomodoro-app">
+    <div class="pomodoro-modes">
+        <button data-mode="work" class="active">{{pomodoroModeWork}}</button>
+        <button data-mode="shortBreak">{{pomodoroModeShortBreak}}</button>
+        <button data-mode="longBreak">{{pomodoroModeLongBreak}}</button>
+    </div>
+    <div class="pomodoro-timer">
+        <svg class="progress-ring" width="200" height="200">
+            <circle class="progress-ring-circle" stroke="white" stroke-width="8" fill="transparent" r="90" cx="100" cy="100"/>
+        </svg>
+        <span id="pomodoro-time-display">25:00</span>
+    </div>
+    <div class="pomodoro-controls">
+        <button id="pomodoro-start-pause-btn">{{pomodoroStart}}</button>
+        <button id="pomodoro-reset-btn">{{pomodoroReset}}</button>
+    </div>
+    <div class="pomodoro-settings">
+        <h3>{{pomodoroSettingsTitle}}</h3>
+        <div class="setting-item">
+            <label for="work-duration">{{pomodoroWorkLabel}}</label>
+            <input type="number" id="work-duration" min="1" value="25">
+        </div>
+        <div class="setting-item">
+            <label for="short-break-duration">{{pomodoroShortBreakLabel}}</label>
+            <input type="number" id="short-break-duration" min="1" value="5">
+        </div>
+        <div class="setting-item">
+            <label for="long-break-duration">{{pomodoroLongBreakLabel}}</label>
+            <input type="number" id="long-break-duration" min="1" value="15">
+        </div>
+        <button id="pomodoro-save-btn">{{pomodoroSaveSettings}}</button>
+    </div>
+    <div id="pomodoro-announcer" aria-live="polite" class="sr-only"></div>
+</div>

@@ -1,0 +1,67 @@
+<!--
+  EN: A specialized calculator for statutory interest. This tool demonstrates
+  the ability to process complex financial logic and provide a detailed
+  breakdown of calculations, highlighting skills in data manipulation and
+  producing clean, structured output for the user.
+  PL: Specjalistyczny kalkulator ustawowych odsetek. To narzędzie demonstruje
+  umiejętności w przetwarzaniu złożonej logiki finansowej i dostarczaniu
+  szczegółowego zestawienia obliczeń, podkreślając umiejętności w manipulacji
+  danymi i tworzeniu czytelnych, ustrukturyzowanych wyników dla użytkownika.
+-->
+<a href="/projects" class="project-title-link">{{backToProjects}}</a>
+<h2 class="project-page-title">{{statutoryInterestTitle}}</h2>
+<div class="tax-calculator">
+    <div class="tax-calculator__form">
+        <div class="tax-calculator__group" style="grid-column: 1 / -1;">
+            <label class="tax-calculator__label">{{statutoryInterestTypeLabel}}</label>
+            <div class="tax-calculator__radio-group">
+                <input type="radio" id="type-standard" name="interest-type" value="standard" checked>
+                <label for="type-standard">{{statutoryInterestStandard}}</label>
+                <input type="radio" id="type-commercial" name="interest-type" value="commercial">
+                <label for="type-commercial">{{statutoryInterestCommercial}}</label>
+            </div>
+        </div>
+        <div class="tax-calculator__group">
+            <label for="amount" class="tax-calculator__label">{{statutoryInterestAmountLabel}}</label>
+            <input type="number" id="amount" class="tax-calculator__input" placeholder="np. 5000.00">
+        </div>
+        <div class="tax-calculator__group">
+            <label for="start-date" class="tax-calculator__label">{{statutoryInterestStartDateLabel}}</label>
+            <input type="date" id="start-date" class="tax-calculator__input">
+        </div>
+        <div class="tax-calculator__group">
+            <label for="end-date" class="tax-calculator__label">{{statutoryInterestEndDateLabel}}</label>
+            <input type="date" id="end-date" class="tax-calculator__input">
+        </div>
+        <button id="calculate-btn" class="tax-calculator__button">{{taxArrearsCalculateBtn}}</button>
+    </div>
+    <div id="result-container" class="tax-calculator__result" style="display: none;" aria-live="polite">
+        <h3 class="tax-calculator__result-title">{{taxArrearsResultTitle}}</h3>
+        <div class="tax-calculator__summary">
+            <div class="tax-calculator__summary-item">
+                <span>{{taxArrearsInterestAmount}}</span>
+                <strong id="interest-amount"></strong>
+            </div>
+            <div class="tax-calculator__summary-item">
+                <span>{{taxArrearsTotalAmount}}</span>
+                <strong id="total-amount"></strong>
+            </div>
+        </div>
+        <div class="tax-calculator__details">
+            <h4>{{taxArrearsCalculationDetails}}</h4>
+            <table class="tax-calculator__table">
+                <thead>
+                    <tr>
+                        <th>{{taxArrearsPeriod}}</th>
+                        <th>{{taxArrearsDays}}</th>
+                        <th>{{taxArrearsRate}}</th>
+                        <th>{{taxArrearsInterest}}</th>
+                    </tr>
+                </thead>
+                <tbody id="details-tbody"></tbody>
+            </table>
+        </div>
+    </div>
+    <div id="error-container" class="tax-calculator__error" style="display: none;" aria-live="assertive"></div>
+    <p class="tax-calculator__data-source">{{statutoryInterestDataSource}}</p>
+</div>

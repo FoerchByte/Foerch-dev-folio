@@ -1,0 +1,28 @@
+<!--
+  EN: A classic to-do list application. This project demonstrates core web
+  development skills such as DOM manipulation, managing application state,
+  and handling user input. It is a fundamental building block of interactive
+  web applications.
+  PL: Klasyczna aplikacja do zarządzania listą zadań. Ten projekt demonstruje
+  podstawowe umiejętności w tworzeniu stron, takie jak manipulacja DOM,
+  zarządzanie stanem aplikacji i obsługa danych wprowadzanych przez użytkownika.
+  Jest to fundamentalny element interaktywnych aplikacji internetowych.
+-->
+<a href="/projects" class="project-title-link">{{backToProjects}}</a>
+<h2 class="project-page-title">{{todoTitle}}</h2>
+<div class="todo-app">
+    <form class="todo-app__form" id="todo-form">
+        <input type="text" id="todo-input" class="todo-app__input" placeholder="{{todoPlaceholder}}" autocomplete="off">
+        <button type="submit" class="todo-app__add-btn">{{todoAddBtn}}</button>
+    </form>
+    <ul id="todo-list" class="todo-app__list"></ul>
+    <div class="todo-app__footer" id="todo-footer" style="display: none;">
+        <span id="todo-counter" class="todo-app__counter" aria-live="polite"></span>
+        <div class="todo-app__filters" id="todo-filters">
+            <button data-filter="all" class="todo-app__filter-btn todo-app__filter-btn--active">{{todoFilterAll}}</button>
+            <button data-filter="active" class="todo-app__filter-btn">{{todoFilterActive}}</button>
+            <button data-filter="completed" class="todo-app__filter-btn">{{todoFilterCompleted}}</button>
+        </div>
+        <button id="clear-completed-btn" class="todo-app__clear-btn">{{todoClearCompleted}}</button>
+    </div>
+</div>

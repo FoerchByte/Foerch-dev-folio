@@ -1,0 +1,101 @@
+<!--
+  EN: A creative website template for a fictional agency. This project demonstrates
+  skills in complex CSS layouts (Flexbox, Grid), animations, and handling a
+  variety of visual content. It's a great example of a modern, responsive website.
+  PL: Kreatywny szablon strony dla fikcyjnej agencji. Ten projekt demonstruje
+  umiejętności w złożonych układach CSS (Flexbox, Grid), animacjach i obsłudze
+  różnorodnych treści wizualnych. To świetny przykład nowoczesnej, responsywnej strony.
+-->
+<a href="/projects" class="project-title-link">{{backToProjects}}</a>
+<div class="agency-page-wrapper">
+   <section class="agency-hero">
+       <h1>{{agencyHeroTitle}}</h1>
+       <p>{{agencyHeroSubtitle}}</p>
+   </section>
+   <section class="agency-section">
+       <h2 class="section-title">{{agencyServicesTitle}}</h2>
+       <div class="services-grid">
+           <div class="service-card"><h3>{{service1Title}}</h3><p>{{service1Desc}}</p></div>
+           <div class="service-card"><h3>{{service2Title}}</h3><p>{{service2Desc}}</p></div>
+           <div class="service-card"><h3>{{service3Title}}</h3><p>{{service3Desc}}</p></div>
+       </div>
+   </section>
+   <section class="agency-section">
+       <h2 class="section-title">{{agencyProcessTitle}}</h2>
+       <div class="process-steps">
+           <div class="process-step">
+               <div class="process-icon">1</div><h3>{{processStep1Title}}</h3><p>{{processStep1Desc}}</p>
+           </div>
+           <div class="process-step">
+               <div class="process-icon">2</div><h3>{{processStep2Title}}</h3><p>{{processStep2Desc}}</p>
+           </div>
+           <div class="process-step">
+               <div class="process-icon">3</div><h3>{{processStep3Title}}</h3><p>{{processStep3Desc}}</p>
+           </div>
+           <div class="process-step">
+               <div class="process-icon">4</div><h3>{{processStep4Title}}</h3><p>{{processStep4Desc}}</p>
+           </div>
+       </div>
+   </section>
+   <section class="agency-section">
+       <h2 class="section-title">{{agencyPortfolioTitle}}</h2>
+       <div class="portfolio-grid">
+            <div class="portfolio-item"><img src="https://placehold.co/600x400/007bff/ffffff?text=Branding" alt="Portfolio Item 1"><h3>{{portfolioItem1}}</h3></div>
+            <div class="portfolio-item"><img src="https://placehold.co/600x400/28a745/ffffff?text=Web+Design" alt="Portfolio Item 2"><h3>{{portfolioItem2}}</h3></div>
+            <div class="portfolio-item"><img src="https://placehold.co/600x400/ffc107/212529?text=Mobile+App" alt="Portfolio Item 3"><h3>{{portfolioItem3}}</h3></div>
+            <div class="portfolio-item"><img src="https://placehold.co/600x400/dc3545/ffffff?text=Marketing" alt="Portfolio Item 4"><h3>{{portfolioItem4}}</h3></div>
+            <div class="portfolio-item"><img src="https://placehold.co/600x400/17a2b8/ffffff?text=E-commerce" alt="Portfolio Item 5"><h3>{{portfolioItem5}}</h3></div>
+            <div class="portfolio-item"><img src="https://placehold.co/600x400/6f42c1/ffffff?text=UX/UI" alt="Portfolio Item 6"><h3>{{portfolioItem6}}</h3></div>
+       </div>
+   </section>
+    <section class="agency-section stats-bar">
+       <div class="stat-item">
+           <span class="stat-number">150+</span>
+           <span class="stat-label">{{statsClients}}</span>
+       </div>
+       <div class="stat-item">
+           <span class="stat-number">320+</span>
+           <span class="stat-label">{{statsProjects}}</span>
+       </div>
+       <div class="stat-item">
+           <span class="stat-number">999+</span>
+           <span class="stat-label">{{statsCoffee}}</span>
+       </div>
+   </section>
+   <section class="agency-section">
+       <h2 class="section-title">{{agencyTeamTitle}}</h2>
+       <div class="team-grid">
+           <div class="team-member"><img src="https://i.pravatar.cc/300?u=a" alt="Anna Kowalska"><h3>{{teamMember1Name}}</h3><p>{{teamMember1Role}}</p></div>
+           <div class="team-member"><img src="https://i.pravatar.cc/300?u=b" alt="Jan Nowak"><h3>{{teamMember2Name}}</h3><p>{{teamMember2Role}}</p></div>
+           <div class="team-member"><img src="https://i.pravatar.cc/300?u=c" alt="Piotr Wiśniewski"><h3>{{teamMember3Name}}</h3><p>{{teamMember3Role}}</p></div>
+       </div>
+   </section>
+   <section class="agency-section">
+       <h2 class="section-title">{{agencyTestimonialsTitle}}</h2>
+       <div class="testimonial-slider">
+           <div class="testimonial-track" id="testimonial-track">
+                <div class="testimonial-card"><blockquote>"{{testimonial1}}"</blockquote><cite>- {{testimonial1Author}}</cite></div>
+                <div class="testimonial-card"><blockquote>"{{testimonial2}}"</blockquote><cite>- {{testimonial2Author}}</cite></div>
+                <div class="testimonial-card"><blockquote>"{{testimonial3}}"</blockquote><cite>- {{testimonial3Author}}</cite></div>
+                <div class="testimonial-card"><blockquote>"{{testimonial4}}"</blockquote><cite>- {{testimonial4Author}}</cite></div>
+                <div class="testimonial-card"><blockquote>"{{testimonial5}}"</blockquote><cite>- {{testimonial5Author}}</cite></div>
+                <div class="testimonial-card"><blockquote>"{{testimonial6}}"</blockquote><cite>- {{testimonial6Author}}</cite></div>
+           </div>
+           <div class="slider-nav">
+               <button id="prev-slide">&lt;</button>
+               <button id="next-slide">&gt;</button>
+           </div>
+       </div>
+   </section>
+   <section class="agency-section">
+       <h2 class="section-title">{{agencyContactTitle}}</h2>
+       <div id="agency-form-wrapper">
+           <form class="agency-form" id="agency-form">
+               <input type="text" name="name" placeholder="{{formName}}" required>
+               <input type="email" name="email" placeholder="{{formEmail}}" required>
+               <textarea name="message" rows="5" placeholder="{{formMessage}}" required></textarea>
+               <button type="submit">{{formSend}}</button>
+           </form>
+       </div>
+   </section>
+</div>

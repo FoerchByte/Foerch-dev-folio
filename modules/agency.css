@@ -1,0 +1,66 @@
+/*
+  EN: This stylesheet provides the aesthetic identity for the agency project within the portfolio.
+  It's a showcase of advanced CSS techniques for creating a clean, modern, and professional
+  web presence, including responsive layouts and subtle animations.
+  PL: Ten arkusz stylów zapewnia estetyczną tożsamość dla projektu agencji w portfolio.
+  Jest to przykład zaawansowanych technik CSS do tworzenia czystej, nowoczesnej
+  i profesjonalnej prezentacji internetowej, w tym responsywnych układów i subtelnych animacji.
+*/
+.agency-page-wrapper { text-align: center; }
+.agency-hero { background-color: var(--card-background); padding: 4rem 2rem; border-radius: 8px; }
+.agency-hero h1 { font-size: 3rem; margin: 0 0 1rem 0; color: var(--primary-color); }
+.agency-hero p { font-size: 1.2rem; color: var(--completed-text); max-width: 600px; margin: 0 auto; }
+.agency-section { margin-top: 4rem; }
+.agency-section h2 { font-size: 2rem; margin-bottom: 2rem; }
+.services-grid, .team-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; text-align: left; }
+.service-card, .team-member { background-color: var(--card-background); padding: 1.5rem; border-radius: 8px; border: 1px solid var(--border-color); }
+.service-card h3, .team-member h3 { margin: 0 0 0.5rem 0; }
+.team-member img { width: 100%; border-radius: 8px; margin-bottom: 1rem; transition: transform 0.3s; }
+.team-member:hover img { transform: scale(1.05); }
+.process-steps { display: flex; justify-content: space-between; position: relative; padding: 2rem 0; }
+.process-steps::before { content: ''; position: absolute; top: 25px; left: 10%; right: 10%; height: 4px; background-color: var(--border-color); z-index: 1; }
+.process-step { flex: 1; text-align: center; position: relative; z-index: 2; }
+.process-icon { width: 50px; height: 50px; border-radius: 50%; background-color: var(--background-color); border: 4px solid var(--primary-color); color: var(--primary-color); display: flex; align-items: center; justify-content: center; font-size: 1.5rem; font-weight: bold; margin: 0 auto 1rem auto; transition: background-color 0.3s, color 0.3s; }
+.process-step:hover .process-icon { background-color: var(--primary-color); color: white; }
+.process-step h3 { margin: 0 0 0.5rem 0; }
+.portfolio-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
+.portfolio-item { position: relative; overflow: hidden; border-radius: 8px; }
+.portfolio-item img { width: 100%; display: block; transition: transform 0.3s ease-out; }
+.portfolio-item:hover img { transform: scale(1.1); }
+.portfolio-item h3 { position: absolute; bottom: 0; left: 0; right: 0; margin: 0; padding: 1rem; background: rgba(0, 0, 0, 0.6); color: white; font-size: 1.1rem; transform: translateY(100%); transition: transform 0.3s ease-in-out; }
+.portfolio-item:hover h3 { transform: translateY(0); }
+.stats-bar { background-color: var(--primary-color); color: white; padding: 2rem; border-radius: 8px; display: flex; justify-content: space-around; flex-wrap: wrap; gap: 1rem; }
+.stat-item { text-align: center; }
+.stat-number { display: block; font-size: 2.5rem; font-weight: bold; }
+.stat-label { font-size: 1rem; }
+.testimonial-slider { position: relative; max-width: 700px; margin: 0 auto; overflow: hidden; }
+.testimonial-track { display: flex; }
+.testimonial-card { flex: 0 0 100%; box-sizing: border-box; padding: 2rem; width: 100%; }
+.testimonial-card blockquote { font-size: 1.2rem; margin: 0 0 1rem 0; font-style: italic; }
+.testimonial-card cite { font-weight: bold; color: var(--primary-color); }
+.slider-nav { position: absolute; top: 50%; transform: translateY(-50%); width: 100%; display: flex; justify-content: space-between; padding: 0 1rem; box-sizing: border-box; }
+.slider-nav button { background-color: rgba(0,0,0,0.3); color: white; border: none; border-radius: 50%; width: 40px; height: 40px; cursor: pointer; z-index: 10; }
+.agency-form { display: flex; flex-direction: column; gap: 1rem; max-width: 600px; margin: 0 auto; text-align: left; }
+.agency-form input, .agency-form textarea { padding: 0.75rem; font-size: 1rem; border: 1px solid var(--border-color); border-radius: 6px; background-color: var(--background-color); color: var(--text-color); }
+.agency-form button { background-color: var(--primary-color); color: white; border: none; padding: 0.75rem 1.5rem; font-size: 1rem; border-radius: 6px; cursor: pointer; transition: background-color 0.2s; align-self: flex-start; }
+.agency-form button:hover { background-color: var(--primary-hover-color); }
+#form-success-message { background-color: var(--completed-bg); color: var(--text-color); padding: 1rem; border-radius: 6px; border: 1px solid var(--success-color); text-align: center; max-width: 600px; margin: 0 auto; }
+
+/* ZMIANA: Dodajemy Media Query do poprawy responsywności na urządzeniach mobilnych */
+@media (max-width: 768px) {
+    .agency-hero h1 {
+        /* Zmniejszamy rozmiar czcionki na mniejszych ekranach */
+        font-size: 2.5rem;
+    }
+
+    .process-steps {
+        /* Zmieniamy układ na pionowy na telefonach */
+        flex-direction: column;
+        gap: 2rem;
+    }
+
+    .process-steps::before {
+        /* Ukrywamy poziomą linię w widoku pionowym */
+        display: none;
+    }
+}

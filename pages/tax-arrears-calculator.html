@@ -1,0 +1,62 @@
+<!--
+  EN: A specialized tool for calculating tax arrears. This project showcases
+  an understanding of intricate financial rules and the ability to implement
+  them in a web-based application. It demonstrates the balance between a
+  clean UI and complex backend logic.
+  PL: Specjalistyczne narzędzie do obliczania zaległości podatkowych. Ten
+  projekt prezentuje zrozumienie skomplikowanych przepisów finansowych
+  i umiejętność ich implementacji w aplikacji internetowej. Demonstruje
+  równowagę między przejrzystym interfejsem użytkownika a złożoną logiką
+  zaplecza.
+-->
+<a href="/projects" class="project-title-link">{{backToProjects}}</a>
+<h2 class="project-page-title">{{taxArrearsTitle}}</h2>
+<div class="tax-calculator">
+    <div class="tax-calculator__form">
+        <div class="tax-calculator__group">
+            <label for="amount" class="tax-calculator__label">{{taxArrearsAmountLabel}}</label>
+            <input type="number" id="amount" class="tax-calculator__input" placeholder="np. 1500.50">
+        </div>
+        <div class="tax-calculator__group">
+            <label for="start-date" class="tax-calculator__label">{{taxArrearsStartDateLabel}}</label>
+            <input type="date" id="start-date" class="tax-calculator__input">
+        </div>
+        <div class="tax-calculator__group">
+            <label for="end-date" class="tax-calculator__label">{{taxArrearsEndDateLabel}}</label>
+            <input type="date" id="end-date" class="tax-calculator__input">
+        </div>
+        <button id="calculate-btn" class="tax-calculator__button">{{taxArrearsCalculateBtn}}</button>
+    </div>
+    <div id="result-container" class="tax-calculator__result" style="display: none;" aria-live="polite">
+        <h3 class="tax-calculator__result-title">{{taxArrearsResultTitle}}</h3>
+        <div class="tax-calculator__summary">
+            <div class="tax-calculator__summary-item">
+                <span>{{taxArrearsInterestAmount}}</span>
+                <strong id="interest-amount"></strong>
+            </div>
+            <div class="tax-calculator__summary-item">
+                <span>{{taxArrearsTotalAmount}}</span>
+                <strong id="total-amount"></strong>
+            </div>
+        </div>
+        <div class="tax-calculator__details">
+            <h4>{{taxArrearsCalculationDetails}}</h4>
+            <table class="tax-calculator__table">
+                <thead>
+                    <tr>
+                        <th>{{taxArrearsPeriod}}</th>
+                        <th>{{taxArrearsDays}}</th>
+                        <th>{{taxArrearsRate}}</th>
+                        <th>{{taxArrearsInterest}}</th>
+                    </tr>
+                </thead>
+                <tbody id="details-tbody"></tbody>
+            </table>
+        </div>
+        <div id="no-interest-message" class="tax-calculator__message" style="display: none;">
+            <p>{{taxArrearsNoInterest}}</p>
+        </div>
+    </div>
+    <div id="error-container" class="tax-calculator__error" style="display: none;" aria-live="assertive"></div>
+    <p class="tax-calculator__data-source">{{taxArrearsDataSource}}</p>
+</div>

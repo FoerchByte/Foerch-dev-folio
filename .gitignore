@@ -1,0 +1,11 @@
+# Folder z zależnościami (bardzo ważne!)
+node_modules
+
+# Plik ze zmiennymi środowiskowymi
+.env
+
+# Folder lokalny Netlify
+.netlify
+
+# Pliki systemowe (dobra praktyka)
+.DS_Store
