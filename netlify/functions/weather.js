@@ -10,9 +10,14 @@
   lub współrzędnych geograficznych. Jest to kluczowy element dla aplikacji
   Stacja Pogody, zapewniając jej funkcjonalność i bezpieczeństwo.
 */
-const fetch = require('node-fetch');
+
+// EN: The top-level 'require' has been removed. We are now using a dynamic import inside the handler for better compatibility with different Node.js environments on Netlify.
+// PL: Usunięto 'require' z najwyższego poziomu. Teraz używamy dynamicznego importu wewnątrz funkcji handler, aby zapewnić lepszą kompatybilność z różnymi środowiskami Node.js na Netlify.
 
 exports.handler = async function (event, context) {
+    // EN: Dynamically import the 'node-fetch' library. This modern approach works reliably in ES Modules environments.
+    // PL: Dynamiczny import biblioteki 'node-fetch'. To nowoczesne podejście, które działa niezawodnie w środowiskach ES Modules.
+    const fetch = (await import('node-fetch')).default;
     const apiKey = process.env.WEATHER_API_KEY;
     
     if (!apiKey) {
@@ -52,7 +57,13 @@ exports.handler = async function (event, context) {
             body: JSON.stringify(data),
         };
     } catch (error) {
-        console.error("Weather function error:", error);
+        // EN: Enhanced error logging to provide more context for debugging, including the URL that was called.
+        // PL: Rozszerzone logowanie błędów, aby zapewnić więcej kontekstu podczas debugowania, włączając w to URL, który był wywoływany.
+        console.error("Weather function error:", {
+            message: error.message,
+            stack: error.stack,
+            url: apiUrl
+        });
         return {
             statusCode: 500,
             body: JSON.stringify({ message: 'An internal error occurred in the serverless function.' }),
