@@ -65,7 +65,10 @@ export const translations = {
         weatherGeoBtn: "Użyj mojej lokalizacji", weatherForecastTitle: "Prognoza na 5 dni",
         weatherWind: "Wiatr", weatherPressure: "Ciśnienie", weatherSunrise: "Wschód słońca", weatherSunset: "Zachód słońca",
         currencyTitle: "Kalkulator Walut", currencyAmount: "Kwota", currencyFrom: "Z", currencyTo: "Na", currencyDataSource: "Kursy walut dostarczane przez Frankfurter.app",
-        markdownEditorTitle: "Edytor Markdown", markdownEditorSubtitle: "Wpisz tekst po lewej stronie, aby zobaczyć podgląd na żywo po prawej. Obsługiwana jest standardowa składnia Markdown.",
+        markdownEditorTitle: "Edytor Markdown",
+        markdownEditorSubtitle: "Wpisz tekst po lewej stronie, aby zobaczyć podgląd na żywo po prawej. Teraz z opcją sprawdzania pisowni!",
+        markdownSpellcheckEnable: "Sprawdź pisownię",
+        markdownSpellcheckDisable: "Ukryj błędy",
         pomodoroTimerTitle: "Licznik Pomodoro", pomodoroModeWork: "Praca", pomodoroModeShortBreak: "Krótka Przerwa", pomodoroModeLongBreak: "Długa Przerwa", pomodoroStart: "Start", pomodoroPause: "Pauza", pomodoroReset: "Reset",
         pomodoroSettingsTitle: "Ustawienia", pomodoroWorkLabel: "Czas pracy (min)", pomodoroShortBreakLabel: "Krótka przerwa (min)", pomodoroLongBreakLabel: "Długa przerwa (min)", pomodoroSaveSettings: "Zapisz",
         pomodoroSettingsSaved: "Zapisano!",
@@ -75,8 +78,7 @@ export const translations = {
         memoryGameWin: ({ moves, time }) => `Gratulacje! Wygrałeś w ${moves} ruchach i czasie ${time}s!`,
         snakeGameTitle: "Gra w Węża", snakeGameScore: "Wynik", snakeGameHighScore: "Najlepszy wynik", snakeGamePause: "PAUZA", snakeGameOver: "Koniec gry!", snakeGameRestart: "Zagraj ponownie",
         snakeGameStartMsg: "Naciśnij klawisz lub przesuń palcem, aby rozpocząć",
-        // ZMIANA: Zaktualizowano opis sterowania o gesty dotykowe
-        snakeGameControls: "Sterowanie: Klawisze strzałek / WSAD lub gesty przesuwania. Pauza: Spacja.",
+        snakeGameControls: "Sterowanie: Klawisze strzałek, WSAD lub gesty. Pauza: Spacja.",
         agencyTitle: "Kreatywna Agencja", agencyHeroTitle: "Tworzymy cyfrowe doświadczenia.", agencyHeroSubtitle: "Specjalizujemy się w projektowaniu stron internetowych, brandingu i marketingu online, które pomagają Twojej firmie rosnąć.",
         agencyServicesTitle: "Nasze Usługi", service1Title: "Projektowanie Stron", service1Desc: "Nowoczesne i responsywne strony internetowe.", service2Title: "Branding", service2Desc: "Tworzenie silnej i spójnej tożsamości marki.", service3Title: "Marketing Online", service3Desc: "Zwiększanie widoczności w internecie.",
         agencyProcessTitle: "Nasz Proces Pracy", processStep1Title: "Odkrycie", processStep1Desc: "Analizujemy Twoje potrzeby i cele.", processStep2Title: "Projekt", processStep2Desc: "Tworzymy strategie i makiety.", processStep3Title: "Realizacja", processStep3Desc: "Budujemy i programujemy rozwiązanie.", processStep4Title: "Wdrożenie", processStep4Desc: "Uruchamiamy projekt i zapewniamy wsparcie.",
@@ -131,7 +133,8 @@ export const translations = {
         timelineEdu1Desc: "Zdobycie kwalifikacji zawodowych w dziedzinie informatyki na poziomie technika.",
         taxArrearsTitle: "Kalkulator Odsetek za Zwłokę",
         taxArrearsAmountLabel: "Kwota zaległości (PLN)",
-        taxArrearsStartDateLabel: "Data powstania zaległości",
+        // POPRAWKA: Zmiana nazwy etykiety
+        taxArrearsStartDateLabel: "Termin płatności",
         taxArrearsEndDateLabel: "Data wpłaty / dzień obliczenia",
         taxArrearsCalculateBtn: "Oblicz odsetki",
         taxArrearsResultTitle: "Wynik obliczeń",
@@ -143,7 +146,8 @@ export const translations = {
         taxArrearsRate: "Stawka",
         taxArrearsInterest: "Odsetki",
         taxArrearsNoInterest: "Odsetki nie są naliczane (kwota poniżej progu).",
-        taxArrearsErrorDate: "Data wpłaty musi być późniejsza niż data powstania zaległości.",
+        // POPRAWKA: Ujednolicenie komunikatu o błędzie
+        taxArrearsErrorDate: "Data wpłaty musi być późniejsza niż termin płatności.",
         taxArrearsErrorAmount: "Proszę podać prawidłową kwotę zaległości.",
         taxArrearsDataSource: "Stawki odsetek zgodne z obwieszczeniami Ministra Finansów.",
         errorApiGeneric: "Wystąpił błąd. Spróbuj ponownie później.",
@@ -220,8 +224,7 @@ export const translations = {
         memoryGameWin: ({ moves, time }) => `Congratulations! You won in ${moves} moves and ${time}s!`,
         snakeGameTitle: "Snake Game", snakeGameScore: "Score", snakeGameHighScore: "High Score", snakeGamePause: "PAUSED", snakeGameOver: "Game Over!", snakeGameRestart: "Play Again",
         snakeGameStartMsg: "Press any key or swipe to start",
-        // ZMIANA: Zaktualizowano opis sterowania o gesty dotykowe
-        snakeGameControls: "Controls: Arrow keys / WASD or swipe gestures. Pause: Spacebar.",
+        snakeGameControls: "Controls: Arrow keys, WASD or swipe gestures. Pause: Spacebar.",
         agencyTitle: "Creative Agency", agencyHeroTitle: "We build digital experiences.", agencyHeroSubtitle: "We specialize in web design, branding, and online marketing to help your business grow.",
         agencyServicesTitle: "Our Services", service1Title: "Web Design", service1Desc: "Modern and responsive websites.", service2Title: "Branding", service2Desc: "Creating a strong and consistent brand identity.", service3Title: "Online Marketing", service3Desc: "Increasing your online visibility.",
         agencyProcessTitle: "Our Work Process", processStep1Title: "Discovery", processStep1Desc: "We analyze your needs and goals.", processStep2Title: "Design", processStep2Desc: "We create strategies and mockups.",
@@ -277,7 +280,8 @@ export const translations = {
         timelineEdu1Desc: "Obtained professional qualifications in the field of IT at the technician level.",
         taxArrearsTitle: "Tax Arrears Interest Calculator",
         taxArrearsAmountLabel: "Arrears amount (PLN)",
-        taxArrearsStartDateLabel: "Date of arrears",
+        // FIX: Changed label name for consistency
+        taxArrearsStartDateLabel: "Due date",
         taxArrearsEndDateLabel: "Date of payment / calculation",
         taxArrearsCalculateBtn: "Calculate Interest",
         taxArrearsResultTitle: "Calculation Result",
@@ -289,7 +293,8 @@ export const translations = {
         taxArrearsRate: "Rate",
         taxArrearsInterest: "Interest",
         taxArrearsNoInterest: "Interest is not charged (amount is below the threshold).",
-        taxArrearsErrorDate: "The payment date must be later than the date of arrears.",
+        // FIX: Unified error message
+        taxArrearsErrorDate: "The payment date must be later than the due date.",
         taxArrearsErrorAmount: "Please enter a valid arrears amount.",
         taxArrearsDataSource: "Interest rates are in accordance with the announcements of the Minister of Finance.",
         errorApiGeneric: "An error occurred. Please try again later.",
@@ -301,5 +306,4 @@ export const translations = {
         errorServer: ({ status }) => `Server error (${status}). Please try again.`,
     }
 };
-
 
