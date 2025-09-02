@@ -32,8 +32,12 @@ export const translations = {
         markdownEditorCardTitle: "Edytor Markdown", markdownEditorCardDesc: "Prosty edytor tekstu z podglądem na żywo sformatowanego tekstu w Markdown.",
         pomodoroTimerCardTitle: "Licznik Pomodoro", pomodoroTimerCardDesc: "Prosty i konfigurowalny licznik czasu do zarządzania pracą i przerwami.",
         ticTacToeCardTitle: "Gra w Kółko i Krzyżyk", ticTacToeCardDesc: "Klasyczna gra logiczna z możliwością gry z komputerem, stworzona w czystym JavaScript.",
-        memoryGameCardTitle: "Gra Pamięciowa", memoryGameDesc: "Klasyczna gra w dopasowywanie par kart z licznikiem ruchów i czasu.",
-        snakeGameCardTitle: "Gra w Węża", snakeGameDesc: "Klasyczna gra zręcznościowa w węża, stworzona z użyciem HTML Canvas.",
+        memoryGameCardTitle: "Gra Pamięciowa", 
+        // ZMIANA: Poprawiono klucz z 'memoryGameDesc' na 'memoryGameCardDesc' dla spójności z app.js
+        memoryGameCardDesc: "Klasyczna gra w dopasowywanie par kart z licznikiem ruchów i czasu.",
+        snakeGameCardTitle: "Gra w Węża", 
+        // ZMIANA: Poprawiono klucz z 'snakeGameDesc' na 'snakeGameCardDesc' dla spójności z app.js
+        snakeGameCardDesc: "Klasyczna gra zręcznościowa w węża, stworzona z użyciem HTML Canvas.",
         taxArrearsCardTitle: "Kalkulator Odsetek Podatkowych", taxArrearsCardDesc: "Narzędzie do obliczania odsetek za zwłokę od zaległości podatkowych zgodnie z obowiązującymi stawkami.",
         statutoryInterestCardTitle: "Kalkulator Odsetek Ustawowych",
         statutoryInterestCardDesc: "Obliczanie odsetek ustawowych za opóźnienie oraz za opóźnienie w transakcjach handlowych.",
@@ -66,7 +70,6 @@ export const translations = {
         weatherWind: "Wiatr", weatherPressure: "Ciśnienie", weatherSunrise: "Wschód słońca", weatherSunset: "Zachód słońca",
         currencyTitle: "Kalkulator Walut", currencyAmount: "Kwota", currencyFrom: "Z", currencyTo: "Na", currencyDataSource: "Kursy walut dostarczane przez Frankfurter.app",
         markdownEditorTitle: "Edytor Markdown",
-        // ZMIANA: Dodano nowe klucze
         markdownEditorSubtitle: "Wpisz tekst po lewej stronie, aby zobaczyć podgląd na żywo po prawej. Teraz z opcją sprawdzania pisowni!",
         markdownSpellcheckEnable: "Sprawdź pisownię",
         markdownSpellcheckDisable: "Ukryj błędy",
@@ -158,3 +161,4 @@ export const translations = {
         errorServer: ({ status }) => `Błąd serwera (${status}). Spróbuj ponownie.`,
     }
 };
+
