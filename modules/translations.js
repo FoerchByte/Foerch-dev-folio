@@ -161,4 +161,3 @@ export const translations = {
         errorServer: ({ status }) => `Błąd serwera (${status}). Spróbuj ponownie.`,
     }
 };
-
