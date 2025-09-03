@@ -16,8 +16,23 @@
         <button id="geolocation-btn" class="weather-app__button weather-app__button--geo">{{weatherGeoBtn}}</button>
     </div>
     <div id="weather-result-container" class="weather-app__result" aria-live="polite"></div>
-    <div id="forecast-container-wrapper" class="weather-app__forecast-wrapper" style="display: none;">
-        <h3 class="weather-app__forecast-title">{{weatherForecastTitle}}</h3>
-        <div class="weather-app__forecast-grid" id="forecast-container"></div>
+    
+    <!-- ZMIANA: Struktura zawiera teraz obie prognozy i przełącznik, którego widoczność będzie kontrolowana przez CSS. -->
+    <div id="forecasts-wrapper" style="display: none;">
+        <div class="forecast-switcher" id="forecast-switcher">
+            <button data-forecast="hourly" class="active">{{weatherHourlyForecastTitle}}</button>
+            <button data-forecast="daily">{{weatherForecastTitle}}</button>
+        </div>
+        <div id="forecasts-container">
+            <div class="hourly-forecast__wrapper">
+                <h3 class="hourly-forecast__title">{{weatherHourlyForecastTitle}}</h3>
+                <div class="hourly-forecast__grid" id="hourly-forecast-container"></div>
+            </div>
+            <div class="weather-app__forecast-wrapper">
+                <h3 class="weather-app__forecast-title">{{weatherForecastTitle}}</h3>
+                <div class="weather-app__forecast-grid" id="forecast-container"></div>
+            </div>
+        </div>
     </div>
 </div>
+
