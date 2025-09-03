@@ -149,8 +149,8 @@
     100% { background-color: var(--completed-bg); }
 }
 
-/* POPRAWKA W SEKCJI @media */
-@media (max-width: 768px) {
+/* STYLE DLA WIDOKU PIONOWEGO (PORTRAIT) */
+@media (max-width: 768px) and (orientation: portrait) {
     .weather-app {
         padding: 1.5rem 1rem;
     }
@@ -179,32 +179,31 @@
         align-items: flex-start;
     }
 
-    /* NOWE STYLE DLA PROGNOZY */
     .weather-app__forecast-grid {
-        flex-direction: column; /* Układ jednokolumnowy */
+        flex-direction: column; 
         gap: 0.75rem;
-        overflow-x: hidden; /* Wyłączamy przewijanie w poziomie */
+        overflow-x: hidden; 
     }
 
     .weather-app__forecast-day {
-        display: flex; /* Zmieniamy na układ flexbox */
-        flex-direction: row; /* Elementy w jednym wierszu */
-        justify-content: space-between; /* Rozkładamy elementy */
-        align-items: center; /* Wyśrodkowujemy w pionie */
-        min-width: unset; /* Resetujemy minimalną szerokość */
-        text-align: left; /* Wyrównujemy tekst do lewej */
-        padding: 0.75rem 1rem; /* Dostosowujemy padding */
+        display: flex; 
+        flex-direction: row; 
+        justify-content: space-between; 
+        align-items: center; 
+        min-width: unset; 
+        text-align: left; 
+        padding: 0.75rem 1rem; 
     }
     
     .weather-app__forecast-day h4 {
         margin: 0;
-        font-size: 1rem; /* Możemy dostosować rozmiar czcionki */
-        flex-basis: 40%; /* Dajemy nazwie dnia trochę więcej miejsca */
-        text-transform: capitalize; /* Zmieniamy pierwszą literę na wielką */
+        font-size: 1rem; 
+        flex-basis: 40%; 
+        text-transform: capitalize; 
     }
 
     .weather-app__forecast-icon svg {
-        width: 40px; /* Zmniejszamy ikonę, aby pasowała do wiersza */
+        width: 40px; 
         height: 40px;
     }
     
@@ -215,40 +214,39 @@
     }
 }
 
-/* NOWA SEKCJA: Dodatkowe style dla widoku poziomego na urządzeniach mobilnych */
+/* POPRAWKA: Style dla widoku poziomego (landscape), przywracające przewijane kafelki */
 @media (max-height: 500px) and (orientation: landscape) {
     .weather-app__forecast-grid {
-        flex-direction: column;
-        gap: 0.75rem;
-        overflow-x: hidden;
+        flex-direction: row;
+        overflow-x: auto;
+        justify-content: flex-start;
+        gap: 1rem;
+        padding-bottom: 1rem; /* Upewniamy się, że scrollbar ma miejsce */
     }
 
     .weather-app__forecast-day {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: center;
-        min-width: unset;
-        text-align: left;
-        padding: 0.5rem 1rem; /* Mniejszy padding w poziomie */
+        flex: 1;
+        flex-direction: column; /* Powrót do układu wewnątrz kafelka */
+        min-width: 100px;
+        padding: 1rem;
+        text-align: center;
     }
 
     .weather-app__forecast-day h4 {
-        margin: 0;
-        font-size: 0.9rem; /* Mniejsza czcionka w poziomie */
-        flex-basis: 40%;
+        margin: 0 0 0.5rem 0;
+        font-size: 1rem; 
+        flex-basis: auto; /* Reset */
         text-transform: capitalize;
     }
 
     .weather-app__forecast-icon svg {
-        width: 32px; /* Mniejsza ikona */
-        height: 32px;
+        width: 48px;
+        height: 48px;
     }
-
+    
     .weather-app__forecast-day p {
-        margin: 0;
-        font-size: 1rem; /* Mniejsza czcionka */
-        text-align: right;
+        font-size: 1.1rem;
+        text-align: center;
     }
 }
 
