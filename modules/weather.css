@@ -57,24 +57,23 @@
     font-size: 1.8rem;
     margin-bottom: 0.5rem;
 }
-.current-weather__icon {
-    display: inline-block;
-    vertical-align: middle;
-    color: var(--primary-color);
-}
-.current-weather__icon svg {
-    width: 64px;
-    height: 64px;
-}
-.current-weather__details {
-    font-size: 1.2rem;
+.current-weather__main {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 0.5rem;
+    gap: 1rem;
+}
+.current-weather__icon svg {
+    width: 80px;
+    height: 80px;
+}
+.current-weather__details {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
 }
 .current-weather__temp {
-    font-size: 2.2rem;
+    font-size: 2.5rem;
     font-weight: 500;
 }
 .current-weather__extra-details {
@@ -86,6 +85,10 @@
     padding-top: 1.5rem;
     border-top: 1px solid var(--border-color);
 }
+.current-weather__detail-item {
+    display: flex;
+    flex-direction: column;
+}
 .current-weather__detail-item span:first-child {
     font-size: 0.9rem;
     color: var(--completed-text);
@@ -94,12 +97,61 @@
     font-size: 1.1rem;
     font-weight: 500;
 }
-.weather-app__forecast-wrapper {
-    margin-top: 2rem;
+
+/* NEW: Road condition styles */
+.road-condition__wrapper {
+    margin-top: 1.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border-color);
 }
-.weather-app__forecast-title {
+.road-condition__title {
+    font-size: 1rem;
+    color: var(--text-color);
+    margin: 0 0 0.5rem 0;
     text-align: left;
 }
+.road-condition__status {
+    font-size: 1.2rem;
+    font-weight: 500;
+    margin: 0;
+    text-align: left;
+}
+.road-condition--roadDry { color: var(--success-color); }
+.road-condition--roadWet { color: var(--primary-color); }
+.road-condition--roadIcy { color: var(--danger-color); }
+
+
+/* NEW: Hourly forecast styles */
+.hourly-forecast__wrapper, .weather-app__forecast-wrapper {
+    margin-top: 2rem;
+}
+.hourly-forecast__title, .weather-app__forecast-title {
+    text-align: left;
+    margin-bottom: 1rem;
+}
+.hourly-forecast__grid {
+    display: flex;
+    gap: 1rem;
+    overflow-x: auto;
+    padding: 0.5rem;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: thin;
+}
+.hourly-forecast__item {
+    flex: 0 0 80px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem 0.5rem;
+    background-color: var(--background-color);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+}
+.hourly-forecast__time { font-size: 0.9rem; font-weight: 500; margin: 0 0 0.5rem 0; }
+.hourly-forecast__icon svg { width: 48px; height: 48px; }
+.hourly-forecast__temp { font-size: 1.1rem; font-weight: bold; margin-top: 0.5rem; }
+
+
 .weather-app__forecast-grid {
     display: flex;
     justify-content: space-between;
@@ -124,67 +176,44 @@
     height: 48px;
     color: var(--text-color);
 }
-.weather-app__skeleton {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-.weather-app__skeleton-details {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-    gap: 1rem;
-    width: 100%;
-    margin-top: 1.5rem;
-    padding-top: 1.5rem;
-    border-top: 1px solid var(--border-color);
-}
-.skeleton {
-    background-color: var(--completed-bg);
-    border-radius: 4px;
-    animation: pulse 1.5s infinite ease-in-out;
-}
+
+.weather-app__skeleton { display: flex; flex-direction: column; align-items: center; }
+.weather-app__skeleton-details { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1rem; width: 100%; margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid var(--border-color); }
+.skeleton { background-color: var(--completed-bg); border-radius: 4px; animation: pulse 1.5s infinite ease-in-out; }
 @keyframes pulse {
     0% { background-color: var(--completed-bg); }
     50% { background-color: var(--border-color); }
     100% { background-color: var(--completed-bg); }
 }
 
-/* STYLE DLA WIDOKU PIONOWEGO (PORTRAIT) */
-@media (max-width: 768px) and (orientation: portrait) {
+/* --- Mobile Styles --- */
+@media (max-width: 768px) {
     .weather-app {
         padding: 1.5rem 1rem;
     }
-
     .weather-app__search {
         flex-direction: column;
     }
-    
     .weather-app__button {
         width: 100%;
     }
-
     .current-weather__extra-details {
-        display: grid;
         grid-template-columns: 1fr 1fr;
-        grid-template-rows: auto auto;
         grid-auto-flow: column;
-        column-gap: 2rem;
+        column-gap: 1rem;
         row-gap: 0.75rem;
         text-align: left;
     }
-
     .current-weather__detail-item {
-        display: flex;
-        flex-direction: column;
         align-items: flex-start;
     }
 
+    /* 5-day forecast mobile */
     .weather-app__forecast-grid {
         flex-direction: column; 
         gap: 0.75rem;
         overflow-x: hidden; 
     }
-
     .weather-app__forecast-day {
         display: flex; 
         flex-direction: row; 
@@ -194,59 +223,20 @@
         text-align: left; 
         padding: 0.75rem 1rem; 
     }
-    
     .weather-app__forecast-day h4 {
         margin: 0;
         font-size: 1rem; 
         flex-basis: 40%; 
         text-transform: capitalize; 
     }
-
     .weather-app__forecast-icon svg {
         width: 40px; 
         height: 40px;
     }
-    
     .weather-app__forecast-day p {
         margin: 0;
         font-size: 1.1rem;
         text-align: right;
-    }
-}
-
-/* POPRAWKA: Style dla widoku poziomego (landscape), przywracające przewijane kafelki */
-@media (max-height: 500px) and (orientation: landscape) {
-    .weather-app__forecast-grid {
-        flex-direction: row;
-        overflow-x: auto;
-        justify-content: flex-start;
-        gap: 0.75rem; /* Zmniejszamy odstęp między kafelkami */
-        padding: 0.5rem; /* Dodajemy mały padding, aby kafelki nie dotykały krawędzi */
-    }
-
-    .weather-app__forecast-day {
-        flex: 1;
-        flex-direction: column; /* Powrót do układu wewnątrz kafelka */
-        min-width: 95px; /* Minimalnie zmniejszamy szerokość */
-        padding: 0.75rem; /* Zmniejszamy wewnętrzny padding */
-        text-align: center;
-    }
-
-    .weather-app__forecast-day h4 {
-        margin: 0 0 0.5rem 0;
-        font-size: 1rem; 
-        flex-basis: auto; /* Reset */
-        text-transform: capitalize;
-    }
-
-    .weather-app__forecast-icon svg {
-        width: 48px;
-        height: 48px;
-    }
-    
-    .weather-app__forecast-day p {
-        font-size: 1.1rem;
-        text-align: center;
     }
 }
 
