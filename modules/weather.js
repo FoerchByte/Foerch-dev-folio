@@ -33,6 +33,7 @@ function getWeatherIcon(iconCode) {
 async function handleWeatherSearch(query) {
     const resultContainer = document.getElementById('weather-result-container');
     const forecastsWrapper = document.getElementById('forecasts-wrapper');
+    const forecastsContainer = document.getElementById('forecasts-container');
     const currentLang = localStorage.getItem('lang') || 'pl';
     
     const skeletonHTML = `
@@ -45,7 +46,6 @@ async function handleWeatherSearch(query) {
         </div>`;
 
     resultContainer.innerHTML = skeletonHTML;
-    // ZMIANA: Ukrywamy cały kontener z prognozami podczas ładowania nowych danych.
     if (forecastsWrapper) forecastsWrapper.style.display = 'none';
 
     let url;
@@ -97,8 +97,11 @@ async function handleWeatherSearch(query) {
                 <div class="road-condition__item"><span>${weatherT('weatherRoadConditionTitle')}</span><span class="road-condition-value road-condition--${roadCondition.class}">${roadCondition.text}</span></div>
             </div>`;
         
-        // ZMIANA: Pokazujemy kontener z prognozami po pomyślnym załadowaniu danych.
         if (forecastsWrapper) forecastsWrapper.style.display = 'block';
+        if (forecastsContainer) {
+            forecastsContainer.classList.remove('show-daily');
+            forecastsContainer.classList.add('show-hourly');
+        }
 
         const hourlyContainer = document.getElementById('hourly-forecast-container');
         const next8hours = data.list.slice(0, 8);
@@ -127,7 +130,6 @@ async function handleWeatherSearch(query) {
 
     } catch (error) {
         resultContainer.innerHTML = `<p>${error.message || weatherT('errorApiWeather')}</p>`;
-        // ZMIANA: Ukrywamy kontener prognoz również w przypadku błędu.
         if (forecastsWrapper) forecastsWrapper.style.display = 'none';
     }
 }
@@ -139,16 +141,14 @@ function setupForecastSwitcher() {
 
         const button = e.target.closest('button');
         if (!button) return;
-        
-        // ZMIANA: Uproszczona logika przełączania - bezpośrednio manipulujemy stylami.
-        const forecastType = button.dataset.forecast;
-        const hourlyWrapper = document.querySelector('.hourly-forecast__wrapper');
-        const dailyWrapper = document.querySelector('.weather-app__forecast-wrapper');
-        
-        if (hourlyWrapper && dailyWrapper) {
-            hourlyWrapper.style.display = (forecastType === 'hourly') ? 'block' : 'none';
-            dailyWrapper.style.display = (forecastType === 'daily') ? 'block' : 'none';
 
+        const forecastType = button.dataset.forecast;
+        const forecastsContainer = document.getElementById('forecasts-container');
+        
+        // ZMIANA: Logika teraz przełącza klasy zamiast stylów inline, co ułatwia zarządzanie w CSS.
+        if (forecastsContainer) {
+            forecastsContainer.classList.remove('show-hourly', 'show-daily');
+            forecastsContainer.classList.add(`show-${forecastType}`);
             switcher.querySelector('.active').classList.remove('active');
             button.classList.add('active');
         }
@@ -184,4 +184,5 @@ export function initializeWeatherApp(dependencies) {
 
     return [];
 }
+
 
