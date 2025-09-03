@@ -76,17 +76,26 @@
     font-size: 2.5rem;
     font-weight: 500;
 }
-/* UPDATE: Desktop layout for extra details now uses 5 columns */
+
+/*
+  EN: FIX: Added a new grid container for extra weather details.
+  This ensures all five items (wind, pressure, sunrise, sunset, road condition)
+  are perfectly aligned in a five-column layout on desktop screens.
+  PL: POPRAWKA: Dodano nowy kontener siatki dla dodatkowych szczegółów pogody.
+  Zapewnia to idealne wyrównanie wszystkich pięciu elementów (wiatr, ciśnienie,
+  wschód, zachód, stan nawierzchni) w pięciokolumnowym układzie na ekranach desktopowych.
+*/
 .current-weather__extra-details {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
-    gap: 1rem; /* Reduced gap for a tighter layout */
-    text-align: center; /* Center align text for a cleaner look */
+    gap: 1rem;
+    text-align: center;
     margin-top: 1.5rem;
     padding-top: 1.5rem;
     border-top: 1px solid var(--border-color);
     align-items: start;
 }
+
 .current-weather__detail-item {
     display: flex;
     flex-direction: column;
@@ -133,7 +142,15 @@
     scrollbar-width: thin;
 }
 .hourly-forecast__item {
-    flex: 0 0 80px;
+    /*
+      EN: FIX: Reduced the base width of the hourly forecast item.
+      This allows more items to fit within the viewport on desktop,
+      preventing the horizontal scrollbar from appearing unnecessarily.
+      PL: POPRAWKA: Zmniejszono bazową szerokość elementu prognozy godzinowej.
+      Pozwala to na zmieszczenie większej liczby elementów w widoku na desktopie,
+      zapobiegając niepotrzebnemu pojawianiu się poziomego paska przewijania.
+    */
+    flex: 0 0 70px;
     display: flex;
     flex-direction: column;
     align-items: center;
