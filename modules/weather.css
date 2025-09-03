@@ -175,11 +175,6 @@
 .weather-app__skeleton { /* ... skeleton styles ... */ }
 @keyframes pulse { /* ... keyframes ... */ }
 
-/* EN: REDESIGNED: The forecast switcher now uses a cleaner, tab-like design
-  with an underline indicator for the active state, improving the overall aesthetics.
-  PL: PRZEPROJEKTOWANO: Przełącznik prognoz używa teraz czystszego, przypominającego
-  zakładki designu z podkreśleniem aktywnego stanu, co poprawia ogólną estetykę.
-*/
 .forecast-switcher {
     display: none;
     position: relative;
@@ -228,27 +223,12 @@
         max-width: 320px;
         margin-left: auto;
         margin-right: auto;
-        /*
-          EN: MOBILE ALIGNMENT FIX: The 'text-align' property is set to 'center'
-          to ensure both columns are perfectly centered within their grid areas.
-          PL: POPRAWKA WYRÓWNANIA MOBILE: Właściwość 'text-align' ustawiono na 'center',
-          aby zapewnić idealne wyśrodkowanie obu kolumn w ich obszarach siatki.
-        */
-        text-align: center;
+        text-align: left;
     }
     .current-weather__detail-item {
-        /*
-          EN: MOBILE ALIGNMENT FIX: Items within the detail container are now centered
-          to match the new overall centered layout.
-          PL: POPRAWKA WYRÓWNANIA MOBILE: Elementy w kontenerze szczegółów są teraz
-          wyśrodkowane, aby pasowały do nowego, ogólnego wyśrodkowanego układu.
-        */
-        align-items: center;
+        align-items: flex-start;
         gap: 0;
     }
-    /* EN: MOBILE ALIGNMENT FIX: Specific style for road condition to make it span full width and center its content.
-       PL: POPRAWKA WYRÓWNANIA MOBILE: Specyficzny styl dla stanu nawierzchni, aby rozciągał się na całą szerokość i centrował swoją zawartość.
-    */
     .road-condition__item {
         grid-column: 1 / -1;
         align-items: center;
