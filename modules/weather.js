@@ -28,39 +28,13 @@ function getWeatherIcon(iconCode) {
     return `<img src="${iconBaseUrl}${iconName}" alt="Weather icon" class="weather-icon-img">`;
 }
 
-function insertForecastContainers() {
-    const resultContainer = document.getElementById('weather-result-container');
-    if (!resultContainer || document.getElementById('forecasts-container')) return;
-
-    const forecastHTML = `
-        <div class="forecast-switcher" id="forecast-switcher">
-            <button data-forecast="hourly" class="active">${weatherT('weatherHourlyForecastTitle')}</button>
-            <button data-forecast="daily">${weatherT('weatherForecastTitle')}</button>
-        </div>
-        <div id="forecasts-container" class="show-hourly">
-            <div class="hourly-forecast__wrapper">
-                <h3 class="hourly-forecast__title">${weatherT('weatherHourlyForecastTitle')}</h3>
-                <div class="hourly-forecast__grid" id="hourly-forecast-container"></div>
-            </div>
-            <div class="weather-app__forecast-wrapper">
-                <h3 class="weather-app__forecast-title">${weatherT('weatherForecastTitle')}</h3>
-                <div class="weather-app__forecast-grid" id="forecast-container"></div>
-            </div>
-        </div>`;
-    resultContainer.insertAdjacentHTML('afterend', forecastHTML);
-}
+// ZMIANA: Usunięto funkcję insertForecastContainers, ponieważ kontenery są teraz na stałe w pliku HTML.
 
 async function handleWeatherSearch(query) {
     const resultContainer = document.getElementById('weather-result-container');
+    const forecastsWrapper = document.getElementById('forecasts-wrapper');
     const currentLang = localStorage.getItem('lang') || 'pl';
-    /*
-      EN: CRITICAL BUG FIX: The skeletonHTML constant was previously abbreviated,
-      causing a JavaScript error and preventing the weather module from rendering.
-      It has been restored to its full, correct definition.
-      PL: KRYTYCZNA POPRAWKA BŁĘDU: Stała skeletonHTML była wcześniej skrócona,
-      co powodowało błąd JavaScript i uniemożliwiało renderowanie modułu pogodowego.
-      Została przywrócona do swojej pełnej, prawidłowej definicji.
-    */
+    
     const skeletonHTML = `
         <div class="weather-app__skeleton">
             <div class="skeleton" style="width: 200px; height: 2.2rem; margin-bottom: 1rem;"></div>
@@ -71,14 +45,8 @@ async function handleWeatherSearch(query) {
         </div>`;
 
     resultContainer.innerHTML = skeletonHTML;
-    
-    insertForecastContainers();
-
-    const hourlyWrapper = document.querySelector('.hourly-forecast__wrapper');
-    const forecastWrapper = document.querySelector('.weather-app__forecast-wrapper');
-    if (hourlyWrapper) hourlyWrapper.style.display = 'none';
-    if (forecastWrapper) forecastWrapper.style.display = 'none';
-
+    // ZMIANA: Ukrywamy cały kontener z prognozami podczas ładowania nowych danych.
+    if (forecastsWrapper) forecastsWrapper.style.display = 'none';
 
     let url;
     if (typeof query === 'string' && query) {
@@ -129,6 +97,9 @@ async function handleWeatherSearch(query) {
                 <div class="road-condition__item"><span>${weatherT('weatherRoadConditionTitle')}</span><span class="road-condition-value road-condition--${roadCondition.class}">${roadCondition.text}</span></div>
             </div>`;
         
+        // ZMIANA: Pokazujemy kontener z prognozami po pomyślnym załadowaniu danych.
+        if (forecastsWrapper) forecastsWrapper.style.display = 'block';
+
         const hourlyContainer = document.getElementById('hourly-forecast-container');
         const next8hours = data.list.slice(0, 8);
         hourlyContainer.innerHTML = next8hours.map(item => `
@@ -138,7 +109,6 @@ async function handleWeatherSearch(query) {
                 <p class="hourly-forecast__temp">${Math.round(item.main.temp)}°C</p>
             </div>
         `).join('');
-        if(hourlyWrapper) hourlyWrapper.style.display = 'block';
 
         const forecastContainer = document.getElementById('forecast-container');
         const dailyForecasts = data.list.filter(item => item.dt_txt.includes("12:00:00")).slice(0, 5)
@@ -154,10 +124,11 @@ async function handleWeatherSearch(query) {
             }).join('');
         
         if(forecastContainer) forecastContainer.innerHTML = dailyForecasts;
-        if(forecastWrapper) forecastWrapper.style.display = 'block';
 
     } catch (error) {
         resultContainer.innerHTML = `<p>${error.message || weatherT('errorApiWeather')}</p>`;
+        // ZMIANA: Ukrywamy kontener prognoz również w przypadku błędu.
+        if (forecastsWrapper) forecastsWrapper.style.display = 'none';
     }
 }
 
@@ -168,12 +139,16 @@ function setupForecastSwitcher() {
 
         const button = e.target.closest('button');
         if (!button) return;
-
-        const forecastType = button.dataset.forecast;
-        const forecastsContainer = document.getElementById('forecasts-container');
         
-        if (forecastsContainer) {
-            forecastsContainer.className = `show-${forecastType}`;
+        // ZMIANA: Uproszczona logika przełączania - bezpośrednio manipulujemy stylami.
+        const forecastType = button.dataset.forecast;
+        const hourlyWrapper = document.querySelector('.hourly-forecast__wrapper');
+        const dailyWrapper = document.querySelector('.weather-app__forecast-wrapper');
+        
+        if (hourlyWrapper && dailyWrapper) {
+            hourlyWrapper.style.display = (forecastType === 'hourly') ? 'block' : 'none';
+            dailyWrapper.style.display = (forecastType === 'daily') ? 'block' : 'none';
+
             switcher.querySelector('.active').classList.remove('active');
             button.classList.add('active');
         }
