@@ -48,6 +48,25 @@ function getWeatherIcon(iconCode) {
     return iconMap[iconCode] || iconMap['01d']; // Default to a sun icon if not found
 }
 
+/*
+  EN: BUGFIX: Moved the helper function to the top level of the module scope.
+  This makes it accessible to all other functions within this module,
+  resolving the "is not defined" reference error.
+  PL: POPRAWKA BŁĘDU: Przeniesiono funkcję pomocniczą na najwyższy poziom
+  zakresu modułu. Dzięki temu jest ona dostępna dla wszystkich innych funkcji
+  w tym module, co rozwiązuje błąd odwołania "is not defined".
+*/
+function insertHourlyForecastHTML() {
+    const hourlyForecastHTML = `
+        <div class="hourly-forecast__wrapper" style="display: none;">
+            <h3 class="hourly-forecast__title">${weatherT('weatherHourlyForecastTitle')}</h3>
+            <div class="hourly-forecast__grid" id="hourly-forecast-container"></div>
+        </div>`;
+    const forecastWrapper = document.getElementById('forecast-container-wrapper');
+    if (forecastWrapper) {
+        forecastWrapper.insertAdjacentHTML('beforebegin', hourlyForecastHTML);
+    }
+}
 
 async function handleWeatherSearch(query) {
     const resultContainer = document.getElementById('weather-result-container');
@@ -166,19 +185,6 @@ async function handleWeatherSearch(query) {
 export function initializeWeatherApp(dependencies) {
     weatherT = dependencies.t;
 
-    // Helper to inject hourly forecast HTML structure
-    function insertHourlyForecastHTML() {
-        const hourlyForecastHTML = `
-            <div class="hourly-forecast__wrapper" style="display: none;">
-                <h3 class="hourly-forecast__title">${weatherT('weatherHourlyForecastTitle')}</h3>
-                <div class="hourly-forecast__grid" id="hourly-forecast-container"></div>
-            </div>`;
-        const forecastWrapper = document.getElementById('forecast-container-wrapper');
-        if (forecastWrapper) {
-            forecastWrapper.insertAdjacentHTML('beforebegin', hourlyForecastHTML);
-        }
-    }
-
     const searchBtn = document.getElementById('search-weather-btn');
     const cityInput = document.getElementById('city-input');
     const geoBtn = document.getElementById('geolocation-btn');
@@ -202,3 +208,4 @@ export function initializeWeatherApp(dependencies) {
 
     return [];
 }
+
