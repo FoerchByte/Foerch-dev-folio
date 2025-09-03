@@ -175,34 +175,42 @@
 .weather-app__skeleton { /* ... skeleton styles ... */ }
 @keyframes pulse { /* ... keyframes ... */ }
 
-/* EN: NEW: Styles for the mobile forecast switcher.
-  It's hidden on desktop and appears on mobile.
-  PL: NOWOŚĆ: Style dla mobilnego przełącznika prognoz.
-  Jest on domyślnie ukryty na desktopie i pojawia się na mobile.
+/* EN: REDESIGNED: The forecast switcher now uses a cleaner, tab-like design
+  with an underline indicator for the active state, improving the overall aesthetics.
+  PL: PRZEPROJEKTOWANO: Przełącznik prognoz używa teraz czystszego, przypominającego
+  zakładki designu z podkreśleniem aktywnego stanu, co poprawia ogólną estetykę.
 */
 .forecast-switcher {
     display: none;
+    position: relative;
+    border-bottom: 1px solid var(--border-color);
     margin-top: 2rem;
     margin-bottom: 1rem;
-    background-color: var(--completed-bg);
-    border-radius: 8px;
-    padding: 0.25rem;
 }
 .forecast-switcher button {
     flex: 1;
     background: none;
     border: none;
     padding: 0.75rem;
-    border-radius: 6px;
     font-weight: 500;
-    color: var(--text-color);
+    color: var(--completed-text);
     cursor: pointer;
-    transition: background-color 0.2s, color 0.2s;
+    transition: color 0.2s;
+    position: relative;
 }
 .forecast-switcher button.active {
-    background-color: var(--card-background);
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    color: var(--text-color);
 }
+.forecast-switcher button.active::after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 10%;
+    width: 80%;
+    height: 3px;
+    background-color: var(--primary-color);
+}
+
 
 /* --- Mobile Styles --- */
 @media (max-width: 768px) {
@@ -220,18 +228,25 @@
         max-width: 320px;
         margin-left: auto;
         margin-right: auto;
-        text-align: left;
+        /*
+          EN: MOBILE ALIGNMENT FIX: The 'text-align' property is set to 'center'
+          to ensure both columns are perfectly centered within their grid areas.
+          PL: POPRAWKA WYRÓWNANIA MOBILE: Właściwość 'text-align' ustawiono na 'center',
+          aby zapewnić idealne wyśrodkowanie obu kolumn w ich obszarach siatki.
+        */
+        text-align: center;
     }
     .current-weather__detail-item {
-        align-items: flex-start;
+        /*
+          EN: MOBILE ALIGNMENT FIX: Items within the detail container are now centered
+          to match the new overall centered layout.
+          PL: POPRAWKA WYRÓWNANIA MOBILE: Elementy w kontenerze szczegółów są teraz
+          wyśrodkowane, aby pasowały do nowego, ogólnego wyśrodkowanego układu.
+        */
+        align-items: center;
         gap: 0;
     }
 
-    /* EN: MOBILE UX REFACTOR: Forecasts are now handled by a switcher.
-      Headings are hidden, and visibility is controlled by a class on the container.
-      PL: REFAKTORYZACJA UX MOBILE: Prognozy są teraz obsługiwane przez przełącznik.
-      Nagłówki są ukryte, a widoczność jest kontrolowana przez klasę na kontenerze.
-    */
     .forecast-switcher {
         display: flex;
     }
@@ -239,7 +254,7 @@
         margin-top: 0;
     }
     .hourly-forecast__title, .weather-app__forecast-title {
-        display: none; /* Titles are replaced by switcher buttons on mobile */
+        display: none;
     }
     #forecasts-container.show-hourly .weather-app__forecast-wrapper { display: none; }
     #forecasts-container.show-daily .hourly-forecast__wrapper { display: none; }
@@ -248,12 +263,11 @@
         display: block;
     }
 
-    /* Unifying forecast styles for mobile */
     .hourly-forecast__grid, .weather-app__forecast-grid {
         display: flex;
         flex-direction: column;
         gap: 0.75rem;
-        grid-template-columns: 1fr; /* Override grid from desktop */
+        grid-template-columns: 1fr;
     }
     .hourly-forecast__item, .weather-app__forecast-day {
         display: flex;
@@ -282,15 +296,11 @@
 
 /* Landscape view fix */
 @media (max-height: 500px) and (orientation: landscape) {
-    /*
-      EN: LANDSCAPE FIX: Ensure both forecasts are visible and the switcher is hidden.
-      PL: POPRAWKA LANDSCAPE: Zapewnienie widoczności obu prognoz i ukrycie przełącznika.
-    */
     .forecast-switcher {
         display: none;
     }
     .hourly-forecast__wrapper, .weather-app__forecast-wrapper {
-        display: block !important; /* Override mobile visibility rules */
+        display: block !important;
         margin-top: 2rem;
     }
     .hourly-forecast__title, .weather-app__forecast-title {
