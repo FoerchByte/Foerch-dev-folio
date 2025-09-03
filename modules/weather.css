@@ -109,17 +109,34 @@
     font-weight: 500;
 }
 
-.road-condition__item span {
+/*
+  EN: REFACTOR: Unified road condition item styling.
+  The .road-condition__item is now styled to be a flex column, identical to
+  .current-weather__detail-item, ensuring perfect visual alignment.
+  PL: REFAKTORYZACJA: Ujednolicono styl elementu stanu nawierzchni.
+  Element .road-condition__item jest teraz stylizowany jako kolumna flex,
+  identycznie jak .current-weather__detail-item, co zapewnia idealne wyrównanie wizualne.
+*/
+.road-condition__item {
     display: flex;
-    align-items: baseline;
-    justify-content: center;
-    gap: 0.5rem;
-    flex-wrap: wrap;
+    flex-direction: column;
 }
+.road-condition__item span:first-child {
+    font-size: 0.9rem;
+    color: var(--completed-text);
+}
+
+/*
+  EN: REFACTOR: Overriding previous styles to match other detail items.
+  The font size and weight are now consistent with the "Wind", "Pressure", etc. elements.
+  PL: REFAKTORYZACJA: Nadpisanie poprzednich stylów w celu dopasowania do innych szczegółów.
+  Rozmiar i waga czcionki są teraz spójne z elementami "Wiatr", "Ciśnienie" itp.
+*/
 .road-condition-value {
-    font-size: 1.2rem;
-    font-weight: bold;
+    font-size: 1.1rem;
+    font-weight: 500;
 }
+
 .road-condition--roadDry { color: var(--success-color); }
 .road-condition--roadWet { color: var(--primary-color); }
 .road-condition--roadIcy { color: var(--danger-color); }
@@ -135,7 +152,13 @@
 }
 .hourly-forecast__grid {
     display: flex;
-    gap: 1rem;
+    /*
+      EN: TWEAK: Adjusted the gap for better spacing.
+      Reduced from 1rem to 0.75rem to help fit more items comfortably.
+      PL: DOPRACOWANIE: Dostosowano odstęp dla lepszego rozmieszczenia.
+      Zmniejszono z 1rem do 0.75rem, aby pomóc wygodniej zmieścić więcej elementów.
+    */
+    gap: 0.75rem;
     overflow-x: auto;
     padding: 0.5rem;
     -webkit-overflow-scrolling: touch;
@@ -143,18 +166,18 @@
 }
 .hourly-forecast__item {
     /*
-      EN: FIX: Reduced the base width of the hourly forecast item.
-      This allows more items to fit within the viewport on desktop,
-      preventing the horizontal scrollbar from appearing unnecessarily.
-      PL: POPRAWKA: Zmniejszono bazową szerokość elementu prognozy godzinowej.
-      Pozwala to na zmieszczenie większej liczby elementów w widoku na desktopie,
-      zapobiegając niepotrzebnemu pojawianiu się poziomego paska przewijania.
+      EN: TWEAK: Fine-tuned flex-basis and padding.
+      Slightly increased the base width to 75px to avoid a cramped look,
+      and reduced horizontal padding to compensate.
+      PL: DOPRACOWANIE: Dostosowano flex-basis i padding.
+      Nieznacznie zwiększono bazową szerokość do 75px, aby uniknąć "ściśniętego" wyglądu,
+      i zmniejszono dopełnienie poziome w celu kompensacji.
     */
-    flex: 0 0 70px;
+    flex: 0 0 75px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 1rem 0.5rem;
+    padding: 1rem 0.4rem;
     background-color: var(--background-color);
     border: 1px solid var(--border-color);
     border-radius: 8px;
