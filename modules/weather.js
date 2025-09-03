@@ -5,14 +5,13 @@
   a 5-day forecast, and a new hourly forecast. It's a prime example of an API-driven, utility-focused app.
   PL: Ten moduł zawiera logikę dla aplikacji Stacja Pogody. Pokazuje, jak
   pobierać i przetwarzać dane z API OpenWeatherMap, obsługiwać geolokalizację
-  oraz dynamicznie renderować informacje o pogodzie, prognozę na 5 dni
+  oraz dynamicznie renderować informacje o pogodzie i prognozę na 5 dni
   oraz nową prognozę godzinową. To doskonały przykład aplikacji opartej na API i nastawionej na użyteczność.
 */
 
 let weatherT; 
 
-// UPDATE: Replaced the icon set with a more illustrative one for better readability.
-// This new set is more aligned with standard weather iconography.
+// Ikony pozostają bez zmian
 function getWeatherIcon(iconCode) {
     const iconMap = {
         '01d': `<svg viewBox="0 0 64 64"><path d="M32,16.21V10.5m0,43V47.79m11.25-26L47.5,16.5m-26,26L16.5,47.5m-5.75-11H5m43,0H47.79M16.5,16.5,21.75,21.75M47.5,47.5,42.25,42.25" fill="none" stroke="#f5c742" stroke-linecap="round" stroke-miterlimit="10" stroke-width="3"/><circle cx="32" cy="32" r="9" fill="none" stroke="#f5c742" stroke-linecap="round" stroke-miterlimit="10" stroke-width="3"/>`, // clear sky day
@@ -37,90 +36,21 @@ function getWeatherIcon(iconCode) {
     return iconMap[iconCode] || iconMap['01d'];
 }
 
-// NEW: A function to determine road condition based on weather data
-// It returns a translation key for the condition.
+// Funkcja szacująca stan nawierzchni
 function getRoadCondition(weather) {
     const id = weather.id;
     const temp = weather.temp;
 
-    // Snow or freezing rain
+    // Śnieg lub marznący deszcz
     if ((id >= 600 && id < 700) || id === 511) {
         return temp <= 0.5 ? 'roadIcy' : 'roadWet';
     }
-    // Rain, Drizzle, Thunderstorm
+    // Deszcz, mżawka, burza
     if ((id >= 200 && id < 600)) {
         return 'roadWet';
     }
-    // Default to dry
+    // Domyślnie sucho
     return 'roadDry';
-}
-
-
-async function handleWeatherSearch(query) {
-    const resultContainer = document.getElementById('weather-result-container');
-    // NEW: Get hourly forecast containers
-    const hourlyForecastContainer = document.getElementById('hourly-forecast-container');
-    const hourlyForecastWrapper = document.getElementById('hourly-forecast-wrapper');
-    const forecastContainer = document.getElementById('forecast-container');
-    const forecastContainerWrapper = document.getElementById('forecast-container-wrapper');
-    const currentLang = localStorage.getItem('lang') || 'pl';
-
-    resultContainer.innerHTML = fetchSkeletonHTML();
-    // NEW: Hide new containers
-    if(hourlyForecastWrapper) hourlyForecastWrapper.style.display = 'none';
-    if(hourlyForecastContainer) hourlyForecastContainer.innerHTML = '';
-    forecastContainerWrapper.style.display = 'none';
-    forecastContainer.innerHTML = '';
-
-    const showError = (messageKey, args = {}) => {
-        resultContainer.innerHTML = `<p class="error-message">${weatherT(messageKey, args)}</p>`;
-    };
-    
-    try {
-        let queryString;
-        if (typeof query === 'string' && query) {
-            queryString = `city=${encodeURIComponent(query)}`;
-        } else if (typeof query === 'object' && query.latitude && query.longitude) {
-            queryString = `lat=${query.latitude}&lon=${query.longitude}`;
-        } else {
-            showError('errorApiWeather'); 
-            return;
-        }
-
-        const response = await fetch(`/.netlify/functions/weather?${queryString}&lang=${currentLang}`);
-        const data = await response.json();
-        
-        if (!response.ok) {
-            if (response.status === 404) showError('errorNotFound');
-            else if (response.status === 401) showError('errorAuth');
-            else showError('errorServer', { status: response.status });
-            return;
-        }
-        
-        localStorage.setItem('lastCity', data.city.name);
-        renderWeatherData(data, resultContainer);
-        // NEW: Call rendering for hourly forecast
-        renderHourlyForecastData(data, hourlyForecastContainer, hourlyForecastWrapper);
-        renderForecastData(data, forecastContainer, forecastContainerWrapper);
-
-    } catch (error) {
-        console.error("Błąd pobierania pogody:", error);
-        showError('errorApiWeather');
-    }
-}
-
-function fetchSkeletonHTML() {
-    return `
-    <div class="weather-app__skeleton">
-        <div class="skeleton" style="height: 2.5rem; width: 60%; margin-bottom: 1rem;"></div>
-        <div class="skeleton" style="height: 4rem; width: 80%; margin-bottom: 0.75rem;"></div>
-        <div class="weather-app__skeleton-details">
-            <div class="skeleton" style="height: 3rem; width: 100%;"></div>
-            <div class="skeleton" style="height: 3rem; width: 100%;"></div>
-            <div class="skeleton" style="height: 3rem; width: 100%;"></div>
-            <div class="skeleton" style="height: 3rem; width: 100%;"></div>
-        </div>
-    </div>`;
 }
 
 function renderWeatherData(data, container) {
@@ -128,53 +58,88 @@ function renderWeatherData(data, container) {
     const { city } = data;
     const sunrise = new Date(city.sunrise * 1000).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
     const sunset = new Date(city.sunset * 1000).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-
-    // NEW: Get the road condition
     const roadConditionKey = getRoadCondition({ id: current.weather[0].id, temp: current.main.temp });
 
     container.innerHTML = `
-        <h3 class="current-weather__city">${city.name}, ${city.country}</h3>
-        <div class="current-weather__main">
-            <div class="current-weather__icon" aria-label="${current.weather[0].description}">
-                ${getWeatherIcon(current.weather[0].icon)}
+        <div class="current-weather">
+            <h3 class="current-weather__city">${city.name}, ${city.country}</h3>
+            <div class="current-weather__main">
+                <div class="current-weather__icon" aria-label="${current.weather[0].description}">
+                    ${getWeatherIcon(current.weather[0].icon)}
+                </div>
+                <div class="current-weather__details">
+                    <span class="current-weather__temp">${Math.round(current.main.temp)}°C</span>
+                    <span>${current.weather[0].description}</span>
+                </div>
             </div>
-            <div class="current-weather__details">
-                <span class="current-weather__temp">${Math.round(current.main.temp)}°C</span>
-                <span>${current.weather[0].description}</span>
+            <!-- UPDATE: Road condition moved inside this grid -->
+            <div class="current-weather__extra-details">
+                <div class="current-weather__detail-item">
+                    <span>${weatherT('weatherWind')}</span>
+                    <span>${current.wind.speed.toFixed(1)} m/s</span>
+                </div>
+                <div class="current-weather__detail-item">
+                    <span>${weatherT('weatherPressure')}</span>
+                    <span>${current.main.pressure} hPa</span>
+                </div>
+                <div class="current-weather__detail-item">
+                    <span>${weatherT('weatherSunrise')}</span>
+                    <span>${sunrise}</span>
+                </div>
+                <div class="current-weather__detail-item">
+                    <span>${weatherT('weatherSunset')}</span>
+                    <span>${sunset}</span>
+                </div>
+                <!-- UPDATE: Road condition is now an item in the grid -->
+                <div class="current-weather__detail-item road-condition__item">
+                    <span>${weatherT('weatherRoadConditionTitle')}: <strong class="road-condition-value road-condition--${roadConditionKey}">${weatherT(roadConditionKey)}</strong></span>
+                </div>
             </div>
-        </div>
-        <div class="current-weather__extra-details">
-            <div class="current-weather__detail-item">
-                <span>${weatherT('weatherWind')}</span>
-                <span>${current.wind.speed.toFixed(1)} m/s</span>
-            </div>
-            <div class="current-weather__detail-item">
-                <span>${weatherT('weatherPressure')}</span>
-                <span>${current.main.pressure} hPa</span>
-            </div>
-            <div class="current-weather__detail-item">
-                <span>${weatherT('weatherSunrise')}</span>
-                <span>${sunrise}</span>
-            </div>
-            <div class="current-weather__detail-item">
-                <span>${weatherT('weatherSunset')}</span>
-                <span>${sunset}</span>
-            </div>
-        </div>
-        <!-- NEW: Road condition section -->
-        <div class="road-condition__wrapper">
-            <h4 class="road-condition__title">${weatherT('weatherRoadConditionTitle')}</h4>
-            <p class="road-condition__status road-condition--${roadConditionKey}">${weatherT(roadConditionKey)}</p>
         </div>
     `;
 }
 
-// NEW: Function to render the hourly forecast
-function renderHourlyForecastData(data, container, wrapper) {
-    const hourlyForecasts = data.list.slice(1, 9); // Next 8 items (24 hours)
-    if (hourlyForecasts.length > 0 && container && wrapper) {
-        wrapper.style.display = 'block';
-        container.innerHTML = hourlyForecasts.map(item => `
+async function handleWeatherSearch(query) {
+    const resultContainer = document.getElementById('weather-result-container');
+    const hourlyForecastWrapper = document.getElementById('hourly-forecast-wrapper');
+    const hourlyForecastContainer = document.getElementById('hourly-forecast-container');
+    const forecastContainerWrapper = document.getElementById('forecast-container-wrapper');
+    const forecastContainer = document.getElementById('forecast-container');
+    const currentLang = localStorage.getItem('lang') || 'pl';
+
+    resultContainer.innerHTML = fetchSkeletonHTML();
+    hourlyForecastWrapper.style.display = 'none';
+    forecastContainerWrapper.style.display = 'none';
+
+    try {
+        let url;
+        if (typeof query === 'string' && query) {
+            url = `/.netlify/functions/weather?city=${query}&lang=${currentLang}`;
+        } else if (typeof query === 'object' && query.latitude) {
+            url = `/.netlify/functions/weather?lat=${query.latitude}&lon=${query.longitude}&lang=${currentLang}`;
+        } else {
+            resultContainer.innerHTML = `<p>${weatherT('errorApiGeneric')}</p>`;
+            return;
+        }
+
+        const response = await fetch(url);
+        const data = await response.json();
+
+        if (data.cod !== "200") {
+             const errorMessage = data.cod === "404" ? weatherT('errorNotFound') : weatherT('errorServer', { status: data.cod });
+             throw new Error(errorMessage);
+        }
+        
+        if (typeof query === 'string' && query) {
+            localStorage.setItem('lastCity', query);
+        } else {
+            localStorage.setItem('lastCity', data.city.name);
+        }
+
+        renderWeatherData(data, resultContainer);
+        
+        const hourlyForecasts = data.list.slice(1, 9); 
+        hourlyForecastContainer.innerHTML = hourlyForecasts.map(item => `
             <div class="hourly-forecast__item">
                 <p class="hourly-forecast__time">${new Date(item.dt * 1000).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</p>
                 <div class="hourly-forecast__icon" aria-label="${item.weather[0].description}">
@@ -183,12 +148,17 @@ function renderHourlyForecastData(data, container, wrapper) {
                 <p class="hourly-forecast__temp">${Math.round(item.main.temp)}°C</p>
             </div>
         `).join('');
+        hourlyForecastWrapper.style.display = 'block';
+
+        renderForecastData(data, forecastContainer, forecastContainerWrapper);
+
+    } catch (error) {
+        resultContainer.innerHTML = `<p class="error-message">${error.message || weatherT('errorApiWeather')}</p>`;
     }
 }
 
-
 function renderForecastData(data, container, wrapper) {
-    const dailyForecasts = data.list.filter(item => item.dt_txt.includes("12:00:00"));
+    const dailyForecasts = data.list.filter(reading => reading.dt_txt.includes("12:00:00"));
     const currentLang = localStorage.getItem('lang') || 'pl';
 
     if (dailyForecasts.length > 0) {
@@ -204,10 +174,24 @@ function renderForecastData(data, container, wrapper) {
     }
 }
 
+function fetchSkeletonHTML() {
+    return `
+    <div class="weather-app__skeleton">
+        <div class="skeleton" style="height: 2.5rem; width: 60%; margin-bottom: 1rem;"></div>
+        <div class="skeleton" style="height: 4rem; width: 80%; margin-bottom: 0.75rem;"></div>
+        <div class="weather-app__skeleton-details">
+            <div class="skeleton" style="height: 3rem; width: 100%;"></div>
+            <div class="skeleton" style="height: 3rem; width: 100%;"></div>
+            <div class="skeleton" style="height: 3rem; width: 100%;"></div>
+            <div class="skeleton" style="height: 3rem; width: 100%;"></div>
+            <div class="skeleton" style="height: 3rem; width: 100%;"></div>
+        </div>
+    </div>`;
+}
+
 export function initializeWeatherApp(dependencies) {
     weatherT = dependencies.t;
 
-    // NEW: Dynamically insert the HTML for the hourly forecast
     const weatherAppContainer = document.querySelector('.weather-app');
     if (weatherAppContainer) {
         const hourlyForecastHTML = `
@@ -238,7 +222,7 @@ export function initializeWeatherApp(dependencies) {
 
     const lastCity = localStorage.getItem('lastCity');
     if (lastCity) {
-        cityInput.value = lastCity; // Set input value to last city
+        cityInput.value = lastCity;
         handleWeatherSearch(lastCity);
     }
 
