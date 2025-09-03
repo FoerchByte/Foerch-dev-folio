@@ -1,50 +1,74 @@
 /*
   EN: This module contains the logic for the Weather Station application. It
   demonstrates fetching and parsing data from the OpenWeatherMap API,
-  handling geolocation, and dynamically rendering weather information
-  and a 5-day forecast. It's a prime example of an API-driven, utility-focused app.
+  handling geolocation, and dynamically rendering weather information,
+  a 5-day forecast, and a new hourly forecast. It's a prime example of an API-driven, utility-focused app.
   PL: Ten moduł zawiera logikę dla aplikacji Stacja Pogody. Pokazuje, jak
   pobierać i przetwarzać dane z API OpenWeatherMap, obsługiwać geolokalizację
-  oraz dynamicznie renderować informacje o pogodzie i prognozę na 5 dni.
-  To doskonały przykład aplikacji opartej na API i nastawionej na użyteczność.
+  oraz dynamicznie renderować informacje o pogodzie, prognozę na 5 dni
+  oraz nową prognozę godzinową. To doskonały przykład aplikacji opartej na API i nastawionej na użyteczność.
 */
 
 let weatherT; 
 
-// UPDATE: Replaced the SVG icons with more intuitive ones from the Feather Icons set
-// to improve user recognition while maintaining a clean, minimalist aesthetic.
+// UPDATE: Replaced the icon set with a more illustrative one for better readability.
+// This new set is more aligned with standard weather iconography.
 function getWeatherIcon(iconCode) {
     const iconMap = {
-        '01d': '<svg xmlns="http://www.w.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>', // Sun
-        '01n': '<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>', // Moon
-        '02d': '<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"></path><path d="M12 2v2"></path><path d="M12 20v2"></path><path d="m4.93 4.93 1.41 1.41"></path><path d="m17.66 17.66 1.41 1.41"></path><path d="M2 12h2"></path><path d="M20 12h2"></path><path d="m6.34 17.66-1.41 1.41"></path><path d="m19.07 4.93-1.41 1.41"></path></svg>', // Cloud Sun
-        '02n': '<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"></path></svg>', // Cloud Moon
-        '03d': '<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"></path></svg>', // Cloud
-        '03n': '<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"></path></svg>', // Cloud
-        '04d': '<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"></path><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z" opacity="0.6"></path></svg>', // Heavy Cloud
-        '04n': '<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"></path><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z" opacity="0.6"></path></svg>', // Heavy Cloud
-        '09d': '<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15c0-1.66-1.34-3-3-3h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 3-8z"></path><path d="M8 17.01V17"></path><path d="M12 17.01V17"></path><path d="M16 17.01V17"></path></svg>', // Cloud Drizzle
-        '09n': '<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15c0-1.66-1.34-3-3-3h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 3-8z"></path><path d="M8 17.01V17"></path><path d="M12 17.01V17"></path><path d="M16 17.01V17"></path></svg>', // Cloud Drizzle
-        '10d': '<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15c0-1.66-1.34-3-3-3h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 3-8z"></path><path d="M8 17.01V17"></path><path d="M12 17.01V17"></path><path d="M16 17.01V17"></path><path d="M12 2v2"></path><path d="m4.93 4.93 1.41 1.41"></path><path d="M2 12h2"></path></svg>', // Cloud Rain Sun
-        '10n': '<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15c0-1.66-1.34-3-3-3h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 3-8z"></path><path d="M8 17.01V17"></path><path d="M12 17.01V17"></path><path d="M16 17.01V17"></path><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" opacity="0.5"></path></svg>', // Cloud Rain Moon
-        '11d': '<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16.92A8 8 0 0 0 12 4h-1.26a8 8 0 1 0-7.48 12.48"></path><polyline points="13 11 9 17 15 17 11 23"></polyline></svg>', // Cloud Lightning
-        '11n': '<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16.92A8 8 0 0 0 12 4h-1.26a8 8 0 1 0-7.48 12.48"></path><polyline points="13 11 9 17 15 17 11 23"></polyline></svg>', // Cloud Lightning
-        '13d': '<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 17.58A5 5 0 0 0 15 8h-1.26A8 8 0 1 0 4 16.25"></path><line x1="8" y1="16" x2="8" y2="16"></line><line x1="8" y1="20" x2="8" y2="20"></line><line x1="12" y1="18" x2="12" y2="18"></line><line x1="12" y1="22" x2="12" y2="22"></line><line x1="16" y1="16" x2="16" y2="16"></line><line x1="16" y1="20" x2="16" y2="20"></line></svg>', // Cloud Snow
-        '13n': '<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 17.58A5 5 0 0 0 15 8h-1.26A8 8 0 1 0 4 16.25"></path><line x1="8" y1="16" x2="8" y2="16"></line><line x1="8" y1="20" x2="8" y2="20"></line><line x1="12" y1="18" x2="12" y2="18"></line><line x1="12" y1="22" x2="12" y2="22"></line><line x1="16" y1="16" x2="16" y2="16"></line><line x1="16" y1="20" x2="16" y2="20"></line></svg>', // Cloud Snow
-        '50d': '<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>', // Fog
-        '50n': '<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>', // Fog
+        '01d': `<svg viewBox="0 0 64 64"><path d="M32,16.21V10.5m0,43V47.79m11.25-26L47.5,16.5m-26,26L16.5,47.5m-5.75-11H5m43,0H47.79M16.5,16.5,21.75,21.75M47.5,47.5,42.25,42.25" fill="none" stroke="#f5c742" stroke-linecap="round" stroke-miterlimit="10" stroke-width="3"/><circle cx="32" cy="32" r="9" fill="none" stroke="#f5c742" stroke-linecap="round" stroke-miterlimit="10" stroke-width="3"/>`, // clear sky day
+        '01n': `<svg viewBox="0 0 64 64"><path d="M32.01,48.2A16.2,16.2,0,0,1,19.25,18.8,15.76,15.76,0,0,1,32.01,16a15.82,15.82,0,0,0,0,32.2Z" fill="none" stroke="#75cff4" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"/></svg>`, // clear sky night
+        '02d': `<svg viewBox="0 0 64 64"><path d="M41.5,41.5l-2.07-.28a6.51,6.51,0,0,0-6.19,4.2,6.49,6.49,0,0,0,4.17,8.44,6.5,6.5,0,0,0,8.44-4.17,6.51,6.51,0,0,0-4-8.11Z" fill="#f5c742"/><path d="M46,36a14,14,0,1,1,2.29-27.71,14,14,0,0,1,11.42,25.42,13.91,13.91,0,0,1-11.72,2.29,1,1,0,0,1,0,0Z" fill="#f5c742" stroke="#f5c742" stroke-miterlimit="10" stroke-width="3"/><path d="M30.9,41.22a14,14,0,1,0-15-24.65,14,14,0,0,0,15,24.65Z" fill="#b2d7f4"/><path d="M31,41.5A14,14,0,0,1,13.25,32.12,14,14,0,1,1,41.7,29.6,13.9,13.9,0,0,1,31,41.5Z" fill="none" stroke="#75cff4" stroke-linejoin="round" stroke-width="3"/></svg>`, // few clouds day
+        '02n': `<svg viewBox="0 0 64 64"><path d="M32.01,48.2A16.2,16.2,0,0,1,19.25,18.8,15.76,15.76,0,0,1,32.01,16a15.82,15.82,0,0,0,0,32.2Z" fill="none" stroke="#75cff4" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"/><path d="M42.2,42.2a14,14,0,1,0-15-24.65,14,14,0,0,0,15,24.65Z" fill="#b2d7f4"/><path d="M42.3,42.5A14,14,0,0,1,24.55,33.12,14,14,0,1,1,53,30.6,13.9,13.9,0,0,1,42.3,42.5Z" fill="none" stroke="#75cff4" stroke-linejoin="round" stroke-width="3"/></svg>`, // few clouds night
+        '03d': `<svg viewBox="0 0 64 64"><path d="M41.5,41.5a14,14,0,1,0-15-24.65,14,14,0,0,0,15,24.65Z" fill="#b2d7f4"/><path d="M41.6,41.8A14,14,0,0,1,23.85,32.42,14,14,0,1,1,52.3,29.9a13.9,13.9,0,0,1-10.7,11.9Z" fill="none" stroke="#75cff4" stroke-linejoin="round" stroke-width="3"/></svg>`, // scattered clouds
+        '03n': `<svg viewBox="0 0 64 64"><path d="M41.5,41.5a14,14,0,1,0-15-24.65,14,14,0,0,0,15,24.65Z" fill="#b2d7f4"/><path d="M41.6,41.8A14,14,0,0,1,23.85,32.42,14,14,0,1,1,52.3,29.9a13.9,13.9,0,0,1-10.7,11.9Z" fill="none" stroke="#75cff4" stroke-linejoin="round" stroke-width="3"/></svg>`, // scattered clouds night
+        '04d': `<svg viewBox="0 0 64 64"><path d="M41.5,41.5a14,14,0,1,0-15-24.65,14,14,0,0,0,15,24.65Z" fill="#b2d7f4"/><path d="M41.6,41.8A14,14,0,0,1,23.85,32.42,14,14,0,1,1,52.3,29.9a13.9,13.9,0,0,1-10.7,11.9Z" fill="none" stroke="#75cff4" stroke-linejoin="round" stroke-width="3"/><path d="M26.5,41.5a14,14,0,1,0-15-24.65,14,14,0,0,0,15,24.65Z" fill="#b2d7f4" stroke="#75cff4" stroke-linejoin="round" stroke-width="3"/></svg>`, // broken clouds
+        '04n': `<svg viewBox="0 0 64 64"><path d="M41.5,41.5a14,14,0,1,0-15-24.65,14,14,0,0,0,15,24.65Z" fill="#b2d7f4"/><path d="M41.6,41.8A14,14,0,0,1,23.85,32.42,14,14,0,1,1,52.3,29.9a13.9,13.9,0,0,1-10.7,11.9Z" fill="none" stroke="#75cff4" stroke-linejoin="round" stroke-width="3"/><path d="M26.5,41.5a14,14,0,1,0-15-24.65,14,14,0,0,0,15,24.65Z" fill="#b2d7f4" stroke="#75cff4" stroke-linejoin="round" stroke-width="3"/></svg>`, // broken clouds night
+        '09d': `<svg viewBox="0 0 64 64"><path d="M41.5,41.5a14,14,0,1,0-15-24.65,14,14,0,0,0,15,24.65Z" fill="#b2d7f4"/><path d="M41.6,41.8A14,14,0,0,1,23.85,32.42,14,14,0,1,1,52.3,29.9a13.9,13.9,0,0,1-10.7,11.9Z" fill="none" stroke="#75cff4" stroke-linejoin="round" stroke-width="3"/><path d="M26,52.1a3.17,3.17,0,0,1-3.15-3.15,3.08,3.08,0,0,1,.15-.9,3.16,3.16,0,0,1,5.85,1.57A3.16,3.16,0,0,1,26,52.1Zm10.1,0a3.17,3.17,0,0,1-3.15-3.15,3.08,3.08,0,0,1,.15-.9,3.16,3.16,0,0,1,5.85,1.57A3.16,3.16,0,0,1,36.1,52.1Z" fill="#75cff4"/></svg>`, // shower rain
+        '09n': `<svg viewBox="0 0 64 64"><path d="M41.5,41.5a14,14,0,1,0-15-24.65,14,14,0,0,0,15,24.65Z" fill="#b2d7f4"/><path d="M41.6,41.8A14,14,0,0,1,23.85,32.42,14,14,0,1,1,52.3,29.9a13.9,13.9,0,0,1-10.7,11.9Z" fill="none" stroke="#75cff4" stroke-linejoin="round" stroke-width="3"/><path d="M26,52.1a3.17,3.17,0,0,1-3.15-3.15,3.08,3.08,0,0,1,.15-.9,3.16,3.16,0,0,1,5.85,1.57A3.16,3.16,0,0,1,26,52.1Zm10.1,0a3.17,3.17,0,0,1-3.15-3.15,3.08,3.08,0,0,1,.15-.9,3.16,3.16,0,0,1,5.85,1.57A3.16,3.16,0,0,1,36.1,52.1Z" fill="#75cff4"/></svg>`, // shower rain night
+        '10d': `<svg viewBox="0 0 64 64"><path d="M41.5,41.5l-2.07-.28a6.51,6.51,0,0,0-6.19,4.2,6.49,6.49,0,0,0,4.17,8.44,6.5,6.5,0,0,0,8.44-4.17,6.51,6.51,0,0,0-4-8.11Z" fill="#f5c742"/><path d="M46,36a14,14,0,1,1,2.29-27.71,14,14,0,0,1,11.42,25.42,13.91,13.91,0,0,1-11.72,2.29,1,1,0,0,1,0,0Z" fill="#f5c742" stroke="#f5c742" stroke-miterlimit="10" stroke-width="3"/><path d="M30.9,41.22a14,14,0,1,0-15-24.65,14,14,0,0,0,15,24.65Z" fill="#b2d7f4"/><path d="M31,41.5A14,14,0,0,1,13.25,32.12,14,14,0,1,1,41.7,29.6,13.9,13.9,0,0,1,31,41.5Z" fill="none" stroke="#75cff4" stroke-linejoin="round" stroke-width="3"/><path d="M26,52.1a3.17,3.17,0,0,1-3.15-3.15,3.08,3.08,0,0,1,.15-.9,3.16,3.16,0,0,1,5.85,1.57A3.16,3.16,0,0,1,26,52.1Zm10.1,0a3.17,3.17,0,0,1-3.15-3.15,3.08,3.08,0,0,1,.15-.9,3.16,3.16,0,0,1,5.85,1.57A3.16,3.16,0,0,1,36.1,52.1Z" fill="#75cff4"/></svg>`, // rain day
+        '10n': `<svg viewBox="0 0 64 64"><path d="M32.01,48.2A16.2,16.2,0,0,1,19.25,18.8,15.76,15.76,0,0,1,32.01,16a15.82,15.82,0,0,0,0,32.2Z" fill="none" stroke="#75cff4" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"/><path d="M42.2,42.2a14,14,0,1,0-15-24.65,14,14,0,0,0,15,24.65Z" fill="#b2d7f4"/><path d="M42.3,42.5A14,14,0,0,1,24.55,33.12,14,14,0,1,1,53,30.6,13.9,13.9,0,0,1,42.3,42.5Z" fill="none" stroke="#75cff4" stroke-linejoin="round" stroke-width="3"/><path d="M26,52.1a3.17,3.17,0,0,1-3.15-3.15,3.08,3.08,0,0,1,.15-.9,3.16,3.16,0,0,1,5.85,1.57A3.16,3.16,0,0,1,26,52.1Zm10.1,0a3.17,3.17,0,0,1-3.15-3.15,3.08,3.08,0,0,1,.15-.9,3.16,3.16,0,0,1,5.85,1.57A3.16,3.16,0,0,1,36.1,52.1Z" fill="#75cff4"/></svg>`, // rain night
+        '11d': `<svg viewBox="0 0 64 64"><path d="M41.5,41.5a14,14,0,1,0-15-24.65,14,14,0,0,0,15,24.65Z" fill="#b2d7f4"/><path d="M41.6,41.8A14,14,0,0,1,23.85,32.42,14,14,0,1,1,52.3,29.9a13.9,13.9,0,0,1-10.7,11.9Z" fill="none" stroke="#75cff4" stroke-linejoin="round" stroke-width="3"/><polygon points="32.5 48.5 28.5 52.5 31.5 52.5 29.5 56.5 35.5 50.5 32.5 50.5 32.5 48.5" fill="#f5c742"/></svg>`, // thunderstorm
+        '11n': `<svg viewBox="0 0 64 64"><path d="M41.5,41.5a14,14,0,1,0-15-24.65,14,14,0,0,0,15,24.65Z" fill="#b2d7f4"/><path d="M41.6,41.8A14,14,0,0,1,23.85,32.42,14,14,0,1,1,52.3,29.9a13.9,13.9,0,0,1-10.7,11.9Z" fill="none" stroke="#75cff4" stroke-linejoin="round" stroke-width="3"/><polygon points="32.5 48.5 28.5 52.5 31.5 52.5 29.5 56.5 35.5 50.5 32.5 50.5 32.5 48.5" fill="#f5c742"/></svg>`, // thunderstorm night
+        '13d': `<svg viewBox="0 0 64 64"><path d="M41.5,41.5a14,14,0,1,0-15-24.65,14,14,0,0,0,15,24.65Z" fill="#b2d7f4"/><path d="M41.6,41.8A14,14,0,0,1,23.85,32.42,14,14,0,1,1,52.3,29.9a13.9,13.9,0,0,1-10.7,11.9Z" fill="none" stroke="#75cff4" stroke-linejoin="round" stroke-width="3"/><path d="M32,54.5a2.4,2.4,0,0,1-1.7-.7l-4-4a2.4,2.4,0,1,1,3.4-3.4l2.3,2.3,2.3-2.3a2.4,2.4,0,1,1,3.4,3.4l-4,4A2.4,2.4,0,0,1,32,54.5Zm-8-6a2.4,2.4,0,0,1-1.7-.7l-4-4a2.4,2.4,0,0,1,3.4-3.4l2.3,2.3,2.3-2.3a2.4,2.4,0,0,1,3.4,3.4l-4,4A2.4,2.4,0,0,1,24,48.5Zm16,0a2.4,2.4,0,0,1-1.7-.7l-4-4a2.4,2.4,0,0,1,3.4-3.4l2.3,2.3,2.3-2.3a2.4,2.4,0,0,1,3.4,3.4l-4,4A2.4,2.4,0,0,1,40,48.5Z" fill="#75cff4"/></svg>`, // snow
+        '13n': `<svg viewBox="0 0 64 64"><path d="M41.5,41.5a14,14,0,1,0-15-24.65,14,14,0,0,0,15,24.65Z" fill="#b2d7f4"/><path d="M41.6,41.8A14,14,0,0,1,23.85,32.42,14,14,0,1,1,52.3,29.9a13.9,13.9,0,0,1-10.7,11.9Z" fill="none" stroke="#75cff4" stroke-linejoin="round" stroke-width="3"/><path d="M32,54.5a2.4,2.4,0,0,1-1.7-.7l-4-4a2.4,2.4,0,1,1,3.4-3.4l2.3,2.3,2.3-2.3a2.4,2.4,0,1,1,3.4,3.4l-4,4A2.4,2.4,0,0,1,32,54.5Zm-8-6a2.4,2.4,0,0,1-1.7-.7l-4-4a2.4,2.4,0,0,1,3.4-3.4l2.3,2.3,2.3-2.3a2.4,2.4,0,0,1,3.4,3.4l-4,4A2.4,2.4,0,0,1,24,48.5Zm16,0a2.4,2.4,0,0,1-1.7-.7l-4-4a2.4,2.4,0,0,1,3.4-3.4l2.3,2.3,2.3-2.3a2.4,2.4,0,0,1,3.4,3.4l-4,4A2.4,2.4,0,0,1,40,48.5Z" fill="#75cff4"/></svg>`, // snow night
+        '50d': `<svg viewBox="0 0 64 64"><path d="M19.5,41.5H44.5" fill="none" stroke="#75cff4" stroke-linecap="round" stroke-miterlimit="10" stroke-width="3"/><path d="M19.5,46.5H44.5" fill="none" stroke="#75cff4" stroke-linecap="round" stroke-miterlimit="10" stroke-width="3"/><path d="M19.5,36.5H44.5" fill="none" stroke="#75cff4" stroke-linecap="round" stroke-miterlimit="10" stroke-width="3"/><path d="M19.5,31.5H44.5" fill="none" stroke="#75cff4" stroke-linecap="round" stroke-miterlimit="10" stroke-width="3"/><path d="M19.5,26.5H44.5" fill="none" stroke="#75cff4" stroke-linecap="round" stroke-miterlimit="10" stroke-width="3"/><path d="M19.5,21.5H44.5" fill="none" stroke="#75cff4" stroke-linecap="round" stroke-miterlimit="10" stroke-width="3"/></svg>`, // mist
+        '50n': `<svg viewBox="0 0 64 64"><path d="M19.5,41.5H44.5" fill="none" stroke="#75cff4" stroke-linecap="round" stroke-miterlimit="10" stroke-width="3"/><path d="M19.5,46.5H44.5" fill="none" stroke="#75cff4" stroke-linecap="round" stroke-miterlimit="10" stroke-width="3"/><path d="M19.5,36.5H44.5" fill="none" stroke="#75cff4" stroke-linecap="round" stroke-miterlimit="10" stroke-width="3"/><path d="M19.5,31.5H44.5" fill="none" stroke="#75cff4" stroke-linecap="round" stroke-miterlimit="10" stroke-width="3"/><path d="M19.5,26.5H44.5" fill="none" stroke="#75cff4" stroke-linecap="round" stroke-miterlimit="10" stroke-width="3"/><path d="M19.5,21.5H44.5" fill="none" stroke="#75cff4" stroke-linecap="round" stroke-miterlimit="10" stroke-width="3"/></svg>`, // mist night
     };
     return iconMap[iconCode] || iconMap['01d'];
+}
+
+// NEW: A function to determine road condition based on weather data
+// It returns a translation key for the condition.
+function getRoadCondition(weather) {
+    const id = weather.id;
+    const temp = weather.temp;
+
+    // Snow or freezing rain
+    if ((id >= 600 && id < 700) || id === 511) {
+        return temp <= 0.5 ? 'roadIcy' : 'roadWet';
+    }
+    // Rain, Drizzle, Thunderstorm
+    if ((id >= 200 && id < 600)) {
+        return 'roadWet';
+    }
+    // Default to dry
+    return 'roadDry';
 }
 
 
 async function handleWeatherSearch(query) {
     const resultContainer = document.getElementById('weather-result-container');
-    const forecastContainerWrapper = document.getElementById('forecast-container-wrapper');
+    // NEW: Get hourly forecast containers
+    const hourlyForecastContainer = document.getElementById('hourly-forecast-container');
+    const hourlyForecastWrapper = document.getElementById('hourly-forecast-wrapper');
     const forecastContainer = document.getElementById('forecast-container');
+    const forecastContainerWrapper = document.getElementById('forecast-container-wrapper');
     const currentLang = localStorage.getItem('lang') || 'pl';
 
     resultContainer.innerHTML = fetchSkeletonHTML();
+    // NEW: Hide new containers
+    if(hourlyForecastWrapper) hourlyForecastWrapper.style.display = 'none';
+    if(hourlyForecastContainer) hourlyForecastContainer.innerHTML = '';
     forecastContainerWrapper.style.display = 'none';
     forecastContainer.innerHTML = '';
 
@@ -75,7 +99,10 @@ async function handleWeatherSearch(query) {
         
         localStorage.setItem('lastCity', data.city.name);
         renderWeatherData(data, resultContainer);
+        // NEW: Call rendering for hourly forecast
+        renderHourlyForecastData(data, hourlyForecastContainer, hourlyForecastWrapper);
         renderForecastData(data, forecastContainer, forecastContainerWrapper);
+
     } catch (error) {
         console.error("Błąd pobierania pogody:", error);
         showError('errorApiWeather');
@@ -102,14 +129,19 @@ function renderWeatherData(data, container) {
     const sunrise = new Date(city.sunrise * 1000).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
     const sunset = new Date(city.sunset * 1000).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
 
+    // NEW: Get the road condition
+    const roadConditionKey = getRoadCondition({ id: current.weather[0].id, temp: current.main.temp });
+
     container.innerHTML = `
         <h3 class="current-weather__city">${city.name}, ${city.country}</h3>
-        <div class="current-weather__details">
+        <div class="current-weather__main">
             <div class="current-weather__icon" aria-label="${current.weather[0].description}">
                 ${getWeatherIcon(current.weather[0].icon)}
             </div>
-            <span class="current-weather__temp">${Math.round(current.main.temp)}°C</span>
-            <span>${current.weather[0].description}</span>
+            <div class="current-weather__details">
+                <span class="current-weather__temp">${Math.round(current.main.temp)}°C</span>
+                <span>${current.weather[0].description}</span>
+            </div>
         </div>
         <div class="current-weather__extra-details">
             <div class="current-weather__detail-item">
@@ -129,7 +161,29 @@ function renderWeatherData(data, container) {
                 <span>${sunset}</span>
             </div>
         </div>
+        <!-- NEW: Road condition section -->
+        <div class="road-condition__wrapper">
+            <h4 class="road-condition__title">${weatherT('weatherRoadConditionTitle')}</h4>
+            <p class="road-condition__status road-condition--${roadConditionKey}">${weatherT(roadConditionKey)}</p>
+        </div>
     `;
+}
+
+// NEW: Function to render the hourly forecast
+function renderHourlyForecastData(data, container, wrapper) {
+    const hourlyForecasts = data.list.slice(1, 9); // Next 8 items (24 hours)
+    if (hourlyForecasts.length > 0 && container && wrapper) {
+        wrapper.style.display = 'block';
+        container.innerHTML = hourlyForecasts.map(item => `
+            <div class="hourly-forecast__item">
+                <p class="hourly-forecast__time">${new Date(item.dt * 1000).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</p>
+                <div class="hourly-forecast__icon" aria-label="${item.weather[0].description}">
+                    ${getWeatherIcon(item.weather[0].icon)}
+                </div>
+                <p class="hourly-forecast__temp">${Math.round(item.main.temp)}°C</p>
+            </div>
+        `).join('');
+    }
 }
 
 
@@ -153,6 +207,20 @@ function renderForecastData(data, container, wrapper) {
 export function initializeWeatherApp(dependencies) {
     weatherT = dependencies.t;
 
+    // NEW: Dynamically insert the HTML for the hourly forecast
+    const weatherAppContainer = document.querySelector('.weather-app');
+    if (weatherAppContainer) {
+        const hourlyForecastHTML = `
+            <div id="hourly-forecast-wrapper" class="hourly-forecast__wrapper" style="display: none;">
+                <h3 class="hourly-forecast__title">${weatherT('weatherHourlyForecastTitle')}</h3>
+                <div class="hourly-forecast__grid" id="hourly-forecast-container"></div>
+            </div>`;
+        const forecastWrapper = document.getElementById('forecast-container-wrapper');
+        if (forecastWrapper) {
+            forecastWrapper.insertAdjacentHTML('beforebegin', hourlyForecastHTML);
+        }
+    }
+
     const searchBtn = document.getElementById('search-weather-btn');
     const cityInput = document.getElementById('city-input');
     const geoBtn = document.getElementById('geolocation-btn');
@@ -161,12 +229,16 @@ export function initializeWeatherApp(dependencies) {
     cityInput?.addEventListener('keyup', e => { if (e.key === 'Enter') handleWeatherSearch(cityInput.value.trim()); });
     geoBtn?.addEventListener('click', () => {
         if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(position => handleWeatherSearch({ latitude: position.coords.latitude, longitude: position.coords.longitude }));
+            navigator.geolocation.getCurrentPosition(
+                position => handleWeatherSearch({ latitude: position.coords.latitude, longitude: position.coords.longitude }),
+                () => { document.getElementById('weather-result-container').innerHTML = `<p>${weatherT('errorApiGeneric')}</p>`; }
+            );
         }
     });
 
     const lastCity = localStorage.getItem('lastCity');
     if (lastCity) {
+        cityInput.value = lastCity; // Set input value to last city
         handleWeatherSearch(lastCity);
     }
 
