@@ -179,8 +179,14 @@
     text-transform: capitalize;
 }
 .weather-app__forecast-icon {
-    width: 48px;
-    height: 48px;
+    /*
+      EN: REVERT & ENHANCE: Increased icon size for better visual impact
+      in the 5-day forecast, reverting to a larger, more balanced look.
+      PL: PRZYWRÓCENIE I POPRAWA: Zwiększono rozmiar ikon w prognozie 5-dniowej
+      dla lepszego efektu wizualnego, przywracając większy, bardziej zrównoważony wygląd.
+    */
+    width: 72px;
+    height: 72px;
 }
 
 /*
