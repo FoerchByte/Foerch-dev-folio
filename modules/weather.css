@@ -215,3 +215,40 @@
     }
 }
 
+/* NOWA SEKCJA: Dodatkowe style dla widoku poziomego na urządzeniach mobilnych */
+@media (max-height: 500px) and (orientation: landscape) {
+    .weather-app__forecast-grid {
+        flex-direction: column;
+        gap: 0.75rem;
+        overflow-x: hidden;
+    }
+
+    .weather-app__forecast-day {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        min-width: unset;
+        text-align: left;
+        padding: 0.5rem 1rem; /* Mniejszy padding w poziomie */
+    }
+
+    .weather-app__forecast-day h4 {
+        margin: 0;
+        font-size: 0.9rem; /* Mniejsza czcionka w poziomie */
+        flex-basis: 40%;
+        text-transform: capitalize;
+    }
+
+    .weather-app__forecast-icon svg {
+        width: 32px; /* Mniejsza ikona */
+        height: 32px;
+    }
+
+    .weather-app__forecast-day p {
+        margin: 0;
+        font-size: 1rem; /* Mniejsza czcionka */
+        text-align: right;
+    }
+}
+
