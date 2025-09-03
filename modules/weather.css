@@ -93,7 +93,8 @@
     flex-direction: column;
     gap: 0.25rem;
 }
-.current-weather__detail-item span:first-child {
+.current-weather__detail-item span:first-child,
+.road-condition__item span:first-child { /* ZMIANA: Dodano stylizację dla etykiety "Stan nawierzchni" */
     font-size: 0.9rem;
     color: var(--completed-text);
 }
@@ -331,6 +332,7 @@
         text-align: center;
     }
 }
+
 
 
 
