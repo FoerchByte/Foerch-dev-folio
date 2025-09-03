@@ -233,6 +233,11 @@
             "road road";
         column-gap: 1rem;
         row-gap: 1.5rem;
+        /*
+          EN: MOBILE FIX: Justify content to the center for a more balanced look of the two columns.
+          PL: POPRAWKA MOBILNA: Wyśrodkowano zawartość, aby uzyskać bardziej zrównoważony wygląd dwóch kolumn.
+        */
+        justify-content: center;
         text-align: left;
     }
     .detail-item--wind { grid-area: wind; }
@@ -252,12 +257,21 @@
     }
 
     .hourly-forecast__grid {
-        display: flex;
-        overflow-x: auto;
+        display: grid;
+        /*
+          EN: MOBILE FIX: Switched to a 4-column grid for the hourly forecast to provide a clearer view
+          without being too cramped. This replaces the horizontal scroll.
+          PL: POPRAWKA MOBILNA: Zmieniono na 4-kolumnową siatkę dla prognozy godzinowej, aby zapewnić
+          lepszą widoczność bez "ścisku". Zastępuje to przewijanie w poziomie.
+        */
+        grid-template-columns: repeat(4, 1fr);
+        gap: 0.5rem; /* Reduced gap for mobile */
+        overflow-x: hidden;
     }
 
     .hourly-forecast__item {
-        flex: 0 0 80px;
+        flex: unset; /* Unset flex properties from desktop */
+        padding: 0.75rem 0.25rem;
     }
 
     /* 5-day forecast mobile */
