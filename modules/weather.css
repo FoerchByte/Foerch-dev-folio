@@ -150,32 +150,25 @@
     text-align: left;
     margin-bottom: 1rem;
 }
+
+/*
+  EN: FINAL REFACTOR: Switched to CSS Grid for the hourly forecast.
+  This provides the most robust and predictable layout, ensuring exactly 8
+  columns with equal spacing, which resolves previous flexbox alignment issues.
+  PL: FINALNA REFAKTORYZACJA: Przejście na CSS Grid dla prognozy godzinowej.
+  Zapewnia to najbardziej solidny i przewidywalny układ, gwarantując dokładnie 8
+  kolumn z równymi odstępami, co rozwiązuje poprzednie problemy z wyrównaniem flexboxa.
+*/
 .hourly-forecast__grid {
-    display: flex;
-    /*
-      EN: FINAL TWEAK: Using justify-content for perfect distribution.
-      This allows the browser to automatically manage the spacing between items,
-      creating a clean, balanced layout without fixed gaps.
-      PL: FINALNA POPRAWKA: Użycie justify-content dla idealnej dystrybucji.
-      Pozwala to przeglądarce na automatyczne zarządzanie odstępami między elementami,
-      tworząc czysty, zrównoważony układ bez stałych przerw.
-    */
-    justify-content: space-between;
-    overflow-x: auto;
-    padding: 0.5rem 0; /* Adjusted padding */
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    gap: 0.75rem;
+    overflow-x: auto; /* Fallback for very small screens */
+    padding: 0.5rem 0;
     -webkit-overflow-scrolling: touch;
     scrollbar-width: thin;
 }
 .hourly-forecast__item {
-    /*
-      EN: TWEAK: Reverted to flex-grow for flexibility.
-      By allowing items to grow, they will fill the container space evenly.
-      The base width is a suggestion, not a strict rule.
-      PL: DOPRACOWANIE: Powrót do flex-grow dla elastyczności.
-      Pozwalając elementom rosnąć, wypełnią one równomiernie przestrzeń kontenera.
-      Bazowa szerokość jest sugestią, a nie sztywną regułą.
-    */
-    flex: 1 0 75px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -246,6 +239,24 @@
         row-gap: 1.5rem;
         text-align: left;
     }
+
+    /*
+      EN: TWEAK: On mobile, the hourly forecast reverts to a scrolling flex container.
+      This is a more user-friendly pattern on smaller, touch-based devices.
+      PL: DOPRACOWANIE: Na urządzeniach mobilnych prognoza godzinowa powraca do przewijanego
+      kontenera flex. Jest to bardziej przyjazny dla użytkownika wzorzec na mniejszych
+      urządzeniach dotykowych.
+    */
+    .hourly-forecast__grid {
+        display: flex;
+        justify-content: flex-start;
+    }
+
+    .hourly-forecast__item {
+        flex: 0 0 75px;
+    }
+
+
     .detail-item--wind { grid-area: wind; }
     .detail-item--pressure { grid-area: pressure; }
     .detail-item--sunrise { grid-area: sunrise; }
