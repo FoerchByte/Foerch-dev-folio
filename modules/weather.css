@@ -38,7 +38,7 @@
     font-size: 1rem;
     border-radius: 6px;
     cursor: pointer;
-    transition: background-color 0.2s;
+    transition: background-color: 0.2s;
 }
 .weather-app__button:hover {
     background-color: var(--primary-hover-color);
@@ -167,32 +167,51 @@
         display: grid;
         grid-template-columns: 1fr 1fr;
         grid-template-rows: auto auto;
-        /* POPRAWKA: Zmieniamy kierunek wypełniania siatki na kolumnowy */
         grid-auto-flow: column;
-        /* POPRAWKA: Dostosowujemy odstępy dla lepszego wyglądu */
         column-gap: 2rem;
         row-gap: 0.75rem;
-        /* POPRAWKA: Usuwamy globalne wyśrodkowanie tekstu */
         text-align: left;
     }
 
     .current-weather__detail-item {
         display: flex;
         flex-direction: column;
-        /* POPRAWKA: Wyrównujemy elementy do lewej wewnątrz komórki */
         align-items: flex-start;
     }
 
+    /* NOWE STYLE DLA PROGNOZY */
     .weather-app__forecast-grid {
-        /* Pozwalamy prognozie zawijać się zamiast przewijać */
-        flex-wrap: wrap;
-        justify-content: center;
+        flex-direction: column; /* Układ jednokolumnowy */
+        gap: 0.75rem;
+        overflow-x: hidden; /* Wyłączamy przewijanie w poziomie */
     }
 
     .weather-app__forecast-day {
-        /* Upewniamy się, że dni mają odpowiednią szerokość */
-        flex-grow: 0;
-        flex-basis: 45%;
+        display: flex; /* Zmieniamy na układ flexbox */
+        flex-direction: row; /* Elementy w jednym wierszu */
+        justify-content: space-between; /* Rozkładamy elementy */
+        align-items: center; /* Wyśrodkowujemy w pionie */
+        min-width: unset; /* Resetujemy minimalną szerokość */
+        text-align: left; /* Wyrównujemy tekst do lewej */
+        padding: 0.75rem 1rem; /* Dostosowujemy padding */
+    }
+    
+    .weather-app__forecast-day h4 {
+        margin: 0;
+        font-size: 1rem; /* Możemy dostosować rozmiar czcionki */
+        flex-basis: 40%; /* Dajemy nazwie dnia trochę więcej miejsca */
+        text-transform: capitalize; /* Zmieniamy pierwszą literę na wielką */
+    }
+
+    .weather-app__forecast-icon svg {
+        width: 40px; /* Zmniejszamy ikonę, aby pasowała do wiersza */
+        height: 40px;
+    }
+    
+    .weather-app__forecast-day p {
+        margin: 0;
+        font-size: 1.1rem;
+        text-align: right;
     }
 }
 
