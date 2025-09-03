@@ -98,16 +98,12 @@
     font-size: 0.9rem;
     color: var(--completed-text);
 }
-.current-weather__detail-item span:last-child {
+.current-weather__detail-item span:last-child,
+.road-condition-value { /* ZMIANA: Połączono style dla wartości dla spójności */
     font-size: 1.1rem;
     font-weight: 500;
 }
-/* ZMIANA: Usunięto globalne przypisania do siatki. */
 
-.road-condition-value {
-    font-size: 1.1rem;
-    font-weight: 500;
-}
 .road-condition--roadDry { color: var(--success-color); }
 .road-condition--roadWet { color: var(--primary-color); }
 .road-condition--roadIcy { color: var(--danger-color); }
@@ -228,7 +224,7 @@
             "pressure sunset"
             "road road";
         gap: 1rem 2rem;
-        max-width: 400px;
+        max-width: 300px; /* ZMIANA: Zmniejszono szerokość, aby zsunąć kolumny */
         margin: 1.5rem auto 0;
         text-align: left; /* Domyślne wyrównanie dla komórek siatki */
     }
@@ -332,8 +328,4 @@
         text-align: center;
     }
 }
-
-
-
-
 
