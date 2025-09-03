@@ -77,21 +77,18 @@
     font-weight: 500;
 }
 .current-weather__extra-details {
-    /* ZMIANA: Zastosowano nowy, bardziej intuicyjny układ siatki dla wszystkich rozmiarów ekranu */
+    /* ZMIANA: Przywrócenie domyślnego, elastycznego układu dla wersji desktopowej. */
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-areas:
-        "wind sunrise"
-        "pressure sunset"
-        "road road";
-    gap: 1rem 2rem;
-    max-width: 400px; /* ZMIANA: Ograniczono szerokość i wyśrodkowano siatkę */
-    margin: 1.5rem auto 0;
+    grid-template-columns: repeat(auto-fit, minmax(90px, 1fr));
+    gap: 1rem;
+    text-align: center;
+    margin-top: 1.5rem;
     padding-top: 1.5rem;
     border-top: 1px solid var(--border-color);
+    align-items: start;
 }
 .current-weather__detail-item,
-.road-condition__item { /* ZMIANA: Ujednolicono style dla wszystkich elementów w siatce */
+.road-condition__item {
     display: flex;
     flex-direction: column;
     gap: 0.25rem;
@@ -104,16 +101,8 @@
     font-size: 1.1rem;
     font-weight: 500;
 }
-/* ZMIANA: przypisanie elementów do obszarów siatki i ich wyrównanie */
-.detail-item--wind { grid-area: wind; }
-.detail-item--pressure { grid-area: pressure; }
-.detail-item--sunrise { grid-area: sunrise; text-align: right; align-items: flex-end; }
-.detail-item--sunset { grid-area: sunset; text-align: right; align-items: flex-end; }
-.road-condition__item {
-    grid-area: road;
-    align-items: center;
-    text-align: center;
-}
+/* ZMIANA: Usunięto globalne przypisania do siatki. */
+
 .road-condition-value {
     font-size: 1.1rem;
     font-weight: 500;
@@ -229,7 +218,31 @@
     .weather-app__button {
         width: 100%;
     }
-    /* ZMIANA: Usunięto starą, specyficzną dla urządzeń mobilnych siatkę, ponieważ nowy układ jest w pełni responsywny. */
+    /* ZMIANA: Nowy, bardziej intuicyjny układ siatki stosowany jest teraz TYLKO w widoku mobilnym. */
+    .current-weather__extra-details {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-areas:
+            "wind sunrise"
+            "pressure sunset"
+            "road road";
+        gap: 1rem 2rem;
+        max-width: 400px;
+        margin: 1.5rem auto 0;
+        text-align: left; /* Domyślne wyrównanie dla komórek siatki */
+    }
+    .current-weather__detail-item {
+        align-items: flex-start;
+    }
+    .detail-item--wind { grid-area: wind; }
+    .detail-item--pressure { grid-area: pressure; }
+    .detail-item--sunrise { grid-area: sunrise; text-align: right; align-items: flex-end; }
+    .detail-item--sunset { grid-area: sunset; text-align: right; align-items: flex-end; }
+    .road-condition__item {
+        grid-area: road;
+        align-items: center;
+        text-align: center;
+    }
     
     /* ZMIANA: Logika widoczności dla mobilnego widoku portretowego */
     .forecast-switcher {
@@ -318,6 +331,7 @@
         text-align: center;
     }
 }
+
 
 
 
