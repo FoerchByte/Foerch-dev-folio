@@ -11,8 +11,7 @@
 
 let weatherT; 
 
-// UPDATE: Replaced the icon set with a more illustrative one for better readability.
-// This new set is more aligned with standard weather iconography.
+// Ikony pozostają bez zmian
 function getWeatherIcon(iconCode) {
     const iconMap = {
         '01d': `<svg viewBox="0 0 64 64"><path d="M32,16.21V10.5m0,43V47.79m11.25-26L47.5,16.5m-26,26L16.5,47.5m-5.75-11H5m43,0H47.79M16.5,16.5,21.75,21.75M47.5,47.5,42.25,42.25" fill="none" stroke="#f5c742" stroke-linecap="round" stroke-miterlimit="10" stroke-width="3"/><circle cx="32" cy="32" r="9" fill="none" stroke="#f5c742" stroke-linecap="round" stroke-miterlimit="10" stroke-width="3"/>`, // clear sky day
@@ -75,19 +74,19 @@ function renderWeatherData(data, container) {
             </div>
             <!-- UPDATE: Road condition moved inside this grid -->
             <div class="current-weather__extra-details">
-                <div class="current-weather__detail-item">
+                <div class="current-weather__detail-item detail-item--wind">
                     <span>${weatherT('weatherWind')}</span>
                     <span>${current.wind.speed.toFixed(1)} m/s</span>
                 </div>
-                <div class="current-weather__detail-item">
+                <div class="current-weather__detail-item detail-item--pressure">
                     <span>${weatherT('weatherPressure')}</span>
                     <span>${current.main.pressure} hPa</span>
                 </div>
-                <div class="current-weather__detail-item">
+                <div class="current-weather__detail-item detail-item--sunrise">
                     <span>${weatherT('weatherSunrise')}</span>
                     <span>${sunrise}</span>
                 </div>
-                <div class="current-weather__detail-item">
+                <div class="current-weather__detail-item detail-item--sunset">
                     <span>${weatherT('weatherSunset')}</span>
                     <span>${sunset}</span>
                 </div>
