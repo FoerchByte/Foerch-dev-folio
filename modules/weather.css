@@ -149,7 +149,7 @@
     100% { background-color: var(--completed-bg); }
 }
 
-/* ZMIANA: Dodajemy Media Query do poprawy responsywności na urządzeniach mobilnych */
+/* POPRAWKA W SEKCJI @media */
 @media (max-width: 768px) {
     .weather-app {
         padding: 1.5rem 1rem;
@@ -164,31 +164,20 @@
     }
 
     .current-weather__extra-details {
-        /* ZMIANA: Używamy Flexboxa do inteligentnego zawijania */
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: space-between;
-        gap: 0.5rem; /* Zmniejszamy odstęp */
+        /* Zmieniamy `display: flex` na `display: grid`, aby stworzyć siatkę 2x2 */
+        display: grid;
+        grid-template-columns: 1fr 1fr; /* Dwie równe kolumny */
+        grid-template-rows: auto auto; /* Dwa wiersze o automatycznej wysokości */
+        gap: 1rem; /* Zwiększamy odstęp dla lepszej czytelności */
+        text-align: center; /* Wyśrodkowujemy tekst w komórkach */
     }
 
     .current-weather__detail-item {
-        /* Domyślnie każdy element zajmuje 100% szerokości */
-        flex-basis: 100%;
-        text-align: left; /* Zachowujemy wyrównanie do lewej */
+        /* Każdy element jest teraz komórką siatki, nie potrzebuje już flex-basis */
+        display: flex; /* Używamy flexbox wewnątrz komórki, aby ułożyć tekst pionowo */
+        flex-direction: column;
+        align-items: center;
     }
-
-    .current-weather__detail-item:nth-child(3),
-    .current-weather__detail-item:nth-child(4) {
-        /* Trzeci i czwarty element zajmują po połowie szerokości */
-        flex-basis: calc(50% - 0.25rem); /* Połowa minus połowa odstępu */
-        text-align: center; /* Wyśrodkowujemy wschód/zachód słońca */
-        
-        /* Dodajemy linię oddzielającą dla lepszej czytelności */
-        border-top: 1px solid var(--border-color);
-        margin-top: 0.5rem;
-        padding-top: 0.5rem;
-    }
-
 
     .weather-app__forecast-grid {
         /* Pozwalamy prognozie zawijać się zamiast przewijać */
@@ -202,3 +191,4 @@
         flex-basis: 45%;
     }
 }
+
