@@ -164,19 +164,23 @@
     }
 
     .current-weather__extra-details {
-        /* Zmieniamy `display: flex` na `display: grid`, aby stworzyć siatkę 2x2 */
         display: grid;
-        grid-template-columns: 1fr 1fr; /* Dwie równe kolumny */
-        grid-template-rows: auto auto; /* Dwa wiersze o automatycznej wysokości */
-        gap: 1rem; /* Zwiększamy odstęp dla lepszej czytelności */
-        text-align: center; /* Wyśrodkowujemy tekst w komórkach */
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: auto auto;
+        /* POPRAWKA: Zmieniamy kierunek wypełniania siatki na kolumnowy */
+        grid-auto-flow: column;
+        /* POPRAWKA: Dostosowujemy odstępy dla lepszego wyglądu */
+        column-gap: 2rem;
+        row-gap: 0.75rem;
+        /* POPRAWKA: Usuwamy globalne wyśrodkowanie tekstu */
+        text-align: left;
     }
 
     .current-weather__detail-item {
-        /* Każdy element jest teraz komórką siatki, nie potrzebuje już flex-basis */
-        display: flex; /* Używamy flexbox wewnątrz komórki, aby ułożyć tekst pionowo */
+        display: flex;
         flex-direction: column;
-        align-items: center;
+        /* POPRAWKA: Wyrównujemy elementy do lewej wewnątrz komórki */
+        align-items: flex-start;
     }
 
     .weather-app__forecast-grid {
