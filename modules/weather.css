@@ -153,27 +153,29 @@
 .hourly-forecast__grid {
     display: flex;
     /*
-      EN: TWEAK: Adjusted the gap for better spacing.
-      Reduced from 1rem to 0.75rem to help fit more items comfortably.
-      PL: DOPRACOWANIE: Dostosowano odstęp dla lepszego rozmieszczenia.
-      Zmniejszono z 1rem do 0.75rem, aby pomóc wygodniej zmieścić więcej elementów.
+      EN: FINAL TWEAK: Using justify-content for perfect distribution.
+      This allows the browser to automatically manage the spacing between items,
+      creating a clean, balanced layout without fixed gaps.
+      PL: FINALNA POPRAWKA: Użycie justify-content dla idealnej dystrybucji.
+      Pozwala to przeglądarce na automatyczne zarządzanie odstępami między elementami,
+      tworząc czysty, zrównoważony układ bez stałych przerw.
     */
-    gap: 0.75rem;
+    justify-content: space-between;
     overflow-x: auto;
-    padding: 0.5rem;
+    padding: 0.5rem 0; /* Adjusted padding */
     -webkit-overflow-scrolling: touch;
     scrollbar-width: thin;
 }
 .hourly-forecast__item {
     /*
-      EN: TWEAK: Fine-tuned flex-basis and padding.
-      Slightly increased the base width to 75px to avoid a cramped look,
-      and reduced horizontal padding to compensate.
-      PL: DOPRACOWANIE: Dostosowano flex-basis i padding.
-      Nieznacznie zwiększono bazową szerokość do 75px, aby uniknąć "ściśniętego" wyglądu,
-      i zmniejszono dopełnienie poziome w celu kompensacji.
+      EN: TWEAK: Reverted to flex-grow for flexibility.
+      By allowing items to grow, they will fill the container space evenly.
+      The base width is a suggestion, not a strict rule.
+      PL: DOPRACOWANIE: Powrót do flex-grow dla elastyczności.
+      Pozwalając elementom rosnąć, wypełnią one równomiernie przestrzeń kontenera.
+      Bazowa szerokość jest sugestią, a nie sztywną regułą.
     */
-    flex: 0 0 75px;
+    flex: 1 0 75px;
     display: flex;
     flex-direction: column;
     align-items: center;
