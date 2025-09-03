@@ -38,7 +38,7 @@
     font-size: 1rem;
     border-radius: 6px;
     cursor: pointer;
-    transition: background-color: 0.2s;
+    transition: background-color 0.2s;
 }
 .weather-app__button:hover {
     background-color: var(--primary-hover-color);
@@ -63,7 +63,7 @@
     justify-content: center;
     gap: 1rem;
 }
-.current-weather__icon svg {
+.current-weather__icon {
     width: 80px;
     height: 80px;
 }
@@ -76,18 +76,17 @@
     font-size: 2.5rem;
     font-weight: 500;
 }
-
-/*
-  EN: FIX: Added a new grid container for extra weather details.
-  This ensures all five items (wind, pressure, sunrise, sunset, road condition)
-  are perfectly aligned in a five-column layout on desktop screens.
-  PL: POPRAWKA: Dodano nowy kontener siatki dla dodatkowych szczegółów pogody.
-  Zapewnia to idealne wyrównanie wszystkich pięciu elementów (wiatr, ciśnienie,
-  wschód, zachód, stan nawierzchni) w pięciokolumnowym układzie na ekranach desktopowych.
-*/
 .current-weather__extra-details {
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
+    /*
+      EN: FIX: Switched from 5 columns to a more robust `repeat(auto-fit, minmax(90px, 1fr))`
+      This allows the grid to be more flexible and responsive on different screen sizes,
+      preventing alignment issues with the "Road Condition" item.
+      PL: POPRAWKA: Zmieniono układ z 5 sztywnych kolumn na bardziej elastyczny `repeat(auto-fit, minmax(90px, 1fr))`.
+      Dzięki temu siatka jest bardziej elastyczna i responsywna na różnych rozmiarach ekranu,
+      co zapobiega problemom z wyrównaniem elementu "Stan nawierzchni".
+    */
+    grid-template-columns: repeat(auto-fit, minmax(90px, 1fr));
     gap: 1rem;
     text-align: center;
     margin-top: 1.5rem;
@@ -95,10 +94,10 @@
     border-top: 1px solid var(--border-color);
     align-items: start;
 }
-
 .current-weather__detail-item {
     display: flex;
     flex-direction: column;
+    gap: 0.25rem; /* Added gap for better spacing */
 }
 .current-weather__detail-item span:first-child {
     font-size: 0.9rem;
@@ -108,39 +107,18 @@
     font-size: 1.1rem;
     font-weight: 500;
 }
-
-/*
-  EN: REFACTOR: Unified road condition item styling.
-  The .road-condition__item is now styled to be a flex column, identical to
-  .current-weather__detail-item, ensuring perfect visual alignment.
-  PL: REFAKTORYZACJA: Ujednolicono styl elementu stanu nawierzchni.
-  Element .road-condition__item jest teraz stylizowany jako kolumna flex,
-  identycznie jak .current-weather__detail-item, co zapewnia idealne wyrównanie wizualne.
-*/
 .road-condition__item {
     display: flex;
     flex-direction: column;
+    gap: 0.25rem;
 }
-.road-condition__item span:first-child {
-    font-size: 0.9rem;
-    color: var(--completed-text);
-}
-
-/*
-  EN: REFACTOR: Overriding previous styles to match other detail items.
-  The font size and weight are now consistent with the "Wind", "Pressure", etc. elements.
-  PL: REFAKTORYZACJA: Nadpisanie poprzednich stylów w celu dopasowania do innych szczegółów.
-  Rozmiar i waga czcionki są teraz spójne z elementami "Wiatr", "Ciśnienie" itp.
-*/
 .road-condition-value {
     font-size: 1.1rem;
     font-weight: 500;
 }
-
 .road-condition--roadDry { color: var(--success-color); }
 .road-condition--roadWet { color: var(--primary-color); }
 .road-condition--roadIcy { color: var(--danger-color); }
-
 
 /* Hourly forecast styles */
 .hourly-forecast__wrapper, .weather-app__forecast-wrapper {
@@ -150,62 +128,75 @@
     text-align: left;
     margin-bottom: 1rem;
 }
-
-/*
-  EN: FINAL REFACTOR: Switched to CSS Grid for the hourly forecast.
-  This provides the most robust and predictable layout, ensuring exactly 8
-  columns with equal spacing, which resolves previous flexbox alignment issues.
-  PL: FINALNA REFAKTORYZACJA: Przejście na CSS Grid dla prognozy godzinowej.
-  Zapewnia to najbardziej solidny i przewidywalny układ, gwarantując dokładnie 8
-  kolumn z równymi odstępami, co rozwiązuje poprzednie problemy z wyrównaniem flexboxa.
-*/
 .hourly-forecast__grid {
     display: grid;
+    /*
+      EN: FINAL FIX: Using a grid with 8 equal columns (`1fr`) ensures perfect alignment
+      and spacing for the hourly forecast items without causing overflow.
+      PL: FINALNA POPRAWKA: Użycie siatki z 8 równymi kolumnami (`1fr`) zapewnia idealne
+      wyrównanie i odstępy dla prognozy godzinowej, eliminując problem przepełnienia.
+    */
     grid-template-columns: repeat(8, 1fr);
     gap: 0.75rem;
-    overflow-x: auto; /* Fallback for very small screens */
-    padding: 0.5rem 0;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: thin;
+    overflow-x: hidden; /* Hide scrollbar as items should now fit */
 }
 .hourly-forecast__item {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 1rem 0.4rem;
+    padding: 1rem 0.5rem;
     background-color: var(--background-color);
     border: 1px solid var(--border-color);
     border-radius: 8px;
 }
 .hourly-forecast__time { font-size: 0.9rem; font-weight: 500; margin: 0 0 0.5rem 0; }
-.hourly-forecast__icon svg { width: 48px; height: 48px; }
+.hourly-forecast__icon {
+    width: 48px;
+    height: 48px;
+}
 .hourly-forecast__temp { font-size: 1.1rem; font-weight: bold; margin-top: 0.5rem; }
 
 
 .weather-app__forecast-grid {
-    display: flex;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
     gap: 1rem;
-    overflow-x: auto;
-    padding-bottom: 1rem;
 }
 .weather-app__forecast-day {
-    flex: 1;
-    min-width: 100px;
     padding: 1rem;
     background-color: var(--background-color);
     border: 1px solid var(--border-color);
     border-radius: 8px;
     text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
 }
 .weather-app__forecast-day h4 {
-    margin: 0 0 0.5rem 0;
+    margin: 0;
+    font-size: 1rem;
+    text-transform: capitalize;
 }
-.weather-app__forecast-icon svg {
+.weather-app__forecast-icon {
     width: 48px;
     height: 48px;
-    color: var(--text-color);
 }
+
+/*
+  EN: NEW: Added a specific class for weather icon images.
+  This ensures that the external SVG/PNG files are properly scaled
+  within their containers, preventing overflow issues.
+  PL: NOWOŚĆ: Dodano specyficzną klasę dla obrazków ikon pogody.
+  Zapewnia to, że zewnętrzne pliki SVG/PNG są prawidłowo skalowane
+  wewnątrz swoich kontenerów, co zapobiega problemom z przepełnieniem.
+*/
+.weather-icon-img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
 
 .weather-app__skeleton { display: flex; flex-direction: column; align-items: center; }
 .weather-app__skeleton-details { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1rem; width: 100%; margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid var(--border-color); }
@@ -227,7 +218,6 @@
     .weather-app__button {
         width: 100%;
     }
-    /* UPDATE: Specific grid layout for mobile portrait view */
     .current-weather__extra-details {
         grid-template-columns: 1fr 1fr;
         grid-template-rows: auto auto auto;
@@ -239,44 +229,35 @@
         row-gap: 1.5rem;
         text-align: left;
     }
-
-    /*
-      EN: TWEAK: On mobile, the hourly forecast reverts to a scrolling flex container.
-      This is a more user-friendly pattern on smaller, touch-based devices.
-      PL: DOPRACOWANIE: Na urządzeniach mobilnych prognoza godzinowa powraca do przewijanego
-      kontenera flex. Jest to bardziej przyjazny dla użytkownika wzorzec na mniejszych
-      urządzeniach dotykowych.
-    */
-    .hourly-forecast__grid {
-        display: flex;
-        justify-content: flex-start;
-    }
-
-    .hourly-forecast__item {
-        flex: 0 0 75px;
-    }
-
-
     .detail-item--wind { grid-area: wind; }
     .detail-item--pressure { grid-area: pressure; }
     .detail-item--sunrise { grid-area: sunrise; }
     .detail-item--sunset { grid-area: sunset; }
     .road-condition__item { 
         grid-area: road;
-        text-align: left;
-    }
-    .road-condition__item span {
+        flex-direction: row;
+        align-items: baseline;
         justify-content: flex-start;
+        gap: 0.5rem;
     }
     .current-weather__detail-item {
         align-items: flex-start;
+        gap: 0;
+    }
+
+    .hourly-forecast__grid {
+        display: flex;
+        overflow-x: auto;
+    }
+
+    .hourly-forecast__item {
+        flex: 0 0 80px;
     }
 
     /* 5-day forecast mobile */
     .weather-app__forecast-grid {
-        flex-direction: column; 
+        grid-template-columns: 1fr;
         gap: 0.75rem;
-        overflow-x: hidden; 
     }
     .weather-app__forecast-day {
         display: flex; 
@@ -291,9 +272,8 @@
         margin: 0;
         font-size: 1rem; 
         flex-basis: 40%; 
-        text-transform: capitalize; 
     }
-    .weather-app__forecast-icon svg {
+    .weather-app__forecast-icon {
         width: 40px; 
         height: 40px;
     }
@@ -307,16 +287,13 @@
 /* Landscape view fix */
 @media (max-height: 500px) and (orientation: landscape) {
     .weather-app__forecast-grid {
-        flex-direction: row;
-        overflow-x: auto;
-        justify-content: flex-start;
-        /* UPDATE: Final tweak to prevent overflow */
+        grid-template-columns: repeat(5, 1fr);
         gap: 0.65rem;
         padding: 0.5rem;
     }
     .weather-app__forecast-day {
         flex-direction: column;
-        min-width: 90px; /* Further reduction */
+        min-width: 90px;
         padding: 0.65rem;
         text-align: center;
     }
