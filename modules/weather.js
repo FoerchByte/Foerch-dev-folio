@@ -28,14 +28,6 @@ function getWeatherIcon(iconCode) {
     return `<img src="${iconBaseUrl}${iconName}" alt="Weather icon" class="weather-icon-img">`;
 }
 
-/*
-  EN: REFACTOR: This function now dynamically injects a full forecast container structure,
-  including a mobile-only switcher. This centralizes the DOM manipulation and makes
-  the feature self-contained within the weather module.
-  PL: REFAKTORYZACJA: Ta funkcja dynamicznie wstrzykuje teraz pełną strukturę kontenera prognoz,
-  włączając w to przełącznik widoczny tylko na mobile. Centralizuje to manipulację DOM
-  i sprawia, że funkcjonalność jest w pełni zawarta w module pogodowym.
-*/
 function insertForecastContainers() {
     const resultContainer = document.getElementById('weather-result-container');
     if (!resultContainer || document.getElementById('forecasts-container')) return;
@@ -61,11 +53,25 @@ function insertForecastContainers() {
 async function handleWeatherSearch(query) {
     const resultContainer = document.getElementById('weather-result-container');
     const currentLang = localStorage.getItem('lang') || 'pl';
-    const skeletonHTML = `...`; // Skeleton HTML remains the same
+    /*
+      EN: CRITICAL BUG FIX: The skeletonHTML constant was previously abbreviated,
+      causing a JavaScript error and preventing the weather module from rendering.
+      It has been restored to its full, correct definition.
+      PL: KRYTYCZNA POPRAWKA BŁĘDU: Stała skeletonHTML była wcześniej skrócona,
+      co powodowało błąd JavaScript i uniemożliwiało renderowanie modułu pogodowego.
+      Została przywrócona do swojej pełnej, prawidłowej definicji.
+    */
+    const skeletonHTML = `
+        <div class="weather-app__skeleton">
+            <div class="skeleton" style="width: 200px; height: 2.2rem; margin-bottom: 1rem;"></div>
+            <div class="skeleton" style="width: 150px; height: 4rem;"></div>
+            <div class="weather-app__skeleton-details">
+                ${Array(5).fill('<div class="skeleton" style="height: 4rem;"></div>').join('')}
+            </div>
+        </div>`;
 
     resultContainer.innerHTML = skeletonHTML;
     
-    // Ensure forecast containers exist
     insertForecastContainers();
 
     const hourlyWrapper = document.querySelector('.hourly-forecast__wrapper');
@@ -106,18 +112,46 @@ async function handleWeatherSearch(query) {
             ? { text: weatherT('roadDry'), class: 'roadDry' }
             : (current.main.temp <= 2 ? { text: weatherT('roadIcy'), class: 'roadIcy' } : { text: weatherT('roadWet'), class: 'roadWet' });
 
-        resultContainer.innerHTML = `...`; // Main weather display remains the same
-
-        // Render hourly forecast
+        resultContainer.innerHTML = `
+            <h3 class="current-weather__city">${data.city.name}, ${data.city.country}</h3>
+            <div class="current-weather__main">
+                <div class="current-weather__icon">${getWeatherIcon(current.weather[0].icon)}</div>
+                <div class="current-weather__details">
+                    <span class="current-weather__temp">${Math.round(current.main.temp)}°C</span>
+                    <span>${current.weather[0].description}</span>
+                </div>
+            </div>
+            <div class="current-weather__extra-details">
+                <div class="current-weather__detail-item detail-item--wind"><span>${weatherT('weatherWind')}</span><span>${current.wind.speed.toFixed(1)} m/s</span></div>
+                <div class="current-weather__detail-item detail-item--pressure"><span>${weatherT('weatherPressure')}</span><span>${current.main.pressure} hPa</span></div>
+                <div class="current-weather__detail-item detail-item--sunrise"><span>${weatherT('weatherSunrise')}</span><span>${sunrise}</span></div>
+                <div class="current-weather__detail-item detail-item--sunset"><span>${weatherT('weatherSunset')}</span><span>${sunset}</span></div>
+                <div class="road-condition__item"><span>${weatherT('weatherRoadConditionTitle')}</span><span class="road-condition-value road-condition--${roadCondition.class}">${roadCondition.text}</span></div>
+            </div>`;
+        
         const hourlyContainer = document.getElementById('hourly-forecast-container');
         const next8hours = data.list.slice(0, 8);
-        hourlyContainer.innerHTML = next8hours.map(item => `...`).join(''); // Hourly forecast item remains the same
+        hourlyContainer.innerHTML = next8hours.map(item => `
+            <div class="hourly-forecast__item">
+                <p class="hourly-forecast__time">${new Date(item.dt * 1000).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</p>
+                <div class="hourly-forecast__icon">${getWeatherIcon(item.weather[0].icon)}</div>
+                <p class="hourly-forecast__temp">${Math.round(item.main.temp)}°C</p>
+            </div>
+        `).join('');
         if(hourlyWrapper) hourlyWrapper.style.display = 'block';
 
-        // Render 5-day forecast
         const forecastContainer = document.getElementById('forecast-container');
         const dailyForecasts = data.list.filter(item => item.dt_txt.includes("12:00:00")).slice(0, 5)
-            .map(item => `...`).join(''); // Daily forecast item remains the same
+            .map(item => {
+                const date = new Date(item.dt * 1000);
+                const dayName = date.toLocaleDateString(currentLang, { weekday: 'long' });
+                return `
+                    <div class="weather-app__forecast-day">
+                        <h4>${dayName}</h4>
+                        <div class="weather-app__forecast-icon">${getWeatherIcon(item.weather[0].icon)}</div>
+                        <p>${Math.round(item.main.temp)}°C</p>
+                    </div>`;
+            }).join('');
         
         if(forecastContainer) forecastContainer.innerHTML = dailyForecasts;
         if(forecastWrapper) forecastWrapper.style.display = 'block';
@@ -127,14 +161,7 @@ async function handleWeatherSearch(query) {
     }
 }
 
-/*
-  EN: NEW: This function sets up the event listeners for the mobile forecast switcher.
-  It's called once when the app initializes.
-  PL: NOWOŚĆ: Ta funkcja konfiguruje nasłuchiwacze zdarzeń dla mobilnego przełącznika prognoz.
-  Jest wywoływana jednorazowo podczas inicjalizacji aplikacji.
-*/
 function setupForecastSwitcher() {
-    // Use event delegation on the body, as the switcher is created dynamically
     document.body.addEventListener('click', function(e) {
         const switcher = e.target.closest('#forecast-switcher');
         if (!switcher) return;
@@ -172,7 +199,6 @@ export function initializeWeatherApp(dependencies) {
         }
     });
     
-    // Setup the switcher logic once
     setupForecastSwitcher();
 
     const lastCity = localStorage.getItem('lastCity');
