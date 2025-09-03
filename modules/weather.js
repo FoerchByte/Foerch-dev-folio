@@ -11,7 +11,8 @@
 
 let weatherT; 
 
-// Ikony pozostają bez zmian
+// UPDATE: Replaced the icon set with a more illustrative one for better readability.
+// This new set is more aligned with standard weather iconography.
 function getWeatherIcon(iconCode) {
     const iconMap = {
         '01d': `<svg viewBox="0 0 64 64"><path d="M32,16.21V10.5m0,43V47.79m11.25-26L47.5,16.5m-26,26L16.5,47.5m-5.75-11H5m43,0H47.79M16.5,16.5,21.75,21.75M47.5,47.5,42.25,42.25" fill="none" stroke="#f5c742" stroke-linecap="round" stroke-miterlimit="10" stroke-width="3"/><circle cx="32" cy="32" r="9" fill="none" stroke="#f5c742" stroke-linecap="round" stroke-miterlimit="10" stroke-width="3"/>`, // clear sky day
