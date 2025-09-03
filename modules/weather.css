@@ -218,8 +218,23 @@
     .weather-app__button {
         width: 100%;
     }
+    /*
+      EN: FINAL MOBILE FIX: A complete refactor of the mobile grid using grid-template-areas
+      to ensure a stable, centered 2x2 layout for details and a full-width, centered
+      layout for the road condition, resolving all previous alignment issues.
+      PL: FINALNA POPRAWKA MOBILNA: Kompletna refaktoryzacja siatki mobilnej z użyciem
+      grid-template-areas, aby zapewnić stabilny, wyśrodkowany układ 2x2 dla szczegółów
+      oraz wycentrowany układ na pełnej szerokości dla stanu nawierzchni, co rozwiązuje
+      wszystkie poprzednie problemy z wyrównaniem.
+    */
     .current-weather__extra-details {
+        display: grid;
         grid-template-columns: 1fr 1fr;
+        grid-template-areas:
+            "wind pressure"
+            "sunrise sunset"
+            "road road";
+        gap: 1rem 2rem;
         max-width: 320px;
         margin-left: auto;
         margin-right: auto;
@@ -227,11 +242,16 @@
     }
     .current-weather__detail-item {
         align-items: flex-start;
-        gap: 0;
+        text-align: left;
     }
+    .detail-item--wind { grid-area: wind; }
+    .detail-item--pressure { grid-area: pressure; text-align: right; align-items: flex-end; }
+    .detail-item--sunrise { grid-area: sunrise; }
+    .detail-item--sunset { grid-area: sunset; text-align: right; align-items: flex-end; }
     .road-condition__item {
-        grid-column: 1 / -1;
+        grid-area: road;
         align-items: center;
+        text-align: center;
     }
 
 
@@ -264,6 +284,9 @@
         align-items: center;
         padding: 0.75rem 1rem;
         text-align: left;
+        background-color: var(--background-color);
+        border: 1px solid var(--border-color);
+        border-radius: 8px;
     }
     .hourly-forecast__time, .weather-app__forecast-day h4 {
         margin: 0;
