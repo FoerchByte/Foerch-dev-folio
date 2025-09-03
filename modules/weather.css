@@ -246,6 +246,14 @@
         align-items: center;
         gap: 0;
     }
+    /* EN: MOBILE ALIGNMENT FIX: Specific style for road condition to make it span full width and center its content.
+       PL: POPRAWKA WYRÓWNANIA MOBILE: Specyficzny styl dla stanu nawierzchni, aby rozciągał się na całą szerokość i centrował swoją zawartość.
+    */
+    .road-condition__item {
+        grid-column: 1 / -1;
+        align-items: center;
+    }
+
 
     .forecast-switcher {
         display: flex;
