@@ -97,7 +97,8 @@ npm test
 
 Vitest automatycznie znajdzie i uruchomi wszystkie testy w projekcie.
 
-<a name="engilsh"></a>
+
+<a name="english"></a>
 English Version
 
 Welcome to my digital world, Foerch-dev-folio!
