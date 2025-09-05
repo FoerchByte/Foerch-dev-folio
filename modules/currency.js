@@ -35,7 +35,7 @@ async function handleCurrencyConversion() {
         totalResultEl.textContent = `${Number(amount)} ${fromCurrency} = ${result.toFixed(2)} ${toCurrency}`;
 
     } catch (error) {
-        totalResultEl.textContent = 'Błąd przeliczania.';
+        totalResultEl.textContent = currencyT('errorApiCurrency');
         console.error("Błąd przeliczania walut:", error);
     }
 }
@@ -75,9 +75,10 @@ export async function initializeCurrencyCalculator(dependencies) {
 
         calculate();
     } catch (error) {
-        document.getElementById('total-conversion-result').textContent = 'Błąd ładowania walut.';
+        document.getElementById('total-conversion-result').textContent = currencyT('errorApiCurrency');
         console.error("Błąd API walut:", error);
     }
     
     return [];
 }
+
