@@ -1,11 +1,14 @@
-# Folder z zależnościami (bardzo ważne!)
+Folder z zależnościami (bardzo ważne!)
 node_modules
 
-# Plik ze zmiennymi środowiskowymi
+Plik ze zmiennymi środowiskowymi
 .env
 
-# Folder lokalny Netlify
+Folder lokalny Netlify
 .netlify
 
-# Pliki systemowe (dobra praktyka)
+Pliki systemowe (dobra praktyka)
 .DS_Store
+
+ZMIANA: Ignoruj plik README przeznaczony tylko dla gałęzi deweloperskiej
+README.dev.md

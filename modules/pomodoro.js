@@ -1,4 +1,4 @@
-// modules/pomodoro.js - Logika dla licznika Pomodoro z zapisem ustawień
+// modules/pomodoro.js - Logika dla Asystenta Pomodoro
 
 let pomodoroT; // Funkcja tłumacząca
 
@@ -9,17 +9,46 @@ let remainingTime; // w sekundach
 let totalTime; // w sekundach
 let isPaused = true;
 let timerInterval = null;
+let pomodoroCycle = 0; // Licznik ukończonych sesji pracy
+const CYCLES_BEFORE_LONG_BREAK = 4;
+
+// --- Dźwięki ---
+let synth = null;
 
 // --- Elementy DOM ---
 let timeDisplay, startPauseBtn, resetBtn, saveBtn;
 let workInput, shortBreakInput, longBreakInput;
-let progressCircle;
-let radius, circumference;
-let announcer; // ZMIANA: Dodano zmienną dla "ogłaszacza"
+let progressCircle, radius, circumference;
+let announcer, cyclesContainer;
 
 /**
- * Zapisuje aktualne ustawienia czasu do localStorage.
+ * ZMIANA: Funkcja do odtwarzania dźwięku na koniec sesji.
  */
+function playSound() {
+    if (typeof Tone !== 'undefined') {
+        if (!synth) {
+            synth = new Tone.Synth().toDestination();
+        }
+        // Używamy prostego, miłego dla ucha dźwięku
+        synth.triggerAttackRelease("C5", "8n", Tone.now());
+    }
+}
+
+/**
+ * ZMIANA: Rysuje wskaźniki cykli (kropki).
+ */
+function renderCycles() {
+    cyclesContainer.innerHTML = '';
+    for (let i = 0; i < CYCLES_BEFORE_LONG_BREAK; i++) {
+        const indicator = document.createElement('div');
+        indicator.className = 'cycle-indicator';
+        if (i < pomodoroCycle) {
+            indicator.classList.add('completed');
+        }
+        cyclesContainer.appendChild(indicator);
+    }
+}
+
 function saveSettings() {
     settings.work = parseInt(workInput.value, 10);
     settings.shortBreak = parseInt(shortBreakInput.value, 10);
@@ -27,42 +56,32 @@ function saveSettings() {
 
     localStorage.setItem('pomodoroSettings', JSON.stringify(settings));
 
-    // Aktualizuj timer, jeśli zmieniono czas dla aktywnego trybu
     if (!isPaused) {
         pauseTimer();
     }
-    switchMode(currentMode, true); // Zresetuj timer z nowymi wartościami
+    switchMode(currentMode, true);
     
-    // Informacja zwrotna dla użytkownika
     saveBtn.textContent = pomodoroT('pomodoroSettingsSaved');
     saveBtn.classList.add('saved');
-    if (announcer) announcer.textContent = pomodoroT('pomodoroSettingsSaved'); // ZMIANA: Ogłoś zapisanie
+    if (announcer) announcer.textContent = pomodoroT('pomodoroSettingsSaved');
     setTimeout(() => {
         saveBtn.textContent = pomodoroT('pomodoroSaveSettings');
         saveBtn.classList.remove('saved');
     }, 1500);
 }
 
-/**
- * Wczytuje ustawienia z localStorage lub ustawia domyślne.
- */
 function loadSettings() {
     const savedSettings = JSON.parse(localStorage.getItem('pomodoroSettings'));
-    
     settings = {
         work: savedSettings?.work || 25,
         shortBreak: savedSettings?.shortBreak || 5,
         longBreak: savedSettings?.longBreak || 15,
     };
-
     workInput.value = settings.work;
     shortBreakInput.value = settings.shortBreak;
     longBreakInput.value = settings.longBreak;
 }
 
-/**
- * Aktualizuje wyświetlacz czasu i tytuł strony.
- */
 function updateDisplay() {
     const minutes = Math.floor(remainingTime / 60);
     const seconds = remainingTime % 60;
@@ -73,21 +92,37 @@ function updateDisplay() {
     updateProgressCircle();
 }
 
-/**
- * Aktualizuje wizualny postęp na okręgu SVG.
- */
 function updateProgressCircle() {
-    const elapsedTime = totalTime - remainingTime;
-    const progress = elapsedTime / totalTime;
-    const offset = circumference * progress;
+    const progress = (totalTime - remainingTime) / totalTime;
+    const offset = circumference * (1 - progress);
     progressCircle.style.strokeDashoffset = offset;
 }
 
 /**
- * Przełącza tryb licznika (praca, krótka/długa przerwa).
- * @param {string} mode - Nazwa trybu ('work', 'shortBreak', 'longBreak')
- * @param {boolean} forceReset - Czy wymusić zresetowanie timera
+ * ZMIANA: Logika automatycznego przełączania trybów po zakończeniu odliczania.
  */
+function handleTimerCompletion() {
+    playSound();
+
+    if (currentMode === 'work') {
+        pomodoroCycle++;
+        if (pomodoroCycle >= CYCLES_BEFORE_LONG_BREAK) {
+            switchMode('longBreak');
+        } else {
+            switchMode('shortBreak');
+        }
+    } else {
+        // Po przerwie zawsze wracamy do pracy
+        if (currentMode === 'longBreak') {
+            pomodoroCycle = 0; // Resetujemy cykl po długiej przerwie
+        }
+        switchMode('work');
+    }
+    renderCycles();
+    // Opcjonalnie: automatycznie startuj następny timer
+    // startTimer(); 
+}
+
 function switchMode(mode, forceReset = false) {
     if (!forceReset && mode === currentMode) return;
     
@@ -100,68 +135,55 @@ function switchMode(mode, forceReset = false) {
         btn.classList.toggle('active', btn.dataset.mode === mode);
     });
 
-    // ZMIANA: Ogłoś zmianę trybu dla czytników ekranu
     if (announcer) {
-        let modeKey;
-        if (mode === 'work') modeKey = 'pomodoroModeWork';
-        else if (mode === 'shortBreak') modeKey = 'pomodoroModeShortBreak';
-        else modeKey = 'pomodoroModeLongBreak';
-        announcer.textContent = `${pomodoroT(modeKey)}: ${settings[mode]} minut.`;
+        const modeKeyMap = {
+            work: 'pomodoroModeWork',
+            shortBreak: 'pomodoroModeShortBreak',
+            longBreak: 'pomodoroModeLongBreak'
+        };
+        announcer.textContent = `${pomodoroT(modeKeyMap[mode])}: ${settings[mode]} minut.`;
     }
-
     updateDisplay();
 }
 
-/**
- * Rozpoczyna odliczanie.
- */
 function startTimer() {
+    // Zapewnienie, że kontekst audio jest aktywowany przez interakcję użytkownika
+    if (typeof Tone !== 'undefined' && Tone.context.state !== 'running') {
+        Tone.start();
+    }
     isPaused = false;
     startPauseBtn.textContent = pomodoroT('pomodoroPause');
-    if (announcer) announcer.textContent = "Licznik uruchomiony."; // ZMIANA: Ogłoś start
+    if (announcer) announcer.textContent = "Licznik uruchomiony.";
     
     timerInterval = setInterval(() => {
         remainingTime--;
         updateDisplay();
         if (remainingTime <= 0) {
             pauseTimer();
-            if (announcer) announcer.textContent = "Czas minął."; // ZMIANA: Ogłoś koniec
+            handleTimerCompletion();
         }
     }, 1000);
 }
 
-/**
- * Pauzuje odliczanie.
- */
 function pauseTimer() {
-    if (!isPaused) { // Ogłoś pauzę tylko jeśli timer był aktywny
-        if (announcer) announcer.textContent = "Licznik zatrzymany."; // ZMIANA: Ogłoś pauzę
-    }
+    if (!isPaused && announcer) announcer.textContent = "Licznik zatrzymany.";
     isPaused = true;
     startPauseBtn.textContent = pomodoroT('pomodoroStart');
     clearInterval(timerInterval);
     document.title = pomodoroT('pomodoroTimerTitle');
 }
 
-/**
- * Resetuje licznik do wartości początkowej dla danego trybu.
- */
 function resetTimer() {
     pauseTimer();
-    remainingTime = settings[currentMode] * 60;
-    if (announcer) announcer.textContent = "Licznik zresetowany."; // ZMIANA: Ogłoś reset
-    updateDisplay();
+    pomodoroCycle = 0; // Resetujemy również cykle
+    switchMode('work', true);
+    renderCycles();
+    if (announcer) announcer.textContent = "Licznik zresetowany.";
 }
 
-/**
- * Główna funkcja inicjalizująca licznik Pomodoro.
- * @param {object} dependencies - Zależności (np. funkcja t)
- * @returns {Array<Function>} - Tablica funkcji czyszczących
- */
 export function initializePomodoroTimer(dependencies) {
     pomodoroT = dependencies.t;
 
-    // Pobranie elementów DOM
     timeDisplay = document.getElementById('pomodoro-time-display');
     startPauseBtn = document.getElementById('pomodoro-start-pause-btn');
     resetBtn = document.getElementById('pomodoro-reset-btn');
@@ -170,19 +192,17 @@ export function initializePomodoroTimer(dependencies) {
     shortBreakInput = document.getElementById('short-break-duration');
     longBreakInput = document.getElementById('long-break-duration');
     progressCircle = document.querySelector('.progress-ring-circle');
-    announcer = document.getElementById('pomodoro-announcer'); // ZMIANA: Pobierz "ogłaszacza"
+    announcer = document.getElementById('pomodoro-announcer');
+    cyclesContainer = document.getElementById('pomodoro-cycles');
     
-    // Konfiguracja okręgu postępu
     radius = progressCircle.r.baseVal.value;
     circumference = 2 * Math.PI * radius;
     progressCircle.style.strokeDasharray = `${circumference} ${circumference}`;
-    progressCircle.style.strokeDashoffset = 0;
 
-    // Wczytanie ustawień i inicjalizacja
     loadSettings();
     switchMode('work', true);
+    renderCycles();
 
-    // Dodanie nasłuchiwania na zdarzenia
     startPauseBtn.addEventListener('click', () => {
         isPaused ? startTimer() : pauseTimer();
     });
@@ -194,11 +214,9 @@ export function initializePomodoroTimer(dependencies) {
         }
     });
 
-    // Funkcja czyszcząca
     const cleanup = () => {
         pauseTimer();
         document.title = pomodoroT('siteTitle');
     };
-
     return [cleanup];
 }

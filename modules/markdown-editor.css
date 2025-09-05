@@ -7,33 +7,42 @@
   uosabiając minimalistyczne i funkcjonalne podejście do projektu.
 */
 
-/* ZMIANA: Dodano styl dla kontenera z przyciskami */
-.markdown-editor-controls {
-    margin-bottom: 1rem;
+/* ZMIANA: Dodano style dla Paska Narzędzi */
+.markdown-toolbar {
     display: flex;
     gap: 0.5rem;
+    background-color: var(--completed-bg);
+    padding: 0.5rem;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+    border: 1px solid var(--border-color);
 }
-
-.editor-btn {
+.toolbar-btn {
     background-color: var(--card-background);
     border: 1px solid var(--border-color);
     color: var(--text-color);
-    padding: 0.5rem 1rem;
+    padding: 0.5rem;
     border-radius: 6px;
     cursor: pointer;
-    font-weight: 500;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     transition: all 0.2s ease-in-out;
 }
-
-.editor-btn:hover {
-    background-color: var(--completed-bg);
+.toolbar-btn:hover {
+    background-color: var(--background-color);
     border-color: var(--primary-color);
 }
+.toolbar-btn svg {
+    stroke: var(--text-color);
+}
 
-.editor-btn.active {
-    background-color: var(--primary-color);
-    border-color: var(--primary-color);
-    color: white;
+/* ZMIANA: Dodano styl dla instrukcji */
+.editor-how-to-use {
+    font-style: italic;
+    color: var(--completed-text);
+    font-size: 0.9rem;
+    margin-bottom: 1.5rem; /* Dodatkowy margines, aby oddzielić od edytora */
 }
 
 
@@ -41,14 +50,10 @@
     display: grid; 
     grid-template-columns: 1fr 1fr; 
     gap: 2rem; 
-    /* ZMIANA: Usunięto stałą wysokość z kontenera siatki */
 }
 
-/* ZMIANA: Ustawienie równej i elastycznej wysokości dla obu kontenerów */
-#markdown-input, 
-#markdown-output {
+#markdown-input, #markdown-output {
     width: 100%;
-    /* Ustawiamy konkretną wysokość, która będzie taka sama dla obu pól */
     height: 60vh; 
     resize: none; 
     border: 1px solid var(--border-color); 
@@ -58,32 +63,40 @@
     font-family: monospace; 
     font-size: 1rem; 
     border-radius: 8px; 
-    /* Dodajemy box-sizing dla pewności */
     box-sizing: border-box; 
+    /* ZMIANA: Dodano płynne przewijanie */
+    scroll-behavior: smooth;
 }
 
 #markdown-output { 
     overflow-y: auto; 
 }
 
+/* ZMIANA: Dodano style dla licznika statystyk */
+.editor-stats {
+    margin-top: 1rem;
+    color: var(--completed-text);
+    font-size: 0.9rem;
+    display: flex;
+    gap: 1.5rem;
+}
+
+
 .markdown-body h1, .markdown-body h2, .markdown-body h3 { 
     border-bottom: 1px solid var(--border-color); 
     padding-bottom: 0.3em; 
 }
-
 .markdown-body code { 
     background-color: var(--completed-bg); 
     padding: 0.2em 0.4em; 
     border-radius: 3px; 
 }
-
 .markdown-body pre { 
     background-color: var(--completed-bg); 
     padding: 1rem; 
     border-radius: 6px; 
     overflow-x: auto; 
 }
-
 .markdown-body blockquote { 
     border-left: 0.25em solid var(--border-color); 
     padding: 0 1em; 
@@ -93,12 +106,9 @@
 @media (max-width: 768px) { 
     .markdown-editor-app { 
         grid-template-columns: 1fr; 
-        gap: 1.5rem; /* Zmniejszamy odstęp na mobilnych */
+        gap: 1.5rem;
     } 
-
-    /* ZMIANA: Dostosowujemy wysokość na mniejszych ekranach */
-    #markdown-input, 
-    #markdown-output {
-        height: 40vh; /* Mniejsza wysokość, aby zmieściły się na ekranie */
+    #markdown-input, #markdown-output {
+        height: 40vh;
     }
 }
