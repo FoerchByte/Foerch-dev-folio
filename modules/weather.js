@@ -28,8 +28,6 @@ function getWeatherIcon(iconCode) {
     return `<img src="${iconBaseUrl}${iconName}" alt="Weather icon" class="weather-icon-img">`;
 }
 
-// ZMIANA: Usunięto funkcję insertForecastContainers, ponieważ kontenery są teraz na stałe w pliku HTML.
-
 async function handleWeatherSearch(query) {
     const resultContainer = document.getElementById('weather-result-container');
     const forecastsWrapper = document.getElementById('forecasts-wrapper');
@@ -145,7 +143,6 @@ function setupForecastSwitcher() {
         const forecastType = button.dataset.forecast;
         const forecastsContainer = document.getElementById('forecasts-container');
         
-        // ZMIANA: Logika teraz przełącza klasy zamiast stylów inline, co ułatwia zarządzanie w CSS.
         if (forecastsContainer) {
             forecastsContainer.classList.remove('show-hourly', 'show-daily');
             forecastsContainer.classList.add(`show-${forecastType}`);
@@ -169,7 +166,7 @@ export function initializeWeatherApp(dependencies) {
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(
                 position => handleWeatherSearch({ latitude: position.coords.latitude, longitude: position.coords.longitude }),
-                () => { document.getElementById('weather-result-container').innerHTML = `<p>${weatherT('errorApiGeneric')}</p>`; }
+                () => { document.getElementById('weather-result-container').innerHTML = `<p>${weatherT('errorGeo')}</p>`; }
             );
         }
     });
@@ -184,5 +181,3 @@ export function initializeWeatherApp(dependencies) {
 
     return [];
 }
-
-

@@ -168,6 +168,7 @@ export const translations = {
         errorApiWeather: "Nie udało się pobrać danych o pogodzie. Spróbuj ponownie.",
         errorApiCurrency: "Nie udało się pobrać kursów walut.",
         errorApiGemini: "Asystent AI jest chwilowo niedostępny.",
+        errorGeo: "Nie udało się pobrać Twojej lokalizacji. Sprawdź ustawienia przeglądarki i zezwól na dostęp.",
         errorNotFound: "Nie znaleziono miasta.",
         errorAuth: "Błąd autoryzacji. Sprawdź klucz API.",
         errorServer: ({ status }) => `Błąd serwera (${status}). Spróbuj ponownie.`,
@@ -222,7 +223,12 @@ export const translations = {
         todoTitle: "To-Do List", todoPlaceholder: "What needs to be done?", todoAddBtn: "Add",
         todoCounter: (count) => `${count} items left`,
         todoFilterAll: "All",
+        test-branch
+        todoFilterActive: "Active",
+        todoFilterCompleted: "Clear completed",
+
         todoFilterActive: "Active", todoFilterCompleted: "Completed",
+        main
         todoClearCompleted: "Clear completed", todoConfirmClear: (count) => `Are you sure you want to delete ${count} completed tasks?`,
         confirmYes: "Yes", confirmNo: "Cancel",
         weatherTitle: "Weather Station", weatherPlaceholder: "Enter city name...", weatherSearchBtn: "Search",
@@ -333,6 +339,7 @@ export const translations = {
         errorApiWeather: "Failed to fetch weather data. Please try again.",
         errorApiCurrency: "Failed to fetch currency rates.",
         errorApiGemini: "The AI assistant is temporarily unavailable.",
+        errorGeo: "Could not retrieve your location. Please check your browser settings and allow access.",
         errorNotFound: "City not found.",
         errorAuth: "Authorization error. Check your API key.",
         errorServer: ({ status }) => `Server error (${status}). Please try again.`,

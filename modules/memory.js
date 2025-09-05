@@ -8,11 +8,12 @@
   umiejętności w zarządzaniu stanem gry, obsłudze zdarzeń oraz dynamicznym
   tworzeniu i manipulowaniu elementami.
 */
-let memoryT, showConfirmationModal;
+let memoryT, showConfirmationModal, playSound;
 
 export function initializeMemoryGame(dependencies) {
     memoryT = dependencies.t;
     showConfirmationModal = dependencies.showConfirmationModal;
+    playSound = dependencies.playSound;
 
     const board = document.getElementById('memory-game-board');
     const movesCounter = document.getElementById('moves-counter');
@@ -51,6 +52,7 @@ export function initializeMemoryGame(dependencies) {
 
     function flipCard() {
         if (lockBoard || this === firstCard) return;
+        playSound('flip');
         this.classList.add('flipped');
         if (!hasFlippedCard) {
             hasFlippedCard = true;
@@ -72,6 +74,8 @@ export function initializeMemoryGame(dependencies) {
         firstCard.removeEventListener('click', flipCard);
         secondCard.removeEventListener('click', flipCard);
         matchedPairs++;
+        // ZMIANA: Dodano opóźnienie, aby dźwięk "match" nie nakładał się na "flip"
+        setTimeout(() => playSound('match'), 100);
         if (matchedPairs === icons.length) {
             clearInterval(memoryGameInterval);
             setTimeout(() => showConfirmationModal(memoryT('memoryGameWin', { moves, time: seconds }), restartGame), 500);
@@ -103,10 +107,12 @@ export function initializeMemoryGame(dependencies) {
         createBoard();
     }
 
-    restartBtn.addEventListener('click', restartGame);
+    restartBtn.addEventListener('click', () => {
+        playSound('click');
+        restartGame();
+    });
     restartGame();
 
-    // ZMIANA: Zwracamy funkcję czyszczącą, która usuwa interwał
     const cleanup = () => {
         clearInterval(memoryGameInterval);
     };

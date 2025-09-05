@@ -25,14 +25,60 @@ const projectsData = [
     return order[a.category] - order[b.category];
 });
 
-// --- Zmienne globalne (bez zmian) ---
+// --- Zmienne globalne ---
 let currentLang = localStorage.getItem('lang') || 'pl';
 let currentTheme = localStorage.getItem('theme') || 'light';
 let currentProjectFilter = 'all';
 let activeCleanups = [];
 let activeStyleId = null;
 
-// --- Funkcje pomocnicze (bez zmian) ---
+// ========================================================================
+// Centralny moduł do obsługi dźwięków
+// ========================================================================
+let synth;
+
+function initializeAudio() {
+    if (typeof Tone !== 'undefined' && !synth) {
+        // ZMIANA: Obniżamy głośność całego syntezatora dla subtelniejszego efektu
+        synth = new Tone.PolySynth(Tone.Synth, {
+            volume: -12, // Obniżenie głośności o 12 decybeli
+            oscillator: { type: 'sine' },
+            envelope: { attack: 0.01, decay: 0.1, sustain: 0.2, release: 0.2 }
+        }).toDestination();
+    }
+}
+
+async function playSound(type = 'click') {
+    if (typeof Tone !== 'undefined' && Tone.context.state !== 'running') {
+        await Tone.start();
+        initializeAudio();
+    }
+    
+    if (!synth) return;
+
+    try {
+        const now = Tone.now();
+        switch (type) {
+            case 'click':
+                // ZMIANA: Delikatniejszy, krótszy i cichszy dźwięk
+                synth.triggerAttackRelease("C4", "16n", now, 0.6); // Niższa nuta, krótszy czas, mniejsza siła ataku
+                break;
+            case 'complete':
+                synth.triggerAttackRelease("E5", "8n", now);
+                break;
+            case 'flip':
+                synth.triggerAttackRelease("A4", "16n", now);
+                break;
+            case 'match':
+                synth.triggerAttackRelease(["C5", "E5", "G5"], "8n", now);
+                break;
+        }
+    } catch (error) {
+        console.error("Błąd odtwarzania dźwięku:", error);
+    }
+}
+
+// --- Funkcje pomocnicze ---
 const t = (key, args) => {
     const translation = translations[currentLang][key];
     return typeof translation === 'function' ? translation(args) : translation || key;
@@ -80,7 +126,6 @@ function renderProjects(filter = 'all') {
     const projectsGrid = document.getElementById('projects-grid');
     if (!projectsGrid) return;
     const filteredProjects = projectsData.filter(p => filter === 'all' || p.category === filter);
-    // ZMIANA: Linki w kartach projektów muszą teraz mieć pełną ścieżkę
     projectsGrid.innerHTML = filteredProjects.map(project => `
         <a href="/${project.id}" class="project-card">
             <h3>${t(project.cardTitleKey)}</h3>
@@ -114,14 +159,8 @@ function renderStaticContent() {
     document.querySelectorAll('#lang-switcher button').forEach(btn => btn.classList.toggle('active', btn.dataset.lang === currentLang));
 }
 
-/**
- * ZMIANA: Funkcja pobiera ścieżkę z `location.pathname`.
- * Zwraca nazwę pliku szablonu do wczytania.
- */
 function getRouteFromPathname() {
     const path = window.location.pathname;
-    // Jeśli ścieżka to '/', zwracamy 'about' jako stronę domyślną.
-    // W przeciwnym razie usuwamy wiodący '/' (np. z '/projects' robi 'projects').
     return path === '/' ? 'about' : path.substring(1);
 }
 
@@ -129,32 +168,25 @@ async function renderContent(isInitialLoad = false) {
     const contentContainer = document.getElementById('app-content');
     const route = getRouteFromPathname();
 
-    // Animacja wyjścia, jeśli to nie jest pierwsze ładowanie strony
     if (!isInitialLoad) {
         contentContainer.classList.remove('fade-in');
         contentContainer.classList.add('fade-out');
         await new Promise(resolve => setTimeout(resolve, 300));
     }
 
-    // Czyszczenie
     unloadStyle(activeStyleId);
     activeStyleId = null;
     activeCleanups.forEach(cleanup => cleanup());
     activeCleanups = [];
 
-    // Ładowanie nowej treści
     contentContainer.innerHTML = await fetchAndRenderTemplate(route);
     loadModuleStyle(route);
     updateActiveNavLink(route);
     await attachEventListeners(route);
 
-    // Animacja wejścia
     contentContainer.classList.remove('fade-out');
     contentContainer.classList.add('fade-in');
 }
-
-// ZMIANA: Usunięto funkcję `loadInitialContent`, jej logikę połączono z `renderContent`
-// za pomocą flagi `isInitialLoad`.
 
 function loadModuleStyle(route) {
     const projectRoutes = projectsData.map(p => p.id);
@@ -189,7 +221,7 @@ function initializeAboutPage() {
 }
 
 async function attachEventListeners(route) {
-    const dependencies = { t, showConfirmationModal };
+    const dependencies = { t, showConfirmationModal, playSound };
     
     const routeInitializers = {
         'about': () => initializeAboutPage(),
@@ -197,6 +229,7 @@ async function attachEventListeners(route) {
             const filters = document.querySelector('.project-filters');
             filters.addEventListener('click', e => {
                 if (e.target.tagName === 'BUTTON') {
+                    playSound('click');
                     currentProjectFilter = e.target.dataset.filter;
                     document.querySelectorAll('.project-filters button').forEach(btn => btn.classList.remove('active'));
                     e.target.classList.add('active');
@@ -238,28 +271,25 @@ function updateActiveNavLink(activeRoute) {
     });
 }
 
-/**
- * ZMIANA: Funkcja nawigująca, która używa History API.
- * @param {string} path - Ścieżka, na którą chcemy nawigować (np. '/projects').
- */
 function navigate(path) {
-    // Zmień URL w pasku adresu bez przeładowania strony
     window.history.pushState({}, '', path);
-    // Ręcznie wywołaj renderowanie nowej treści
     renderContent();
 }
 
 function initializeApp() {
-    // --- Inicjalizacja motywu i języka (bez zmian) ---
     const savedTheme = localStorage.getItem('theme');
     const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
     setTheme(savedTheme || (prefersDark ? 'dark' : 'light'));
-    document.getElementById('theme-toggle').addEventListener('click', () => setTheme(currentTheme === 'light' ? 'dark' : 'light'));
+    document.getElementById('theme-toggle').addEventListener('click', () => {
+        playSound('click');
+        setTheme(currentTheme === 'light' ? 'dark' : 'light');
+    });
     
     document.getElementById('lang-switcher').addEventListener('click', e => {
         if (e.target.tagName === 'BUTTON') {
             const lang = e.target.dataset.lang;
             if (lang !== currentLang) {
+                playSound('click');
                 currentLang = lang;
                 localStorage.setItem('lang', lang);
                 renderStaticContent();
@@ -268,27 +298,19 @@ function initializeApp() {
         }
     });
 
-    // --- ZMIANA: Logika obsługi nawigacji ---
-
-    // 1. Nasłuchuj na zdarzenie 'popstate' (przyciski wstecz/dalej)
     window.addEventListener('popstate', () => renderContent());
 
-    // 2. Przechwytuj kliknięcia w linki, aby zapobiec przeładowaniu strony
     document.addEventListener('click', e => {
         const link = e.target.closest('a');
-        // Sprawdź, czy kliknięto link, czy prowadzi on do tej samej domeny
-        // i czy nie jest to link do pobierania pliku (atrybut `download`)
         if (link && link.origin === window.location.origin && !link.hasAttribute('download')) {
-            e.preventDefault(); // Zapobiegnij domyślnej akcji (przeładowaniu)
-            navigate(link.pathname); // Użyj naszej funkcji nawigującej
+            e.preventDefault();
+            navigate(link.pathname);
         }
     });
 
-    // 3. Renderuj treść na starcie aplikacji
     renderStaticContent();
-    renderContent(true); // Przekaż flagę, że to pierwsze ładowanie
+    renderContent(true);
 
-    // --- Obsługa menu mobilnego (bez zmian) ---
     const menuToggle = document.getElementById('menu-toggle');
     const siteHeader = document.querySelector('.site-header');
     const mainNav = document.getElementById('main-nav');
