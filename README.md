@@ -76,6 +76,7 @@ Stwórz plik .env:
 W głównym folderze projektu stwórz plik o nazwie .env i wklej do niego swoje klucze API, wzorując się na poniższym przykładzie:
 
 WEATHER_API_KEY=twoj_klucz_do_pogody
+
 GEMINI_API_KEY=twoj_klucz_do_gemini
 
 Uwaga: Aby w pełni korzystać z funkcji lokalnie, potrzebujesz Netlify CLI. Bez tego, funkcje weather i gemini nie będą działać lokalnie, ale reszta aplikacji tak.
@@ -170,6 +171,7 @@ Create a .env file:
 In the root directory, create a file named .env and paste your API keys into it, using the example below:
 
 WEATHER_API_KEY=your_weather_api_key
+
 GEMINI_API_KEY=your_gemini_api_key
 
 Note: To fully use the functions locally, you'll need the Netlify CLI. Without it, the weather and gemini functions won't work locally, but the rest of the app will.
