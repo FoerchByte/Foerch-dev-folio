@@ -3,6 +3,10 @@
   dynamically parse Markdown content and render it as HTML in real time.
   The module also includes a spellcheck toggle to showcase advanced text
   manipulation and UI control.
+  PL: Ten moduł napędza Edytor Markdown. Demonstruje zdolność do
+  dynamicznego parsowania treści Markdown i renderowania jej jako HTML w czasie
+  rzeczywistym. Moduł zawiera również przełącznik sprawdzania pisowni, aby
+  zaprezentować zaawansowaną manipulację tekstem i kontrolę UI.
 */
 export function initializeMarkdownEditor(dependencies) {
     const { t } = dependencies;
