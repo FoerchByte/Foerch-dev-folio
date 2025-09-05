@@ -191,6 +191,7 @@ export function initializePomodoroTimer(dependencies) {
     workInput = document.getElementById('work-duration');
     shortBreakInput = document.getElementById('short-break-duration');
     longBreakInput = document.getElementById('long-break-duration');
+    // POPRAWKA: Dodano kropkę, aby selektor poprawnie znajdował klasę.
     progressCircle = document.querySelector('.progress-ring-circle');
     announcer = document.getElementById('pomodoro-announcer');
     cyclesContainer = document.getElementById('pomodoro-cycles');
@@ -220,3 +221,4 @@ export function initializePomodoroTimer(dependencies) {
     };
     return [cleanup];
 }
+
