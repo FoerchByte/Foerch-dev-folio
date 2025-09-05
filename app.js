@@ -39,7 +39,11 @@ let synth;
 
 function initializeAudio() {
     if (typeof Tone !== 'undefined' && !synth) {
-        synth = new Tone.Synth().toDestination();
+        // ZMIANA: Używamy PolySynth dla ładniejszych akordów i łagodniejszego brzmienia
+        synth = new Tone.PolySynth(Tone.Synth, {
+            oscillator: { type: 'sine' },
+            envelope: { attack: 0.02, decay: 0.1, sustain: 0.3, release: 0.5 }
+        }).toDestination();
     }
 }
 
@@ -63,6 +67,7 @@ async function playSound(type = 'click') {
                 synth.triggerAttackRelease("A4", "16n", Tone.now());
                 break;
             case 'match':
+                // ZMIANA: Ładniejszy, bardziej satysfakcjonujący akord
                 synth.triggerAttackRelease(["C5", "E5", "G5"], "8n", Tone.now());
                 break;
         }
