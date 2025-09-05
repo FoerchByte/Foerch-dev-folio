@@ -35,7 +35,11 @@ export function initializeStatutoryInterestCalculator(dependencies) {
             { startDate: "2022-06-09", rate: 10.50 },
             { startDate: "2022-07-08", rate: 11.50 },
             { startDate: "2022-09-08", rate: 12.25 },
-            { startDate: "2023-09-07", rate: 11.25 }
+            { startDate: "2023-09-07", rate: 11.25 },
+            // ZMIANA: Dodano nowe stawki obowiązujące w 2025 roku
+            { startDate: "2025-05-08", rate: 10.75 },
+            { startDate: "2025-07-03", rate: 10.50 },
+            { startDate: "2025-09-04", rate: 10.25 }
         ],
         commercial: [
             { startDate: "2020-01-01", rate: 9.50 },
@@ -46,7 +50,9 @@ export function initializeStatutoryInterestCalculator(dependencies) {
             { startDate: "2022-07-01", rate: 13.00 },
             { startDate: "2023-01-01", rate: 14.25 },
             { startDate: "2023-07-01", rate: 14.75 },
-            { startDate: "2024-01-01", rate: 11.50 }
+            { startDate: "2024-01-01", rate: 11.50 },
+            // ZMIANA: Dodano nowe stawki obowiązujące w 2025 roku
+            { startDate: "2025-07-01", rate: 15.25 }
         ]
     };
 
