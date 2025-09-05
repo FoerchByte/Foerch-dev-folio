@@ -223,12 +223,8 @@ export const translations = {
         todoTitle: "To-Do List", todoPlaceholder: "What needs to be done?", todoAddBtn: "Add",
         todoCounter: (count) => `${count} items left`,
         todoFilterAll: "All",
-        test-branch
         todoFilterActive: "Active",
-        todoFilterCompleted: "Clear completed",
-
-        todoFilterActive: "Active", todoFilterCompleted: "Completed",
-        main
+        todoFilterCompleted: "Completed",
         todoClearCompleted: "Clear completed", todoConfirmClear: (count) => `Are you sure you want to delete ${count} completed tasks?`,
         confirmYes: "Yes", confirmNo: "Cancel",
         weatherTitle: "Weather Station", weatherPlaceholder: "Enter city name...", weatherSearchBtn: "Search",
