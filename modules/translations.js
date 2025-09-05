@@ -29,7 +29,6 @@ export const translations = {
         weatherCardTitle: "Stacja Pogody", weatherCardDesc: "Aplikacja pogodowa z prognozą 5-dniową, geolokalizacją i wykorzystaniem zewnętrznego API.",
         agencyCardTitle: "Projekt \"Kreatywna Agencja\"", agencyCardDesc: "Strona wizytówka dla agencji marketingowej z interaktywnymi elementami.",
         currencyCalcCardTitle: "Kalkulator Walut", currencyCalcCardDesc: "Przelicznik walut korzystający z aktualnych kursów pobieranych z zewnętrznego API.",
-        // ZMIANA: Zaktualizowano opis karty Edytora Markdown
         markdownEditorCardTitle: "Zaawansowany Edytor Markdown", markdownEditorCardDesc: "Edytor tekstu z podglądem na żywo, paskiem narzędzi i synchronizowanym przewijaniem.",
         pomodoroTimerCardTitle: "Asystent Pomodoro", pomodoroTimerCardDesc: "Inteligentny asystent do zarządzania pracą i przerwami z automatycznym śledzeniem cykli.",
         ticTacToeCardTitle: "Gra w Kółko i Krzyżyk", ticTacToeCardDesc: "Klasyczna gra logiczna z możliwością gry z komputerem, stworzona w czystym JavaScript.",
@@ -77,7 +76,7 @@ export const translations = {
         currencyTitle: "Kalkulator Walut", currencyAmount: "Kwota", currencyFrom: "Z", currencyTo: "Na", currencyDataSource: "Kursy walut dostarczane przez Frankfurter.app",
         markdownEditorTitle: "Zaawansowany Edytor Markdown",
         markdownEditorSubtitle: "Skorzystaj z paska narzędzi, aby szybko formatować tekst. Podgląd aktualizuje się na żywo i synchronizuje z edytorem.",
-        // ZMIANA: Dodano nowe klucze tłumaczeń dla edytora
+        markdownHowToUse: "Wskazówka: Zaznacz tekst, a następnie kliknij przycisk, aby zastosować formatowanie.",
         markdownBold: "Pogrubienie",
         markdownItalic: "Kursywa",
         markdownLink: "Wstaw link",
@@ -193,7 +192,6 @@ export const translations = {
         weatherCardTitle: "Weather Station", weatherCardDesc: "A weather application with a 5-day forecast, geolocation, and external API integration.",
         agencyCardTitle: "Project \"Creative Agency\"", agencyCardDesc: "A landing page for a marketing agency with interactive elements.",
         currencyCalcCardTitle: "Currency Calculator", currencyCalcCardDesc: "A currency converter using real-time exchange rates from an external API.",
-        // ZMIANA: Zaktualizowano opis karty Edytora Markdown
         markdownEditorCardTitle: "Advanced Markdown Editor", markdownEditorCardDesc: "A text editor with a live preview, toolbar, and synchronized scrolling.",
         pomodoroTimerCardTitle: "Pomodoro Assistant", pomodoroTimerCardDesc: "An intelligent assistant for managing work and breaks with automatic cycle tracking.",
         ticTacToeCardTitle: "Tic-Tac-Toe Game", ticTacToeCardDesc: "A classic logic game with a player vs. computer mode, created in pure JavaScript.",
@@ -242,7 +240,7 @@ export const translations = {
         currencyTitle: "Currency Calculator", currencyAmount: "Amount", currencyFrom: "From", currencyTo: "To", currencyDataSource: "Exchange rates provided by Frankfurter.app",
         markdownEditorTitle: "Advanced Markdown Editor",
         markdownEditorSubtitle: "Use the toolbar to quickly format text. The preview updates live and syncs with the editor.",
-        // ZMIANA: Dodano nowe klucze tłumaczeń dla edytora
+        markdownHowToUse: "Tip: Select text and then click a button to apply formatting.",
         markdownBold: "Bold",
         markdownItalic: "Italic",
         markdownLink: "Insert link",
