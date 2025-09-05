@@ -33,16 +33,17 @@ let activeCleanups = [];
 let activeStyleId = null;
 
 // ========================================================================
-// ZMIANA: Centralny moduł do obsługi dźwięków
+// Centralny moduł do obsługi dźwięków
 // ========================================================================
 let synth;
 
 function initializeAudio() {
     if (typeof Tone !== 'undefined' && !synth) {
-        // ZMIANA: Używamy PolySynth dla ładniejszych akordów i łagodniejszego brzmienia
+        // ZMIANA: Obniżamy głośność całego syntezatora dla subtelniejszego efektu
         synth = new Tone.PolySynth(Tone.Synth, {
+            volume: -12, // Obniżenie głośności o 12 decybeli
             oscillator: { type: 'sine' },
-            envelope: { attack: 0.02, decay: 0.1, sustain: 0.3, release: 0.5 }
+            envelope: { attack: 0.01, decay: 0.1, sustain: 0.2, release: 0.2 }
         }).toDestination();
     }
 }
@@ -56,19 +57,20 @@ async function playSound(type = 'click') {
     if (!synth) return;
 
     try {
+        const now = Tone.now();
         switch (type) {
             case 'click':
-                synth.triggerAttackRelease("C5", "8n", Tone.now());
+                // ZMIANA: Delikatniejszy, krótszy i cichszy dźwięk
+                synth.triggerAttackRelease("C4", "16n", now, 0.6); // Niższa nuta, krótszy czas, mniejsza siła ataku
                 break;
             case 'complete':
-                synth.triggerAttackRelease("E5", "8n", Tone.now());
+                synth.triggerAttackRelease("E5", "8n", now);
                 break;
             case 'flip':
-                synth.triggerAttackRelease("A4", "16n", Tone.now());
+                synth.triggerAttackRelease("A4", "16n", now);
                 break;
             case 'match':
-                // ZMIANA: Ładniejszy, bardziej satysfakcjonujący akord
-                synth.triggerAttackRelease(["C5", "E5", "G5"], "8n", Tone.now());
+                synth.triggerAttackRelease(["C5", "E5", "G5"], "8n", now);
                 break;
         }
     } catch (error) {
