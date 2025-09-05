@@ -74,7 +74,8 @@ export function initializeMemoryGame(dependencies) {
         firstCard.removeEventListener('click', flipCard);
         secondCard.removeEventListener('click', flipCard);
         matchedPairs++;
-        playSound('match');
+        // ZMIANA: Dodano opóźnienie, aby dźwięk "match" nie nakładał się na "flip"
+        setTimeout(() => playSound('match'), 100);
         if (matchedPairs === icons.length) {
             clearInterval(memoryGameInterval);
             setTimeout(() => showConfirmationModal(memoryT('memoryGameWin', { moves, time: seconds }), restartGame), 500);
