@@ -30,7 +30,8 @@ export const translations = {
         agencyCardTitle: "Projekt \"Kreatywna Agencja\"", agencyCardDesc: "Strona wizytówka dla agencji marketingowej z interaktywnymi elementami.",
         currencyCalcCardTitle: "Kalkulator Walut", currencyCalcCardDesc: "Przelicznik walut korzystający z aktualnych kursów pobieranych z zewnętrznego API.",
         markdownEditorCardTitle: "Edytor Markdown", markdownEditorCardDesc: "Prosty edytor tekstu z podglądem na żywo sformatowanego tekstu w Markdown.",
-        pomodoroTimerCardTitle: "Licznik Pomodoro", pomodoroTimerCardDesc: "Prosty i konfigurowalny licznik czasu do zarządzania pracą i przerwami.",
+        // ZMIANA: Zaktualizowano tytuł i opis karty Pomodoro
+        pomodoroTimerCardTitle: "Asystent Pomodoro", pomodoroTimerCardDesc: "Inteligentny asystent do zarządzania pracą i przerwami z automatycznym śledzeniem cykli.",
         ticTacToeCardTitle: "Gra w Kółko i Krzyżyk", ticTacToeCardDesc: "Klasyczna gra logiczna z możliwością gry z komputerem, stworzona w czystym JavaScript.",
         memoryGameCardTitle: "Gra Pamięciowa", memoryGameCardDesc: "Klasyczna gra w dopasowywanie par kart z licznikiem ruchów i czasu.",
         snakeGameCardTitle: "Gra w Węża", snakeGameCardDesc: "Klasyczna gra zręcznościowa w węża, stworzona z użyciem HTML Canvas.",
@@ -64,7 +65,6 @@ export const translations = {
         weatherTitle: "Stacja Pogody", weatherPlaceholder: "Wpisz nazwę miasta...", weatherSearchBtn: "Szukaj",
         weatherGeoBtn: "Użyj mojej lokalizacji",
         weatherForecastTitle: "Prognoza na 5 dni",
-        // NEW: Hourly forecast and road condition translations
         weatherHourlyForecastTitle: "Prognoza godzinowa",
         weatherRoadConditionTitle: "Stan nawierzchni",
         roadDry: "Sucha",
@@ -79,9 +79,11 @@ export const translations = {
         markdownEditorSubtitle: "Wpisz tekst po lewej stronie, aby zobaczyć podgląd na żywo po prawej. Teraz z opcją sprawdzania pisowni!",
         markdownSpellcheckEnable: "Sprawdź pisownię",
         markdownSpellcheckDisable: "Ukryj błędy",
-        pomodoroTimerTitle: "Licznik Pomodoro", pomodoroModeWork: "Praca", pomodoroModeShortBreak: "Krótka Przerwa", pomodoroModeLongBreak: "Długa Przerwa", pomodoroStart: "Start", pomodoroPause: "Pauza", pomodoroReset: "Reset",
+        pomodoroTimerTitle: "Asystent Pomodoro", pomodoroModeWork: "Praca", pomodoroModeShortBreak: "Krótka Przerwa", pomodoroModeLongBreak: "Długa Przerwa", pomodoroStart: "Start", pomodoroPause: "Pauza", pomodoroReset: "Reset",
         pomodoroSettingsTitle: "Ustawienia", pomodoroWorkLabel: "Czas pracy (min)", pomodoroShortBreakLabel: "Krótka przerwa (min)", pomodoroLongBreakLabel: "Długa przerwa (min)", pomodoroSaveSettings: "Zapisz",
         pomodoroSettingsSaved: "Zapisano!",
+        // ZMIANA: Dodano nowy klucz tłumaczenia dla wskaźnika cykli
+        pomodoroCyclesTitle: "Ukończone cykle (cel: 4)",
         ticTacToeTitle: "Gra w Kółko i Krzyżyk", ticTacToeTurn: (player) => `Ruch gracza: ${player}`, ticTacToeWinner: (player) => `Wygrywa gracz ${player}!`, ticTacToeDraw: "Remis!", ticTacToeRestart: "Zagraj ponownie",
         ticTacToeModePVP: "Gracz vs Gracz", ticTacToeModePVC: "Gracz vs Komputer", ticTacToeScore: "Wynik", ticTacToeChooseSide: "Wybierz swoją stronę:", ticTacToePlay: "Rozpocznij grę",
         memoryGameTitle: "Gra Pamięciowa", memoryGameMoves: "Ruchy", memoryGameTime: "Czas", memoryGameRestart: "Zagraj ponownie",
@@ -187,7 +189,8 @@ export const translations = {
         agencyCardTitle: "Project \"Creative Agency\"", agencyCardDesc: "A landing page for a marketing agency with interactive elements.",
         currencyCalcCardTitle: "Currency Calculator", currencyCalcCardDesc: "A currency converter using real-time exchange rates from an external API.",
         markdownEditorCardTitle: "Markdown Editor", markdownEditorCardDesc: "A simple text editor with a live preview of Markdown formatted text.",
-        pomodoroTimerCardTitle: "Pomodoro Timer", pomodoroTimerCardDesc: "A simple and customizable timer to manage work and breaks.",
+        // ZMIANA: Zaktualizowano tytuł i opis karty Pomodoro
+        pomodoroTimerCardTitle: "Pomodoro Assistant", pomodoroTimerCardDesc: "An intelligent assistant for managing work and breaks with automatic cycle tracking.",
         ticTacToeCardTitle: "Tic-Tac-Toe Game", ticTacToeCardDesc: "A classic logic game with a player vs. computer mode, created in pure JavaScript.",
         memoryGameCardTitle: "Memory Game", memoryGameCardDesc: "A classic card matching game with a move and time counter.",
         snakeGameCardTitle: "Snake Game", snakeGameCardDesc: "A classic arcade snake game, created using HTML Canvas.",
@@ -221,7 +224,6 @@ export const translations = {
         weatherTitle: "Weather Station", weatherPlaceholder: "Enter city name...", weatherSearchBtn: "Search",
         weatherGeoBtn: "Use my location",
         weatherForecastTitle: "5-Day Forecast",
-        // NEW: Hourly forecast and road condition translations
         weatherHourlyForecastTitle: "Hourly Forecast",
         weatherRoadConditionTitle: "Road Condition",
         roadDry: "Dry",
@@ -233,9 +235,11 @@ export const translations = {
         weatherSunset: "Sunset",
         currencyTitle: "Currency Calculator", currencyAmount: "Amount", currencyFrom: "From", currencyTo: "To", currencyDataSource: "Exchange rates provided by Frankfurter.app",
         markdownEditorTitle: "Markdown Editor", markdownEditorSubtitle: "Enter text on the left to see a live preview on the right. Standard Markdown syntax is supported.",
-        pomodoroTimerTitle: "Pomodoro Timer", pomodoroModeWork: "Work", pomodoroModeShortBreak: "Short Break", pomodoroModeLongBreak: "Long Break", pomodoroStart: "Start", pomodoroPause: "Pause", pomodoroReset: "Reset",
+        pomodoroTimerTitle: "Pomodoro Assistant", pomodoroModeWork: "Work", pomodoroModeShortBreak: "Short Break", pomodoroModeLongBreak: "Long Break", pomodoroStart: "Start", pomodoroPause: "Pause", pomodoroReset: "Reset",
         pomodoroSettingsTitle: "Settings", pomodoroWorkLabel: "Work time (min)", pomodoroShortBreakLabel: "Short break (min)", pomodoroLongBreakLabel: "Long break (min)", pomodoroSaveSettings: "Save",
         pomodoroSettingsSaved: "Saved!",
+        // ZMIANA: Dodano nowy klucz tłumaczenia dla wskaźnika cykli
+        pomodoroCyclesTitle: "Completed cycles (target: 4)",
         ticTacToeTitle: "Tic-Tac-Toe", ticTacToeTurn: (player) => `Player ${player}'s turn`, ticTacToeWinner: (player) => `Player ${player} wins!`, ticTacToeDraw: "It's a draw!", ticTacToeRestart: "Play Again",
         ticTacToeModePVP: "Player vs Player", ticTacToeModePVC: "Player vs Computer", ticTacToeScore: "Score", ticTacToeChooseSide: "Choose your side:", ticTacToePlay: "Start Game",
         memoryGameTitle: "Memory Game", memoryGameMoves: "Moves", memoryGameTime: "Time", memoryGameRestart: "Play Again",
