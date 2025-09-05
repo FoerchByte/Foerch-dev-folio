@@ -11,12 +11,32 @@
 <h2 class="project-page-title">{{markdownEditorTitle}}</h2>
 <p>{{markdownEditorSubtitle}}</p>
 
-<!-- ZMIANA: Dodano kontener na przyciski sterujace -->
-<div class="markdown-editor-controls">
-    <button id="spellcheck-toggle-btn" class="editor-btn">{{markdownSpellcheckEnable}}</button>
+<!-- ZMIANA: Dodano Pasek Narzędzi (Toolbar) -->
+<div class="markdown-toolbar" id="markdown-toolbar">
+    <button class="toolbar-btn" data-format="bold" aria-label="{{markdownBold}}">
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 4h8a4 4 0 0 1 4 4 4 4 0 0 1-4 4H6z"></path><path d="M6 12h9a4 4 0 0 1 4 4 4 4 0 0 1-4 4H6z"></path></svg>
+    </button>
+    <button class="toolbar-btn" data-format="italic" aria-label="{{markdownItalic}}">
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="4" x2="10" y2="4"></line><line x1="14" y1="20" x2="5" y2="20"></line><line x1="15" y1="4" x2="9" y2="20"></line></svg>
+    </button>
+    <button class="toolbar-btn" data-format="link" aria-label="{{markdownLink}}">
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.72"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.72-1.72"></path></svg>
+    </button>
+    <button class="toolbar-btn" data-format="list" aria-label="{{markdownList}}">
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="8" y1="6" x2="21" y2="6"></line><line x1="8" y1="12" x2="21" y2="12"></line><line x1="8" y1="18" x2="21" y2="18"></line><line x1="3" y1="6" x2="3.01" y2="6"></line><line x1="3" y1="12" x2="3.01" y2="12"></line><line x1="3" y1="18" x2="3.01" y2="18"></line></svg>
+    </button>
+    <button class="toolbar-btn" data-format="code" aria-label="{{markdownCode}}">
+       <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
+    </button>
 </div>
 
 <div class="markdown-editor-app">
     <textarea id="markdown-input" placeholder="Wpisz tekst w Markdown..." spellcheck="false"></textarea>
     <div id="markdown-output" class="markdown-body"></div>
+</div>
+
+<!-- ZMIANA: Dodano licznik słów i znaków -->
+<div class="editor-stats" id="editor-stats">
+    <span>{{markdownWords}}: <span id="word-count">0</span></span>
+    <span>{{markdownCharacters}}: <span id="char-count">0</span></span>
 </div>
