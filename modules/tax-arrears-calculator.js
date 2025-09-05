@@ -25,7 +25,6 @@ const taxInterestRates = [
     { startDate: "2022-09-08", rate: 16.50 },
     { startDate: "2023-07-01", rate: 16.50 },
     { startDate: "2023-09-07", rate: 15.00 },
-    // ZMIANA: Dodano nowe stawki obowiązujące w 2025 roku
     { startDate: "2025-05-08", rate: 13.50 },
     { startDate: "2025-07-03", rate: 13.00 },
     { startDate: "2025-09-04", rate: 12.50 },
@@ -33,7 +32,7 @@ const taxInterestRates = [
 
 
 /**
- * ZMIANA: "Czysta" funkcja logiki biznesowej.
+ * "Czysta" funkcja logiki biznesowej.
  * Oblicza odsetki podatkowe na podstawie podanych danych.
  * Jest niezależna od DOM, co czyni ją łatwą do testowania.
  * @param {number} amount - Kwota zaległości.
@@ -42,6 +41,12 @@ const taxInterestRates = [
  * @returns {object} - Obiekt zawierający { totalInterest, details }.
  */
 export function calculateTaxInterestLogic(amount, startDate, endDate) {
+    // Warunek sprawdzający poprawność danych wejściowych.
+    // Zapewnia, że funkcja nie będzie wykonywać zbędnych obliczeń dla błędnych danych.
+    if (isNaN(amount) || amount <= 0 || !(startDate instanceof Date) || !(endDate instanceof Date) || startDate >= endDate) {
+        return { totalInterest: 0, details: [] };
+    }
+
     let totalInterest = 0;
     const details = [];
     
@@ -170,3 +175,4 @@ export function initializeTaxArrearsCalculator(dependencies) {
 
     return [];
 }
+
