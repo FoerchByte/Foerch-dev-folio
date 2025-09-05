@@ -1,6 +1,6 @@
 Foerch-dev-folio
-
-PL | EN
+[🇵🇱](#polski) |  [🇺🇸](#english)
+<a name="polski"></a>
 
 Wersja Polska (Polish Version)
 
@@ -96,7 +96,7 @@ Uruchom testy:
 npm test
 
 Vitest automatycznie znajdzie i uruchomi wszystkie testy w projekcie.
-
+<a name="engilsh"></a>
 English Version
 
 Welcome to my digital world, Foerch-dev-folio!
