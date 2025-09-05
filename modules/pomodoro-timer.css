@@ -1,5 +1,5 @@
 /* === modules/pomodoro-timer.css === */
-.pomodoro-app { display: flex; flex-direction: column; align-items: center; gap: 2rem; }
+.pomodoro-app { display: flex; flex-direction: column; align-items: center; gap: 1.5rem; }
 .pomodoro-modes { display: flex; gap: 1rem; background-color: var(--completed-bg); padding: 0.5rem; border-radius: 30px; }
 .pomodoro-modes button { background: none; border: none; padding: 0.75rem 1.5rem; border-radius: 25px; cursor: pointer; font-weight: 500; color: var(--completed-text); transition: all 0.2s ease-in-out; }
 .pomodoro-modes button.active { background-color: var(--card-background); color: var(--text-color); box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
@@ -7,6 +7,13 @@
 #pomodoro-time-display { font-size: 3rem; font-weight: bold; }
 .progress-ring { position: absolute; top: 0; left: 0; transform: rotate(-90deg); }
 .progress-ring-circle { transition: stroke-dashoffset 0.5s; transform-origin: 50% 50%; stroke: var(--primary-color); }
+
+/* ZMIANA: Dodano style dla wskaźnika cykli */
+.pomodoro-cycles { display: flex; gap: 0.75rem; height: 20px; }
+.cycle-indicator { width: 20px; height: 20px; border-radius: 50%; background-color: var(--completed-bg); border: 2px solid var(--border-color); transition: all 0.3s ease-in-out; }
+.cycle-indicator.completed { background-color: var(--primary-color); border-color: var(--primary-color); transform: scale(1.1); }
+.cycle-indicator.active { background-color: var(--card-background); border-color: var(--primary-color); }
+
 .pomodoro-controls { display: flex; gap: 1rem; }
 #pomodoro-start-pause-btn, #pomodoro-reset-btn { background-color: var(--primary-color); color: white; border: none; padding: 0.75rem 2rem; font-size: 1.2rem; border-radius: 8px; cursor: pointer; }
 #pomodoro-reset-btn { background-color: var(--completed-bg); color: var(--text-color); }
