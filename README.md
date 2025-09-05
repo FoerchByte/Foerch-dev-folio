@@ -3,6 +3,7 @@ Foerch-dev-folio
 PL | EN
 
 Wersja Polska (Polish Version)
+
 Witaj w moim cyfrowym świecie, Foerch-dev-folio!
 Tutaj kod spotyka się z kreatywnością. To nie jest tylko portfolio, ale dowód na moją pasję do tworzenia użytecznych i estetycznych aplikacji internetowych. Od czystego kodu po integrację z API, każdy element tego projektu odzwierciedla moją filozofię pracy.
 
@@ -96,6 +97,7 @@ npm test
 Vitest automatycznie znajdzie i uruchomi wszystkie testy w projekcie.
 
 English Version
+
 Welcome to my digital world, Foerch-dev-folio!
 Here, code meets creativity. This is not just a portfolio, but a testament to my passion for building useful and aesthetic web applications. From clean code to API integration, every element of this project reflects my work philosophy.
 
