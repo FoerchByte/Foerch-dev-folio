@@ -10,7 +10,7 @@
   zadań, zarówno dla myszy, jak i urządzeń dotykowych. Demonstruje solidne
   podejście do budowania bogatej w funkcje aplikacji użytkowej.
 */
-let todoT, showTodoConfirmationModal;
+let todoT, showTodoConfirmationModal, playSound;
 let todos = [];
 let currentFilter = 'all';
 let draggedItem = null;
@@ -94,6 +94,9 @@ function toggleTodo(id) {
     const todo = todos.find(t => t.id === id);
     if (todo) {
         todo.completed = !todo.completed;
+        if (todo.completed) {
+            playSound('complete');
+        }
         todos.sort((a, b) => a.completed - b.completed);
         saveTodos();
         renderTodos();
@@ -251,6 +254,7 @@ function getDragAfterElement(container, y) {
 export function initializeTodoApp(dependencies) {
     todoT = dependencies.t;
     showTodoConfirmationModal = dependencies.showConfirmationModal;
+    playSound = dependencies.playSound;
 
     todoList = document.getElementById('todo-list');
     todoForm = document.getElementById('todo-form');
@@ -268,6 +272,7 @@ export function initializeTodoApp(dependencies) {
         e.preventDefault();
         const text = todoInput.value.trim();
         if (text) {
+            playSound('click');
             addTodo(text);
             todoInput.value = '';
         }
@@ -323,12 +328,16 @@ export function initializeTodoApp(dependencies) {
 
     todoFilters.addEventListener('click', e => {
         if (e.target.tagName === 'BUTTON') {
+            playSound('click');
             currentFilter = e.target.dataset.filter;
             renderTodos();
         }
     });
 
-    clearCompletedBtn.addEventListener('click', clearCompleted);
+    clearCompletedBtn.addEventListener('click', () => {
+        playSound('click');
+        clearCompleted();
+    });
     
     // Ustawienie draggable dla elementów po ich stworzeniu
     todoList.addEventListener('pointerdown', e => {
