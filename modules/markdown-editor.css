@@ -37,6 +37,14 @@
     stroke: var(--text-color);
 }
 
+/* ZMIANA: Dodano styl dla instrukcji */
+.editor-how-to-use {
+    font-style: italic;
+    color: var(--completed-text);
+    font-size: 0.9rem;
+    margin-bottom: 1.5rem; /* Dodatkowy margines, aby oddzielić od edytora */
+}
+
 
 .markdown-editor-app { 
     display: grid; 
