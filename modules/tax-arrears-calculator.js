@@ -25,6 +25,10 @@ const taxInterestRates = [
     { startDate: "2022-09-08", rate: 16.50 },
     { startDate: "2023-07-01", rate: 16.50 },
     { startDate: "2023-09-07", rate: 15.00 },
+    // ZMIANA: Dodano nowe stawki obowiązujące w 2025 roku
+    { startDate: "2025-05-08", rate: 13.50 },
+    { startDate: "2025-07-03", rate: 13.00 },
+    { startDate: "2025-09-04", rate: 12.50 },
 ].sort((a, b) => new Date(a.startDate) - new Date(b.startDate));
 
 
