@@ -1,0 +1,175 @@
+/*
+  EN: Stylesheet for the Project Settlement Aggregator.
+  It provides a clean, step-by-step layout for the data aggregation tool.
+  PL: Arkusz stylów dla Agregatora Rozliczeń Projektowych.
+  Zapewnia przejrzysty, krokowy układ dla narzędzia do agregacji danych.
+*/
+
+.project-aggregator-app {
+    background-color: var(--card-background);
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.07);
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.aggregator-main {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.aggregator-section {
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 1.5rem;
+}
+
+.aggregator-section--center {
+    text-align: center;
+    border: none;
+    padding: 0;
+}
+
+.aggregator-section__title {
+    font-size: 1.5rem;
+    margin-top: 0;
+    margin-bottom: 1.5rem;
+    color: var(--primary-color);
+}
+
+.aggregator-section__title--center {
+    text-align: center;
+}
+
+.aggregator-input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.aggregator-label {
+    font-weight: 500;
+}
+
+.aggregator-input--file {
+    font-size: 0.9rem;
+    color: var(--completed-text);
+}
+
+.aggregator-textarea {
+    width: 100%;
+    padding: 0.75rem;
+    font-size: 1rem;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    resize: vertical;
+    font-family: monospace;
+}
+
+.aggregator-button--link {
+    background: none;
+    border: none;
+    color: var(--primary-color);
+    font-weight: 500;
+    cursor: pointer;
+    text-align: left;
+    padding: 0;
+    margin-top: 0.5rem;
+    align-self: flex-start;
+}
+
+.aggregator-button--primary {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 0.8rem 2rem;
+    font-size: 1.1rem;
+    font-weight: 500;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.aggregator-button--primary:hover {
+    background-color: var(--primary-hover-color);
+}
+
+.aggregator-button--primary.loading {
+    opacity: 0.75;
+    cursor: not-allowed;
+}
+
+.aggregator-button__icon {
+    width: 20px;
+    height: 20px;
+}
+
+.aggregator-loader {
+    width: 20px;
+    height: 20px;
+    border: 3px solid rgba(255,255,255,0.3);
+    border-top-color: #fff;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+.aggregator-error-message {
+    margin-top: 1.5rem;
+    padding: 1rem;
+    border-radius: 6px;
+    text-align: center;
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}
+.dark-mode .aggregator-error-message {
+    background-color: #492226;
+    color: #f8d7da;
+    border-color: #721c24;
+}
+
+.aggregator-report-output {
+    overflow-x: auto;
+    margin-top: 1rem;
+}
+
+.aggregator-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.aggregator-table th,
+.aggregator-table td {
+    padding: 0.75rem 1rem;
+    text-align: left;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.aggregator-table th {
+    background-color: var(--background-color);
+}
+
+.aggregator-table td:last-child,
+.aggregator-table th:last-child {
+    text-align: right;
+}
+
+.aggregator-table__summary td {
+    font-weight: bold;
+    background-color: var(--completed-bg);
+}
+
+.hidden {
+    display: none;
+}

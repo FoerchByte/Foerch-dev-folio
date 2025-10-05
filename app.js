@@ -8,6 +8,7 @@ import { translations } from './modules/translations.js';
 
 // --- Dane projektów (bez zmian) ---
 const projectsData = [
+    { id: 'project-aggregator', category: 'specialist', cardTitleKey: 'aggregatorCardTitle', cardDescKey: 'aggregatorCardDesc' },
     { id: 'tax-arrears-calculator', category: 'specialist', cardTitleKey: 'taxArrearsCardTitle', cardDescKey: 'taxArrearsCardDesc' },
     { id: 'statutory-interest-calculator', category: 'specialist', cardTitleKey: 'statutoryInterestCardTitle', cardDescKey: 'statutoryInterestCardDesc' },
     { id: 'budget-validator', category: 'specialist', cardTitleKey: 'budgetValidatorCardTitle', cardDescKey: 'budgetValidatorCardDesc' },
@@ -252,6 +253,7 @@ async function attachEventListeners(route) {
         'tax-arrears-calculator': async () => { const { initializeTaxArrearsCalculator } = await import('./modules/tax-arrears-calculator.js'); return initializeTaxArrearsCalculator(dependencies); },
         'statutory-interest-calculator': async () => { const { initializeStatutoryInterestCalculator } = await import('./modules/statutory-interest-calculator.js'); return initializeStatutoryInterestCalculator(dependencies); },
         'budget-validator': async () => { const { initializeBudgetValidator } = await import('./modules/budget-validator.js'); return initializeBudgetValidator(dependencies); },
+        'project-aggregator': async () => { const { initializeProjectAggregator } = await import('./modules/project-aggregator.js'); return initializeProjectAggregator(dependencies); },
     };
 
     if (routeInitializers[route]) {
@@ -327,3 +329,4 @@ function initializeApp() {
 }
 
 initializeApp();
+
