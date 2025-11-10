@@ -1,149 +1,210 @@
 /*
-  EN: This stylesheet creates an organized and professional layout for the Contact page.
-  The design focuses on usability and clarity, ensuring that the contact form and
-  AI assistant are easy to use. It embodies the project's dedication to a clean
-  and functional user experience.
-  PL: Ten arkusz stylów tworzy uporządkowany i profesjonalny układ dla strony Kontakt.
-  Projekt koncentruje się na użyteczności i przejrzystości, zapewniając, że formularz
-  kontaktowy i asystent AI są łatwe w użyciu. Uosabia on zaangażowanie projektu
-  w czyste i funkcjonalne doświadczenie użytkownika.
+  EN: This stylesheet creates a terminal-inspired aesthetic for the Contact page.
+  It uses dark backgrounds, monospace fonts, and sharp borders to mimic a
+  command-line interface, perfectly aligning with the "Technical Precision" theme.
+  PL: Ten arkusz stylów tworzy estetykę inspirowaną terminalem dla strony Kontakt.
+  Używa ciemnych tłeł, fontów monospace i ostrych ramek, aby naśladować
+  interfejs wiersza poleceń, idealnie pasując do motywu "Technical Precision".
 */
 
 .contact-layout {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 2rem;
+    gap: 4rem; /* Większy odstęp między kolumnami */
+}
+
+/* Linki w sekcji informacyjnej */
+.contact-info {
+    margin-bottom: 3rem;
+    font-family: 'Roboto Mono', monospace;
+    color: var(--text-secondary);
 }
 
 .contact-info p {
-    margin: 0.5rem 0;
+    margin: 0.8rem 0;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.contact-info strong {
+    color: var(--primary-color);
+    font-weight: normal; /* W terminalu rzadko używa się bolda */
 }
 
 .contact-info a {
-    color: var(--primary-color);
+    color: var(--text-color);
     text-decoration: none;
-    font-weight: 500;
+    transition: color 0.2s ease-in-out;
+    border-bottom: 1px dotted var(--text-secondary);
 }
 
 .contact-info a:hover {
-    text-decoration: underline;
+    color: var(--primary-color);
+    border-bottom-color: var(--primary-color);
 }
 
+/* Kontenery (Formularz i Asystent AI) */
 .contact-form-wrapper, .gemini-assistant {
     background-color: var(--card-background);
-    padding: 2rem;
-    border-radius: 8px;
+    padding: 2.5rem; /* Większy padding */
+    border-radius: 4px; /* Minimalne zaokrąglenie */
     border: 1px solid var(--border-color);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
-}
-
-.contact-form-wrapper {
-    grid-column: 1 / 2;
-}
-
-.gemini-assistant {
-    grid-column: 2 / 3;
+    /* Usunięto cień na rzecz płaskiego, technicznego wyglądu */
+    box-shadow: none;
 }
 
 .contact-form-wrapper h3, .gemini-assistant h3 {
     margin-top: 0;
-    border-bottom: 2px solid var(--primary-color);
-    padding-bottom: 0.5rem;
+    margin-bottom: 2rem;
+    font-family: 'Roboto Mono', monospace;
+    color: var(--primary-color);
+    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
 }
 
+/* "Mrugający" kursor przy tytułach sekcji */
+.contact-form-wrapper h3::after, .gemini-assistant h3::after {
+    content: '_';
+    animation: blink 1s step-end infinite;
+    margin-left: 5px;
+    opacity: 0.7;
+}
+
+@keyframes blink {
+    50% { opacity: 0; }
+}
+
+/* Pola formularza */
 .form-group {
-    margin-bottom: 1rem;
+    margin-bottom: 1.5rem;
     display: flex;
     flex-direction: column;
 }
 
 .form-group label {
-    font-weight: 500;
+    font-family: 'Roboto Mono', monospace;
+    color: var(--text-secondary);
     margin-bottom: 0.5rem;
+    font-size: 0.9rem;
 }
 
+/* Stylowanie inputów i textarea na modłę terminala */
 .form-group input, .form-group textarea, .gemini-assistant textarea {
     width: 100%;
-    padding: 0.75rem 1rem;
+    padding: 0.8rem 1rem;
     border: 1px solid var(--border-color);
-    border-radius: 8px;
-    background-color: var(--completed-bg);
+    border-radius: 2px; /* Prawie ostre rogi */
+    background-color: var(--background-color); /* Jeszcze ciemniejsze tło dla pól */
     color: var(--text-color);
-    transition: border-color 0.2s;
+    font-family: 'Roboto Mono', monospace; /* Kluczowe dla efektu */
+    font-size: 0.95rem;
+    transition: all 0.2s ease-in-out;
     box-sizing: border-box;
-    font-family: inherit;
-    font-size: 1rem;
 }
 
+.form-group input::placeholder, .form-group textarea::placeholder, .gemini-assistant textarea::placeholder {
+    color: var(--border-color); /* Bardzo ciemny placeholder */
+    opacity: 0.5;
+}
+
+/* Efekt skupienia (focus) - techniczny turkus */
 .form-group input:focus, .form-group textarea:focus, .gemini-assistant textarea:focus {
     border-color: var(--primary-color);
     outline: none;
-    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25);
+    box-shadow: 0 0 0 2px rgba(0, 224, 255, 0.1); /* Delikatna poświata */
+    background-color: rgba(0, 224, 255, 0.02); /* Minimalne podświetlenie tła */
 }
 
-.form-group small {
+.form-group small.error-message {
     color: var(--danger-color);
+    font-family: 'Roboto Mono', monospace;
     font-size: 0.8rem;
-    margin-top: 0.25rem;
+    margin-top: 0.5rem;
+    display: block; /* Zapewnia, że błąd jest pod polem */
 }
 
+/* Przyciski w stylu konsolowym */
 #contact-form button, #generate-email-btn {
     width: 100%;
-    background-color: var(--primary-color);
-    color: white;
-    border: none;
-    padding: 0.8rem 1.5rem;
-    border-radius: 8px;
+    background-color: transparent;
+    color: var(--primary-color);
+    border: 1px solid var(--primary-color);
+    padding: 1rem 1.5rem;
+    border-radius: 4px;
     cursor: pointer;
+    font-family: 'Roboto Mono', monospace;
     font-weight: 500;
-    transition: background-color 0.2s;
-    margin-top: 1rem;
+    font-size: 1rem;
+    transition: all 0.2s ease-in-out;
+    margin-top: 1.5rem;
     display: flex;
     align-items: center;
     justify-content: center;
+    text-transform: uppercase; /* Jak komenda systemowa */
+    letter-spacing: 1px;
 }
 
 #contact-form button:hover, #generate-email-btn:hover {
-    background-color: var(--primary-hover-color);
+    background-color: rgba(0, 224, 255, 0.1);
+    box-shadow: 0 0 15px rgba(0, 224, 255, 0.2); /* Efekt "świecenia" */
 }
 
+#contact-form button:disabled, #generate-email-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    box-shadow: none;
+}
+
+/* Wyniki Gemini */
 #gemini-result-container {
-    margin-top: 1rem;
-    padding: 1rem;
-    border: 1px solid var(--border-color);
-    border-radius: 8px;
-    background-color: var(--completed-bg);
+    margin-top: 1.5rem;
+    padding: 1.5rem;
+    border: 1px dashed var(--primary-color); /* Przerywana linia dla wygenerowanej treści */
+    border-radius: 4px;
+    background-color: rgba(0, 224, 255, 0.03);
 }
 
 #gemini-result {
     white-space: pre-wrap;
     word-wrap: break-word;
     margin: 0;
-    font-family: 'Inter', sans-serif;
-    font-size: 1rem;
+    font-family: 'Roboto Mono', monospace;
+    font-size: 0.9rem;
+    color: var(--text-color);
+    line-height: 1.6;
 }
 
 .contact-sidebar {
     display: flex;
     flex-direction: column;
-    gap: 2rem;
+    gap: 3rem; /* Większy odstęp między info a asystentem */
 }
 
 #form-success-message {
-    margin-top: 1rem;
+    margin-top: 1.5rem;
     padding: 1rem;
-    background-color: var(--success-color);
-    color: white;
-    border-radius: 8px;
+    background-color: rgba(40, 167, 69, 0.1); /* Półprzezroczysta zieleń */
+    color: var(--success-color);
+    border: 1px solid var(--success-color);
+    border-radius: 4px;
     text-align: center;
+    font-family: 'Roboto Mono', monospace;
 }
 
-@media (max-width: 768px) {
+/* Responsywność */
+@media (max-width: 900px) {
     .contact-layout {
-        grid-template-columns: 1fr;
+        grid-template-columns: 1fr; /* Jedna kolumna na mniejszych ekranach */
+        gap: 3rem;
     }
-
-    .contact-form-wrapper, .contact-sidebar {
-        grid-column: 1 / -1;
+    
+    /* Na mobilu sidebar (info + asystent) idzie pod formularz */
+    .contact-sidebar {
+        order: 2; 
+    }
+    .contact-form-wrapper {
+        order: 1;
     }
 }
