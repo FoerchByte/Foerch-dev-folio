@@ -25,7 +25,8 @@
         
         <!-- Grupa 1: Data Automation -->
         <div style="margin-bottom: 1.5rem;">
-            <h4 style="font-family: 'Roboto Mono', monospace; color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 1rem; opacity: 0.8;">// Data Automation & Analysis</h4>
+            <!-- ZMIANA: Użycie klucza tłumaczenia zamiast sztywnego tekstu -->
+            <h4 style="font-family: 'Roboto Mono', monospace; color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 1rem; opacity: 0.8;">{{skillsHeaderData}}</h4>
             <div class="skills-icons">
                 <div class="skill-item">
                     <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#217346" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/><path d="M8 13h8"/><path d="M8 17h8"/><path d="M8 9h2"/></svg>
@@ -40,7 +41,8 @@
 
         <!-- Grupa 2: Frontend Development -->
         <div>
-            <h4 style="font-family: 'Roboto Mono', monospace; color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 1rem; opacity: 0.8;">// Frontend Development</h4>
+            <!-- ZMIANA: Użycie klucza tłumaczenia zamiast sztywnego tekstu -->
+            <h4 style="font-family: 'Roboto Mono', monospace; color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 1rem; opacity: 0.8;">{{skillsHeaderFrontend}}</h4>
             <div class="skills-icons">
                 <div class="skill-item">
                     <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript">
@@ -143,6 +145,23 @@
                 </div>
                 <div class="timeline-content">
                      <p>{{changelogV10Desc}}</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- NOWOŚĆ: v0.5.0 (Stażysta - Beta) -->
+        <div class="timeline-item" data-type="work">
+            <div class="timeline-dot" style="border-color: var(--text-secondary); opacity: 0.5;"></div>
+            <div class="timeline-card" style="opacity: 0.8;">
+                <div class="timeline-header">
+                    <div class="timeline-details">
+                        <h4 class="timeline-title"><code style="color: var(--text-secondary);">v0.5.0</code> {{changelogV05Title}}</h4>
+                         <p class="timeline-place">{{changelogV05Place}}</p>
+                    </div>
+                    <span class="timeline-date">{{changelogV05Date}}</span>
+                </div>
+                <div class="timeline-content">
+                     <p>{{changelogV05Desc}}</p>
                 </div>
             </div>
         </div>
