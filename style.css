@@ -110,18 +110,19 @@ body.light-mode .site-header {
     align-items: center;
 }
 
+/* POPRAWKA: Zmniejszono marginesy i paddingi, aby uniknąć nakładania się */
 .controls-wrapper {
     display: flex;
     align-items: center;
     gap: 1rem;
-    margin-left: 2.5rem;
-    padding-left: 2.5rem;
+    margin-left: 1.5rem; /* Było 2.5rem */
+    padding-left: 1.5rem; /* Było 2.5rem */
     border-left: 1px solid var(--border-color); /* Separator między menu a kontrolkami */
 }
 
 .main-nav {
     display: flex;
-    gap: 2rem;
+    gap: 1.5rem; /* Było 2rem - zmniejszono odstępy między linkami */
 }
 
 .main-nav a {
@@ -131,6 +132,7 @@ body.light-mode .site-header {
     font-size: 0.95rem;
     font-family: 'Roboto Mono', monospace; /* Techniczny font dla menu */
     transition: all 0.2s ease-in-out;
+    white-space: nowrap; /* Zapobiega łamaniu tekstu w linkach */
 }
 
 .main-nav a:hover,
