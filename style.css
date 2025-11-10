@@ -18,15 +18,14 @@
     --text-color: #CCD6F6;              /* Jasny, techniczny tekst */
     --text-secondary: #8892B0;          /* Szary tekst dla detali i linków */
     --background-color: #020C1B;        /* Główne tło (bardzo ciemny granat) */
-    --card-background: #112240;         /* Tło kart (nieco jaśniejszy granat, zmieniony dla lepszego kontrastu) */
+    --card-background: #112240;         /* Tło kart (nieco jaśniejszy granat) */
     --border-color: #1E3A5F;            /* Kolor obramowań */
-    /* ZMIANA: Nowa zmienna dla siatki - bardzo delikatna */
-    --grid-line-color: rgba(40, 68, 105, 0.15); 
+    --grid-line-color: rgba(40, 68, 105, 0.15); /* Bardzo delikatna siatka */
 
     --success-color: #28a745;
     --danger-color: #dc3545;
     --handle-color: #495057;
-    --completed-bg: #1A2F50; /* Nieco inny odcień dla elementów interaktywnych */
+    --completed-bg: #1A2F50;
     --completed-text: var(--text-secondary);
 }
 
@@ -38,7 +37,7 @@ body.light-mode {
     --background-color: #f8f9fa;
     --card-background: #ffffff;
     --border-color: #dee2e6;
-    --grid-line-color: transparent; /* Brak siatki w trybie jasnym */
+    --grid-line-color: transparent;
     --handle-color: #ced4da;
     --completed-bg: #e9ecef;
     --completed-text: #6c757d;
@@ -51,25 +50,24 @@ body {
     color: var(--text-color);
     line-height: 1.7;
     transition: background-color 0.3s, color 0.3s;
-    
-    /* ZMIANA: Siatka jest teraz znacznie subtelniejsza dzięki --grid-line-color */
     background-image: 
         linear-gradient(var(--grid-line-color) 1px, transparent 1px),
         linear-gradient(to right, var(--grid-line-color) 1px, transparent 1px);
-    background-size: 40px 40px; /* Nieco gęstsza, ale mniej widoczna siatka */
+    background-size: 40px 40px;
     background-position: center center;
     background-attachment: fixed;
 }
 
 .container {
-    max-width: 1000px; /* Nieco szerzej dla nowoczesnego wyglądu */
+    /* ZMIANA: Zwężenie kontenera dla bardziej zwartego wyglądu */
+    max-width: 960px; 
     margin: 0 auto;
     padding: 0 2rem;
 }
 
 /* --- Nagłówek i Nawigacja --- */
 .site-header {
-    background-color: rgba(2, 12, 27, 0.9); /* Mniej przezroczysty dla lepszej czytelności */
+    background-color: rgba(2, 12, 27, 0.9);
     backdrop-filter: blur(10px);
     padding: 1.2rem 0;
     border-bottom: 1px solid var(--border-color);
@@ -92,7 +90,7 @@ body.light-mode .site-header {
 .site-title {
     margin: 0;
     font-size: 1.5rem;
-    font-family: 'Roboto Mono', monospace; /* Techniczny font dla marki */
+    font-family: 'Roboto Mono', monospace;
     font-weight: 700;
     letter-spacing: -1px;
 }
@@ -105,7 +103,6 @@ body.light-mode .site-header {
     gap: 0.5rem;
 }
 
-/* ZMIANA: Styl dla prompta ">_" */
 .site-title .prompt {
     color: var(--primary-color);
 }
@@ -115,19 +112,18 @@ body.light-mode .site-header {
     align-items: center;
 }
 
-/* POPRAWKA: Zmniejszono marginesy i paddingi, aby uniknąć nakładania się */
 .controls-wrapper {
     display: flex;
     align-items: center;
     gap: 1rem;
-    margin-left: 1.5rem; /* Było 2.5rem */
-    padding-left: 1.5rem; /* Było 2.5rem */
-    border-left: 1px solid var(--border-color); /* Separator między menu a kontrolkami */
+    margin-left: 1.5rem;
+    padding-left: 1.5rem;
+    border-left: 1px solid var(--border-color);
 }
 
 .main-nav {
     display: flex;
-    gap: 1.5rem; /* Było 2rem - zmniejszono odstępy między linkami */
+    gap: 1.5rem;
 }
 
 .main-nav a {
@@ -135,9 +131,9 @@ body.light-mode .site-header {
     text-decoration: none;
     font-weight: 500;
     font-size: 0.95rem;
-    font-family: 'Roboto Mono', monospace; /* Techniczny font dla menu */
+    font-family: 'Roboto Mono', monospace;
     transition: all 0.2s ease-in-out;
-    white-space: nowrap; /* Zapobiega łamaniu tekstu w linkach */
+    white-space: nowrap;
 }
 
 .main-nav a:hover,
@@ -145,7 +141,6 @@ body.light-mode .site-header {
     color: var(--primary-color);
 }
 
-/* ZMIANA: Numeracja sekcji jak w dokumentacji technicznej */
 .main-nav a::before {
     content: counter(nav-counter) ". ";
     counter-increment: nav-counter;
@@ -154,9 +149,8 @@ body.light-mode .site-header {
     margin-right: 0.3rem;
 }
 .main-nav {
-    counter-reset: nav-counter -1; /* Zaczynamy liczenie od 0 (0. about, 1. projects...) */
+    counter-reset: nav-counter -1;
 }
-
 
 .lang-switcher {
     display: flex;
@@ -180,7 +174,7 @@ body.light-mode .site-header {
     color: var(--primary-color);
     opacity: 1;
 }
-/* Separator między językami "/" */
+
 .lang-switcher button:not(:last-child)::after {
     content: '/';
     color: var(--text-secondary);
@@ -210,7 +204,6 @@ body.light-mode .site-header {
 
 body.light-mode .theme-toggle .moon-icon { display: block; }
 body.light-mode .theme-toggle .sun-icon { display: none; }
-
 
 .menu-toggle {
     display: none;
@@ -272,18 +265,17 @@ body.light-mode .theme-toggle .sun-icon { display: none; }
 .project-title-link:hover { text-decoration: underline; }
 
 .project-page-title, .section-title {
-    font-size: clamp(2rem, 5vw, 3rem); /* Responsywna wielkość */
+    font-size: clamp(2rem, 5vw, 3rem);
     color: var(--text-color);
     margin-bottom: 1.5rem;
     margin-top: 0;
     font-weight: 700;
 }
 
-
-/* --- ZMIANA: Nowe, kompletne style dla strony "O mnie" --- */
+/* --- Strona "O mnie" --- */
 .about-me-layout {
     display: flex;
-    align-items: flex-start; /* Wyrównanie do góry */
+    align-items: flex-start;
     gap: 4rem;
     margin-bottom: 5rem;
 }
@@ -291,44 +283,40 @@ body.light-mode .theme-toggle .sun-icon { display: none; }
 .about-me-photo {
     flex-shrink: 0;
     position: relative;
-    width: 280px; /* Nieco większe zdjęcie dla lepszego efektu */
-    height: 350px; /* Prostokątny kadr, bardziej portretowy */
+    width: 280px;
+    height: 350px;
     border-radius: 4px;
     overflow: hidden;
-    box-shadow: 20px 20px 0 rgba(2, 12, 27, 0.7); /* "Cień" w kolorze tła, żeby zrobić miejsce na efekt */
-    border: 1px solid var(--primary-color); /* Cienka, techniczna ramka w kolorze akcentu */
+    box-shadow: 20px 20px 0 rgba(2, 12, 27, 0.7);
+    border: 1px solid var(--primary-color);
     transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
 }
 
-/* Efekt po najechaniu na kontener zdjęcia */
 .about-me-photo:hover {
     transform: translate(-10px, -10px);
-    box-shadow: 15px 15px 0 var(--primary-color); /* "Cień" zmienia kolor na akcent */
+    box-shadow: 15px 15px 0 var(--primary-color);
 }
 
 .about-me-photo img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: center top; /* Kadrowanie od góry, żeby twarz była widoczna */
-    filter: grayscale(100%) contrast(1.1); /* Czarno-biały + lekki kontrast dla dramatyzmu */
+    object-position: center top;
+    filter: grayscale(100%) contrast(1.1);
     transition: all 0.3s ease-in-out;
-    mix-blend-mode: multiply; /* Opcjonalne: wtapia zdjęcie w tło */
+    mix-blend-mode: multiply;
 }
 
-/* Po najechaniu zdjęcie traci kontrast i filtr */
 .about-me-photo:hover img {
     filter: grayscale(0%) contrast(1);
     mix-blend-mode: normal;
 }
 
-/* Obsługa trybów jasny/ciemny dla zdjęć */
 .about-me-photo .photo-light { display: none; }
 .about-me-photo .photo-dark { display: block; }
 body.light-mode .about-me-photo .photo-light { display: block; }
 body.light-mode .about-me-photo .photo-dark { display: none; }
 
-/* Prawa kolumna z tekstem */
 .about-me-content {
     flex: 1;
 }
@@ -361,7 +349,6 @@ body.light-mode .about-me-photo .photo-dark { display: none; }
     margin-bottom: 1.5rem;
 }
 
-/* Sekcja "Dependencies" (Umiejętności) */
 .about-me-content h3 {
     margin-top: 3rem;
     margin-bottom: 1.5rem;
@@ -374,7 +361,7 @@ body.light-mode .about-me-photo .photo-dark { display: none; }
 .about-me-content h3::after {
     content: '';
     display: block;
-    width: 100%; /* Linia wypełnia resztę wiersza */
+    width: 100%;
     height: 1px;
     background-color: var(--border-color);
     margin-left: 1.5rem;
@@ -390,7 +377,7 @@ body.light-mode .about-me-photo .photo-dark { display: none; }
 .skill-item {
     display: flex;
     flex-direction: column;
-    align-items: flex-start; /* Wyrównanie do lewej, bardziej techniczne */
+    align-items: flex-start;
     gap: 0.5rem;
     font-family: 'Roboto Mono', monospace;
     font-size: 0.85rem;
@@ -401,7 +388,6 @@ body.light-mode .about-me-photo .photo-dark { display: none; }
 .skill-item img, .skill-item svg {
     width: 40px;
     height: 40px;
-    /* Domyślnie ikony są szare/zgaszone, pasując do tła */
     filter: grayscale(100%) opacity(0.7);
     transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
 }
@@ -412,10 +398,9 @@ body.light-mode .about-me-photo .photo-dark { display: none; }
 
 .skill-item:hover img, .skill-item:hover svg {
     filter: grayscale(0%) opacity(1);
-    transform: translateY(-5px); /* Lekkie uniesienie */
+    transform: translateY(-5px);
 }
 
-/* Przyciski CTA */
 .about-cta {
     margin-top: 4rem;
     display: flex;
@@ -440,9 +425,9 @@ body.light-mode .about-me-photo .photo-dark { display: none; }
 }
 
 .cta-button.primary:hover {
-    background-color: rgba(0, 224, 255, 0.1); /* Delikatne podświetlenie tła */
+    background-color: rgba(0, 224, 255, 0.1);
     transform: translate(-3px, -3px);
-    box-shadow: 3px 3px 0 var(--primary-color); /* Efekt "twardego" cienia */
+    box-shadow: 3px 3px 0 var(--primary-color);
 }
 
 .cta-button.secondary {
@@ -459,14 +444,13 @@ body.light-mode .about-me-photo .photo-dark { display: none; }
     box-shadow: 3px 3px 0 var(--text-secondary);
 }
 
-
 /* --- Siatka projektów --- */
 .project-filters {
-    margin-bottom: 4rem; /* Więcej oddechu przed siatką */
+    margin-bottom: 4rem;
     display: flex;
     gap: 1rem;
     flex-wrap: wrap;
-    justify-content: flex-start; /* Wyrównanie do lewej */
+    justify-content: flex-start;
 }
 
 .project-filters button {
@@ -474,7 +458,7 @@ body.light-mode .about-me-photo .photo-dark { display: none; }
     border: 1px solid var(--border-color);
     color: var(--text-secondary);
     padding: 0.6rem 1.2rem;
-    border-radius: 4px; /* Kanciaste */
+    border-radius: 4px;
     cursor: pointer;
     font-family: 'Roboto Mono', monospace;
     font-size: 0.9rem;
@@ -490,38 +474,35 @@ body.light-mode .about-me-photo .photo-dark { display: none; }
     background-color: transparent;
     border-color: var(--primary-color);
     color: var(--primary-color);
-    /* Dodatkowy efekt dla aktywnego filtra */
     box-shadow: 4px 4px 0 var(--border-color);
     transform: translate(-2px, -2px);
 }
 
 .projects-grid {
     display: grid;
-    /* ZMIANA: auto-fit lepiej zarządza pustą przestrzenią */
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    /* ZMIANA: Znacznie większe odstępy, zwłaszcza pionowe (row-gap) */
-    gap: 3rem;
-    row-gap: 4rem; 
+    /* ZMIANA: Zmniejszono minmax do 260px, aby zmieścić 3 karty */
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    /* ZMIANA: Zmniejszono gap do 2rem dla bardziej zwartego układu */
+    gap: 2rem;
+    row-gap: 3rem; 
 }
 
 .project-card {
     background-color: var(--card-background);
-    border: 1px solid var(--border-color); /* Subtelna ramka */
+    border: 1px solid var(--border-color);
     border-radius: 4px;
-    padding: 2.5rem 2rem; /* Większy padding wewnętrzny */
-    /* Usunięto cień na rzecz płaskiego designu */
+    padding: 2rem;
     box-shadow: none;
     transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
     display: flex;
     flex-direction: column;
-    height: 100%; /* Równe wysokości kart */
-    text-decoration: none; /* Usunięcie podkreślenia linku */
+    height: 100%;
+    text-decoration: none;
 }
 
 .project-card:hover {
     transform: translateY(-7px);
-    border-color: var(--primary-color); /* Podświetlenie ramki po najechaniu */
-    /* Dodatkowy subtelny cień po najechaniu */
+    border-color: var(--primary-color);
     box-shadow: 0 10px 30px -15px rgba(2, 12, 27, 0.7);
 }
 
@@ -538,12 +519,11 @@ body.light-mode .about-me-photo .photo-dark { display: none; }
 .project-card p {
     color: var(--text-secondary);
     font-size: 1rem;
-    flex-grow: 1; /* Opis zajmuje dostępne miejsce */
+    flex-grow: 1;
     line-height: 1.6;
 }
 
-
-/* --- Elementy wspólne (np. loader, modal) --- */
+/* --- Elementy wspólne --- */
 .loader { width: 18px; height: 18px; border: 2px solid #FFF; border-bottom-color: transparent; border-radius: 50%; display: inline-block; box-sizing: border-box; animation: rotation 1s linear infinite; margin-left: 10px; }
 @keyframes rotation { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
 
@@ -556,82 +536,27 @@ body.light-mode .about-me-photo .photo-dark { display: none; }
 .modal-buttons .cancel-btn:hover { border-color: var(--text-color); color: var(--text-color); }
 
 .hidden { display: none; }
-
-.sr-only {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  white-space: nowrap;
-  border-width: 0;
-}
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border-width: 0; }
 
 /* --- Media Queries (Responsywność) --- */
-@media (max-width: 900px) { /* ZMIANA: Punkt przerwania dla sekcji O mnie */
-    .about-me-layout {
-        flex-direction: column; /* Układ pionowy na tabletach i telefonach */
-        gap: 3rem;
-    }
-
-    .about-me-photo {
-        width: 100%; /* Zdjęcie na całą szerokość kontenera */
-        max-width: 400px; /* Ale nie za wielkie */
-        height: auto;
-        aspect-ratio: 4 / 5; /* Utrzymujemy proporcje portretowe */
-        margin: 0 auto; /* Wyśrodkowanie */
-    }
-
-    .about-me-content h1 {
-        font-size: 3rem;
-    }
-    
-    .about-cta {
-        flex-direction: column; /* Przyciski jeden pod drugim na telefonie */
-        width: 100%;
-    }
-    .cta-button {
-        text-align: center;
-        width: 100%; /* Pełna szerokość przycisku */
-        box-sizing: border-box;
-    }
+@media (max-width: 900px) {
+    .about-me-layout { flex-direction: column; gap: 3rem; }
+    .about-me-photo { width: 100%; max-width: 400px; height: auto; aspect-ratio: 4 / 5; margin: 0 auto; }
+    .about-me-content h1 { font-size: 3rem; }
+    .about-cta { flex-direction: column; width: 100%; }
+    .cta-button { text-align: center; width: 100%; }
 }
 
 @media (max-width: 768px) {
     .menu-toggle { display: flex; }
-    .nav-wrapper { 
-        position: fixed; top: 0; right: 0; height: 100vh; width: 80%; max-width: 350px; 
-        background-color: var(--background-color); /* Pełne tło strony, nie karty */
-        flex-direction: column; justify-content: flex-start; padding-top: 5rem; align-items: flex-start; 
-        gap: 0; /* Resetujemy gap, użyjemy paddingów */
-        transform: translateX(100%); transition: transform 0.3s cubic-bezier(0.645, 0.045, 0.355, 1); 
-        box-shadow: -10px 0 30px -15px rgba(2, 12, 27, 0.7); 
-        border-left: 1px solid var(--border-color);
-        z-index: 105;
-    }
+    .nav-wrapper { position: fixed; top: 0; right: 0; height: 100vh; width: 80%; max-width: 350px; background-color: var(--background-color); flex-direction: column; justify-content: flex-start; padding-top: 5rem; align-items: flex-start; gap: 0; transform: translateX(100%); transition: transform 0.3s cubic-bezier(0.645, 0.045, 0.355, 1); box-shadow: -10px 0 30px -15px rgba(2, 12, 27, 0.7); border-left: 1px solid var(--border-color); z-index: 105; }
     .site-header.nav-open .nav-wrapper { transform: translateX(0); }
-    
-    .main-nav { 
-        flex-direction: column; width: 100%; gap: 0; 
-    }
-    .main-nav a { 
-        font-size: 1.2rem; padding: 1.5rem 2rem; width: 100%; display: block;
-        border-bottom: 1px solid var(--border-color);
-    }
-    .main-nav a::before { 
-        display: inline; /* Przywracamy numerację na mobilu dla spójności */ 
-    }
-    
-    .controls-wrapper { 
-        margin: 2rem; padding: 0; border: none; width: calc(100% - 4rem);
-        justify-content: space-between;
-    }
-    
+    .main-nav { flex-direction: column; width: 100%; gap: 0; }
+    .main-nav a { font-size: 1.2rem; padding: 1.5rem 2rem; width: 100%; display: block; border-bottom: 1px solid var(--border-color); }
+    .main-nav a::before { display: inline; }
+    .controls-wrapper { margin: 2rem; padding: 0; border: none; width: calc(100% - 4rem); justify-content: space-between; }
     .site-header.nav-open .menu-toggle .hamburger-bar:nth-child(1) { transform: rotate(45deg); }
     .site-header.nav-open .menu-toggle .hamburger-bar:nth-child(2) { opacity: 0; transform: translateX(20px); }
     .site-header.nav-open .menu-toggle .hamburger-bar:nth-child(3) { transform: rotate(-45deg); }
-    
     .skills-icons { justify-content: flex-start; }
 }
