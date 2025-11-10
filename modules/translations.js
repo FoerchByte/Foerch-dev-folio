@@ -25,11 +25,12 @@ export const translations = {
         
         changelogTitle: "Career Changelog (Historia Wersji)",
         
-        // v3.0.0 - Inspektor (Rewolucja)
+        // v3.0.0 - Inspektor (Rewolucja + Magister)
         changelogV3Title: "Automation Revolution (Inspektor)",
         changelogV3Place: "Urząd Miasta Łodzi",
         changelogV3Date: "06.2023 - obecnie",
-        changelogV3Desc: "Wdrożenie pełnego ekosystemu automatyzacji. Zastąpienie manualnych procesów skryptami VBA i potokami Power Query. KEY RESULT: Redukcja czasu rocznego rozliczenia 140+ projektów z 78 dni roboczych do zaledwie 3 dni (walidacja).",
+        // ZMIANA: Dodano informację o magistrze AI
+        changelogV3Desc: "Uzyskanie tytułu Magistra (AI). Wdrożenie pełnego ekosystemu automatyzacji: zastąpienie manualnych procesów skryptami VBA i potokami Power Query. KEY RESULT: Redukcja czasu rocznego rozliczenia 140+ projektów z 78 dni roboczych do zaledwie 3 dni.",
 
         // v2.0.0 - Podinspektor (Inkubacja)
         changelogV2Title: "Technical Incubation (Podinspektor)",
@@ -50,7 +51,7 @@ export const translations = {
         changelogV10Desc: "Onboarding i analiza legacy processes. Identyfikacja krytycznych ryzyk błędu ludzkiego w 100% manualnym procesie raportowania.",
 
 
-        // --- Pozostałe tłumaczenia (bez większych zmian, tylko dostosowanie nazw) ---
+        // --- Pozostałe tłumaczenia (bez większych zmian) ---
         projectsTitle: "Rejestr Projektów", projectsSubtitle: "Wybrane wdrożenia i narzędzia proof-of-concept.",
         projectsCategoryAll: "ALL",
         projectsCategorySpecialist: "AUTOMATION",
@@ -99,7 +100,7 @@ export const translations = {
         aggregatorFilesLabel: "Pliki projektowe (.xlsx)",
         aggregatorDownloadSamples: "Pobierz przykładowe pliki",
         aggregatorBaseLabel: "Baza nazw projektów",
-        aggregatorPlaceholder: "Wklej tutaj listę, aby aplikacja mogła dopasować nazwy do numerów znalezionych w plikach.\nPrzykład:\n938 AKADEMIA PROFESJONALNEGO HOTELARZA\n939 Projekt Innowacji Edukacyjnych",
+        aggregatorPlaceholder: "Wklej tutaj listę, aby aplikacja mogła dopasować nazwy do numerów znalezionych w plikach.\nPrzykład:\n938 PROFESSIONAL HOTELIER ACADEMY\n939 Educational Innovation Project",
         aggregatorGenerateReport: "Generuj Raport",
         aggregatorReportTitle: "Wygenerowany Raport",
         aggregatorColNumber: "Numer Projektu",
@@ -142,10 +143,10 @@ export const translations = {
         pomodoroSettingsSaved: "Zapisano!",
         pomodoroCyclesTitle: "Ukończone cykle (cel: 4)",
         ticTacToeTitle: "Gra w Kółko i Krzyżyk", ticTacToeTurn: (player) => `Ruch gracza: ${player}`, ticTacToeWinner: (player) => `Wygrywa gracz ${player}!`, ticTacToeDraw: "Remis!", ticTacToeRestart: "Zagraj ponownie",
-        ticTacToeModePVP: "Gracz vs Gracz", ticTacToeModePVC: "Gracz vs Komputer", ticTacToeScore: "Wynik", ticTacToeChooseSide: "Wybierz swoją stronę:", ticTacToePlay: "Rozpocznij grę",
+        ticTacToeModePVP: "Gracz vs Gracz", ticTacToeModePVC: "Gracz vs Komputer", ticTacToeScore: "Wynik", ticTacToeChooseSide: "Wybierz swoją stronę:", ticTacToePlay: "Start Game",
         memoryGameTitle: "Gra Pamięciowa", memoryGameMoves: "Ruchy", memoryGameTime: "Czas", memoryGameRestart: "Zagraj ponownie",
         memoryGameWin: ({ moves, time }) => `Gratulacje! Wygrałeś w ${moves} moves and ${time}s!`,
-        snakeGameTitle: "Gra w Węża", snakeGameScore: "Score", snakeGameHighScore: "Najlepszy wynik", snakeGamePause: "PAUZA", snakeGameOver: "Koniec gry!", snakeGameRestart: "Zagraj ponownie",
+        snakeGameTitle: "Gra w Węża", snakeGameScore: "Score", snakeGameHighScore: "Najlepszy wynik", snakeGamePause: "PAUSED", snakeGameOver: "Game Over!", snakeGameRestart: "Zagraj ponownie",
         snakeGameStartMsg: "Naciśnij klawisz lub przesuń palcem, aby rozpocząć",
         snakeGameControls: "Sterowanie: Klawisze strzałek, WSAD lub gesty. Pauza: Spacja.",
         agencyTitle: "Kreatywna Agencja", agencyHeroTitle: "Tworzymy cyfrowe doświadczenia.", agencyHeroSubtitle: "Specjalizujemy się w projektowaniu stron internetowych, brandingu i marketingu online, które pomagają Twojej firmie rosnąć.",
@@ -158,15 +159,15 @@ export const translations = {
         testimonial1: "Niesamowita dbałość o szczegóły. Nasza nowa strona przerosła nasze oczekiwania!", testimonial1Author: "Janina z Firmy X",
         testimonial2: "Profesjonalizm i kreatywność na najwyższym poziomie. Polecam!", testimonial2Author: "Marek z Firmy Y",
         testimonial3: "Szybka realizacja i świetna komunikacja na każdym etapie projektu.", testimonial3Author: "Ewa z Firmy Z",
-        testimonial4: "Zespół, który naprawdę słucha klienta. Efekty mówią same za siebie.", testimonial4Author: "Tomasz z Firmy A",
-        testimonial5: "Dzięki nim nasza sprzedaż online wzrosła o 200%. Niesamowite!", testimonial5Author: "Katarzyna z Firmy B",
-        testimonial6: "Pełen profesjonalizm i zaangażowanie. Na pewno wrócimy z kolejnymi projektami.", testimonial6Author: "Adam z Firmy C",
-        agencyContactTitle: "Skontaktuj się z nami", formName: "Imię", formEmail: "Email", formMessage: "Wiadomość", formSend: "Wyślij", formSuccess: "Dziękujemy za wiadomość! Skontaktujemy się wkrótce.",
-        contactTitle: "Kontakt", contactContent: "Masz pytanie lub propozycję współpracy? Chętnie odpowiem na Twoją wiadomość. Skorzystaj z formularza poniżej lub znajdź mnie w mediach społecznościowych.",
-        contactFormTitle: "Napisz do mnie", formErrorEmpty: "To pole jest wymagane.", formErrorEmail: "Proszę podać poprawny adres e-mail.",
-        geminiTitle: "✨ Asystent E-mail (Gemini AI)", geminiContent: "Wpisz poniżej krótką wiadomość, a ja pomogę Ci ubrać ją w profesjonalne słowa.",
-        geminiPlaceholder: "np. hej, mam pytanie o projekt X, kiedy możemy pogadać?", geminiBtn: "Ulepsz e-mail",
-        loading: "Ładowanie...",
+        testimonial4: "A team that really listens to the client. The results speak for themselves.", testimonial4Author: "Thomas from Company A",
+        testimonial5: "Thanks to them, our online sales increased by 200%. Amazing!", testimonial5Author: "Catherine from Company B",
+        testimonial6: "Full professionalism and commitment. We will definitely be back with more projects.", testimonial6Author: "Adam from Company C",
+        agencyContactTitle: "Contact Us", formName: "Name", formEmail: "Email", formMessage: "Message", formSend: "Send", formSuccess: "Thank you for your message! We will get back to you shortly.",
+        contactTitle: "Contact", contactContent: "Have a question or a project proposal? I'd love to hear from you. Use the form below or find me on social media.",
+        contactFormTitle: "Send me a message", formErrorEmpty: "This field is required.", formErrorEmail: "Please enter a valid email address.",
+        geminiTitle: "✨ Asystent E-mail (Gemini AI)", geminiContent: "Enter a short message below, and I will help you phrase it professionally.",
+        geminiPlaceholder: "e.g., hey, I have a question about project X, when can we talk?", geminiBtn: "Improve Email",
+        loading: "Loading...",
         taxArrearsTitle: "Kalkulator Odsetek za Zwłokę",
         taxArrearsAmountLabel: "Kwota zaległości (PLN)",
         taxArrearsStartDateLabel: "Termin płatności",
@@ -189,9 +190,9 @@ export const translations = {
         errorApiCurrency: "Nie udało się pobrać kursów walut.",
         errorApiGemini: "Asystent AI jest chwilowo niedostępny.",
         errorGeo: "Nie udało się pobrać Twojej lokalizacji. Sprawdź ustawienia przeglądarki i zezwól na dostęp.",
-        errorNotFound: "Nie znaleziono miasta.",
+        errorNotFound: "City not found.",
         errorAuth: "Błąd autoryzacji. Sprawdź klucz API.",
-        errorServer: ({ status }) => `Błąd serwera (${status}). Spróbuj ponownie.`,
+        errorServer: ({ status }) => `Server error (${status}). Please try again.`,
     },
     en: {
         siteTitle: "FoerchByte // Portfolio",
@@ -209,11 +210,12 @@ export const translations = {
 
         changelogTitle: "Career Changelog (Version History)",
 
-        // v3.0.0 - Inspector (Revolution)
+        // v3.0.0 - Inspector (Revolution + MSc)
         changelogV3Title: "Automation Revolution (Inspector)",
         changelogV3Place: "City of Łódź Office",
         changelogV3Date: "06.2023 - present",
-        changelogV3Desc: "Implemented full automation ecosystem. Replaced manual processes with VBA scripts and Power Query pipelines. KEY RESULT: Reduced annual settlement time for 140+ projects from 78 working days to just 3 days (validation only).",
+        // ZMIANA: Added MSc in AI info
+        changelogV3Desc: "Obtained Master of Science (MSc) in AI. Implemented full automation ecosystem: replaced manual processes with VBA scripts and Power Query pipelines. KEY RESULT: Reduced annual settlement time for 140+ projects from 78 working days to just 3 days.",
 
         // v2.0.0 - Junior Inspector (Incubation)
         changelogV2Title: "Technical Incubation (Junior Inspector)",
@@ -233,7 +235,7 @@ export const translations = {
         changelogV10Date: "11.2019 - 11.2020",
         changelogV10Desc: "Onboarding and analysis of legacy processes. Identified critical human error risks in 100% manual reporting workflows.",
 
-        // --- Rest of EN translations ---
+        // --- Rest of EN translations (no major changes) ---
         projectsTitle: "Project Registry", projectsSubtitle: "Selected deployments and proof-of-concept tools.",
         projectsCategoryAll: "ALL",
         projectsCategorySpecialist: "AUTOMATION",
@@ -258,7 +260,6 @@ export const translations = {
         budgetValidatorCardTitle: "Budget Data Validator",
         budgetValidatorCardDesc: "Tool for quick consistency verification of data copied from Excel.",
         
-        // (Pełny zestaw EN dla bezpieczeństwa)
         budgetValidatorTitle: "Budget Data Validator",
         budgetValidatorSubtitle: "Paste data copied from a program like Excel (tab-separated) below. The tool will check if each row has the same number of columns.",
         budgetValidatorTextareaLabel: "Data to validate",
@@ -327,9 +328,9 @@ export const translations = {
         pomodoroSettingsTitle: "Settings", pomodoroWorkLabel: "Work time (min)", pomodoroShortBreakLabel: "Short break (min)", pomodoroLongBreakLabel: "Long break (min)", pomodoroSaveSettings: "Save",
         pomodoroSettingsSaved: "Saved!",
         pomodoroCyclesTitle: "Completed cycles (target: 4)",
-        ticTacToeTitle: "Tic-Tac-Toe", ticTacToeTurn: (player) => `Player ${player}'s turn`, ticTacToeWinner: (player) => `Player ${player} wins!`, ticTacToeDraw: "It's a draw!", ticTacToeRestart: "Play Again",
+        ticTacToeTitle: "Tic-Tac-Toe", ticTacToeTurn: (player) => `Ruch gracza: ${player}`, ticTacToeWinner: (player) => `Wygrywa gracz ${player}!`, ticTacToeDraw: "It's a draw!", ticTacToeRestart: "Play Again",
         ticTacToeModePVP: "Player vs Player", ticTacToeModePVC: "Player vs Computer", ticTacToeScore: "Score", ticTacToeChooseSide: "Choose your side:", ticTacToePlay: "Start Game",
-        memoryGameTitle: "Memory Game", memoryGameMoves: "Moves", memoryGameTime: "Time", memoryGameRestart: "Play Again",
+        memoryGameTitle: "Memory Game", memoryGameMoves: "Ruchy", memoryGameTime: "Time", memoryGameRestart: "Play Again",
         memoryGameWin: ({ moves, time }) => `Congratulations! You won in ${moves} moves and ${time}s!`,
         snakeGameTitle: "Snake Game", snakeGameScore: "Score", snakeGameHighScore: "High Score", snakeGamePause: "PAUSED", snakeGameOver: "Game Over!", snakeGameRestart: "Play Again",
         snakeGameStartMsg: "Press any key or swipe to start",
