@@ -454,15 +454,81 @@ body.light-mode .about-me-photo .photo-dark { display: none; }
 
 
 /* --- Siatka projektów --- */
-.project-filters { margin-bottom: 2rem; display: flex; gap: 0.5rem; flex-wrap: wrap; }
-.project-filters button { background: none; border: 1px solid var(--border-color); color: var(--text-color); padding: 0.5rem 1rem; border-radius: 20px; cursor: pointer; font-weight: 500; transition: all 0.2s ease-in-out; }
-.project-filters button:hover { background-color: var(--completed-bg); border-color: var(--primary-color); }
-.project-filters button.active { background-color: var(--primary-color); border-color: var(--primary-color); color: white; }
-.projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; }
-.project-card { background-color: var(--card-background); border: 1px solid var(--border-color); border-radius: 8px; padding: 1.5rem; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.07); transition: transform 0.2s, box-shadow 0.2s, background-color 0.3s, border-color 0.3s; }
-a.project-card { text-decoration: none; color: inherit; }
-.project-card:hover { transform: translateY(-5px); box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1); }
-.project-card h3 { margin-top: 0; color: var(--primary-color); }
+.project-filters {
+    margin-bottom: 3rem;
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    justify-content: flex-start; /* Wyrównanie do lewej */
+}
+
+.project-filters button {
+    background: var(--card-background);
+    border: 1px solid var(--border-color);
+    color: var(--text-secondary);
+    padding: 0.6rem 1.2rem;
+    border-radius: 4px; /* Kanciaste */
+    cursor: pointer;
+    font-family: 'Roboto Mono', monospace;
+    font-size: 0.9rem;
+    transition: all 0.2s ease-in-out;
+}
+
+.project-filters button:hover {
+    color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+.project-filters button.active {
+    background-color: transparent;
+    border-color: var(--primary-color);
+    color: var(--primary-color);
+    /* Dodatkowy efekt dla aktywnego filtra */
+    box-shadow: 4px 4px 0 var(--border-color);
+    transform: translate(-2px, -2px);
+}
+
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2.5rem;
+}
+
+.project-card {
+    background-color: var(--card-background);
+    border: 1px solid var(--border-color); /* Subtelna ramka */
+    border-radius: 4px;
+    padding: 2rem;
+    /* Usunięto cień na rzecz płaskiego designu */
+    box-shadow: none;
+    transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+    display: flex;
+    flex-direction: column;
+    height: 100%; /* Równe wysokości kart */
+    text-decoration: none; /* Usunięcie podkreślenia linku */
+}
+
+.project-card:hover {
+    transform: translateY(-7px);
+    border-color: var(--primary-color); /* Podświetlenie ramki po najechaniu */
+}
+
+.project-card h3 {
+    margin-top: 0;
+    color: var(--text-color);
+    font-size: 1.4rem;
+    margin-bottom: 1rem;
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+}
+
+.project-card p {
+    color: var(--text-secondary);
+    font-size: 1rem;
+    flex-grow: 1; /* Opis zajmuje dostępne miejsce */
+    line-height: 1.6;
+}
+
 
 /* --- Elementy wspólne (np. loader, modal) --- */
 .loader { width: 18px; height: 18px; border: 2px solid #FFF; border-bottom-color: transparent; border-radius: 50%; display: inline-block; box-sizing: border-box; animation: rotation 1s linear infinite; margin-left: 10px; }
