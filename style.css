@@ -59,7 +59,6 @@ body {
 }
 
 .container {
-    /* ZMIANA: Zwężenie kontenera dla bardziej zwartego wyglądu */
     max-width: 960px; 
     margin: 0 auto;
     padding: 0 2rem;
@@ -444,6 +443,143 @@ body.light-mode .about-me-photo .photo-dark { display: none; }
     box-shadow: 3px 3px 0 var(--text-secondary);
 }
 
+
+/* --- Career Changelog (NOWA SEKCJA) --- */
+.timeline-section {
+    margin-top: 6rem; /* Większy odstęp od sekcji górnej */
+}
+
+.timeline-section .collapsible-header {
+    cursor: pointer;
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 1rem;
+    font-family: 'Roboto Mono', monospace; /* Techniczny font dla nagłówka changeloga */
+}
+
+.timeline-section .collapsible-header::after {
+    content: '';
+    width: 0; 
+    height: 0; 
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-top: 8px solid var(--primary-color); /* Trójkąt zamiast svg dla prostoty */
+    transition: transform 0.3s ease-in-out;
+}
+
+/* Gdy sekcja jest aktywna (rozwinięta), obracamy strzałkę */
+.timeline-section.active .collapsible-header::after {
+    transform: rotate(180deg);
+}
+
+.timeline-container {
+    position: relative;
+    padding-left: 2rem;
+    border-left: 2px solid var(--border-color); /* Cieńsza, techniczna linia */
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s ease-in-out, margin-top 0.5s ease-in-out, opacity 0.5s ease-in-out;
+    opacity: 0;
+    margin-top: 0;
+}
+
+.timeline-section.active .timeline-container {
+    max-height: 2000px; /* Wystarczająco dużo na rozwinięcie */
+    margin-top: 3rem;
+    opacity: 1;
+}
+
+.timeline-item {
+    position: relative;
+    margin-bottom: 2.5rem;
+}
+
+.timeline-item:last-child {
+    margin-bottom: 0;
+}
+
+.timeline-dot {
+    position: absolute;
+    left: -2.55rem; /* Precyzyjne wyrównanie kropki do linii */
+    top: 0.5rem;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background-color: var(--background-color);
+    border: 3px solid var(--border-color);
+    transition: all 0.3s;
+}
+
+.timeline-item.active .timeline-dot {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+    box-shadow: 0 0 10px var(--primary-color); /* Efekt "świecenia" aktywnej wersji */
+}
+
+.timeline-card {
+    background-color: var(--card-background);
+    border: 1px solid var(--border-color);
+    border-radius: 4px; /* Techniczne, małe zaokrąglenie */
+    padding: 1.5rem;
+    transition: all 0.3s;
+}
+
+.timeline-item:hover .timeline-card {
+    border-color: var(--primary-color); /* Podświetlenie ramki po najechaniu */
+}
+
+.timeline-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 1rem;
+}
+
+.timeline-title {
+    margin: 0;
+    font-size: 1.1rem;
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.timeline-title code {
+    font-family: 'Roboto Mono', monospace;
+    background-color: rgba(0, 224, 255, 0.1);
+    padding: 0.2rem 0.5rem;
+    border-radius: 4px;
+    color: var(--primary-color);
+    margin-right: 0.8rem;
+    font-size: 0.9rem;
+}
+
+.timeline-place {
+    margin: 0.3rem 0 0 0;
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    font-family: 'Roboto Mono', monospace;
+}
+
+.timeline-date {
+    font-family: 'Roboto Mono', monospace;
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    white-space: nowrap;
+    background-color: var(--background-color);
+    padding: 0.3rem 0.6rem;
+    border-radius: 4px;
+    border: 1px solid var(--border-color);
+}
+
+.timeline-content p {
+    margin: 0;
+    color: var(--text-secondary);
+    line-height: 1.6;
+}
+
 /* --- Siatka projektów --- */
 .project-filters {
     margin-bottom: 4rem;
@@ -480,9 +616,7 @@ body.light-mode .about-me-photo .photo-dark { display: none; }
 
 .projects-grid {
     display: grid;
-    /* ZMIANA: Zmniejszono minmax do 260px, aby zmieścić 3 karty */
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    /* ZMIANA: Zmniejszono gap do 2rem dla bardziej zwartego układu */
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 2rem;
     row-gap: 3rem; 
 }
@@ -559,4 +693,8 @@ body.light-mode .about-me-photo .photo-dark { display: none; }
     .site-header.nav-open .menu-toggle .hamburger-bar:nth-child(2) { opacity: 0; transform: translateX(20px); }
     .site-header.nav-open .menu-toggle .hamburger-bar:nth-child(3) { transform: rotate(-45deg); }
     .skills-icons { justify-content: flex-start; }
+    
+    /* Dostosowanie changeloga na mobile */
+    .timeline-header { flex-direction: column; gap: 0.5rem; }
+    .timeline-date { align-self: flex-start; }
 }
