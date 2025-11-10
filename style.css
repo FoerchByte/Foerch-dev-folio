@@ -7,28 +7,35 @@
  */
 
 /* --- Zmienne kolorów dla motywów --- */
+/* ZMIANA: Nowy domyślny motyw "Technical Precision" (ciemny) */
 :root {
+    --primary-color: #00E0FF;           /* Techniczny turkus (akcent) */
+    --primary-hover-color: #00A8C0;    /* Ciemniejszy turkus */
+    --text-color: #CCD6F6;              /* Jasny, techniczny tekst */
+    --text-secondary: #8892B0;          /* Szary tekst dla detali i linków */
+    --background-color: #020C1B;        /* Główne tło (bardzo ciemny granat) */
+    --card-background: #0A192F;         /* Tło kart (nieco jaśniejszy granat) */
+    --border-color: #1E3A5F;            /* Kolor obramowań i siatki tła */
+
+    --success-color: #28a745;
+    --danger-color: #dc3545;
+    --handle-color: #495057;
+    --completed-bg: #0A192F;
+    --completed-text: var(--text-secondary);
+}
+
+/* ZMIANA: Stary motyw jasny jako opcja */
+body.light-mode {
     --primary-color: #007bff;
     --primary-hover-color: #0056b3;
     --text-color: #212529;
+    --text-secondary: #6c757d;
     --background-color: #f8f9fa;
     --card-background: #ffffff;
     --border-color: #dee2e6;
-    --success-color: #28a745;
-    --danger-color: #dc3545;
     --handle-color: #ced4da;
     --completed-bg: #e9ecef;
     --completed-text: #6c757d;
-}
-
-body.dark-mode {
-    --text-color: #e9ecef;
-    --background-color: #121212;
-    --card-background: #1e1e1e;
-    --border-color: #495057;
-    --handle-color: #495057;
-    --completed-bg: #343a40;
-    --completed-text: #adb5bd;
 }
 
 
@@ -39,6 +46,19 @@ body {
     color: var(--text-color);
     line-height: 1.7;
     transition: background-color 0.3s, color 0.3s;
+    
+    /* ZMIANA: Tło z siatką (grid) dla technicznego wyglądu */
+    background-image: 
+        linear-gradient(var(--border-color) 1px, transparent 1px),
+        linear-gradient(to right, var(--border-color) 1px, transparent 1px);
+    background-size: 50px 50px;
+    background-position: center center;
+    background-attachment: fixed; /* Siatka nie przesuwa się podczas scrollowania */
+}
+
+/* ZMIANA: W trybie jasnym siatka może być zbyt intensywna, więc ją wyłączamy lub osłabiamy */
+body.light-mode {
+    background-image: none;
 }
 
 .container {
@@ -49,13 +69,22 @@ body {
 
 /* --- Nagłówek i Nawigacja --- */
 .site-header {
-    background-color: var(--card-background);
+    /* ZMIANA: Nagłówek przezroczysty, aby widać było siatkę pod spodem */
+    background-color: rgba(10, 25, 47, 0.85); /* Półprzezroczysty granat */
+    backdrop-filter: blur(10px); /* Efekt rozmycia tła pod nagłówkiem */
     padding: 1.5rem 0;
     border-bottom: 1px solid var(--border-color);
-    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    /* Usunięto cień na rzecz płaskiego, technicznego wyglądu */
+    box-shadow: none;
     transition: background-color 0.3s, border-color 0.3s;
-    position: relative;
+    position: sticky; /* Przyklejony nagłówek */
+    top: 0;
     z-index: 100;
+}
+
+body.light-mode .site-header {
+     background-color: rgba(255, 255, 255, 0.85);
+     box-shadow: 0 2px 4px rgba(0,0,0,0.05);
 }
 
 .site-header .container {
@@ -68,7 +97,9 @@ body {
 .site-title {
     margin: 0;
     font-size: 1.8rem;
-    color: var(--text-color);
+    /* ZMIANA: Font monospace dla tytułu w stylu terminala */
+    font-family: 'Roboto Mono', monospace; 
+    color: var(--primary-color); /* Tytuł w kolorze akcentu */
 }
 
 .site-title a {
@@ -89,25 +120,33 @@ body {
 }
 
 .main-nav a {
-    color: var(--primary-color);
+    color: var(--text-secondary); /* Mniej rzucający się w oczy kolor linków */
     margin-left: 20px;
     text-decoration: none;
     font-weight: 500;
-    font-size: 1rem;
+    font-size: 0.9rem; /* Nieco mniejszy font */
+    /* ZMIANA: Font monospace dla nawigacji */
+    font-family: 'Roboto Mono', monospace;
     transition: color 0.2s ease-in-out;
 }
 
 .main-nav a:hover,
 .main-nav a.nav-active {
-    color: var(--primary-hover-color);
-    text-decoration: underline;
+    color: var(--primary-color); /* Aktywny link w kolorze akcentu */
+    text-decoration: none; /* Bez podkreślenia, sam kolor wystarczy */
 }
+
+/* Stylizacja "nawiasów" wokół aktywnych linków (opcjonalne, ale fajne) */
+.main-nav a.nav-active::before { content: '[ '; color: var(--primary-color); }
+.main-nav a.nav-active::after { content: ' ]'; color: var(--primary-color); }
+
 
 .lang-switcher {
     border: 1px solid var(--border-color);
-    border-radius: 20px;
+    border-radius: 4px; /* Bardziej kanciaste rogi */
     padding: 2px;
     display: flex;
+    background-color: var(--card-background);
 }
 
 .lang-switcher button {
@@ -116,13 +155,15 @@ body {
     padding: 0.3rem 0.8rem;
     cursor: pointer;
     font-weight: 500;
-    border-radius: 20px;
-    color: var(--text-color);
+    border-radius: 2px;
+    color: var(--text-secondary);
+    font-family: 'Roboto Mono', monospace;
+    font-size: 0.8rem;
 }
 
 .lang-switcher button.active {
-    background-color: var(--primary-color);
-    color: white;
+    background-color: var(--border-color); /* Subtelniejsze wyróżnienie */
+    color: var(--primary-color);
 }
 
 .theme-toggle {
@@ -130,13 +171,19 @@ body {
     border: none;
     cursor: pointer;
     padding: 5px;
-    color: var(--text-color);
+    color: var(--text-secondary);
+    transition: color 0.2s;
 }
-.theme-toggle .moon-icon { display: none; }
+.theme-toggle:hover {
+    color: var(--primary-color);
+}
+.theme-toggle .moon-icon { display: none; } /* Domyślnie jesteśmy w dark mode, więc pokazujemy słońce (żeby przełączyć na jasny) */
 .theme-toggle .sun-icon { display: block; }
 
-.dark-mode .theme-toggle .moon-icon { display: block; }
-.dark-mode .theme-toggle .sun-icon { display: none; }
+/* W trybie jasnym odwracamy ikony */
+body.light-mode .theme-toggle .moon-icon { display: block; }
+body.light-mode .theme-toggle .sun-icon { display: none; }
+
 
 .menu-toggle {
     display: none;
@@ -153,9 +200,9 @@ body {
 
 .hamburger-bar {
     width: 30px;
-    height: 3px;
-    background-color: var(--text-color);
-    border-radius: 10px;
+    height: 2px; /* Cieńsze linie dla bardziej technicznego wyglądu */
+    background-color: var(--primary-color);
+    border-radius: 0; /* Kanciaste końce */
     transition: all 0.3s linear;
     position: relative;
     transform-origin: 1px;
@@ -163,8 +210,8 @@ body {
 
 /* --- Główna treść i animacje --- */
 .content-section {
-    padding-top: 3rem;
-    padding-bottom: 3rem;
+    padding-top: 4rem; /* Więcej oddechu od nagłówka */
+    padding-bottom: 4rem;
 }
 
 .fade-in {
@@ -176,113 +223,257 @@ body {
 }
 
 @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(10px); }
+    from { opacity: 0; transform: translateY(20px); }
     to { opacity: 1; transform: translateY(0); }
 }
 
 @keyframes fadeOut {
     from { opacity: 1; transform: translateY(0); }
-    to { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 0; transform: translateY(-20px); }
 }
 
 .project-title-link {
-    display: block;
-    margin-bottom: 1rem;
+    display: inline-block;
+    margin-bottom: 2rem;
     font-weight: 500;
     color: var(--primary-color);
     text-decoration: none;
     transition: color 0.2s;
-    font-size: 1rem;
+    font-size: 0.9rem;
+    font-family: 'Roboto Mono', monospace;
+    border: 1px solid var(--primary-color);
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
 }
 
 .project-title-link:hover {
-    color: var(--primary-hover-color);
-    text-decoration: underline;
+    background-color: rgba(0, 224, 255, 0.1); /* Delikatne podświetlenie tła */
+    text-decoration: none;
 }
 
 .project-page-title, .section-title {
     font-size: 2.5rem;
-    border-bottom: 3px solid var(--primary-color);
-    padding-bottom: 0.5rem;
-    display: inline-block;
-    margin-bottom: 2rem;
+    color: var(--text-color);
+    /* Usunięto dolną linię na rzecz bardziej minimalistycznego nagłówka */
+    border-bottom: none; 
+    padding-bottom: 0;
+    display: block;
+    margin-bottom: 1.5rem;
     margin-top: 0;
+    font-weight: 700;
+}
+/* Dodano 'prefix' do tytułów sekcji */
+.project-page-title::before, .section-title::before {
+    content: '// ';
+    color: var(--primary-color);
+    font-family: 'Roboto Mono', monospace;
+    font-weight: normal;
+    font-size: 2rem;
 }
 
 /* --- Strona "O mnie" (tylko podstawowy layout) --- */
+/* ZMIANA: Dostosowanie do nowego ciemnego tła */
 .about-me-layout {
     display: flex;
-    align-items: center;
-    gap: 3rem;
+    align-items: flex-start; /* Wyrównanie do góry */
+    gap: 4rem;
 }
 .about-me-photo {
     flex-shrink: 0;
     position: relative;
-    width: 200px;
-    height: 200px;
+    width: 250px; /* Nieco większe zdjęcie */
+    height: 250px;
 }
 .about-me-photo img {
-    width: 200px;
-    height: 200px;
-    border-radius: 50%;
-    border: 5px solid var(--primary-color);
+    width: 100%;
+    height: 100%;
+    border-radius: 4px; /* Kanciaste zdjęcie zamiast koła */
+    border: 2px solid var(--primary-color);
     object-fit: cover;
-    object-position: 50% 30%;
-    transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+    object-position: center top; /* Lepiej kadruje twarz */
+    /* Efekt: zdjęcie czarno-białe, kolor po najechaniu */
+    filter: grayscale(100%);
+    transition: all 0.3s ease-in-out;
     position: absolute;
     top: 0;
     left: 0;
 }
 .about-me-photo img:hover {
-    transform: scale(1.1);
+    filter: grayscale(0%);
+    transform: translate(-10px, -10px); /* Efekt przesunięcia */
+    box-shadow: 10px 10px 0 var(--primary-color); /* "Cień" w kolorze akcentu */
 }
 
-.about-me-photo .photo-dark { display: none; }
-body.dark-mode .about-me-photo .photo-light { display: none; }
-body.dark-mode .about-me-photo .photo-dark { display: block; }
+/* W nowym motywie zawsze używamy ciemnego zdjęcia (Night.jpg), 
+   chyba że użytkownik przełączy na light-mode */
+.about-me-photo .photo-light { display: none; }
+.about-me-photo .photo-dark { display: block; }
+body.light-mode .about-me-photo .photo-light { display: block; }
+body.light-mode .about-me-photo .photo-dark { display: none; }
 
-.about-me-content h1 { font-size: 3rem; margin: 0 0 0.5rem 0; }
-.about-subtitle { font-size: 1.5rem; font-weight: 500; color: var(--completed-text); margin-bottom: 1.5rem; }
-.about-description { text-align: justify; }
-.about-me-content h3 { margin-top: 2rem; border-bottom: 2px solid var(--border-color); padding-bottom: 0.5rem; }
-.skills-icons { display: flex; gap: 2rem; margin-top: 1rem; }
-.skill-item { display: flex; flex-direction: column; align-items: center; gap: 0.5rem; font-weight: 500; }
-.skill-item img { width: 50px; height: 50px; }
-.about-cta { margin-top: 2rem; display: flex; gap: 1rem; }
-.cta-button { background-color: var(--primary-color); color: white; padding: 0.8rem 1.5rem; border-radius: 6px; text-decoration: none; font-weight: 500; transition: background-color 0.2s; }
-.cta-button:hover { background-color: var(--primary-hover-color); }
-.cta-button.secondary { background-color: transparent; color: var(--primary-color); border: 2px solid var(--primary-color); }
-.cta-button.secondary:hover { background-color: var(--primary-color); color: white; }
+
+.about-me-content h1 { 
+    font-size: 4rem; 
+    margin: 0 0 0.5rem 0; 
+    color: var(--text-color);
+    line-height: 1.1;
+}
+.about-subtitle { 
+    font-size: 1.5rem; 
+    font-weight: 400; 
+    color: var(--primary-color); 
+    margin-bottom: 2rem; 
+    font-family: 'Roboto Mono', monospace;
+}
+.about-description { 
+    text-align: left; 
+    color: var(--text-secondary);
+    font-size: 1.1rem;
+    max-width: 600px;
+}
+.about-me-content h3 { 
+    margin-top: 3rem; 
+    color: var(--text-color);
+    font-family: 'Roboto Mono', monospace;
+    font-size: 1.2rem;
+}
+.about-me-content h3::after {
+    content: '';
+    display: block;
+    width: 100px;
+    height: 1px;
+    background-color: var(--border-color);
+    margin-top: 1rem;
+}
+
+.skills-icons { display: flex; gap: 2rem; margin-top: 2rem; }
+.skill-item { 
+    display: flex; flex-direction: column; align-items: center; gap: 0.5rem; 
+    font-family: 'Roboto Mono', monospace; font-size: 0.9rem; color: var(--text-secondary);
+}
+.skill-item img { width: 40px; height: 40px; filter: grayscale(100%) brightness(0.8); transition: all 0.3s; }
+.skill-item:hover img { filter: grayscale(0%) brightness(1); }
+.skill-item:hover { color: var(--primary-color); }
+
+.about-cta { margin-top: 3rem; display: flex; gap: 1.5rem; }
+.cta-button { 
+    background-color: transparent; 
+    color: var(--primary-color); 
+    padding: 1rem 2rem; 
+    border-radius: 4px; 
+    text-decoration: none; 
+    font-weight: 500; 
+    font-family: 'Roboto Mono', monospace;
+    border: 1px solid var(--primary-color);
+    transition: all 0.2s; 
+}
+.cta-button:hover { 
+    background-color: rgba(0, 224, 255, 0.1);
+    transform: translateY(-3px);
+}
+/* Główny przycisk (np. Projekty) nieco bardziej widoczny */
+.cta-button.primary {
+    background-color: rgba(0, 224, 255, 0.1);
+}
 
 /* --- Siatka projektów --- */
-.project-filters { margin-bottom: 2rem; display: flex; gap: 0.5rem; flex-wrap: wrap; }
-.project-filters button { background: none; border: 1px solid var(--border-color); color: var(--text-color); padding: 0.5rem 1rem; border-radius: 20px; cursor: pointer; font-weight: 500; transition: all 0.2s ease-in-out; }
-.project-filters button:hover { background-color: var(--completed-bg); border-color: var(--primary-color); }
-.project-filters button.active { background-color: var(--primary-color); border-color: var(--primary-color); color: white; }
-.projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; }
-.project-card { background-color: var(--card-background); border: 1px solid var(--border-color); border-radius: 8px; padding: 1.5rem; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.07); transition: transform 0.2s, box-shadow 0.2s, background-color 0.3s, border-color 0.3s; }
+.project-filters { 
+    margin-bottom: 3rem; 
+    display: flex; 
+    gap: 1rem; 
+    flex-wrap: wrap; 
+    justify-content: flex-start; /* Wyrównanie do lewej */
+}
+.project-filters button { 
+    background: var(--card-background); 
+    border: 1px solid var(--border-color); 
+    color: var(--text-secondary); 
+    padding: 0.6rem 1.2rem; 
+    border-radius: 4px; /* Kanciaste */
+    cursor: pointer; 
+    font-family: 'Roboto Mono', monospace;
+    font-size: 0.9rem;
+    transition: all 0.2s ease-in-out; 
+}
+.project-filters button:hover { 
+    color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+.project-filters button.active { 
+    background-color: transparent;
+    border-color: var(--primary-color); 
+    color: var(--primary-color); 
+    /* Dodatkowy efekt dla aktywnego filtra */
+    box-shadow: 4px 4px 0 var(--border-color);
+    transform: translate(-2px, -2px);
+}
+
+.projects-grid { 
+    display: grid; 
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); 
+    gap: 2.5rem; 
+}
+.project-card { 
+    background-color: var(--card-background); 
+    border: 1px solid var(--border-color); /* Subtelna ramka */
+    border-radius: 4px; 
+    padding: 2rem; 
+    /* Usunięto cień na rzecz płaskiego designu */
+    box-shadow: none; 
+    transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+    display: flex;
+    flex-direction: column;
+    height: 100%; /* Równe wysokości kart */
+}
 a.project-card { text-decoration: none; color: inherit; }
-.project-card:hover { transform: translateY(-5px); box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1); }
-.project-card h3 { margin-top: 0; color: var(--primary-color); }
+.project-card:hover { 
+    transform: translateY(-7px); 
+    border-color: var(--primary-color); /* Podświetlenie ramki po najechaniu */
+}
+.project-card h3 { 
+    margin-top: 0; 
+    color: var(--text-color);
+    font-size: 1.4rem;
+    margin-bottom: 1rem;
+}
+.project-card p {
+    color: var(--text-secondary);
+    font-size: 1rem;
+    flex-grow: 1; /* Opis zajmuje dostępne miejsce */
+}
 
 /* --- Elementy wspólne (np. loader, modal) --- */
-.loader { width: 18px; height: 18px; border: 2px solid #FFF; border-bottom-color: transparent; border-radius: 50%; display: inline-block; box-sizing: border-box; animation: rotation 1s linear infinite; margin-left: 10px; }
+.loader { width: 18px; height: 18px; border: 2px solid var(--primary-color); border-bottom-color: transparent; border-radius: 50%; display: inline-block; box-sizing: border-box; animation: rotation 1s linear infinite; margin-left: 10px; }
 @keyframes rotation { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
 
-.modal-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background-color: rgba(0, 0, 0, 0.6); display: flex; justify-content: center; align-items: center; z-index: 1000; }
-.modal-content { background-color: var(--card-background); padding: 2rem; border-radius: 8px; max-width: 400px; width: 90%; text-align: center; }
-.modal-buttons { margin-top: 1.5rem; display: flex; justify-content: center; gap: 1rem; }
-.modal-buttons button { padding: 0.6rem 1.2rem; border-radius: 6px; border: none; cursor: pointer; font-weight: 500; }
+.modal-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background-color: rgba(2, 12, 27, 0.8); backdrop-filter: blur(5px); display: flex; justify-content: center; align-items: center; z-index: 1000; }
+.modal-content { 
+    background-color: var(--card-background); 
+    padding: 2rem; 
+    border-radius: 4px; 
+    border: 1px solid var(--border-color);
+    max-width: 400px; width: 90%; text-align: center; 
+    box-shadow: 0 20px 30px -15px rgba(2, 12, 27, 0.7);
+}
+.modal-buttons { margin-top: 2rem; display: flex; justify-content: center; gap: 1rem; }
+.modal-buttons button { 
+    padding: 0.8rem 1.5rem; 
+    border-radius: 4px; 
+    border: none; 
+    cursor: pointer; 
+    font-weight: 500; 
+    font-family: 'Roboto Mono', monospace;
+}
 .modal-buttons .confirm-btn { background-color: var(--danger-color); color: white; }
-.modal-buttons .cancel-btn { background-color: var(--completed-bg); color: var(--text-color); }
+.modal-buttons .cancel-btn { 
+    background-color: transparent; 
+    border: 1px solid var(--border-color);
+    color: var(--text-color); 
+}
+.modal-buttons .cancel-btn:hover { border-color: var(--primary-color); color: var(--primary-color); }
 
 .hidden { display: none; }
 
-/*
-  DODANA KLASA: Klasa .sr-only (screen-reader only).
-  Ukrywa ona element wizualnie, ale pozostawia go dostępnym
-  dla czytników ekranu. Jest to standardowa technika a11y.
-*/
 .sr-only {
   position: absolute;
   width: 1px;
@@ -298,16 +489,29 @@ a.project-card { text-decoration: none; color: inherit; }
 /* --- Media Queries (Responsywność) --- */
 @media (max-width: 768px) {
     .menu-toggle { display: flex; }
-    .nav-wrapper { position: fixed; top: 0; right: 0; height: 100vh; width: 70%; max-width: 300px; background-color: var(--card-background); flex-direction: column; justify-content: center; align-items: center; gap: 2rem; transform: translateX(100%); transition: transform 0.3s ease-in-out; box-shadow: -5px 0 15px rgba(0,0,0,0.1); }
+    /* ZMIANA: Dostosowanie menu mobilnego do nowego stylu */
+    .nav-wrapper { 
+        position: fixed; top: 0; right: 0; height: 100vh; width: 75%; max-width: 400px; 
+        background-color: var(--card-background); /* Ciemne tło menu */
+        flex-direction: column; justify-content: center; align-items: center; gap: 2rem; 
+        transform: translateX(100%); transition: transform 0.3s ease-in-out; 
+        box-shadow: -10px 0 30px -15px rgba(2, 12, 27, 0.7); 
+        border-left: 1px solid var(--border-color);
+    }
     .site-header.nav-open .nav-wrapper { transform: translateX(0); }
-    .main-nav { display: flex; flex-direction: column; align-items: center; gap: 1.5rem; }
-    .main-nav a { margin-left: 0; font-size: 1.5rem; }
-    .controls-wrapper { margin-left: 0; flex-direction: column; gap: 1.5rem; }
+    .main-nav { display: flex; flex-direction: column; align-items: center; gap: 2rem; }
+    .main-nav a { margin-left: 0; font-size: 1.2rem; }
+    .controls-wrapper { margin-left: 0; flex-direction: column; gap: 2rem; margin-top: 2rem; }
     .site-header.nav-open .menu-toggle .hamburger-bar:nth-child(1) { transform: rotate(45deg); }
     .site-header.nav-open .menu-toggle .hamburger-bar:nth-child(2) { opacity: 0; transform: translateX(20px); }
     .site-header.nav-open .menu-toggle .hamburger-bar:nth-child(3) { transform: rotate(-45deg); }
-    .about-me-layout { flex-direction: column; text-align: center; }
-    .about-me-photo { margin-bottom: 1rem; }
-    .skills-icons, .about-cta { justify-content: center; }
+    
+    /* Dostosowanie strony "O mnie" na mobilu */
+    .about-me-layout { flex-direction: column; align-items: flex-start; gap: 2rem; }
+    .about-me-photo { width: 150px; height: 150px; margin: 0 auto; /* Wyśrodkowanie zdjęcia */ }
+    .about-me-content h1 { font-size: 3rem; }
+    .about-description { text-align: left; }
+    .skills-icons { flex-wrap: wrap; justify-content: flex-start; gap: 1.5rem; }
+    .about-cta { flex-direction: column; width: 100%; }
+    .cta-button { text-align: center; }
 }
-
