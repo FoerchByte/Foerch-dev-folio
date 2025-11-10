@@ -10,7 +10,8 @@
 */
 export const translations = {
     pl: {
-        siteTitle: "Cyfrowe Portfolio",
+        // ZMIANA: Ujednolicenie tytułu w karcie przeglądarki z nowym brandingiem
+        siteTitle: "FoerchByte // Portfolio", 
         navAbout: "O mnie", navProjects: "Projekty", navContact: "Kontakt",
         backToProjects: "‹ Wróć do projektów",
         aboutTitle: "Cześć, jestem Michał!",
@@ -193,7 +194,8 @@ export const translations = {
         errorServer: ({ status }) => `Błąd serwera (${status}). Spróbuj ponownie.`,
     },
     en: {
-        siteTitle: "Digital Portfolio",
+        // ZMIANA: Ujednolicenie tytułu w karcie przeglądarki z nowym brandingiem
+        siteTitle: "FoerchByte // Portfolio",
         navAbout: "About Me", navProjects: "Projects", navContact: "Contact",
         backToProjects: "‹ Back to projects",
         aboutTitle: "Hi, I'm Michael!",
@@ -379,4 +381,3 @@ export const translations = {
         errorServer: ({ status }) => `Server error (${status}). Please try again.`,
     }
 };
-
