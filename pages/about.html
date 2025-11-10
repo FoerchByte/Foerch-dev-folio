@@ -5,10 +5,13 @@
   PL: "Career Changelog" - techniczne przeobrażenie tradycyjnej biografii.
   Prezentuje rozwój zawodowy jako iteracje wersji oprogramowania, idealnie
   pasując do estetyki "Technical Precision" i inżynierskiego podejścia.
---><div class="about-me-layout fade-in">
+-->
+<div class="about-me-layout fade-in">
     <div class="about-me-photo">
-        <!-- ZMIANA: Zintegrowano odwołanie do Twojego zdjęcia --><img src="FoerchByte.jpg" alt="Michał 'Foerch' Herbich" class="photo-dark">
-        <!-- To samo zdjęcie dla trybu jasnego, aby zachować spójność --><img src="FoerchByte.jpg" alt="Michał 'Foerch' Herbich" class="photo-light">
+        <!-- ZMIANA: Zintegrowano Twoje zdjęcie z GitHuba (FoerchByte.jpg) -->
+        <img src="FoerchByte.jpg" alt="Michał 'Foerch' Herbich" class="photo-dark">
+        <!-- To samo zdjęcie dla trybu jasnego, aby zachować spójność -->
+        <img src="FoerchByte.jpg" alt="Michał 'Foerch' Herbich" class="photo-light">
     </div>
     <div class="about-me-content">
         <h1>{{aboutTitle}}</h1>
@@ -18,14 +21,16 @@
             <p>{{aboutDesc2}}</p>
         </div>
         
-        <!-- Sekcja Tech Stack jako "Dependencies" --><h3>{{aboutSkillsTitle}}</h3>
+        <!-- Sekcja Tech Stack jako "Dependencies" -->
+        <h3>{{aboutSkillsTitle}}</h3>
         <div class="skills-icons">
             <div class="skill-item">
                 <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript">
                 <span>JavaScript</span>
             </div>
             <div class="skill-item">
-                <!-- Ikonka Excela/VBA (zamiennik, bo devicon może nie mieć idealnej) --><svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#217346" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/><path d="M8 13h8"/><path d="M8 17h8"/><path d="M8 9h2"/></svg>
+                <!-- Ikonka Excela/VBA (zamiennik, bo devicon może nie mieć idealnej) -->
+                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#217346" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/><path d="M8 13h8"/><path d="M8 17h8"/><path d="M8 9h2"/></svg>
                 <span>VBA / Power Query</span>
             </div>
              <div class="skill-item">
@@ -49,11 +54,13 @@
     </div>
 </div>
 
-<!-- ZMIANA: "Timeline" zamienia się w "Changelog" --><div class="timeline-section collapsible fade-in" style="animation-delay: 0.2s;">
+<!-- ZMIANA: "Timeline" zamienia się w "Changelog" -->
+<div class="timeline-section collapsible fade-in" style="animation-delay: 0.2s;">
     <h2 class="section-title collapsible-header">{{changelogTitle}}</h2>
     <div class="timeline-container">
         
-        <!-- v3.0.0 (Inspektor) --><div class="timeline-item active" data-type="work">
+        <!-- v3.0.0 (Inspektor) -->
+        <div class="timeline-item active" data-type="work">
             <div class="timeline-dot"></div>
             <div class="timeline-card">
                 <div class="timeline-header">
@@ -65,14 +72,16 @@
                 </div>
                 <div class="timeline-content">
                     <p>{{changelogV3Desc}}</p>
-                    <!-- Tagi technologiczne wewnątrz karty --><div style="margin-top: 1rem; font-family: 'Roboto Mono', monospace; font-size: 0.85rem; color: var(--text-secondary);">
+                    <!-- Tagi technologiczne wewnątrz karty -->
+                    <div style="margin-top: 1rem; font-family: 'Roboto Mono', monospace; font-size: 0.85rem; color: var(--text-secondary);">
                         [VBA] [Power Query] [Process Automation]
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- v2.0.0 (Podinspektor + Inżynier) --><div class="timeline-item" data-type="work">
+        <!-- v2.0.0 (Podinspektor + Inżynier) -->
+        <div class="timeline-item" data-type="work">
             <div class="timeline-dot"></div>
             <div class="timeline-card">
                 <div class="timeline-header">
@@ -91,7 +100,8 @@
             </div>
         </div>
 
-        <!-- v1.5.0 (Referent) --><div class="timeline-item" data-type="work">
+        <!-- v1.5.0 (Referent) -->
+        <div class="timeline-item" data-type="work">
             <div class="timeline-dot"></div>
             <div class="timeline-card">
                 <div class="timeline-header">
@@ -107,7 +117,8 @@
             </div>
         </div>
 
-         <!-- v1.0.0 (Młodszy Referent) --><div class="timeline-item" data-type="work">
+         <!-- v1.0.0 (Młodszy Referent) -->
+        <div class="timeline-item" data-type="work">
             <div class="timeline-dot"></div>
             <div class="timeline-card">
                 <div class="timeline-header">
@@ -123,144 +134,5 @@
             </div>
         </div>
 
-    </div>
-</div><!--
-  EN: The narrative core of Foerch-dev-folio. This page is designed to introduce
-  Michał Herbich, showcasing his skills, experience, and the story behind the
-  portfolio. It's built as a dynamic biography that captivates and informs.
-  PL: Narracyjne serce Foerch-dev-folio. Ta strona ma na celu przedstawienie
-  Michała Herbicha, pokazując jego umiejętności, doświadczenie oraz historię
-  stworzenia portfolio. Zbudowana jako dynamiczna biografia, która intryguje i informuje.
--->
-<div class="about-me-layout">
-    <div class="about-me-photo">
-        <img src="Day.jpg" alt="Michał Herbich" class="photo-light">
-        <img src="Night.jpg" alt="Michał Herbich - wersja ciemna" class="photo-dark">
-    </div>
-    <div class="about-me-content">
-        <h1>{{aboutTitle}}</h1>
-        <p class="about-subtitle">{{aboutSubtitle}}</p>
-        <p class="about-description">{{aboutContent}}</p>
-        <h3>{{aboutSkillsTitle}}</h3>
-        <div class="skills-icons">
-            <div class="skill-item"><img src="https://www.vectorlogo.zone/logos/w3_html5/w3_html5-icon.svg" alt="HTML5"><span>HTML5</span></div>
-            <div class="skill-item"><img src="https://www.vectorlogo.zone/logos/w3_css/w3_css-icon.svg" alt="CSS3"><span>CSS3</span></div>
-            <div class="skill-item"><img src="https://www.vectorlogo.zone/logos/javascript/javascript-icon.svg" alt="JavaScript"><span>JavaScript</span></div>
-        </div>
-        <div class="about-cta">
-            <a href="/projects" class="cta-button">{{aboutCtaProjects}}</a>
-            <a href="CV_M.Herbich.pdf" class="cta-button secondary" download="CV_Michal_Herbich.pdf">{{aboutCtaCv}}</a>
-        </div>
-    </div>
-</div>
-<div class="timeline-section collapsible">
-    <h2 class="section-title collapsible-header">{{timelineTitle}}</h2>
-    <div class="timeline-container">
-        <!-- Doświadczenie Zawodowe -->
-        <div class="timeline-item" data-type="work">
-            <div class="timeline-dot"></div>
-            <div class="timeline-card">
-                <div class="timeline-header">
-                    <div class="timeline-details">
-                        <h4 class="timeline-title">{{timelineWork5Title}}</h4>
-                        <p class="timeline-place">{{timelineWork5Place}}</p>
-                    </div>
-                    <span class="timeline-date">{{timelineWork5Date}}</span>
-                </div>
-                <div class="timeline-content"><p>{{timelineWork5Desc}}</p></div>
-            </div>
-        </div>
-        <div class="timeline-item" data-type="work">
-            <div class="timeline-dot"></div>
-            <div class="timeline-card">
-                <div class="timeline-header">
-                    <div class="timeline-details">
-                        <h4 class="timeline-title">{{timelineWork4Title}}</h4>
-                        <p class="timeline-place">{{timelineWork4Place}}</p>
-                    </div>
-                    <span class="timeline-date">{{timelineWork4Date}}</span>
-                </div>
-                <div class="timeline-content"><p>{{timelineWork4Desc}}</p></div>
-            </div>
-        </div>
-        <div class="timeline-item" data-type="work">
-            <div class="timeline-dot"></div>
-            <div class="timeline-card">
-                <div class="timeline-header">
-                    <div class="timeline-details">
-                        <h4 class="timeline-title">{{timelineWork3Title}}</h4>
-                        <p class="timeline-place">{{timelineWork3Place}}</p>
-                    </div>
-                    <span class="timeline-date">{{timelineWork3Date}}</span>
-                </div>
-                <div class="timeline-content"><p>{{timelineWork3Desc}}</p></div>
-            </div>
-        </div>
-        <div class="timeline-item" data-type="work">
-            <div class="timeline-dot"></div>
-            <div class="timeline-card">
-                <div class="timeline-header">
-                    <div class="timeline-details">
-                        <h4 class="timeline-title">{{timelineWork2Title}}</h4>
-                        <p class="timeline-place">{{timelineWork2Place}}</p>
-                    </div>
-                    <span class="timeline-date">{{timelineWork2Date}}</span>
-                </div>
-                <div class="timeline-content"><p>{{timelineWork2Desc}}</p></div>
-            </div>
-        </div>
-        <div class="timeline-item" data-type="work">
-            <div class="timeline-dot"></div>
-            <div class="timeline-card">
-                <div class="timeline-header">
-                    <div class="timeline-details">
-                        <h4 class="timeline-title">{{timelineWork1Title}}</h4>
-                        <p class="timeline-place">{{timelineWork1Place}}</p>
-                    </div>
-                    <span class="timeline-date">{{timelineWork1Date}}</span>
-                </div>
-                <div class="timeline-content"><p>{{timelineWork1Desc}}</p></div>
-            </div>
-        </div>
-        <!-- Edukacja -->
-        <div class="timeline-item" data-type="education">
-            <div class="timeline-dot"></div>
-            <div class="timeline-card">
-                <div class="timeline-header">
-                    <div class="timeline-details">
-                        <h4 class="timeline-title">{{timelineEdu3Title}}</h4>
-                        <p class="timeline-place">{{timelineEdu3Place}}</p>
-                    </div>
-                    <span class="timeline-date">{{timelineEdu3Date}}</span>
-                </div>
-                <div class="timeline-content"><p>{{timelineEdu3Desc}}</p></div>
-            </div>
-        </div>
-        <div class="timeline-item" data-type="education">
-            <div class="timeline-dot"></div>
-            <div class="timeline-card">
-                <div class="timeline-header">
-                    <div class="timeline-details">
-                        <h4 class="timeline-title">{{timelineEdu2Title}}</h4>
-                        <p class="timeline-place">{{timelineEdu2Place}}</p>
-                    </div>
-                    <span class="timeline-date">{{timelineEdu2Date}}</span>
-                </div>
-                <div class="timeline-content"><p>{{timelineEdu2Desc}}</p></div>
-            </div>
-        </div>
-        <div class="timeline-item" data-type="education">
-            <div class="timeline-dot"></div>
-            <div class="timeline-card">
-                <div class="timeline-header">
-                    <div class="timeline-details">
-                        <h4 class="timeline-title">{{timelineEdu1Title}}</h4>
-                        <p class="timeline-place">{{timelineEdu1Place}}</p>
-                    </div>
-                    <span class="timeline-date">{{timelineEdu1Date}}</span>
-                </div>
-                <div class="timeline-content"><p>{{timelineEdu1Desc}}</p></div>
-            </div>
-        </div>
     </div>
 </div>
