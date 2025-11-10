@@ -14,7 +14,7 @@ export const translations = {
         navAbout: "O mnie", navProjects: "Projekty", navContact: "Kontakt",
         backToProjects: "‹ Wróć do projektów",
         
-        // --- NOWE: Sekcja "O mnie" (Changelog) ---
+        // --- Sekcja "O mnie" (Changelog) ---
         aboutTitle: "Michał 'Foerch' Herbich",
         aboutSubtitle: "Data Automation Specialist | Frontend Developer",
         aboutDesc1: "Jestem inżynierem, który nie godzi się na \"tak zawsze robiliśmy\". Specjalizuję się w identyfikacji wąskich gardeł w procesach biznesowych i ich bezlitosnej automatyzacji.",
@@ -29,14 +29,17 @@ export const translations = {
         changelogV3Title: "Automation Revolution (Inspektor)",
         changelogV3Place: "Urząd Miasta Łodzi",
         changelogV3Date: "06.2023 - obecnie",
-        // ZMIANA: Dodano informację o magistrze AI
         changelogV3Desc: "Uzyskanie tytułu Magistra (AI). Wdrożenie pełnego ekosystemu automatyzacji: zastąpienie manualnych procesów skryptami VBA i potokami Power Query. KEY RESULT: Redukcja czasu rocznego rozliczenia 140+ projektów z 78 dni roboczych do zaledwie 3 dni.",
+        // ZMIANA: Tagi przeniesione do tłumaczeń, z zachowaniem HTML dla koloru
+        changelogV3Tags: "<span style='color: var(--primary-color)'>[Magister (SI)]</span> [VBA] [Power Query] [Automatyzacja Procesów]",
 
         // v2.0.0 - Podinspektor (Inkubacja)
         changelogV2Title: "Technical Incubation (Podinspektor)",
         changelogV2Place: "Urząd Miasta Łodzi",
         changelogV2Date: "03.2021 - 05.2023",
         changelogV2Desc: "Etap budowania fundamentów. Uzyskanie tytułu Inżyniera Informatyki. Optymalizacja warsztatu pracy (setup 3-monitorowy) i wdrażanie pierwszych zaawansowanych modeli danych w Power Query do obsługi sprawozdań >40k wierszy.",
+        // ZMIANA: Tagi dla wersji 2.0, również z wyróżnieniem
+        changelogV2Tags: "<span style='color: var(--primary-color)'>[Inżynier (Informatyka)]</span> [Advanced Excel] [Hardware Setup]",
 
         // v1.5.0 - Referent (Optymalizacja)
         changelogV15Title: "Formula Optimization (Referent)",
@@ -51,7 +54,7 @@ export const translations = {
         changelogV10Desc: "Onboarding i analiza legacy processes. Identyfikacja krytycznych ryzyk błędu ludzkiego w 100% manualnym procesie raportowania.",
 
 
-        // --- Pozostałe tłumaczenia (bez większych zmian) ---
+        // --- Pozostałe tłumaczenia (bez zmian) ---
         projectsTitle: "Rejestr Projektów", projectsSubtitle: "Wybrane wdrożenia i narzędzia proof-of-concept.",
         projectsCategoryAll: "ALL",
         projectsCategorySpecialist: "AUTOMATION",
@@ -164,10 +167,10 @@ export const translations = {
         testimonial6: "Full professionalism and commitment. We will definitely be back with more projects.", testimonial6Author: "Adam from Company C",
         agencyContactTitle: "Contact Us", formName: "Name", formEmail: "Email", formMessage: "Message", formSend: "Send", formSuccess: "Thank you for your message! We will get back to you shortly.",
         contactTitle: "Contact", contactContent: "Have a question or a project proposal? I'd love to hear from you. Use the form below or find me on social media.",
-        contactFormTitle: "Send me a message", formErrorEmpty: "This field is required.", formErrorEmail: "Please enter a valid email address.",
-        geminiTitle: "✨ Asystent E-mail (Gemini AI)", geminiContent: "Enter a short message below, and I will help you phrase it professionally.",
-        geminiPlaceholder: "e.g., hey, I have a question about project X, when can we talk?", geminiBtn: "Improve Email",
-        loading: "Loading...",
+        contactFormTitle: "Napisz do mnie", formErrorEmpty: "To pole jest wymagane.", formErrorEmail: "Proszę podać poprawny adres e-mail.",
+        geminiTitle: "✨ Asystent E-mail (Gemini AI)", geminiContent: "Wpisz poniżej krótką wiadomość, a ja pomogę Ci ubrać ją w profesjonalne słowa.",
+        geminiPlaceholder: "np. hej, mam pytanie o projekt X, kiedy możemy pogadać?", geminiBtn: "Ulepsz e-mail",
+        loading: "Ładowanie...",
         taxArrearsTitle: "Kalkulator Odsetek za Zwłokę",
         taxArrearsAmountLabel: "Kwota zaległości (PLN)",
         taxArrearsStartDateLabel: "Termin płatności",
@@ -190,9 +193,9 @@ export const translations = {
         errorApiCurrency: "Nie udało się pobrać kursów walut.",
         errorApiGemini: "Asystent AI jest chwilowo niedostępny.",
         errorGeo: "Nie udało się pobrać Twojej lokalizacji. Sprawdź ustawienia przeglądarki i zezwól na dostęp.",
-        errorNotFound: "City not found.",
+        errorNotFound: "Nie znaleziono miasta.",
         errorAuth: "Błąd autoryzacji. Sprawdź klucz API.",
-        errorServer: ({ status }) => `Server error (${status}). Please try again.`,
+        errorServer: ({ status }) => `Błąd serwera (${status}). Spróbuj ponownie.`,
     },
     en: {
         siteTitle: "FoerchByte // Portfolio",
@@ -214,14 +217,17 @@ export const translations = {
         changelogV3Title: "Automation Revolution (Inspector)",
         changelogV3Place: "City of Łódź Office",
         changelogV3Date: "06.2023 - present",
-        // ZMIANA: Added MSc in AI info
+        // ZMIANA: Added MSc in AI info AND translated tags
         changelogV3Desc: "Obtained Master of Science (MSc) in AI. Implemented full automation ecosystem: replaced manual processes with VBA scripts and Power Query pipelines. KEY RESULT: Reduced annual settlement time for 140+ projects from 78 working days to just 3 days.",
+        changelogV3Tags: "<span style='color: var(--primary-color)'>[MSc Degree (AI)]</span> [VBA] [Power Query] [Process Automation]",
 
         // v2.0.0 - Junior Inspector (Incubation)
         changelogV2Title: "Technical Incubation (Junior Inspector)",
         changelogV2Place: "City of Łódź Office",
         changelogV2Date: "03.2021 - 05.2023",
         changelogV2Desc: "Foundation building phase. Obtained Engineering degree in Computer Science. Optimized workspace (3-monitor setup) and implemented first advanced data models in Power Query for >40k row reports.",
+        // ZMIANA: Translated tags for v2.0
+        changelogV2Tags: "<span style='color: var(--primary-color)'>[BEng Degree (CS)]</span> [Advanced Excel] [Hardware Setup]",
 
         // v1.5.0 - Clerk (Optimization)
         changelogV15Title: "Formula Optimization (Clerk)",
@@ -332,7 +338,7 @@ export const translations = {
         ticTacToeModePVP: "Player vs Player", ticTacToeModePVC: "Player vs Computer", ticTacToeScore: "Score", ticTacToeChooseSide: "Choose your side:", ticTacToePlay: "Start Game",
         memoryGameTitle: "Memory Game", memoryGameMoves: "Ruchy", memoryGameTime: "Time", memoryGameRestart: "Play Again",
         memoryGameWin: ({ moves, time }) => `Congratulations! You won in ${moves} moves and ${time}s!`,
-        snakeGameTitle: "Snake Game", snakeGameScore: "Score", snakeGameHighScore: "High Score", snakeGamePause: "PAUSED", snakeGameOver: "Game Over!", snakeGameRestart: "Play Again",
+        snakeGameTitle: "Snake Game", snakeGameScore: "Score", snakeGameHighScore: "High Score", snakeGamePause: "PAUSED", snakeGameOver: "Game Over!", snakeGameRestart: "Zagraj ponownie",
         snakeGameStartMsg: "Press any key or swipe to start",
         snakeGameControls: "Controls: Arrow keys, WASD or swipe gestures. Pause: Spacebar.",
         agencyTitle: "Creative Agency", agencyHeroTitle: "We build digital experiences.", agencyHeroSubtitle: "We specialize in web design, branding, and online marketing to help your business grow.",
