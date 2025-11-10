@@ -16,27 +16,24 @@ export const translations = {
         
         // --- Sekcja "O mnie" (Changelog) ---
         aboutTitle: "Michał 'Foerch' Herbich",
-        // ZMIANA: Pełne spolszczenie tytułu
         aboutSubtitle: "Specjalista ds. Automatyzacji Danych | Frontend Developer",
         aboutDesc1: "Jestem inżynierem, który nie godzi się na \"tak zawsze robiliśmy\". Specjalizuję się w identyfikacji wąskich gardeł w procesach biznesowych i ich bezlitosnej automatyzacji.",
         aboutDesc2: "Łączę twarde kompetencje analityczne (VBA, Power Query, Excel) z nowoczesnym stackiem webowym (JavaScript, API), tworząc narzędzia, które oszczędzają setki godzin pracy rocznie. Moim celem jest budowanie systemów, które działają dla ludzi, a nie odwrotnie.",
-        // ZMIANA: Spolszczenie nagłówka sekcji
-        aboutSkillsTitle: "Stack Technologiczny (Dependencies)",
-        // NOWE: Klucze dla nagłówków podsekcji technologii
+        // ZMIANA: Usunięto "(Dependencies)" dla czystości języka
+        aboutSkillsTitle: "Stack Technologiczny",
         skillsHeaderData: "// Automatyzacja i Analiza Danych",
         skillsHeaderFrontend: "// Frontend Development",
 
         aboutCtaProjects: "Zobacz Case Studies",
         aboutCtaCv: "Pobierz pełne CV",
         
-        changelogTitle: "Career Changelog (Historia Wersji)",
+        // ZMIANA: Bardziej polski nagłówek, zachowujący techniczny charakter
+        changelogTitle: "Przebieg Kariery (Changelog)",
         
         // v3.0.0 - Inspektor
-        // ZMIANA: Spolszczenie tytułów wersji
         changelogV3Title: "Rewolucja Automatyzacji (Inspektor)",
         changelogV3Place: "Urząd Miasta Łodzi",
         changelogV3Date: "06.2023 - obecnie",
-        // ZMIANA: Spolszczenie "KEY RESULT"
         changelogV3Desc: "Uzyskanie tytułu Magistra (AI). Wdrożenie pełnego ekosystemu automatyzacji: zastąpienie manualnych procesów skryptami VBA i potokami Power Query. KLUCZOWY WYNIK: Redukcja czasu rocznego rozliczenia 140+ projektów z 78 dni roboczych do zaledwie 3 dni.",
         changelogV3Tags: "<span style='color: var(--primary-color)'>[Magister (SI)]</span> [VBA] [Power Query] [Automatyzacja Procesów]",
 
@@ -59,16 +56,16 @@ export const translations = {
         changelogV10Date: "11.2019 - 11.2020",
         changelogV10Desc: "Onboarding i analiza procesów legacy. Identyfikacja krytycznych ryzyk błędu ludzkiego w 100% manualnym procesie raportowania.",
 
-        // NOWOŚĆ: v0.5.0 - Stażysta (Beta)
+        // v0.5.0 - Stażysta
         changelogV05Title: "Wersja Beta (Stażysta)",
         changelogV05Place: "Urząd Miasta Łodzi",
         changelogV05Date: "07.2019 - 11.2019",
         changelogV05Desc: "Wstępne rozpoznanie środowiska. Archiwizacja i podstawowe porządkowanie dokumentacji budżetowej.",
 
 
-        // --- Pozostałe tłumaczenia (bez zmian) ---
+        // --- Pozostałe tłumaczenia ---
         projectsTitle: "Rejestr Projektów", projectsSubtitle: "Wybrane wdrożenia i narzędzia proof-of-concept.",
-        projectsCategoryAll: "WSZYSTKIE", // ZMIANA: Spolszczenie kategorii
+        projectsCategoryAll: "WSZYSTKIE",
         projectsCategorySpecialist: "AUTOMATYZACJA",
         projectsCategoryTools: "NARZĘDZIA",
         projectsCategoryCreative: "FRONTEND",
@@ -157,7 +154,7 @@ export const translations = {
         pomodoroSettingsTitle: "Ustawienia", pomodoroWorkLabel: "Czas pracy (min)", pomodoroShortBreakLabel: "Krótka przerwa (min)", pomodoroLongBreakLabel: "Długa przerwa (min)", pomodoroSaveSettings: "Zapisz",
         pomodoroSettingsSaved: "Zapisano!",
         pomodoroCyclesTitle: "Ukończone cykle (cel: 4)",
-        ticTacToeTitle: "Gra w Kółko i Krzyżyk", ticTacToeTurn: (player) => `Ruch gracza: ${player}`, ticTacToeWinner: (player) => `Wygrywa gracz ${player}!`, ticTacToeDraw: "Remis!", ticTacToeRestart: "Zagraj ponownie",
+        ticTacToeTitle: "Gra w Kółko i Krzyżyk", ticTacToeTurn: (player) => `Ruch gracza: ${player}`, ticTacToeWinner: (player) => `Wygrywa gracz ${player}!`, ticTacToeDraw: "It's a draw!", ticTacToeRestart: "Play Again",
         ticTacToeModePVP: "Gracz vs Gracz", ticTacToeModePVC: "Gracz vs Komputer", ticTacToeScore: "Wynik", ticTacToeChooseSide: "Wybierz swoją stronę:", ticTacToePlay: "Start Game",
         memoryGameTitle: "Gra Pamięciowa", memoryGameMoves: "Ruchy", memoryGameTime: "Czas", memoryGameRestart: "Zagraj ponownie",
         memoryGameWin: ({ moves, time }) => `Gratulacje! Wygrałeś w ${moves} moves and ${time}s!`,
@@ -219,8 +216,7 @@ export const translations = {
         aboutSubtitle: "Data Automation Specialist | Frontend Developer",
         aboutDesc1: "I am an engineer who refuses to accept \"that's how we've always done it.\" I specialize in identifying bottlenecks in business processes and relentlessly automating them.",
         aboutDesc2: "I combine hard analytical skills (VBA, Power Query, Excel) with a modern web stack (JavaScript, APIs) to build tools that save hundreds of work hours annually. My goal is to build systems that work for people, not the other way around.",
-        aboutSkillsTitle: "Tech Stack (Dependencies)",
-        // NEW: Translated headers for subsections
+        aboutSkillsTitle: "Tech Stack",
         skillsHeaderData: "// Data Automation & Analysis",
         skillsHeaderFrontend: "// Frontend Development",
 
@@ -377,10 +373,10 @@ export const translations = {
         testimonial6: "Full professionalism and commitment. We will definitely be back with more projects.", testimonial6Author: "Adam from Company C",
         agencyContactTitle: "Contact Us", formName: "Name", formEmail: "Email", formMessage: "Message", formSend: "Send", formSuccess: "Thank you for your message! We will get back to you shortly.",
         contactTitle: "Contact", contactContent: "Have a question or a project proposal? I'd love to hear from you. Use the form below or find me on social media.",
-        contactFormTitle: "Initialize connection", formName: "Sender", formEmail: "Return address", formMessage: "Payload (content)", formSend: "EXECUTE TRANSMISSION", formSuccess: "Transmission successful. Awaiting response.",
-        geminiTitle: "Communication Assistant (AI)", geminiContent: "Enter a draft message below, and the system will optimize it for a professional tone.",
-        geminiPlaceholder: "e.g., hey, need to talk about project X, when are you free?", geminiBtn: "OPTIMIZE MESSAGE",
-        loading: "Processing...",
+        contactFormTitle: "Send me a message", formErrorEmpty: "This field is required.", formErrorEmail: "Please enter a valid email address.",
+        geminiTitle: "✨ Email Assistant (Gemini AI)", geminiContent: "Enter a short message below, and I will help you phrase it professionally.",
+        geminiPlaceholder: "e.g., hey, I have a question about project X, when can we talk?", geminiBtn: "Improve Email",
+        loading: "Loading...",
         taxArrearsTitle: "Tax Interest Calculator",
         taxArrearsAmountLabel: "Arrears amount (PLN)",
         taxArrearsStartDateLabel: "Due date",
