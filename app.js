@@ -40,9 +40,8 @@ let synth;
 
 function initializeAudio() {
     if (typeof Tone !== 'undefined' && !synth) {
-        // ZMIANA: Obniżamy głośność całego syntezatora dla subtelniejszego efektu
         synth = new Tone.PolySynth(Tone.Synth, {
-            volume: -12, // Obniżenie głośności o 12 decybeli
+            volume: -12,
             oscillator: { type: 'sine' },
             envelope: { attack: 0.01, decay: 0.1, sustain: 0.2, release: 0.2 }
         }).toDestination();
@@ -61,8 +60,7 @@ async function playSound(type = 'click') {
         const now = Tone.now();
         switch (type) {
             case 'click':
-                // ZMIANA: Delikatniejszy, krótszy i cichszy dźwięk
-                synth.triggerAttackRelease("C4", "16n", now, 0.6); // Niższa nuta, krótszy czas, mniejsza siła ataku
+                synth.triggerAttackRelease("C4", "16n", now, 0.6);
                 break;
             case 'complete':
                 synth.triggerAttackRelease("E5", "8n", now);
@@ -118,7 +116,7 @@ async function fetchAndRenderTemplate(route) {
 }
 
 function setTheme(theme) {
-    document.body.classList.toggle('dark-mode', theme === 'dark');
+    document.body.classList.toggle('light-mode', theme === 'light'); // ZMIANA: Teraz przełączamy light-mode, bo dark jest domyślny
     localStorage.setItem('theme', theme);
     currentTheme = theme;
 }
@@ -153,7 +151,9 @@ function unloadStyle(id) {
 
 function renderStaticContent() {
     document.documentElement.lang = currentLang;
-    document.querySelector('#site-title a').textContent = t('siteTitle');
+    // ZMIANA: Usunięto linijkę nadpisującą #site-title, aby zachować branding FoerchByte i prompt >_
+    // document.querySelector('#site-title a').textContent = t('siteTitle'); 
+    
     document.querySelectorAll('#main-nav a')[0].textContent = t('navAbout');
     document.querySelectorAll('#main-nav a')[1].textContent = t('navProjects');
     document.querySelectorAll('#main-nav a')[2].textContent = t('navContact');
@@ -280,8 +280,10 @@ function navigate(path) {
 
 function initializeApp() {
     const savedTheme = localStorage.getItem('theme');
-    const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-    setTheme(savedTheme || (prefersDark ? 'dark' : 'light'));
+    // ZMIANA: Domyślnie preferujemy tryb ciemny, jeśli użytkownik nie wybrał inaczej
+    const defaultTheme = 'dark'; 
+    setTheme(savedTheme || defaultTheme);
+
     document.getElementById('theme-toggle').addEventListener('click', () => {
         playSound('click');
         setTheme(currentTheme === 'light' ? 'dark' : 'light');
@@ -329,4 +331,3 @@ function initializeApp() {
 }
 
 initializeApp();
-
