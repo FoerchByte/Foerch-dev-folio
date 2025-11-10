@@ -218,10 +218,6 @@ body.light-mode .theme-toggle .sun-icon { display: none; }
     z-index: 110;
 }
 
-/* ... RESZTA PLIKU BEZ ZMIAN (skopiuj swoje istniejące style poniżej, jeśli jakieś masz, 
-   ale na tym etapie skupiamy się na nagłówku i tle) ... */
-/* Wklejam resztę Twoich styli dla kompletności pliku, żebyś mógł po prostu podmienić całość */
-
 .hamburger-bar {
     width: 30px;
     height: 2px;
@@ -231,15 +227,29 @@ body.light-mode .theme-toggle .sun-icon { display: none; }
     transform-origin: 1px;
 }
 
+/* --- Główna treść i animacje --- */
 .content-section {
     padding-top: 4rem;
     padding-bottom: 4rem;
 }
 
-.fade-in { animation: fadeIn 0.3s ease-in-out forwards; }
-.fade-out { animation: fadeOut 0.3s ease-in-out forwards; }
-@keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-@keyframes fadeOut { from { opacity: 1; transform: translateY(0); } to { opacity: 0; transform: translateY(-20px); } }
+.fade-in {
+    animation: fadeIn 0.3s ease-in-out forwards;
+}
+
+.fade-out {
+    animation: fadeOut 0.3s ease-in-out forwards;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeOut {
+    from { opacity: 1; transform: translateY(0); }
+    to { opacity: 0; transform: translateY(-20px); }
+}
 
 .project-title-link {
     display: inline-block;
@@ -262,7 +272,253 @@ body.light-mode .theme-toggle .sun-icon { display: none; }
     font-weight: 700;
 }
 
+
+/* --- ZMIANA: Nowe, kompletne style dla strony "O mnie" --- */
+.about-me-layout {
+    display: flex;
+    align-items: flex-start; /* Wyrównanie do góry */
+    gap: 4rem;
+    margin-bottom: 5rem;
+}
+
+.about-me-photo {
+    flex-shrink: 0;
+    position: relative;
+    width: 280px; /* Nieco większe zdjęcie dla lepszego efektu */
+    height: 350px; /* Prostokątny kadr, bardziej portretowy */
+    border-radius: 4px;
+    overflow: hidden;
+    box-shadow: 20px 20px 0 rgba(2, 12, 27, 0.7); /* "Cień" w kolorze tła, żeby zrobić miejsce na efekt */
+    border: 1px solid var(--primary-color); /* Cienka, techniczna ramka w kolorze akcentu */
+    transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+
+/* Efekt po najechaniu na kontener zdjęcia */
+.about-me-photo:hover {
+    transform: translate(-10px, -10px);
+    box-shadow: 15px 15px 0 var(--primary-color); /* "Cień" zmienia kolor na akcent */
+}
+
+.about-me-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top; /* Kadrowanie od góry, żeby twarz była widoczna */
+    filter: grayscale(100%) contrast(1.1); /* Czarno-biały + lekki kontrast dla dramatyzmu */
+    transition: all 0.3s ease-in-out;
+    mix-blend-mode: multiply; /* Opcjonalne: wtapia zdjęcie w tło */
+}
+
+/* Po najechaniu zdjęcie traci kontrast i filtr */
+.about-me-photo:hover img {
+    filter: grayscale(0%) contrast(1);
+    mix-blend-mode: normal;
+}
+
+/* Obsługa trybów jasny/ciemny dla zdjęć */
+.about-me-photo .photo-light { display: none; }
+.about-me-photo .photo-dark { display: block; }
+body.light-mode .about-me-photo .photo-light { display: block; }
+body.light-mode .about-me-photo .photo-dark { display: none; }
+
+/* Prawa kolumna z tekstem */
+.about-me-content {
+    flex: 1;
+}
+
+.about-me-content h1 {
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    margin: 0 0 0.5rem 0;
+    color: var(--text-color);
+    line-height: 1.1;
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+}
+
+.about-subtitle {
+    font-size: 1.1rem;
+    font-weight: 400;
+    color: var(--primary-color);
+    margin-bottom: 2rem;
+    font-family: 'Roboto Mono', monospace;
+}
+
+.about-description {
+    color: var(--text-secondary);
+    font-size: 1.1rem;
+    max-width: 600px;
+    line-height: 1.7;
+}
+
+.about-description p {
+    margin-bottom: 1.5rem;
+}
+
+/* Sekcja "Dependencies" (Umiejętności) */
+.about-me-content h3 {
+    margin-top: 3rem;
+    margin-bottom: 1.5rem;
+    color: var(--text-color);
+    font-family: 'Roboto Mono', monospace;
+    font-size: 1.3rem;
+    display: flex;
+    align-items: center;
+}
+.about-me-content h3::after {
+    content: '';
+    display: block;
+    width: 100%; /* Linia wypełnia resztę wiersza */
+    height: 1px;
+    background-color: var(--border-color);
+    margin-left: 1.5rem;
+    opacity: 0.5;
+}
+
+.skills-icons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+}
+
+.skill-item {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Wyrównanie do lewej, bardziej techniczne */
+    gap: 0.5rem;
+    font-family: 'Roboto Mono', monospace;
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    transition: color 0.3s;
+}
+
+.skill-item img, .skill-item svg {
+    width: 40px;
+    height: 40px;
+    /* Domyślnie ikony są szare/zgaszone, pasując do tła */
+    filter: grayscale(100%) opacity(0.7);
+    transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+
+.skill-item:hover {
+    color: var(--primary-color);
+}
+
+.skill-item:hover img, .skill-item:hover svg {
+    filter: grayscale(0%) opacity(1);
+    transform: translateY(-5px); /* Lekkie uniesienie */
+}
+
+/* Przyciski CTA */
+.about-cta {
+    margin-top: 4rem;
+    display: flex;
+    gap: 1.5rem;
+}
+
+.cta-button {
+    padding: 1rem 2rem;
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: 500;
+    font-family: 'Roboto Mono', monospace;
+    font-size: 1rem;
+    transition: all 0.2s cubic-bezier(0.645, 0.045, 0.355, 1);
+    border: 1px solid var(--primary-color);
+    display: inline-block;
+}
+
+.cta-button.primary {
+    background-color: transparent;
+    color: var(--primary-color);
+}
+
+.cta-button.primary:hover {
+    background-color: rgba(0, 224, 255, 0.1); /* Delikatne podświetlenie tła */
+    transform: translate(-3px, -3px);
+    box-shadow: 3px 3px 0 var(--primary-color); /* Efekt "twardego" cienia */
+}
+
+.cta-button.secondary {
+    background-color: transparent;
+    border-color: var(--text-secondary);
+    color: var(--text-secondary);
+}
+
+.cta-button.secondary:hover {
+    border-color: var(--text-color);
+    color: var(--text-color);
+    background-color: var(--card-background);
+    transform: translate(-3px, -3px);
+    box-shadow: 3px 3px 0 var(--text-secondary);
+}
+
+
+/* --- Siatka projektów --- */
+.project-filters { margin-bottom: 2rem; display: flex; gap: 0.5rem; flex-wrap: wrap; }
+.project-filters button { background: none; border: 1px solid var(--border-color); color: var(--text-color); padding: 0.5rem 1rem; border-radius: 20px; cursor: pointer; font-weight: 500; transition: all 0.2s ease-in-out; }
+.project-filters button:hover { background-color: var(--completed-bg); border-color: var(--primary-color); }
+.project-filters button.active { background-color: var(--primary-color); border-color: var(--primary-color); color: white; }
+.projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; }
+.project-card { background-color: var(--card-background); border: 1px solid var(--border-color); border-radius: 8px; padding: 1.5rem; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.07); transition: transform 0.2s, box-shadow 0.2s, background-color 0.3s, border-color 0.3s; }
+a.project-card { text-decoration: none; color: inherit; }
+.project-card:hover { transform: translateY(-5px); box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1); }
+.project-card h3 { margin-top: 0; color: var(--primary-color); }
+
+/* --- Elementy wspólne (np. loader, modal) --- */
+.loader { width: 18px; height: 18px; border: 2px solid #FFF; border-bottom-color: transparent; border-radius: 50%; display: inline-block; box-sizing: border-box; animation: rotation 1s linear infinite; margin-left: 10px; }
+@keyframes rotation { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+
+.modal-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background-color: rgba(0, 0, 0, 0.6); display: flex; justify-content: center; align-items: center; z-index: 1000; }
+.modal-content { background-color: var(--card-background); padding: 2rem; border-radius: 8px; max-width: 400px; width: 90%; text-align: center; }
+.modal-buttons { margin-top: 1.5rem; display: flex; justify-content: center; gap: 1rem; }
+.modal-buttons button { padding: 0.6rem 1.2rem; border-radius: 6px; border: none; cursor: pointer; font-weight: 500; }
+.modal-buttons .confirm-btn { background-color: var(--danger-color); color: white; }
+.modal-buttons .cancel-btn { background-color: var(--completed-bg); color: var(--text-color); }
+
+.hidden { display: none; }
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
 /* --- Media Queries (Responsywność) --- */
+@media (max-width: 900px) { /* ZMIANA: Punkt przerwania dla sekcji O mnie */
+    .about-me-layout {
+        flex-direction: column; /* Układ pionowy na tabletach i telefonach */
+        gap: 3rem;
+    }
+
+    .about-me-photo {
+        width: 100%; /* Zdjęcie na całą szerokość kontenera */
+        max-width: 400px; /* Ale nie za wielkie */
+        height: auto;
+        aspect-ratio: 4 / 5; /* Utrzymujemy proporcje portretowe */
+        margin: 0 auto; /* Wyśrodkowanie */
+    }
+
+    .about-me-content h1 {
+        font-size: 3rem;
+    }
+    
+    .about-cta {
+        flex-direction: column; /* Przyciski jeden pod drugim na telefonie */
+        width: 100%;
+    }
+    .cta-button {
+        text-align: center;
+        width: 100%; /* Pełna szerokość przycisku */
+        box-sizing: border-box;
+    }
+}
+
 @media (max-width: 768px) {
     .menu-toggle { display: flex; }
     .nav-wrapper { 
@@ -284,4 +540,6 @@ body.light-mode .theme-toggle .sun-icon { display: none; }
     .site-header.nav-open .menu-toggle .hamburger-bar:nth-child(1) { transform: rotate(45deg); }
     .site-header.nav-open .menu-toggle .hamburger-bar:nth-child(2) { opacity: 0; transform: translateX(20px); }
     .site-header.nav-open .menu-toggle .hamburger-bar:nth-child(3) { transform: rotate(-45deg); }
+    
+    .skills-icons { justify-content: flex-start; }
 }
