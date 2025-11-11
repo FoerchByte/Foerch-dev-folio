@@ -5,16 +5,23 @@
   a web project.
   PL: Ten moduł pełni rolę centralnego centrum dla wszystkich tłumaczeń tekstów
   w aplikacji. Zapewnia spójne, dwujęzyczne doświadczenie użytkownika i
-  demonstruje skalowalne podejście do zarządzania i18n (internacjonalizacją)
+  demonstruje skalowalne podejrzenie do zarządzania i18n (internacjonalizacją)
   w projekcie webowym.
 */
 export const translations = {
     pl: {
         siteTitle: "FoerchByte // Portfolio",
-        navAbout: "O mnie", navProjects: "Projekty", navContact: "Kontakt",
-        backToProjects: "‹ Wróć do projektów",
+        // ZMIANA: Dostosowanie nawigacji do index.html i mockupów
+        navProjects: "Projekty", navChangelog: "Changelog", navContact: "Kontakt",
         
-        // --- Sekcja "O mnie" (Changelog) ---
+        // NOWOŚĆ: Klucze dla nowej strony głównej (Hero)
+        heroSubtitle: "EXECUTIVE_ENGINEER",
+        heroTitle: "Budowanie Systemów Które Skalują",
+        heroDescription: "Architektura wysokowydajnych systemów rozproszonych i infrastruktury z precyzyjną inżynierią i podejmowaniem decyzji w oparciu o dane.",
+        heroCta: "ZOBACZ_CASE_STUDIES",
+
+        // --- Sekcja "O mnie" (Teraz /changelog) ---
+        backToProjects: "‹ Wróć do projektów",
         aboutTitle: "Michał 'Foerch' Herbich",
         aboutSubtitle: "Specjalista ds. Automatyzacji Danych | Frontend Developer",
         aboutDesc1: "Jestem inżynierem, który nie godzi się na \"tak zawsze robiliśmy\". Specjalizuję się w identyfikacji wąskich gardeł w procesach biznesowych i ich bezlitosnej automatyzacji.",
@@ -208,10 +215,17 @@ export const translations = {
     },
     en: {
         siteTitle: "FoerchByte // Portfolio",
-        navAbout: "About Me", navProjects: "Projects", navContact: "Contact",
+        // ZMIANA: Dostosowanie nawigacji do index.html i mockupów
+        navProjects: "Projects", navChangelog: "Changelog", navContact: "Contact",
+
+        // NOWOŚĆ: Klucze dla nowej strony głównej (Hero)
+        heroSubtitle: "EXECUTIVE_ENGINEER",
+        heroTitle: "Building Systems That Scale",
+        heroDescription: "Architecting high-performance distributed systems and infrastructure with precision engineering and data-driven decision making.",
+        heroCta: "VIEW_CASE_STUDIES",
+
+        // --- Sekcja "O mnie" (Teraz /changelog) ---
         backToProjects: "‹ Back to projects",
-        
-        // --- NEW: About Me (Changelog) Section ---
         aboutTitle: "Michael 'Foerch' Herbich",
         aboutSubtitle: "Data Automation Specialist | Frontend Developer",
         aboutDesc1: "I am an engineer who refuses to accept \"that's how we've always done it.\" I specialize in identifying bottlenecks in business processes and relentlessly automating them.",
@@ -352,9 +366,9 @@ export const translations = {
         pomodoroCyclesTitle: "Completed cycles (target: 4)",
         ticTacToeTitle: "Tic-Tac-Toe", ticTacToeTurn: (player) => `Player ${player}'s turn`, ticTacToeWinner: (player) => `Player ${player} wins!`, ticTacToeDraw: "It's a draw!", ticTacToeRestart: "Play Again",
         ticTacToeModePVP: "Player vs Player", ticTacToeModePVC: "Player vs Computer", ticTacToeScore: "Score", ticTacToeChooseSide: "Choose your side:", ticTacToePlay: "Start Game",
-        memoryGameTitle: "Memory Game", memoryGameMoves: "Ruchy", memoryGameTime: "Time", memoryGameRestart: "Play Again",
+        memoryGameTitle: "Memory Game", memoryGameMoves: "Moves", memoryGameTime: "Time", memoryGameRestart: "Play Again",
         memoryGameWin: ({ moves, time }) => `Congratulations! You won in ${moves} moves and ${time}s!`,
-        snakeGameTitle: "Snake Game", snakeGameScore: "Score", snakeGameHighScore: "High Score", snakeGamePause: "PAUSED", snakeGameOver: "Game Over!", snakeGameRestart: "Zagraj ponownie",
+        snakeGameTitle: "Snake Game", snakeGameScore: "Score", snakeGameHighScore: "High Score", snakeGamePause: "PAUSED", snakeGameOver: "Game Over!", snakeGameRestart: "Play Again",
         snakeGameStartMsg: "Press any key or swipe to start",
         snakeGameControls: "Controls: Arrow keys, WASD or swipe gestures. Pause: Spacebar.",
         agencyTitle: "Creative Agency", agencyHeroTitle: "We build digital experiences.", agencyHeroSubtitle: "We specialize in web design, branding, and online marketing to help your business grow.",
@@ -373,10 +387,10 @@ export const translations = {
         testimonial6: "Full professionalism and commitment. We will definitely be back with more projects.", testimonial6Author: "Adam from Company C",
         agencyContactTitle: "Contact Us", formName: "Name", formEmail: "Email", formMessage: "Message", formSend: "Send", formSuccess: "Thank you for your message! We will get back to you shortly.",
         contactTitle: "Contact", contactContent: "Have a question or a project proposal? I'd love to hear from you. Use the form below or find me on social media.",
-        contactFormTitle: "Send me a message", formErrorEmpty: "This field is required.", formErrorEmail: "Please enter a valid email address.",
-        geminiTitle: "✨ Email Assistant (Gemini AI)", geminiContent: "Enter a short message below, and I will help you phrase it professionally.",
-        geminiPlaceholder: "e.g., hey, I have a question about project X, when can we talk?", geminiBtn: "Improve Email",
-        loading: "Loading...",
+        contactFormTitle: "Inicjalizacja połączenia", formName: "Nadawca", formEmail: "Adres zwrotny", formMessage: "Ładunek (treść)", formSend: "WYKONAJ POŁĄCZENIE", formSuccess: "Transmisja zakończona sukcesem. Oczekuj na odpowiedź.",
+        geminiTitle: "Asystent Komunikacji (AI)", geminiContent: "Wpisz roboczą wersję wiadomości, a system zoptymalizuje ją pod kątem profesjonalnego tonu.",
+        geminiPlaceholder: "np. siema, chce pogadac o projekcie, kiedy masz czas?", geminiBtn: "OPTULIZUJ WIADOMOŚĆ",
+        loading: "Processing...",
         taxArrearsTitle: "Tax Interest Calculator",
         taxArrearsAmountLabel: "Arrears amount (PLN)",
         taxArrearsStartDateLabel: "Due date",
