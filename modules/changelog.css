@@ -98,7 +98,8 @@ body.light-mode .about-me-photo .photo-dark { opacity: 0; z-index: 1; }
     /* Główna linia "git log" */
     border-left: 2px solid var(--border-color);
     padding-left: 2.5rem;
-    /* padding-bottom: 2rem; */ /* Usunięto zły fix */
+    /* ZMIANA: Dodanie "oddechu" na dole, który pociągnie linię */
+    padding-bottom: 2.5rem; 
 }
 
 /* ZMIANA (Wniosek #2): Zmieniono item w kafelek */
@@ -117,15 +118,11 @@ body.light-mode .about-me-photo .photo-dark { opacity: 0; z-index: 1; }
     box-shadow: 0 0 15px rgba(0, 224, 255, 0.1);
 }
 
-/* ZMIANA: Usunięto tę regułę.
-  Ostatni kafelek będzie miał teraz taki sam margines dolny
-  jak wszystkie inne, co naprawia "ucięty" problem.
-*/
-/*
+/* ZMIANA: Przywrócenie tej reguły jest kluczowe dla działania padding-bottom rodzica */
 .timeline-item:last-child {
     margin-bottom: 0;
 }
-*/
+
 
 
 /* Kropka "commit" */
