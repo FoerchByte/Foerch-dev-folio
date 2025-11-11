@@ -96,8 +96,8 @@ body.light-mode .about-me-photo .photo-dark { opacity: 0; z-index: 1; }
     /* Główna linia "git log" */
     border-left: 2px solid var(--border-color);
     padding-left: 2.5rem;
-    /* ZMIANA: Zwiększamy "oddech" na dole z 2rem do 3rem */
-    padding-bottom: 3rem; 
+    /* ZMIANA: Dodanie "oddechu" na dole kontenera, co przedłuży linię */
+    padding-bottom: 2rem; 
 }
 
 /* ZMIANA #4: Usunięcie starego, niedziałającego hacka */
@@ -120,11 +120,13 @@ body.light-mode .about-me-photo .photo-dark { opacity: 0; z-index: 1; }
     border-radius: 2px;
     transition: all 0.2s ease-in-out;
 }
-.timeline-item:hover {
-    border-color: var(--primary-color);
-    box-shadow: 0 0 15px rgba(0, 224, 255, 0.05);
-}
-/* ZMIANA #4: Przywrócenie tej reguły jest kluczowe dla poprawki "uciętego kafelka" */
+/* ZMIANA: Usunięcie tej reguły.
+   Teraz ostatni kafelek będzie miał domyślny 'margin-bottom: 2rem',
+   co da mu "oddech" na dole.
+*/
+/* ZMIANA: Przywrócenie tej reguły.
+   Kafelek przylega do dołu, a "oddech" tworzy padding kontenera.
+*/
 .timeline-item:last-child {
     margin-bottom: 0;
 }
