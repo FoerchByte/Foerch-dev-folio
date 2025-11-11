@@ -14,8 +14,8 @@ export const translations = {
         
         // --- Nowa strona główna (Hero) ---
         heroSubtitle: "EXECUTIVE_ENGINEER",
-        // ZMIANA: Dodano span.highlight do tłumaczenia, aby umożliwić stylowanie
-        heroTitle: "Budowanie <span class=\"highlight\">Systemów</span> Które Skalują",
+        // ZMIANA: Wersja G tytułu
+        heroTitle: "Od <span class=\"highlight\">Analityki</span> do Aplikacji",
         // ZMIANA: Zaktualizowano o "mięsistą" Wersję E
         heroDescription: "Moja wartość leży na styku logiki biznesowej i inżynierii oprogramowania. Wykorzystuję analityczne myślenie (Excel, VBA) i precyzję dewelopera (JavaScript, API), aby architektonicznie rozwiązywać złożone problemy z danymi – nie tylko budować aplikacje.",
         heroCta: "ZOBACZ_CASE_STUDIES",
@@ -23,7 +23,8 @@ export const translations = {
         // Statystyki na stronie głównej (NOWE)
         heroStatExperience: "LAT DOŚWIADCZENIA (Finanse/VBA)",
         heroStatProjects: "WDROŻONYCH PROJEKTÓW",
-        heroStatCommits: "COMMITÓW W REPOZYTORIACH",
+        // ZMIANA: Uściślenie etykiety, aby pasowała do liczby 350+
+        heroStatCommits: "COMMITÓW (Ostatni Rok)",
         heroStatAutomations: "ZAUTOMATYZOWANE PROCESY",
 
         // --- Nawigacja (zgodna z mockupem) ---
@@ -334,8 +335,8 @@ export const translations = {
 
         // --- New Hero Page ---
         heroSubtitle: "EXECUTIVE_ENGINEER",
-        // ZMIANA: Added span.highlight for styling
-        heroTitle: "Building <span class=\"highlight\">Systems</span> That Scale",
+        // ZMIANA: Wersja G tytułu (EN)
+        heroTitle: "From <span class=\"highlight\">Analytics</span> to Applications",
         // ZMIANA: Updated to "meaty" Version E
         heroDescription: "My value is at the intersection of business logic and software engineering. I leverage analytical thinking (Excel, VBA) and developer precision (JavaScript, API) to architect solutions for complex data problems—not just build applications.",
         heroCta: "VIEW_CASE_STUDIES",
@@ -343,7 +344,8 @@ export const translations = {
         // Homepage Stats (NEW)
         heroStatExperience: "YEARS OF EXPERIENCE (Finance/VBA)",
         heroStatProjects: "PROJECTS SHIPPED",
-        heroStatCommits: "COMMITS IN REPOSITORIES",
+        // ZMIANA: Uściślenie etykiety (EN)
+        heroStatCommits: "COMMITS (Last Year)",
         heroStatAutomations: "AUTOMATED PROCESSES",
 
         // --- Navigation (Mockup Compliant) ---
