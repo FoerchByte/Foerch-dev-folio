@@ -118,13 +118,24 @@
     font-size: 1rem;
     line-height: 1.6;
     margin: 0;
+    /* Zapewnia, że stopka będzie na dole, jeśli opis jest krótki */
+    flex-grow: 1; 
+}
+
+/* ZMIANA: Nowy kontener "stopki" */
+.project-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end; /* Wyrównanie do dołu */
+    margin-top: 1.5rem;
+    gap: 1rem;
 }
 
 .project-tags {
-    margin-top: 1.5rem;
     display: flex;
     flex-wrap: wrap;
     gap: 0.75rem;
+    flex-grow: 1; /* Tagi zajmują dostępną przestrzeń po lewej */
 }
 
 .tag {
@@ -151,13 +162,11 @@
 }
 
 /*
-  Dla linku zewnętrznego (np. do Netlify)
+  ZMIANA: Poprawka dla linku zewnętrznego
 */
 .project-external-link-wrapper {
-    margin-top: 1.5rem;
-    /* ZMIANA: Dodano padding i linię, aby wizualnie oddzielić link */
-    padding-top: 1.5rem;
-    border-top: 1px solid var(--border-color);
+    /* Usunięto wszystkie stare style (margin, padding, border) */
+    flex-shrink: 0; /* Zapobiega kurczeniu się linku */
 }
 
 .project-external-link {
@@ -170,6 +179,7 @@
     border-radius: 4px;
     text-decoration: none;
     transition: all 0.2s ease-in-out;
+    white-space: nowrap; /* Zapobiega łamaniu linii w linku */
 }
 
 .project-external-link:hover {
