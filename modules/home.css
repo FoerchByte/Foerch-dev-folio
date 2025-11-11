@@ -15,6 +15,8 @@
     align-items: center;
     min-height: calc(85vh - 100px); /* 85% wysokości ekranu minus nagłówek */
     position: relative;
+    /* ZMIANA: Dodano padding na dole, aby ikony social nie nachodziły na CTA */
+    padding-bottom: 5rem; 
 }
 
 .hero-content {
@@ -59,11 +61,11 @@
 }
 
 /* ZMIANA: Pozycjonowanie ikon social media.
-  Ustawiamy je absolutnie względem kontenera `.hero-layout`.
+  `bottom: 2rem` zamiast `0` daje lepszy oddech od krawędzi.
 */
 .hero-socials {
     position: absolute;
-    bottom: 0; 
+    bottom: 2rem; /* ZMIANA: Podniesiono ikony (było 0) */
     left: 0;
     display: flex;
     flex-direction: column; /* Pionowy układ, jak na mockupie */
@@ -105,6 +107,8 @@
     flex-direction: column;
     gap: 0.5rem;
     transition: all 0.2s ease-in-out;
+    position: relative; /* ZMIANA: Kontekst dla ikony */
+    overflow: hidden; /* ZMIANA: Ukrycie części ikony */
 }
 
 .stat-card:hover {
@@ -113,19 +117,30 @@
     box-shadow: 0 0 15px rgba(0, 224, 255, 0.1);
 }
 
+/* ZMIANA: Nowy styl dla ikony w rogu (zgodnie z nowym szablonem) */
 .stat-icon-wrapper {
-    margin-bottom: 1rem;
+    margin-bottom: 0; /* Usunięto stary margines */
+    position: absolute;
+    top: 0.75rem;
+    right: 1rem;
+    opacity: 0.15;
+    transition: all 0.3s ease-in-out;
 }
 .stat-icon-wrapper svg {
-    width: 24px;
-    height: 24px;
+    width: 20px; /* ZMIANA: Zmniejszono ikonę */
+    height: 20px;
     color: var(--primary-color);
-    opacity: 0.7;
+    /* opacity: 0.7; Usunięto, kontrolujemy na wrapperze */
+}
+/* ZMIANA: Efekt hover dla ikony */
+.stat-card:hover .stat-icon-wrapper {
+    opacity: 0.4;
+    transform: scale(1.1) rotate(-5deg);
 }
 
 .stat-value {
     font-family: 'Roboto Mono', monospace;
-    font-size: 2rem;
+    font-size: 2.5rem; /* ZMIANA: Powiększono czcionkę (było 2rem) */
     font-weight: 700;
     color: var(--text-color);
     line-height: 1;
