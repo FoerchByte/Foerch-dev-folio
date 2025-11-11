@@ -1,33 +1,254 @@
 /*
-  EN: Stylesheet for the "About Me" page timeline. It's designed to visually
-  represent the user's career and education path in a clean and elegant way,
-  turning a simple list into a compelling, interactive story.
-  PL: Arkusz stylów dla osi czasu na stronie "O mnie". Zaprojektowany, aby
-  wizualnie przedstawić ścieżkę kariery i edukacji w czysty i elegancki sposób,
-  przekształcając prostą listę w intrygującą, interaktywną opowieść.
+  EN: Stylesheet for the "Changelog" page.
+  This is a complete rewrite of the old "timeline.css" to match
+  the "git log" aesthetic of the mockups (image_936c80.png).
+  PL: Arkusz stylów dla strony "Changelog".
+  To jest całkowite przepisanie starego "timeline.css", aby pasował
+  do estetyki "git log" z mockupów (image_936c80.png).
 */
-:root { --timeline-line-color: #dee2e6; --timeline-dot-color: #adb5bd; --timeline-dot-active-color: var(--primary-color); }
-body.dark-mode { --timeline-line-color: #495057; --timeline-dot-color: #6c757d; }
-.timeline-section { margin-top: 4rem; }
-.timeline-section .collapsible-header { cursor: pointer; position: relative; display: inline-flex; align-items: center; gap: 1rem; }
-.timeline-section .collapsible-header::after { content: ''; width: 20px; height: 20px; background-color: var(--text-color); -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E"); mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E"); transition: transform 0.3s ease-in-out; }
-.timeline-section.active .collapsible-header::after { transform: rotate(180deg); }
-.timeline-container { position: relative; padding-left: 30px; border-left: 3px solid var(--timeline-line-color); max-height: 0; overflow: hidden; transition: max-height 0.5s ease-in-out, margin-top 0.5s ease-in-out; margin-top: 0; }
-.timeline-section.active .timeline-container { max-height: 2000px; margin-top: 2rem; }
-.timeline-item { position: relative; margin-bottom: 2rem; }
-.timeline-item:last-child { margin-bottom: 0; }
-.timeline-dot { position: absolute; left: -42px; top: 5px; width: 21px; height: 21px; border-radius: 50%; background-color: var(--background-color); border: 4px solid var(--timeline-dot-color); transition: background-color 0.3s, border-color 0.3s; box-sizing: border-box; }
-.timeline-item[data-type="work"] .timeline-dot { border-color: var(--primary-color); }
-.timeline-item[data-type="education"] .timeline-dot { border-color: var(--success-color); }
-.timeline-item.active .timeline-dot { background-color: var(--timeline-dot-active-color); }
-.timeline-item.active[data-type="education"] .timeline-dot { background-color: var(--success-color); }
-.timeline-card { background-color: var(--card-background); border: 1px solid var(--border-color); border-radius: 8px; padding: 1.5rem; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.07); cursor: pointer; position: relative; padding-bottom: 3rem; }
-.timeline-header { display: grid; grid-template-columns: 1fr auto; gap: 1rem; align-items: start; }
-.timeline-card::after { content: ''; position: absolute; bottom: 1rem; right: 1.5rem; width: 16px; height: 16px; background-color: var(--completed-text); -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E"); mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E"); transition: transform 0.3s ease-in-out; }
-.timeline-item.active .timeline-card::after { transform: rotate(180deg); }
-.timeline-title { margin: 0; font-size: 1.2rem; }
-.timeline-place { margin: 0.25rem 0 0 0; font-style: italic; color: var(--completed-text); }
-.timeline-date { grid-column: 2 / 3; font-weight: 500; color: var(--completed-text); text-align: right; white-space: nowrap; }
-.timeline-content { max-height: 0; overflow: hidden; opacity: 0; transition: max-height 0.4s ease-in-out, opacity 0.4s ease-in-out, margin-top 0.4s ease-in-out; }
-.timeline-item.active .timeline-content { max-height: 200px; opacity: 1; margin-top: 1rem; }
-@media (max-width: 768px) { .timeline-header { grid-template-columns: 1fr; } .timeline-date { grid-column: 1 / 2; grid-row: 2 / 3; text-align: left; background-color: var(--completed-bg); padding: 0.2rem 0.6rem; border-radius: 4px; font-size: 0.9rem; margin-top: 0.5rem; display: inline-block; width: fit-content; } }
+
+/* --- Sekcja Bio (Góra strony) --- */
+
+.about-me-layout {
+    display: flex;
+    align-items: flex-start;
+    gap: 4rem;
+    margin-bottom: 5rem;
+}
+
+.about-me-photo {
+    flex-shrink: 0;
+    position: relative;
+    width: 280px;
+    height: 350px;
+    border-radius: 2px; /* Ostrzejsze krawędzie */
+    border: 1px solid var(--border-color);
+    transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+    background-color: var(--card-background);
+}
+/* Efekt poświaty zamiast cienia */
+.about-me-photo:hover {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 15px rgba(0, 224, 255, 0.1);
+}
+
+.about-me-photo img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    filter: grayscale(100%) contrast(1.1);
+    transition: all 0.3s ease-in-out;
+    border-radius: 2px;
+}
+.about-me-photo:hover img {
+    filter: grayscale(0%) contrast(1);
+}
+.about-me-photo .photo-light { opacity: 0; z-index: 1; }
+.about-me-photo .photo-dark { opacity: 1; z-index: 2; }
+body.light-mode .about-me-photo .photo-light { opacity: 1; z-index: 2; }
+body.light-mode .about-me-photo .photo-dark { opacity: 0; z-index: 1; }
+
+.about-me-content { flex: 1; }
+.about-me-content h1 {
+    font-size: clamp(2.5rem, 5vw, 3.5rem);
+    margin: 0 0 0.5rem 0;
+    color: var(--text-color);
+    line-height: 1.1;
+    font-weight: 700;
+}
+.about-subtitle {
+    font-size: 1.1rem;
+    font-weight: 400;
+    color: var(--primary-color);
+    margin-bottom: 2rem;
+    font-family: 'Roboto Mono', monospace;
+}
+.about-description {
+    color: var(--text-secondary);
+    font-size: 1.1rem;
+    max-width: 600px;
+    line-height: 1.7;
+}
+.about-description p { margin-bottom: 1.5rem; }
+
+/* Nagłówki sekcji (Stack) */
+.about-me-content h3 {
+    margin-top: 3rem;
+    margin-bottom: 1rem;
+    color: var(--text-color);
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+.skills-header {
+    font-family: 'Roboto Mono', monospace;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+    opacity: 0.8;
+}
+
+.skills-icons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem; /* Zmniejszony odstęp */
+}
+.skill-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.8rem;
+    font-family: 'Roboto Mono', monospace;
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    transition: all 0.3s;
+    background-color: var(--card-background);
+    padding: 1rem;
+    border-radius: 2px;
+    border: 1px solid var(--border-color);
+    width: 100px;
+    height: 100px;
+    text-align: center;
+}
+.skill-item img, .skill-item svg {
+    width: 32px;
+    height: 32px;
+    filter: grayscale(100%) opacity(0.7);
+    transition: all 0.3s ease-in-out;
+}
+.skill-item:hover {
+    color: var(--primary-color);
+    border-color: var(--primary-color);
+    background-color: rgba(0, 224, 255, 0.05);
+    transform: translateY(-5px);
+}
+.skill-item:hover img, .skill-item:hover svg {
+    filter: grayscale(0%) opacity(1);
+}
+
+.about-cta {
+    margin-top: 3rem;
+    display: flex;
+    gap: 1.5rem;
+}
+
+
+/* --- Sekcja "Career Changelog" (Oś czasu) --- */
+
+.timeline-section {
+    margin-top: 6rem;
+    border-top: 1px solid var(--border-color);
+    padding-top: 4rem;
+}
+
+/* Usunięcie logiki "collapsible" */
+.timeline-container {
+    position: relative;
+    /* Główna linia "git log" */
+    border-left: 2px solid var(--border-color);
+    padding-left: 2.5rem;
+}
+
+.timeline-item {
+    position: relative;
+    padding-bottom: 2.5rem;
+}
+.timeline-item:last-child {
+    padding-bottom: 0;
+}
+
+/* Kropka "commit" */
+.timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -2.5rem;
+    top: 8px; /* Wyrównanie z pierwszą linią tekstu */
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: var(--background-color);
+    border: 2px solid var(--text-secondary);
+    margin-left: -6px;
+    z-index: 1;
+    transition: all 0.3s ease;
+}
+
+/* Podświetlenie ostatniego (aktywnego) commita */
+.timeline-item:first-child::before {
+    border-color: var(--primary-color);
+    background-color: var(--primary-color);
+    box-shadow: 0 0 10px rgba(0, 224, 255, 0.5);
+}
+
+.timeline-date {
+    font-family: 'Roboto Mono', monospace;
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    margin-bottom: 0.5rem;
+}
+
+.timeline-title {
+    margin: 0;
+    font-size: 1.25rem;
+    color: var(--text-color);
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+}
+
+.timeline-title code {
+    font-family: 'Roboto Mono', monospace;
+    background-color: var(--completed-bg);
+    padding: 0.2rem 0.5rem;
+    border-radius: 4px;
+    margin-right: 0.5rem;
+    font-size: 1.1rem;
+    color: var(--text-secondary);
+}
+.timeline-item:first-child .timeline-title code {
+    background-color: rgba(0, 224, 255, 0.1);
+    color: var(--primary-color);
+}
+
+.timeline-place {
+    margin: 0;
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    font-style: italic;
+}
+
+.timeline-content {
+    color: var(--text-secondary);
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-top: 1rem;
+}
+.timeline-content p {
+    margin: 0;
+}
+
+.timeline-tags {
+    margin-top: 1rem;
+    font-family: 'Roboto Mono', monospace;
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    line-height: 1.8;
+}
+
+/* Responsywność dla Changelog */
+@media (max-width: 900px) {
+    .about-me-layout {
+        flex-direction: column;
+        gap: 3rem;
+    }
+    .about-me-photo {
+        margin: 0 auto;
+        width: 100%;
+        max-width: 350px;
+        height: auto;
+        aspect-ratio: 4/5;
+    }
+}
