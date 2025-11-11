@@ -10,7 +10,7 @@ import { translations } from './modules/translations.js';
 // Zastępuje starą, prostą tablicę. Teraz zawiera klucze do wszystkich
 // danych potrzebnych do zbudowania widoku "Project Registry".
 const projectsData = [
-    // --- Specjalistyczne (Automatyzacja) ---
+// ... (bez zmian dla aggregator, tax-arrears, statutory-interest, budget-validator) ...
     { 
         id: 'project-aggregator', 
         category: 'specialist',
@@ -55,7 +55,10 @@ const projectsData = [
         descKey: 'weatherDesc',
         statusKey: 'weatherStatus',
         dateKey: 'weatherDate',
-        tagsKey: 'weatherTags'
+        tagsKey: 'weatherTags',
+        // ZMIANA: Dodano link zewnętrzny i klucz do jego opisu
+        externalUrl: 'https://foerch-weather-station.netlify.app',
+        linkDescKey: 'weatherLinkDesc'
     },
     { 
         id: 'todo', 
@@ -63,7 +66,7 @@ const projectsData = [
         titleKey: 'todoTitle',
         descKey: 'todoDesc',
         statusKey: 'todoStatus',
-        dateKey: 'todoDate',
+// ... (bez zmian dla reszty projektów) ...
         tagsKey: 'todoTags'
     },
     { 
@@ -132,9 +135,7 @@ const projectsData = [
         tagsKey: 'memoryGameTags'
     },
 ];
-// Uwaga: Usuwamy sortowanie po kategoriach, ponieważ mockup sortuje po dacie (co osiągniemy przez kolejność w tablicy)
-// Możemy posortować po dacie, ale klucze `dateKey` (np. "2023-Q4") nie są łatwo sortowalne.
-// Na razie zostawiamy kolejność ręczną, zgodną z logiką (Specjalistyczne -> Narzędzia -> ...).
+// ... (reszta pliku bez zmian) ...
 
 
 // --- Zmienne globalne ---
@@ -263,6 +264,17 @@ function renderProjects() {
             .map(tag => `<span class="tag">${tag}</span>`)
             .join(' ');
 
+        // ZMIANA: Dodano logikę renderowania linku zewnętrznego
+        const externalLink = project.externalUrl
+            ? `<a href="${project.externalUrl}" 
+                 target="_blank" 
+                 rel="noopener noreferrer" 
+                 class="project-external-link" 
+                 onclick="event.stopPropagation()">
+                 ${t(project.linkDescKey)}
+               </a>`
+            : '';
+
         return `
             <li class="project-item">
                 <a href="/${project.id}" class="project-link">
@@ -274,6 +286,10 @@ function renderProjects() {
                     <p class="project-description">${t(project.descKey)}</p>
                     <div class="project-tags">
                         ${tags}
+                    </div>
+                    <!-- ZMIANA: Dodano kontener na link zewnętrzny -->
+                    <div class="project-external-link-wrapper">
+                        ${externalLink}
                     </div>
                 </a>
             </li>
