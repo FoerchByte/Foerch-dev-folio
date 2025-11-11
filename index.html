@@ -13,8 +13,11 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <!-- ZMIANA: Dodano Roboto Mono do importu dla technicznego wyglądu -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Roboto+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+    
+    <!-- ZMIANA: Dodano biblioteki dla Agregatora (SheetJS/XLSX) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
 </head>
-<body>
+<body class="light-mode"> <!-- Domyślnie ustawiony tryb ciemny, klasa "light-mode" jest przełączana przez JS -->
 
     <!-- Nagłówek strony -->
     <header class="site-header">
@@ -38,11 +41,9 @@
                     <!-- EN: Navigation links updated to match mockup ([projects] [changelog] [contact]). -->
                     <!-- PL: Linki nawigacyjne zaktualizowane zgodnie z mockupem ([projects] [changelog] [contact]). -->
                     
-                    <!-- ZMIANA 1: "O mnie" staje się "Projekty" i jest pierwsze -->
-                    <a href="/projects" data-i18n="navProjects">Projekty</a>
-                    
-                    <!-- ZMIANA 2: "Projekty" staje się "Changelog" -->
+                    <!-- ZMIANA: Kolejność zmieniona na prośbę użytkownika (Changelog przed Projektami) -->
                     <a href="/changelog" data-i18n="navChangelog">Changelog</a>
+                    <a href="/projects" data-i18n="navProjects">Projekty</a>
                     
                     <!-- ZMIANA 3: "Kontakt" zostaje bez zmian -->
                     <a href="/contact" data-i18n="navContact">Kontakt</a>
