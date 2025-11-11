@@ -11,7 +11,8 @@
 
 .about-me-layout {
     display: flex;
-    align-items: flex-start;
+    /* ZMIANA #1: Wyrównanie do dołu, zgodnie z Twoją prośbą */
+    align-items: flex-end;
     gap: 4rem;
     margin-bottom: 5rem;
 }
@@ -75,11 +76,12 @@ body.light-mode .about-me-photo .photo-dark { opacity: 0; z-index: 1; }
 }
 .about-description p { margin-bottom: 1.5rem; }
 
-/* ZMIANA: Style dla h3, .skills-header, .skills-icons, .skill-item, .about-cta
-  są teraz stosowane do sekcji .stack-section, która znajduje się
-  na zewnątrz .about-me-layout.
-*/
-
+/* ZMIANA #4: Przywrócenie stylów dla CTA wewnątrz .about-me-content */
+.about-me-content .about-cta {
+    margin-top: 3rem;
+    display: flex;
+    gap: 1.5rem;
+}
 
 /* --- Sekcja "Career Changelog" (Oś czasu) --- */
 
@@ -89,7 +91,6 @@ body.light-mode .about-me-photo .photo-dark { opacity: 0; z-index: 1; }
     padding-top: 4rem;
 }
 
-/* Usunięcie logiki "collapsible" */
 .timeline-container {
     position: relative;
     /* Główna linia "git log" */
@@ -99,10 +100,20 @@ body.light-mode .about-me-photo .photo-dark { opacity: 0; z-index: 1; }
 
 .timeline-item {
     position: relative;
-    padding-bottom: 2.5rem;
+    /* ZMIANA #2: Dodanie stylu "commit block" / "kafelka" */
+    margin-bottom: 2rem;
+    padding: 2rem;
+    background-color: var(--card-background);
+    border: 1px solid var(--border-color);
+    border-radius: 2px;
+    transition: all 0.2s ease-in-out;
+}
+.timeline-item:hover {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 15px rgba(0, 224, 255, 0.05);
 }
 .timeline-item:last-child {
-    padding-bottom: 0;
+    margin-bottom: 0;
 }
 
 /* Kropka "commit" */
@@ -110,7 +121,8 @@ body.light-mode .about-me-photo .photo-dark { opacity: 0; z-index: 1; }
     content: '';
     position: absolute;
     left: -2.5rem;
-    top: 8px; /* Wyrównanie z pierwszą linią tekstu */
+    /* ZMIANA #2: Wyrównanie do góry ramki (uwzględniając padding) */
+    top: 2rem; 
     width: 10px;
     height: 10px;
     border-radius: 50%;
@@ -126,6 +138,10 @@ body.light-mode .about-me-photo .photo-dark { opacity: 0; z-index: 1; }
     border-color: var(--primary-color);
     background-color: var(--primary-color);
     box-shadow: 0 0 10px rgba(0, 224, 255, 0.5);
+}
+/* ZMIANA #2: Podświetlenie ramki aktywnego commita */
+.timeline-item:first-child {
+    border-color: var(--primary-color);
 }
 
 .timeline-date {
@@ -182,9 +198,7 @@ body.light-mode .about-me-photo .photo-dark { opacity: 0; z-index: 1; }
     line-height: 1.8;
 }
 
-/* ZMIANA: NOWE STYLE DLA PRZENIESIONEJ SEKCJI STACKU
-  Zgodnie z planem, przenosimy sekcję Stack na dół.
-*/
+/* ZMIANA: Style dla sekcji Stacku na dole */
 .stack-section {
     margin-top: 6rem;
     border-top: 1px solid var(--border-color);
@@ -210,6 +224,13 @@ body.light-mode .about-me-photo .photo-dark { opacity: 0; z-index: 1; }
     opacity: 0.7;
 }
 
+/* ZMIANA #3: Kontener siatki dla stacku */
+.stack-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem; /* Zwiększony odstęp między grupami */
+}
+
 .stack-section .skills-header {
     font-family: 'Roboto Mono', monospace;
     color: var(--text-secondary);
@@ -221,7 +242,7 @@ body.light-mode .about-me-photo .photo-dark { opacity: 0; z-index: 1; }
 .stack-section .skills-icons {
     display: flex;
     flex-wrap: wrap;
-    gap: 1rem; /* Zmniejszony odstęp */
+    gap: 1rem; 
 }
 
 .stack-section .skill-item {
@@ -258,11 +279,7 @@ body.light-mode .about-me-photo .photo-dark { opacity: 0; z-index: 1; }
     filter: grayscale(0%) opacity(1);
 }
 
-.stack-section .about-cta {
-    margin-top: 3rem;
-    display: flex;
-    gap: 1.5rem;
-}
+/* ZMIANA #4: Usunięto style .stack-section .about-cta */
 
 
 /* Responsywność dla Changelog */
@@ -270,6 +287,8 @@ body.light-mode .about-me-photo .photo-dark { opacity: 0; z-index: 1; }
     .about-me-layout {
         flex-direction: column;
         gap: 3rem;
+        /* ZMIANA #1: Na mobilce wracamy do wyrównania góry */
+        align-items: flex-start;
     }
     .about-me-photo {
         margin: 0 auto;
@@ -279,13 +298,20 @@ body.light-mode .about-me-photo .photo-dark { opacity: 0; z-index: 1; }
         aspect-ratio: 4/5;
     }
 
-    /* ZMIANA: Style dla przycisków CTA w sekcji .stack-section na mobilce */
-    .stack-section .about-cta {
+    /* ZMIANA #4: Style dla przycisków CTA w sekcji .about-me-content na mobilce */
+    .about-me-content .about-cta {
         flex-direction: column;
     }
-    .stack-section .about-cta .cta-button {
+    .about-me-content .about-cta .cta-button {
         width: 100%;
-        max-width: 400px; /* Ograniczenie szerokości na mobilce */
-        margin: 0 auto;
+        max-width: 400px; 
+    }
+}
+
+@media (max-width: 768px) {
+    /* ZMIANA #3: Układ stacku na 1 kolumnę na mobilkach */
+    .stack-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
     }
 }
