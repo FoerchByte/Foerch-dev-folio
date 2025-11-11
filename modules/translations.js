@@ -19,6 +19,8 @@ export const translations = {
         // ZMIANA: Zaktualizowano o "mięsistą" Wersję E
         heroDescription: "Moja wartość leży na styku logiki biznesowej i inżynierii oprogramowania. Wykorzystuję analityczne myślenie (Excel, VBA) i precyzję dewelopera (JavaScript, API), aby architektonicznie rozwiązywać złożone problemy z danymi – nie tylko budować aplikacje.",
         heroCta: "ZOBACZ_CASE_STUDIES",
+        // ZMIANA: Nowy klucz dla przycisku Kontakt
+        heroCtaContact: "Skontaktuj się",
 
         // Statystyki na stronie głównej (NOWE)
         heroStatExperience: "LAT DOŚWIADCZENIA (Finanse/VBA)",
@@ -340,6 +342,8 @@ export const translations = {
         // ZMIANA: Updated to "meaty" Version E
         heroDescription: "My value is at the intersection of business logic and software engineering. I leverage analytical thinking (Excel, VBA) and developer precision (JavaScript, API) to architect solutions for complex data problems—not just build applications.",
         heroCta: "VIEW_CASE_STUDIES",
+        // ZMIANA: Nowy klucz dla przycisku Kontakt (EN)
+        heroCtaContact: "Get in Touch",
 
         // Homepage Stats (NEW)
         heroStatExperience: "YEARS OF EXPERIENCE (Finance/VBA)",
@@ -577,7 +581,7 @@ export const translations = {
         markdownCharacters: "Characters",
         
         pomodoroTimerTitle: "Pomodoro Assistant", pomodoroModeWork: "Work", pomodoroModeShortBreak: "Short Break", pomodoroModeLongBreak: "Long Break", pomodoroStart: "Start", pomodoroPause: "Pause", pomodoroReset: "Reset",
-        pomodoroSettingsTitle: "Settings", pomodoroWorkLabel: "Work time (min)", pomodoroShortBreakLabel: "Short break (min)", pomodoroLongBreakLabel: "Long break (min)", pomodoroSaveSettings: "Save",
+        pomodoroSettingsTitle: "Settings", pomodoroWorkLabel: "Work time (min)", pomodoroShortBreakLabel: "Short break (min)", pomodoroLongBreakLabel: "Long break (min)", pomdoroSaveSettings: "Save",
         pomodoroSettingsSaved: "Saved!",
         pomodoroCyclesTitle: "Completed cycles (target: 4)",
         
@@ -586,7 +590,7 @@ export const translations = {
         
         memoryGameTitle: "Memory Game", memoryGameMoves: "Moves", memoryGameTime: "Time", memoryGameRestart: "Play Again",
         memoryGameWin: ({ moves, time }) => `Congratulations! You won in ${moves} moves and ${time}s!`,
-        
+
         snakeGameTitle: "Snake Game", snakeGameScore: "Score", snakeGameHighScore: "High Score", snakeGamePause: "PAUSED", snakeGameOver: "Game Over!", snakeGameRestart: "Play Again",
         snakeGameStartMsg: "Press any key or swipe to start",
         snakeGameControls: "Controls: Arrow keys, WASD or swipe gestures. Pause: Spacebar.",
