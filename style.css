@@ -53,13 +53,13 @@ body {
     background-image: 
         linear-gradient(var(--grid-line-color) 1px, transparent 1px),
         linear-gradient(to right, var(--grid-line-color) 1px, transparent 1px);
-    background-size: 80px 80px; /* ZMIANA: Rzadsza siatka (było 40px) */
+    background-size: 80px 80px; /* ZMIANA: Rzadsza siatka */
     background-position: center center;
     background-attachment: fixed;
 }
 
 .container {
-    max-width: 1200px; /* ZMIANA: Rozszerzono layout (było 1100px) */
+    max-width: 1200px; /* ZMIANA: Rozszerzono layout */
     margin: 0 auto;
     padding: 0 2rem;
 }
@@ -114,7 +114,7 @@ body.light-mode .site-header {
 .controls-wrapper {
     display: flex;
     align-items: center;
-    gap: 1.5rem; /* ZMIANA: Zwiększono odstęp dla spójności */
+    gap: 1.5rem; 
     margin-left: 1.5rem;
     padding-left: 1.5rem;
     border-left: 1px solid var(--border-color);
@@ -162,12 +162,11 @@ body.light-mode .site-header {
 }
 
 /*
-  ZMIANA: CAŁKOWITA POPRAWKA PRZEŁĄCZNIKA JĘZYKA
-  - Przywrócono style ::before i ::after, aby pasowały do nawigacji.
+  ZMIANA: POPRAWKA PRZEŁĄCZNIKA JĘZYKA (FINALNA)
 */
 .lang-switcher {
     display: flex;
-    gap: 1.5rem; /* ZMIANA: Zwiększono odstęp (było 1rem) */
+    gap: 1.5rem; 
 }
 
 .lang-switcher button {
@@ -179,9 +178,9 @@ body.light-mode .site-header {
     color: var(--text-secondary);
     font-family: 'Roboto Mono', monospace;
     font-size: 0.95rem;
-    opacity: 1; /* ZMIANA: Usunięto blaknięcie dla nieaktywnego */
+    opacity: 1; 
     transition: all 0.2s;
-    position: relative; /* Potrzebne dla pseudo-elementów */
+    position: relative; 
 }
 
 .lang-switcher button.active {
@@ -335,7 +334,7 @@ body.light-mode .theme-toggle .sun-icon { display: none; }
     position: relative;
     width: 280px;
     height: 350px;
-    border-radius: 2px; /* ZMIANA: Ostre krawędzie */
+    border-radius: 2px; /* Ostre krawędzie */
     box-shadow: 20px 20px 0 rgba(2, 12, 27, 0.7);
     border: 1px solid var(--primary-color);
     transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
@@ -357,7 +356,7 @@ body.light-mode .theme-toggle .sun-icon { display: none; }
     object-position: center top;
     filter: grayscale(100%) contrast(1.1);
     transition: all 0.3s ease-in-out;
-    border-radius: 2px; /* ZMIANA: Ostre krawędzie */
+    border-radius: 2px; 
 }
 
 .about-me-photo:hover img {
@@ -444,7 +443,7 @@ body.light-mode .about-me-photo .photo-dark { opacity: 0; z-index: 1; }
     transition: all 0.3s;
     background-color: var(--card-background);
     padding: 1rem;
-    border-radius: 2px; /* ZMIANA: Ostre krawędzie */
+    border-radius: 2px; 
     border: 1px solid var(--border-color);
     width: 100px;
     height: 100px;
@@ -476,7 +475,7 @@ body.light-mode .about-me-photo .photo-dark { opacity: 0; z-index: 1; }
 
 .cta-button {
     padding: 1rem 2rem;
-    border-radius: 2px; /* ZMIANA: Ostre krawędzie */
+    border-radius: 2px; 
     text-decoration: none;
     font-weight: 500;
     font-family: 'Roboto Mono', monospace;
@@ -504,8 +503,9 @@ body.light-mode .about-me-photo .photo-dark { opacity: 0; z-index: 1; }
     background-color: transparent;
     border-color: var(--text-secondary);
     color: var(--text-secondary);
-    /* ZMIANA: Ujednolicenie wagi fontu dla obu przycisków CTA */
     font-weight: 700;
+    /* ZMIANA: Dodano uppercase dla spójności */
+    text-transform: uppercase;
 }
 
 .cta-button.secondary:hover {
@@ -525,7 +525,7 @@ body.light-mode .about-me-photo .photo-dark { opacity: 0; z-index: 1; }
     margin-top: 3rem;
     display: flex;
     flex-direction: column;
-    gap: 0rem; /* Zmniejszony odstęp */
+    gap: 0rem; 
     position: relative;
     border-left: 2px solid var(--border-color);
     padding-left: 2.5rem;
@@ -533,29 +533,27 @@ body.light-mode .about-me-photo .photo-dark { opacity: 0; z-index: 1; }
 
 .timeline-item {
     position: relative;
-    padding-bottom: 2.5rem; /* Odstęp między itemami */
+    padding-bottom: 2.5rem; 
 }
 .timeline-item:last-child {
     padding-bottom: 0;
 }
 
-/* Kropka "commit" */
 .timeline-item::before {
     content: '';
     position: absolute;
-    left: -2.5rem; /* (2.5rem padding) - (6px promień) */
-    top: 8px; /* Wyrównanie z pierwszą linią tekstu */
+    left: -2.5rem; 
+    top: 8px; 
     width: 10px;
     height: 10px;
     border-radius: 50%;
     background-color: var(--background-color);
     border: 2px solid var(--text-secondary);
-    margin-left: -6px; /* (10px szerokość + 2px border * 2) / 2 */
+    margin-left: -6px; 
     z-index: 1;
     transition: all 0.3s ease;
 }
 
-/* Podświetlenie ostatniego (aktywnego) commita */
 .timeline-item:first-child::before {
     border-color: var(--primary-color);
     background-color: var(--primary-color);
@@ -581,7 +579,7 @@ body.light-mode .about-me-photo .photo-dark { opacity: 0; z-index: 1; }
     font-family: 'Roboto Mono', monospace;
     background-color: var(--completed-bg);
     padding: 0.2rem 0.5rem;
-    border-radius: 2px; /* ZMIANA: Ostre krawędzie */
+    border-radius: 2px; 
     margin-right: 0.5rem;
     font-size: 1.1rem;
     color: var(--text-secondary);
@@ -627,7 +625,7 @@ body.light-mode .about-me-photo .photo-dark { opacity: 0; z-index: 1; }
     border: 1px solid var(--border-color);
     color: var(--text-secondary);
     padding: 0.6rem 1.2rem;
-    border-radius: 2px; /* ZMIANA: Ostre krawędzie */
+    border-radius: 2px; 
     cursor: pointer;
     font-family: 'Roboto Mono', monospace;
     font-size: 0.9rem;
@@ -654,7 +652,7 @@ body.light-mode .about-me-photo .photo-dark { opacity: 0; z-index: 1; }
 .modal-content { 
     background-color: var(--card-background); 
     padding: 2.5rem; 
-    border-radius: 2px; /* ZMIANA: Ostre krawędzie */
+    border-radius: 2px; 
     border: 1px solid var(--primary-color);
     max-width: 450px; width: 90%; text-align: center; 
     box-shadow: 0 0 40px rgba(0, 224, 255, 0.1);
@@ -662,7 +660,7 @@ body.light-mode .about-me-photo .photo-dark { opacity: 0; z-index: 1; }
 .modal-content p { color: var(--text-color); font-size: 1.1rem; margin-bottom: 2rem; }
 .modal-buttons { display: flex; justify-content: center; gap: 1.5rem; }
 .modal-buttons button { 
-    padding: 0.8rem 2rem; border-radius: 2px; /* ZMIANA: Ostre krawędzie */
+    padding: 0.8rem 2rem; border-radius: 2px; 
     border: none; cursor: pointer; 
     font-weight: 500; font-family: 'Roboto Mono', monospace; transition: all 0.2s;
 }
