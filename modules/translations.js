@@ -107,10 +107,15 @@ export const translations = {
 
         // 5. Stacja Pogody
         weatherTitle: "Stacja Pogody v2.1",
+        // ZMIANA: Uproszczony opis, bo link będzie osobno
         weatherDesc: "Aplikacja pogodowa z prognozą, geolokalizacją i architekturą serverless (Netlify Functions) do ukrywania kluczy API.",
-        weatherStatus: "AKTYWNY",
+        // ZMIANA: Status z 'AKTYWNY' na 'KONCEPCJA'
+        weatherStatus: "KONCEPCJA",
         weatherDate: "2024-Q1",
         weatherTags: "[JavaScript] [API] [Serverless] [Netlify]",
+        // NOWY KLUCZ: Tekst dla linku do v2.1
+        weatherLinkDesc: "Zobacz v2.1 (Interaktywny Radar) ↗",
+
 
         // 6. Lista Zadań
         todoTitle: "Aplikacja \"Lista Zadań\"",
@@ -408,10 +413,14 @@ export const translations = {
 
         // 5. Weather Station
         weatherTitle: "Weather Station v2.1",
+        // CHANGE: Simplified description, link will be separate
         weatherDesc: "Weather app with forecasting, geolocation, and a serverless architecture (Netlify Functions) to secure API keys.",
-        weatherStatus: "ACTIVE",
+        // CHANGE: Status from 'ACTIVE' to 'CONCEPT'
+        weatherStatus: "CONCEPT",
         weatherDate: "2024-Q1",
         weatherTags: "[JavaScript] [API] [Serverless] [Netlify]",
+        // NEW KEY: Text for the v2.1 link
+        weatherLinkDesc: "See v2.1 (Interactive Radar) ↗",
 
         // 6. To-Do List
         todoTitle: "To-Do List App",
