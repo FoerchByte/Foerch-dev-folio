@@ -123,9 +123,12 @@ body.light-mode .about-me-photo .photo-dark { opacity: 0; z-index: 1; }
     border-color: var(--primary-color);
     box-shadow: 0 0 15px rgba(0, 224, 255, 0.05);
 }
+/* ZMIANA #4: Usunięcie reguły, która "ucinała" ostatni kafelek */
+/*
 .timeline-item:last-child {
     margin-bottom: 0;
 }
+*/
 
 /* Kropka "commit" */
 .timeline-item::before {
@@ -282,8 +285,8 @@ body.light-mode .about-me-photo .photo-dark { opacity: 0; z-index: 1; }
     transition: all 0.3s ease-in-out;
 }
 .stack-section .skill-item svg { /* Automatyzacja icons */
-    width: 44px; /* Zwiększono z 40px na 44px */
-    height: 44px;
+    width: 48px; /* Zwiększono z 44px na 48px */
+    height: 48px;
     filter: grayscale(100%) opacity(0.7);
     transition: all 0.3s ease-in-out;
 }
