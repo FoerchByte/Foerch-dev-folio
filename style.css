@@ -59,7 +59,7 @@ body {
 }
 
 .container {
-    max-width: 1100px; /* ZMIANA: Rozszerzono layout (było 960px) */
+    max-width: 1200px; /* ZMIANA: Rozszerzono layout (było 1100px) */
     margin: 0 auto;
     padding: 0 2rem;
 }
@@ -193,7 +193,9 @@ body.light-mode .site-header {
 /* ZMIANA: Usunięto wszystkie reguły ::before i ::after dla przycisków */
 .lang-switcher button::after,
 .lang-switcher button:not(:last-child)::after,
-.lang-switcher button::before {
+.lang-switcher button::before,
+.lang-switcher button.active::before, 
+.lang-switcher button.active::after {
     content: none !important; 
 }
 
@@ -201,9 +203,10 @@ body.light-mode .site-header {
     color: var(--primary-color);
     opacity: 1;
 }
-.lang-switcher button.active::before, .lang-switcher button.active::after {
+/* Ta reguła nie jest już potrzebna, ale ją zostawiam, gdybyśmy chcieli wrócić */
+/* .lang-switcher button.active::before, .lang-switcher button.active::after {
     opacity: 1;
-}
+} */
 
 
 .theme-toggle {
