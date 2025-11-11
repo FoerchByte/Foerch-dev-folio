@@ -152,3 +152,31 @@
 .project-link:hover .tag {
     color: var(--primary-color);
 }
+
+/* NOWE STYLE 
+  Dla linku zewnętrznego (np. do Netlify)
+*/
+.project-external-link-wrapper {
+    /* Ten wrapper zapewnia, że link jest w nowej linii */
+    margin-top: 1.5rem;
+}
+
+.project-external-link {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    font-family: 'Roboto Mono', monospace;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--primary-color);
+    background-color: rgba(0, 224, 255, 0.1);
+    border: 1px solid var(--primary-color);
+    border-radius: 2px;
+    text-decoration: none;
+    transition: all 0.2s ease-in-out;
+}
+
+.project-external-link:hover {
+    background-color: var(--primary-color);
+    color: var(--background-color);
+    box-shadow: 0 0 10px rgba(0, 224, 255, 0.4);
+}
