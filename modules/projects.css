@@ -25,18 +25,25 @@
     transition: all 0.3s ease;
 }
 
-.project-link {
-    display: block;
+/* NAPRAWA: Główny styl kafelka jest teraz na `.project-card-content` (DIV),
+  a nie na `.project-link` (A).
+*/
+.project-card-content {
+    display: flex; /* Dodano flex, aby stopka trzymała się dołu */
+    flex-direction: column; /* Układ kolumnowy */
     background-color: var(--card-background);
     border: 1px solid var(--border-color);
     border-radius: 4px;
     padding: 2rem;
     text-decoration: none;
-    height: 100%;
+    height: 100%; /* Kafelek zajmuje całą wysokość <li> */
     transition: all 0.2s ease-in-out;
 }
 
-.project-link:hover {
+/* NAPRAWA: Efekt hover jest teraz na `.project-item`, 
+  a wpływa na `.project-card-content`
+*/
+.project-item:hover .project-card-content {
     transform: translateY(-5px);
     border-color: var(--primary-color);
     box-shadow: 0 0 15px rgba(0, 224, 255, 0.1);
@@ -101,6 +108,12 @@
     background-color: #fd7e14; /* Pomarańczowy */
 }
 
+/* NAPRAWA: Nowy link na tytule */
+.project-title-link {
+    text-decoration: none;
+    color: inherit; /* Domyślnie dziedziczy kolor */
+}
+
 .project-title {
     font-size: 1.5rem;
     font-weight: 600;
@@ -109,7 +122,8 @@
     transition: color 0.2s ease-in-out;
 }
 
-.project-link:hover .project-title {
+/* NAPRAWA: Efekt hover jest teraz na linku tytułu */
+.project-title-link:hover .project-title {
     color: var(--primary-color);
 }
 
@@ -118,15 +132,13 @@
     font-size: 1rem;
     line-height: 1.6;
     margin: 0;
-    /* Zapewnia, że stopka będzie na dole, jeśli opis jest krótki */
-    flex-grow: 1; 
+    flex-grow: 1; /* To wypycha stopkę na sam dół kafelka */
 }
 
-/* ZMIANA: Nowy kontener "stopki" */
 .project-footer {
     display: flex;
     justify-content: space-between;
-    align-items: flex-end; /* Wyrównanie do dołu */
+    align-items: flex-end; 
     margin-top: 1.5rem;
     gap: 1rem;
 }
@@ -135,7 +147,7 @@
     display: flex;
     flex-wrap: wrap;
     gap: 0.75rem;
-    flex-grow: 1; /* Tagi zajmują dostępną przestrzeń po lewej */
+    flex-grow: 1; 
 }
 
 .tag {
@@ -145,7 +157,6 @@
     transition: color 0.2s ease-in-out;
 }
 
-/* Dodawanie nawiasów [ ] do tagów */
 .tag::before {
     content: '[';
     opacity: 0.7;
@@ -157,16 +168,13 @@
     margin-left: 0.1rem;
 }
 
-.project-link:hover .tag {
+/* NAPRAWA: Efekt hover tagów po najechaniu na cały kafelek */
+.project-item:hover .tag {
     color: var(--primary-color);
 }
 
-/*
-  ZMIANA: Poprawka dla linku zewnętrznego
-*/
 .project-external-link-wrapper {
-    /* Usunięto wszystkie stare style (margin, padding, border) */
-    flex-shrink: 0; /* Zapobiega kurczeniu się linku */
+    flex-shrink: 0; 
 }
 
 .project-external-link {
@@ -179,7 +187,7 @@
     border-radius: 4px;
     text-decoration: none;
     transition: all 0.2s ease-in-out;
-    white-space: nowrap; /* Zapobiega łamaniu linii w linku */
+    white-space: nowrap; 
 }
 
 .project-external-link:hover {
