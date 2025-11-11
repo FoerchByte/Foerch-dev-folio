@@ -96,8 +96,17 @@ body.light-mode .about-me-photo .photo-dark { opacity: 0; z-index: 1; }
     /* Główna linia "git log" */
     border-left: 2px solid var(--border-color);
     padding-left: 2.5rem;
-    /* ZMIANA #1: Dodanie "oddechu" na dole dla ostatniego kafelka */
-    padding-bottom: 0.1rem; /* Nawet minimalna wartość zapobiega ucięciu */
+    /* ZMIANA #4: Usunięcie starego hacka */
+    /* padding-bottom: 0.1rem; */ 
+}
+
+/* ZMIANA #4: Dodanie "oddechu" na dole dla ostatniego kafelka 
+   poprzez przedłużenie kontenera i jego linii. */
+.timeline-container::after {
+    content: '';
+    display: block;
+    height: 30px; 
+    width: 2px;
 }
 
 .timeline-item {
@@ -265,7 +274,7 @@ body.light-mode .about-me-photo .photo-dark { opacity: 0; z-index: 1; }
     height: 100px;
     text-align: center;
 }
-/* ZMIANA #3: Rozdzielenie stylów dla IMG i SVG dla wizualnej spójności */
+/* ZMIANA #3: Zwiększenie SVG dla balansu wizualnego */
 .stack-section .skill-item img { /* Frontend icons */
     width: 32px;
     height: 32px;
@@ -273,8 +282,8 @@ body.light-mode .about-me-photo .photo-dark { opacity: 0; z-index: 1; }
     transition: all 0.3s ease-in-out;
 }
 .stack-section .skill-item svg { /* Automatyzacja icons */
-    width: 40px; /* Pozwalamy SVG być większymi dla balansu wizualnego */
-    height: 40px;
+    width: 44px; /* Zwiększono z 40px na 44px */
+    height: 44px;
     filter: grayscale(100%) opacity(0.7);
     transition: all 0.3s ease-in-out;
 }
