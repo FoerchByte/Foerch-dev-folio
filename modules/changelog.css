@@ -96,18 +96,19 @@ body.light-mode .about-me-photo .photo-dark { opacity: 0; z-index: 1; }
     /* Główna linia "git log" */
     border-left: 2px solid var(--border-color);
     padding-left: 2.5rem;
-    /* ZMIANA #4: Usunięcie starego hacka */
-    /* padding-bottom: 0.1rem; */ 
+    /* ZMIANA: Zwiększamy "oddech" na dole z 2rem do 3rem */
+    padding-bottom: 3rem; 
 }
 
-/* ZMIANA #4: Dodanie "oddechu" na dole dla ostatniego kafelka 
-   poprzez przedłużenie kontenera i jego linii. */
+/* ZMIANA #4: Usunięcie starego, niedziałającego hacka */
+/*
 .timeline-container::after {
     content: '';
     display: block;
     height: 30px; 
     width: 2px;
 }
+*/
 
 .timeline-item {
     position: relative;
@@ -123,12 +124,10 @@ body.light-mode .about-me-photo .photo-dark { opacity: 0; z-index: 1; }
     border-color: var(--primary-color);
     box-shadow: 0 0 15px rgba(0, 224, 255, 0.05);
 }
-/* ZMIANA #4: Usunięcie reguły, która "ucinała" ostatni kafelek */
-/*
+/* ZMIANA #4: Przywrócenie tej reguły jest kluczowe dla poprawki "uciętego kafelka" */
 .timeline-item:last-child {
     margin-bottom: 0;
 }
-*/
 
 /* Kropka "commit" */
 .timeline-item::before {
@@ -277,19 +276,15 @@ body.light-mode .about-me-photo .photo-dark { opacity: 0; z-index: 1; }
     height: 100px;
     text-align: center;
 }
-/* ZMIANA #3: Zwiększenie SVG dla balansu wizualnego */
-.stack-section .skill-item img { /* Frontend icons */
+/* ZMIANA #3: Reset rozmiarów ikon. Wypełnione ikony będą teraz optycznie spójne. */
+.stack-section .skill-item img,
+.stack-section .skill-item svg { 
     width: 32px;
     height: 32px;
     filter: grayscale(100%) opacity(0.7);
     transition: all 0.3s ease-in-out;
 }
-.stack-section .skill-item svg { /* Automatyzacja icons */
-    width: 48px; /* Zwiększono z 44px na 48px */
-    height: 48px;
-    filter: grayscale(100%) opacity(0.7);
-    transition: all 0.3s ease-in-out;
-}
+
 .stack-section .skill-item:hover {
     color: var(--primary-color);
     border-color: var(--primary-color);
