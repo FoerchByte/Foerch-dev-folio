@@ -10,7 +10,7 @@ import { translations } from './modules/translations.js';
 // Zastępuje starą, prostą tablicę. Teraz zawiera klucze do wszystkich
 // danych potrzebnych do zbudowania widoku "Project Registry".
 const projectsData = [
-// ... (bez zmian dla aggregator, tax-arrears, statutory-interest, budget-validator) ...
+    // --- Specjalistyczne ---
     { 
         id: 'project-aggregator', 
         category: 'specialist',
@@ -66,7 +66,7 @@ const projectsData = [
         titleKey: 'todoTitle',
         descKey: 'todoDesc',
         statusKey: 'todoStatus',
-// ... (bez zmian dla reszty projektów) ...
+        dateKey: 'todoDate',
         tagsKey: 'todoTags'
     },
     { 
@@ -135,8 +135,6 @@ const projectsData = [
         tagsKey: 'memoryGameTags'
     },
 ];
-// ... (reszta pliku bez zmian) ...
-
 
 // --- Zmienne globalne ---
 let currentLang = localStorage.getItem('lang') || 'pl';
@@ -150,7 +148,6 @@ let activeStyleId = null;
 let synth;
 
 function initializeAudio() {
-// ... (bez zmian) ...
     if (typeof Tone !== 'undefined' && !synth) {
         synth = new Tone.PolySynth(Tone.Synth, {
             volume: -12,
@@ -161,7 +158,6 @@ function initializeAudio() {
 }
 
 async function playSound(type = 'click') {
-// ... (bez zmian) ...
     if (typeof Tone !== 'undefined' && Tone.context.state !== 'running') {
         await Tone.start();
         initializeAudio();
@@ -192,14 +188,12 @@ async function playSound(type = 'click') {
 
 // --- Funkcje pomocnicze ---
 const t = (key, args) => {
-// ... (bez zmian) ...
     const langSet = translations[currentLang] || translations['pl'];
     const translation = langSet[key];
     return typeof translation === 'function' ? translation(args) : translation || key;
 }
 
 const showConfirmationModal = (message, onConfirm) => {
-// ... (bez zmian) ...
     const modalOverlay = document.createElement('div');
     modalOverlay.className = 'modal-overlay';
     modalOverlay.innerHTML = `
@@ -219,9 +213,10 @@ const showConfirmationModal = (message, onConfirm) => {
 }
 
 async function fetchAndRenderTemplate(route) {
-// ... (bez zmian) ...
-    const templateFile = route;
-
+    // KROK 1: Zmapuj trasę (route) na rzeczywisty plik HTML
+    let templateFile = route;
+    
+    // KROK 2: Załaduj i przetłumacz szablon
     try {
         const response = await fetch(`./pages/${templateFile}.html`);
         if (!response.ok) throw new Error(`Nie można załadować szablonu: ${templateFile}.html`);
@@ -239,7 +234,6 @@ async function fetchAndRenderTemplate(route) {
 }
 
 function setTheme(theme) {
-// ... (bez zmian) ...
     document.body.classList.toggle('light-mode', theme === 'light');
     localStorage.setItem('theme', theme);
     currentTheme = theme;
@@ -256,7 +250,8 @@ function renderProjects() {
     // Budowanie HTML na podstawie nowego modelu danych `projectsData`
     projectsList.innerHTML = projectsData.map(project => {
         const statusKey = project.statusKey || '';
-        const statusClass = statusKey.toLowerCase().replace(/[^a-z0-9]/g, '-');
+        // Normalizacja statusu do klasy CSS (np. "PRODUKCJA" -> "produkcja")
+        const statusClass = t(statusKey).toLowerCase().replace(/[^a-z0-9]/g, '-');
         
         // Dzielimy tagi i opakowujemy każdy w <span>
         const tags = t(project.tagsKey)
@@ -264,7 +259,7 @@ function renderProjects() {
             .map(tag => `<span class="tag">${tag}</span>`)
             .join(' ');
 
-        // ZMIANA: Dodano logikę renderowania linku zewnętrznego
+        // ZMIANA: Logika linku zewnętrznego
         const externalLink = project.externalUrl
             ? `<a href="${project.externalUrl}" 
                  target="_blank" 
@@ -284,12 +279,15 @@ function renderProjects() {
                     </div>
                     <h3 class="project-title">${t(project.titleKey)}</h3>
                     <p class="project-description">${t(project.descKey)}</p>
-                    <div class="project-tags">
-                        ${tags}
-                    </div>
-                    <!-- ZMIANA: Dodano kontener na link zewnętrzny -->
-                    <div class="project-external-link-wrapper">
-                        ${externalLink}
+                    
+                    <!-- ZMIANA: Nowy kontener "stopki" dla tagów i linku zewn. -->
+                    <div class="project-footer">
+                        <div class="project-tags">
+                            ${tags}
+                        </div>
+                        <div class="project-external-link-wrapper">
+                            ${externalLink}
+                        </div>
                     </div>
                 </a>
             </li>
@@ -299,7 +297,6 @@ function renderProjects() {
 
 
 function loadStyle(path) {
-// ... (bez zmian) ...
     const styleId = `style-${path.split('/').pop().split('.')[0]}`;
     if (document.getElementById(styleId)) return;
     const link = document.createElement('link');
@@ -311,36 +308,37 @@ function loadStyle(path) {
 }
 
 function unloadStyle(id) {
-// ... (bez zmian) ...
     if (!id) return;
     const link = document.getElementById(id);
     if (link) link.remove();
 }
 
 function renderStaticContent() {
-// ... (bez zmian) ...
     document.documentElement.lang = currentLang;
     
-    document.querySelectorAll('#main-nav a')[0].textContent = t('navProjects');
-    document.querySelectorAll('#main-nav a')[1].textContent = t('navChangelog');
-    document.querySelectorAll('#main-nav a')[2].textContent = t('navContact');
+    // Ustawienie linków nawigacyjnych na podstawie kluczy i18n
+    document.querySelectorAll('#main-nav a[data-i18n]').forEach(link => {
+        const key = link.dataset.i18n;
+        link.textContent = t(key);
+    });
     
     document.querySelectorAll('#lang-switcher button').forEach(btn => btn.classList.toggle('active', btn.dataset.lang === currentLang));
 }
 
 function getRouteFromPathname() {
-// ... (bez zmian) ...
     const path = window.location.pathname;
+    // Domyślna trasa to 'home'
     if (path === '/') return 'home';
+    // Przekierowanie starych linków /about na /changelog
     if (path === '/about') {
         window.history.replaceState({}, '', '/changelog'); 
         return 'changelog';
     }
+    // Usuwamy wiodący slash
     return path.substring(1);
 }
 
 async function renderContent(isInitialLoad = false) {
-// ... (bez zmian) ...
     const contentContainer = document.getElementById('app-content');
     const route = getRouteFromPathname();
 
@@ -365,23 +363,22 @@ async function renderContent(isInitialLoad = false) {
 }
 
 function loadModuleStyle(route) {
-// ... (bez zmian) ...
     const projectRoutes = projectsData.map(p => p.id);
     let styleToLoad = null;
     if (projectRoutes.includes(route)) {
+        // Specjalny przypadek: oba kalkulatory używają tych samych stylów
         if (route === 'statutory-interest-calculator') {
             styleToLoad = 'tax-arrears-calculator';
         } else {
             styleToLoad = route;
         }
-    } else if (route === 'changelog') {
+    } else if (route === 'changelog') { // Nowa trasa dla "O mnie"
         styleToLoad = 'changelog';
     } else if (route === 'contact') {
         styleToLoad = 'contact';
-    } else if (route === 'home') {
-        styleToLoad = 'home'; 
-    // ZMIANA: Strona 'projects' (lista) potrzebuje teraz własnego, dedykowanego pliku CSS
-    } else if (route === 'projects') {
+    } else if (route === 'home') { // Nowa strona główna
+        styleToLoad = 'home';
+    } else if (route === 'projects') { // Strona listy projektów
         styleToLoad = 'projects';
     }
     if (styleToLoad) {
@@ -390,31 +387,21 @@ function loadModuleStyle(route) {
 }
 
 function initializeChangelogPage() {
-// ... (bez zmian) ...
-    const collapsibleSection = document.querySelector('.timeline-section.collapsible');
-    if (collapsibleSection) {
-        const header = collapsibleSection.querySelector('.collapsible-header');
-        header.addEventListener('click', () => collapsibleSection.classList.toggle('active'));
-    }
-    document.querySelectorAll('.timeline-item').forEach(item => {
-        const card = item.querySelector('.timeline-card');
-        card.addEventListener('click', (e) => { e.stopPropagation(); item.classList.toggle('active'); });
-    });
+    // Ta funkcja jest teraz specyficzna tylko dla strony changelog
+    // (wcześniej była to 'initializeAboutPage')
+    // ... (jeśli będzie tu jakaś logika, np. rozwijanie, dodamy ją)
     return [];
 }
 
 async function attachEventListeners(route) {
-// ... (bez zmian) ...
     const dependencies = { t, showConfirmationModal, playSound };
     
     const routeInitializers = {
-        'home': () => { return []; },
+        'home': () => { return []; }, // Strona główna jest statyczna
         'changelog': () => initializeChangelogPage(),
         
-        // ZMIANA: Logika dla 'projects' jest teraz znacznie prostsza.
-        // Usuwamy stare nasłuchiwacze na filtry.
         'projects': () => {
-            renderProjects(); // Po prostu renderujemy listę
+            renderProjects(); // Renderuj listę projektów
             return [];
         },
         
@@ -441,26 +428,35 @@ async function attachEventListeners(route) {
 }
 
 function updateActiveNavLink(activeRoute) {
-// ... (bez zmian) ...
     const projectRoutes = projectsData.map(p => p.id);
-    document.querySelectorAll('.main-nav a, .project-card').forEach(link => {
-        const linkRoute = new URL(link.href).pathname.substring(1);
+    
+    document.querySelectorAll('.main-nav a').forEach(link => {
+        const linkPath = new URL(link.href).pathname;
+        let linkRoute = linkPath === '/' ? 'home' : linkPath.substring(1);
+        
         link.classList.remove('nav-active');
-        if (activeRoute !== 'home' && (linkRoute === activeRoute || (linkRoute === 'projects' && projectRoutes.includes(activeRoute)))) {
+        
+        if (linkRoute === activeRoute) {
+            link.classList.add('nav-active');
+        } else if (linkRoute === 'projects' && projectRoutes.includes(activeRoute)) {
+            // Podświetl "Projekty", gdy jesteśmy na stronie jednego z projektów
             link.classList.add('nav-active');
         }
     });
 }
 
 function navigate(path) {
-// ... (bez zmian) ...
+    // Nie renderuj, jeśli to ten sam URL
+    if (window.location.pathname === path) return;
+    
     window.history.pushState({}, '', path);
     renderContent();
 }
 
 function initializeApp() {
-// ... (bez zmian) ...
+    // Ustawienie motywu
     const savedTheme = localStorage.getItem('theme');
+    // ZMIANA: Domyślnie 'dark'
     const defaultTheme = 'dark'; 
     setTheme(savedTheme || defaultTheme);
 
@@ -469,6 +465,7 @@ function initializeApp() {
         setTheme(currentTheme === 'light' ? 'dark' : 'light');
     });
     
+    // Ustawienie języka
     document.getElementById('lang-switcher').addEventListener('click', e => {
         if (e.target.tagName === 'BUTTON') {
             const lang = e.target.dataset.lang;
@@ -477,33 +474,42 @@ function initializeApp() {
                 currentLang = lang;
                 localStorage.setItem('lang', lang);
                 renderStaticContent();
-                renderContent();
+                renderContent(); // Przerenderuj całą treść w nowym języku
             }
         }
     });
 
+    // Obsługa nawigacji (History API)
     window.addEventListener('popstate', () => renderContent());
 
     document.addEventListener('click', e => {
         const link = e.target.closest('a');
-        if (link && link.origin === window.location.origin && !link.hasAttribute('download')) {
+        // Ignoruj linki zewnętrzne, linki z atrybutem download i linki specjalne
+        if (link && 
+            link.origin === window.location.origin && 
+            !link.hasAttribute('download') &&
+            !e.ctrlKey && !e.metaKey && // Ignoruj "otwórz w nowej karcie"
+            link.target !== '_blank') // Ignoruj jawne _blank
+        {
             e.preventDefault();
             navigate(link.pathname);
         }
     });
 
+    // Pierwsze ładowanie
     renderStaticContent();
     renderContent(true);
 
+    // Menu mobilne
     const menuToggle = document.getElementById('menu-toggle');
     const siteHeader = document.querySelector('.site-header');
-    const mainNav = document.getElementById('main-nav');
+    const navWrapper = document.getElementById('nav-wrapper');
     menuToggle.addEventListener('click', () => {
         siteHeader.classList.toggle('nav-open');
         menuToggle.setAttribute('aria-expanded', siteHeader.classList.contains('nav-open'));
     });
-    mainNav.addEventListener('click', (e) => {
-        if (e.target.tagName === 'A') {
+    navWrapper.addEventListener('click', (e) => {
+        if (e.target.tagName === 'A' || e.target.closest('button')) {
             siteHeader.classList.remove('nav-open');
             menuToggle.setAttribute('aria-expanded', 'false');
         }
