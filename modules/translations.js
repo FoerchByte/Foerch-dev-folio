@@ -45,7 +45,8 @@ export const translations = {
         skillsHeaderData: "// Automatyzja i Analiza Danych",
         skillsHeaderFrontend: "// Frontend Development",
 
-        aboutCtaProjects: "Zobacz Case Studies",
+        // ZMIANA #1: Ujednolicenie tekstu przycisku do wersji z wielkich liter
+        aboutCtaProjects: "ZOBACZ_CASE_STUDIES",
         aboutCtaCv: "Pobierz pełne CV",
         
         changelogTitle: "Przebieg Kariery (Changelog)",
@@ -54,10 +55,8 @@ export const translations = {
         changelogV3Title: "Rewolucja Automatyzacji (Inspektor)",
         changelogV3Place: "Urząd Miasta Łodzi",
         changelogV3Date: "06.2023 - obecnie",
-        // ZMIANA #3: Dodano Power Automate / SharePoint do opisu
-        // ZMIANA #4: Zmiana "3 dni" na "10 dni"
+        // ZMIANA #1: Zmiana "3 dni" na "10 dni"
         changelogV3Desc: "Uzyskanie tytułu Magistra (AI). Wdrożenie pełnego ekosystemu automatyzacji: zastąpienie manualnych procesów skryptami VBA, potokami Power Query oraz formularzami Power Automate/SharePoint. KLUCZOWY WYNIK: Redukcja czasu rocznego rozliczenia 140+ projektów z 78 dni roboczych do zaledwie 10 dni.",
-        // ZMIANA #3: Dodano tagi
         changelogV3Tags: "<span style='color: var(--primary-color)'>[Magister (SI)]</span> [VBA] [Power Query] [Automatyzacja Procesów] [SharePoint] [Power Automate]",
 
         // v2.0.0 - Podinspektor
@@ -377,7 +376,8 @@ export const translations = {
         skillsHeaderData: "// Data Automation & Analysis",
         skillsHeaderFrontend: "// Frontend Development",
 
-        aboutCtaProjects: "View Case Studies",
+        // ZMIANA #1: Ujednolicenie tekstu przycisku do wersji z wielkich liter (EN)
+        aboutCtaProjects: "VIEW_CASE_STUDIES",
         aboutCtaCv: "Download Full CV",
 
         changelogTitle: "Career Changelog (Version History)",
@@ -386,10 +386,8 @@ export const translations = {
         changelogV3Title: "Automation Revolution (Inspector)",
         changelogV3Place: "City of Łódź Office",
         changelogV3Date: "06.2023 - present",
-        // ZMIANA #3: Dodano Power Automate / SharePoint do opisu (EN)
-        // ZMIANA #4: Zmiana "3 days" na "10 days" (EN)
+        // ZMIANA #1: Zmiana "3 days" na "10 days" (EN)
         changelogV3Desc: "Obtained Master of Science (MSc) in AI. Implemented full automation ecosystem: replaced manual processes with VBA scripts, Power Query pipelines, and Power Automate/SharePoint forms. KEY RESULT: Reduced annual settlement time for 140+ projects from 78 working days to just 10 days.",
-        // ZMIANA #3: Dodano tagi (EN)
         changelogV3Tags: "<span style='color: var(--primary-color)'>[MSc Degree (AI)]</span> [VBA] [Power Query] [Process Automation] [SharePoint] [Power Automate]",
 
         // v2.0.0 - Junior Inspector (Incubation)
