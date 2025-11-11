@@ -1,15 +1,15 @@
 <!--
   EN: The "Career Changelog" - a technical reimagining of a traditional biography.
-  It presents professional growth as software version iterations, perfectly
-  matching the "Technical Precision" aesthetic and engineering mindset.
+  This version simplifies the layout to match the "git log" aesthetic from the mockups.
   PL: "Career Changelog" - techniczne przeobrażenie tradycyjnej biografii.
-  Prezentuje rozwój zawodowy jako iteracje wersji oprogramowania, idealnie
-  pasując do estetyki "Technical Precision" i inżynierskiego podejścia.
+  Ta wersja upraszcza układ, aby pasował do estetyki "git log" z mockupów.
 -->
+
+<!-- KROK 1: Sekcja Bio -->
 <div class="about-me-layout fade-in">
     <div class="about-me-photo">
-        <!-- JEDEN kontener, DWA znaczniki img (jeden widoczny na raz dzięki CSS) -->
         <img src="FoerchByte.jpg" alt="Michał 'Foerch' Herbich" class="photo-dark">
+        <!-- W trybie jasnym to zdjęcie zostanie podmienione przez CSS, jeśli dodamy drugie -->
         <img src="FoerchByte.jpg" alt="Michał 'Foerch' Herbich" class="photo-light">
     </div>
     <div class="about-me-content">
@@ -20,13 +20,11 @@
             <p>{{aboutDesc2}}</p>
         </div>
         
-        <!-- Sekcja Tech Stack jako "Dependencies" -->
         <h3>{{aboutSkillsTitle}}</h3>
         
         <!-- Grupa 1: Data Automation -->
         <div style="margin-bottom: 1.5rem;">
-            <!-- ZMIANA: Użycie klucza tłumaczenia zamiast sztywnego tekstu -->
-            <h4 style="font-family: 'Roboto Mono', monospace; color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 1rem; opacity: 0.8;">{{skillsHeaderData}}</h4>
+            <h4 class="skills-header">{{skillsHeaderData}}</h4>
             <div class="skills-icons">
                 <div class="skill-item">
                     <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#217346" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/><path d="M8 13h8"/><path d="M8 17h8"/><path d="M8 9h2"/></svg>
@@ -41,8 +39,7 @@
 
         <!-- Grupa 2: Frontend Development -->
         <div>
-            <!-- ZMIANA: Użycie klucza tłumaczenia zamiast sztywnego tekstu -->
-            <h4 style="font-family: 'Roboto Mono', monospace; color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 1rem; opacity: 0.8;">{{skillsHeaderFrontend}}</h4>
+            <h4 class="skills-header">{{skillsHeaderFrontend}}</h4>
             <div class="skills-icons">
                 <div class="skill-item">
                     <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript">
@@ -62,7 +59,8 @@
                 </div>
             </div>
         </div>
-
+        
+        <!-- Przeniesiono przyciski CTA tutaj, aby były spójne z mockupem bio -->
         <div class="about-cta">
             <a href="/projects" class="cta-button primary">{{aboutCtaProjects}}</a>
             <a href="CV_M.Herbich.pdf" class="cta-button secondary" download="CV_Michal_Herbich.pdf">{{aboutCtaCv}}</a>
@@ -70,99 +68,60 @@
     </div>
 </div>
 
-<!-- "Career Changelog" -->
-<div class="timeline-section collapsible fade-in" style="animation-delay: 0.2s;">
-    <h2 class="section-title collapsible-header">{{changelogTitle}}</h2>
+<!-- KROK 2: Lista Changelog (zgodna z image_936c80.png) -->
+<div class="timeline-section fade-in" style="animation-delay: 0.2s;">
+    <h2 class="section-title">{{changelogTitle}}</h2>
     <div class="timeline-container">
         
         <!-- v3.0.0 (Inspektor) -->
-        <div class="timeline-item active" data-type="work">
-            <div class="timeline-dot"></div>
-            <div class="timeline-card">
-                <div class="timeline-header">
-                    <div class="timeline-details">
-                        <h4 class="timeline-title"><code style="color: var(--primary-color); margin-right: 10px;">v3.0.0</code> {{changelogV3Title}}</h4>
-                        <p class="timeline-place">{{changelogV3Place}}</p>
-                    </div>
-                    <span class="timeline-date">{{changelogV3Date}}</span>
-                </div>
-                <div class="timeline-content">
-                    <p>{{changelogV3Desc}}</p>
-                    <div style="margin-top: 1rem; font-family: 'Roboto Mono', monospace; font-size: 0.85rem; color: var(--text-secondary);">
-                        {{changelogV3Tags}}
-                    </div>
-                </div>
+        <div class="timeline-item" data-type="work">
+            <span class="timeline-date">{{changelogV3Date}}</span>
+            <h4 class="timeline-title"><code>v3.0.0</code> {{changelogV3Title}}</h4>
+            <p class="timeline-place">{{changelogV3Place}}</p>
+            <div class="timeline-content">
+                <p>{{changelogV3Desc}}</p>
+                <div class="timeline-tags">{{changelogV3Tags}}</div>
             </div>
         </div>
 
         <!-- v2.0.0 (Podinspektor + Inżynier) -->
         <div class="timeline-item" data-type="work">
-            <div class="timeline-dot"></div>
-            <div class="timeline-card">
-                <div class="timeline-header">
-                    <div class="timeline-details">
-                        <h4 class="timeline-title"><code>v2.0.0</code> {{changelogV2Title}}</h4>
-                        <p class="timeline-place">{{changelogV2Place}}</p>
-                    </div>
-                    <span class="timeline-date">{{changelogV2Date}}</span>
-                </div>
-                <div class="timeline-content">
-                    <p>{{changelogV2Desc}}</p>
-                    <div style="margin-top: 1rem; font-family: 'Roboto Mono', monospace; font-size: 0.85rem; color: var(--text-secondary);">
-                        {{changelogV2Tags}}
-                    </div>
-                </div>
+            <span class="timeline-date">{{changelogV2Date}}</span>
+            <h4 class="timeline-title"><code>v2.0.0</code> {{changelogV2Title}}</h4>
+            <p class="timeline-place">{{changelogV2Place}}</p>
+            <div class="timeline-content">
+                <p>{{changelogV2Desc}}</p>
+                <div class="timeline-tags">{{changelogV2Tags}}</div>
             </div>
         </div>
 
         <!-- v1.5.0 (Referent) -->
         <div class="timeline-item" data-type="work">
-            <div class="timeline-dot"></div>
-            <div class="timeline-card">
-                <div class="timeline-header">
-                    <div class="timeline-details">
-                        <h4 class="timeline-title"><code>v1.5.0</code> {{changelogV15Title}}</h4>
-                        <p class="timeline-place">{{changelogV15Place}}</p>
-                    </div>
-                    <span class="timeline-date">{{changelogV15Date}}</span>
-                </div>
-                <div class="timeline-content">
-                    <p>{{changelogV15Desc}}</p>
-                </div>
+            <span class="timeline-date">{{changelogV15Date}}</span>
+            <h4 class="timeline-title"><code>v1.5.0</code> {{changelogV15Title}}</h4>
+            <p class="timeline-place">{{changelogV15Place}}</p>
+            <div class="timeline-content">
+                <p>{{changelogV15Desc}}</p>
             </div>
         </div>
 
          <!-- v1.0.0 (Młodszy Referent) -->
         <div class="timeline-item" data-type="work">
-            <div class="timeline-dot"></div>
-            <div class="timeline-card">
-                <div class="timeline-header">
-                    <div class="timeline-details">
-                        <h4 class="timeline-title"><code>v1.0.0</code> {{changelogV10Title}}</h4>
-                         <p class="timeline-place">{{changelogV10Place}}</p>
-                    </div>
-                    <span class="timeline-date">{{changelogV10Date}}</span>
-                </div>
-                <div class="timeline-content">
-                     <p>{{changelogV10Desc}}</p>
-                </div>
+            <span class="timeline-date">{{changelogV10Date}}</span>
+            <h4 class="timeline-title"><code>v1.0.0</code> {{changelogV10Title}}</h4>
+             <p class="timeline-place">{{changelogV10Place}}</p>
+            <div class="timeline-content">
+                 <p>{{changelogV10Desc}}</p>
             </div>
         </div>
 
-        <!-- NOWOŚĆ: v0.5.0 (Stażysta - Beta) -->
+        <!-- v0.5.0 (Stażysta - Beta) -->
         <div class="timeline-item" data-type="work">
-            <div class="timeline-dot" style="border-color: var(--text-secondary); opacity: 0.5;"></div>
-            <div class="timeline-card" style="opacity: 0.8;">
-                <div class="timeline-header">
-                    <div class="timeline-details">
-                        <h4 class="timeline-title"><code style="color: var(--text-secondary);">v0.5.0</code> {{changelogV05Title}}</h4>
-                         <p class="timeline-place">{{changelogV05Place}}</p>
-                    </div>
-                    <span class="timeline-date">{{changelogV05Date}}</span>
-                </div>
-                <div class="timeline-content">
-                     <p>{{changelogV05Desc}}</p>
-                </div>
+            <span class="timeline-date">{{changelogV05Date}}</span>
+            <h4 class="timeline-title"><code>v0.5.0</code> {{changelogV05Title}}</h4>
+             <p class="timeline-place">{{changelogV05Place}}</p>
+            <div class="timeline-content">
+                 <p>{{changelogV05Desc}}</p>
             </div>
         </div>
 
