@@ -69,18 +69,24 @@ export const translations = {
         changelogV15Place: "Urząd Miasta Łodzi",
         changelogV15Date: "11.2020 - 02.2021",
         changelogV15Desc: "Pierwsza iteracja usprawnień. Zastąpienie ręcznego sumowania danych dynamicznymi formułami (SUMIFS, VLOOKUP) w arkuszach zbiorczych.",
+        // ZMIANA: Dodano nowe tagi
+        changelogV15Tags: "[Excel Formuły] [SUMIFS] [VLOOKUP]",
 
         // v1.0.0 - Młodszy Referent
         changelogV10Title: "Manualna Baza (Młodszy Referent)",
         changelogV10Place: "Urząd Miasta Łodzi",
         changelogV10Date: "11.2019 - 11.2020",
         changelogV10Desc: "Onboarding i analiza procesów legacy. Identyfikacja krytycznych ryzyk błędu ludzkiego w 100% manualnym procesie raportowania.",
+        // ZMIANA: Dodano nowe tagi
+        changelogV10Tags: "[Analiza Procesów] [Data Entry]",
 
         // v0.5.0 - Stażysta
         changelogV05Title: "Wersja Beta (Stażysta)",
         changelogV05Place: "Urząd Miasta Łodzi",
         changelogV05Date: "07.2019 - 11.2019",
         changelogV05Desc: "Wstępne rozpoznanie środowiska. Archiwizacja i podstawowe porządkowanie dokumentacji budżetowej.",
+        // ZMIANA: Dodano nowe tagi
+        changelogV05Tags: "[Archiwizacja] [Excel]",
 
         // --- Strona Projektów (Project Registry) ---
         projectsTitle: "Rejestr Projektów",
@@ -392,18 +398,24 @@ export const translations = {
         changelogV15Place: "City of Łódź Office",
         changelogV15Date: "11.2020 - 02.2021",
         changelogV15Desc: "First iteration of improvements. Replaced manual data totaling with dynamic formulas (SUMIFS, VLOOKUP) in master spreadsheets.",
+        // ZMIANA: Dodano nowe tagi
+        changelogV15Tags: "[Excel Formulas] [SUMIFS] [VLOOKUP]",
 
         // v1.0.0 - Junior Clerk (Baseline)
         changelogV10Title: "Manual Baseline (Junior Clerk)",
         changelogV10Place: "City of Łódź Office",
         changelogV10Date: "11.2019 - 11.2020",
         changelogV10Desc: "Onboarding and analysis of legacy processes. Identified critical human error risks in 100% manual reporting workflows.",
+        // ZMIANA: Dodano nowe tagi
+        changelogV10Tags: "[Process Analysis] [Data Entry]",
 
         // v0.5.0 - Intern (Beta Release)
         changelogV05Title: "Beta Release (Intern)",
         changelogV05Place: "City of Łódź Office",
         changelogV05Date: "07.2019 - 11.2019",
         changelogV05Desc: "Initial environment reconnaissance. Archiving and basic organization of budget documentation.",
+        // ZMIANA: Dodano nowe tagi
+        changelogV05Tags: "[Archiving] [Excel]",
 
         // --- Projects Page (Project Registry) ---
         projectsTitle: "Project Registry",
