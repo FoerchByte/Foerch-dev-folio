@@ -1,0 +1,150 @@
+/*
+  EN: Styles for the new "Hero" (home) page.
+  This file implements the large, bold typography and layout
+  seen in the "image_936936.png" mockup.
+  PL: Style dla nowej strony głównej "Hero".
+  Ten plik implementuje dużą, odważną typografię i układ
+  widoczny na mockupie "image_936936.png".
+*/
+
+/*
+  Używamy .container, aby ograniczyć szerokość, ale .content-section
+  z `style.css` już zapewnia padding. Musimy to nadpisać dla
+  układu "full-width" (lub prawie full-width).
+*/
+#app-content > .hero-layout {
+    /* Ustawiamy minimalną wysokość, aby wypełnić ekran */
+    min-height: calc(80vh - 100px); /* 80% wysokości ekranu minus nagłówek */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative; /* Dla pozycjonowania linków społecznościowych */
+}
+
+.hero-content {
+    max-width: 800px; /* Ograniczenie szerokości tekstu dla czytelności */
+}
+
+.hero-subtitle {
+    font-family: 'Roboto Mono', monospace;
+    font-size: 1rem;
+    color: var(--primary-color);
+    margin-bottom: 1.5rem;
+}
+
+.hero-title {
+    font-size: clamp(2.8rem, 7vw, 5rem); /* Bardzo duża, responsywna czcionka */
+    font-weight: 700;
+    color: var(--text-color);
+    margin: 0;
+    line-height: 1.1;
+    letter-spacing: -2px;
+}
+
+/* Kolorowanie drugiego słowa (Systemów / Systems) */
+.hero-title {
+  /* Haczyk na podświetlenie drugiego słowa, jeśli JS nie jest dostępny */
+  /* W JS moglibyśmy to zrobić dynamicznie */
+}
+/* Bezpieczniejszy sposób: zakładamy, że 2. słowo jest kluczowe */
+.hero-title::first-line {
+    /* To jest niedoskonałe. Lepszym podejściem byłoby opakowanie w <span> */
+    /* Zmieniam HTML, aby dodać span */
+}
+
+/* Ponieważ nie mogę edytować Twoich tłumaczeń, aby dodać <span>,
+   użyjemy bardziej zaawansowanego CSS, zakładając strukturę.
+   ALE... o wiele lepiej będzie, jeśli zaktualizujemy translations.js.
+   
+   Zróbmy tak: Zaktualizuję plik translations.js, aby zawierał <span>,
+   a potem ten CSS będzie działał idealnie.
+*/
+.hero-title .highlight {
+    color: var(--primary-color);
+}
+
+
+.hero-description {
+    font-size: 1.1rem;
+    color: var(--text-secondary);
+    max-width: 550px;
+    margin-top: 2.5rem;
+    margin-bottom: 3.5rem;
+    line-height: 1.7;
+}
+
+.hero-cta-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+}
+
+/* Nadpisanie globalnych stylów przycisków, jeśli potrzeba */
+.hero-cta-group .cta-button.primary {
+    /* Upewnienie się, że tekst jest ciemny na turkusowym tle */
+    color: var(--background-color); 
+    display: inline-flex;
+    align-items: center;
+}
+
+.hero-cta-group .cta-button.secondary {
+    /* Na mockupie jest biały, ale nasz styl "secondary" to obramowanie */
+    /* Trzymamy się naszego globalnego stylu .secondary dla spójności */
+}
+
+.hero-socials {
+    position: absolute;
+    bottom: 0; /* Przeniesione z 2rem na 0 dla lepszego dopasowania do krawędzi */
+    left: 0;   /* Przeniesione z 2rem na 0 */
+    display: flex;
+    flex-direction: column; /* Zmieniono na kolumnę, jak na mockupie */
+    gap: 1.5rem;
+}
+
+.hero-socials a {
+    color: var(--text-secondary);
+    transition: all 0.2s ease-in-out;
+}
+
+.hero-socials a:hover {
+    color: var(--primary-color);
+    transform: translateY(-3px);
+}
+
+.hero-socials a svg {
+    width: 20px;
+    height: 20px;
+}
+
+/* Poprawki responsywne dla strony głównej */
+@media (max-width: 768px) {
+    #app-content > .hero-layout {
+        min-height: calc(90vh - 80px); /* Więcej miejsca na mobilkach */
+        justify-content: flex-start;
+        padding-top: 2rem;
+    }
+
+    .hero-title {
+        font-size: clamp(2.5rem, 10vw, 3.5rem); /* Nadal duży, ale mniejszy */
+        letter-spacing: -1px;
+    }
+
+    .hero-description {
+        font-size: 1rem;
+        margin-top: 2rem;
+        margin-bottom: 3rem;
+    }
+
+    .hero-cta-group {
+        flex-direction: column;
+        width: 100%;
+        max-width: 350px;
+    }
+    
+    .hero-socials {
+        position: static; /* Zdejmujemy pozycjonowanie absolutne */
+        flex-direction: row; /* Wracamy do rzędu */
+        margin-top: 4rem;
+        justify-content: flex-start;
+    }
+}
