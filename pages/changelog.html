@@ -25,7 +25,11 @@
           do wnętrza .about-me-content, zgodnie z Twoją sugestią.
         -->
         <div class="about-cta">
-            <a href="/projects" class="cta-button primary">{{aboutCtaProjects}}</a>
+            <!-- ZMIANA #1: Dodano ikonę SVG do przycisku dla spójności ze stroną główną -->
+            <a href="/projects" class="cta-button primary">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 0.75rem;"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
+                {{aboutCtaProjects}}
+            </a>
             <a href="CV_M.Herbich.pdf" class="cta-button secondary" download="CV_Michal_Herbich.pdf">{{aboutCtaCv}}</a>
         </div>
     </div>
@@ -112,17 +116,19 @@
                     <span>VBA Excel</span>
                 </div>
                  <div class="skill-item">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#F2C811" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>
-                    <span>Power Query</span>
-                </div>
-                <!-- ZMIANA #2: Dodano ikonę Power Automate -->
-                <div class="skill-item">
                     <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#0062AD" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
                     <span>Power Automate</span>
                 </div>
-                <!-- ZMIANA #2: Dodano ikonę SharePoint -->
+                <!-- ZMIANA #2: Zastąpiono niedziałający <img> wbudowanym SVG dla SharePoint -->
                 <div class="skill-item">
-                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/sharepoint/sharepoint-original.svg" alt="SharePoint">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#0078D4" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M18.19 18.19C15.8 19.33 13 19.9 10 19.9c-4.42 0-8.22-1.68-9.5-4.22c.9-2.3 3.03-4.02 5.5-4.68"/>
+                        <path d="M14 14c2.37.64 4.5 2.37 5.5 4.68C18.22 16.32 14.42 18 10 18c-1.12 0-2.2-.1-3.19-.29"/>
+                        <path d="M10 14c-2.37-.64-4.5-2.37-5.5-4.68C5.78 11.68 9.58 10 14 10c1.12 0 2.2.1 3.19.29"/>
+                        <path d="M5.81 5.81C8.2 4.67 11 4.1 14 4.1c4.42 0 8.22 1.68 9.5 4.22c-.9 2.3-3.03 4.02-5.5 4.68"/>
+                        <ellipse cx="10" cy="14" rx="4" ry="2"/>
+                        <ellipse cx="14" cy="10" rx="4" ry="2"/>
+                    </svg>
                     <span>SharePoint</span>
                 </div>
             </div>
