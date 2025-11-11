@@ -11,12 +11,13 @@
 .hero-layout {
     display: grid;
     grid-template-columns: 2fr 1fr; /* Treść zajmuje 2/3, statystyki 1/3 */
-    gap: 3rem;
+    /* ZMIANA: Zwiększony odstęp dla "rozsunięcia" layoutu (było 3rem) */
+    gap: 5rem;
     align-items: center;
     min-height: calc(85vh - 100px); /* 85% wysokości ekranu minus nagłówek */
     position: relative;
-    /* ZMIANA: Dodano padding na dole, aby ikony social nie nachodziły na CTA */
-    padding-bottom: 5rem; 
+    /* ZMIANA: Usunięto padding-bottom, ikony są teraz w strumieniu */
+    padding-bottom: 0; 
 }
 
 .hero-content {
@@ -60,16 +61,16 @@
     gap: 1.5rem;
 }
 
-/* ZMIANA: Pozycjonowanie ikon social media.
-  `bottom: 2rem` zamiast `0` daje lepszy oddech od krawędzi.
+/* ZMIANA: Całkowita przebudowa pozycjonowania ikon social.
+  Usunięto `position: absolute` i `flex-direction: column`.
+  Teraz są to zwykłe elementy blokowe płynące w `.hero-content`.
 */
 .hero-socials {
-    position: absolute;
-    bottom: 2rem; /* ZMIANA: Podniesiono ikony (było 0) */
-    left: 0;
+    position: static; /* ZMIANA: Usunięto position: absolute */
     display: flex;
-    flex-direction: column; /* Pionowy układ, jak na mockupie */
+    flex-direction: row; /* ZMIANA: Układ poziomy */
     gap: 1.5rem;
+    margin-top: 4rem; /* ZMIANA: Odstęp od przycisków CTA */
 }
 
 .hero-socials a {
@@ -94,7 +95,8 @@
 .hero-stats {
     display: grid;
     grid-template-columns: 1fr 1fr; /* Dwie kolumny wewnątrz panelu statystyk */
-    gap: 1rem;
+    /* ZMIANA: Zwiększony odstęp między kafelkami (było 1rem) */
+    gap: 1.5rem;
     align-self: center; /* Wyśrodkowanie w pionie w komórce siatki */
 }
 
@@ -172,7 +174,10 @@
     }
 
     .hero-socials {
-        /* Ikony social media stają się statyczne i lądują na końcu */
+        /* ZMIANA: Ikony social media już nie są absolutne,
+           więc ta reguła nie jest potrzebna do zmiany pozycjonowania,
+           ale możemy ją zostawić dla pewności
+        */
         position: static;
         flex-direction: row;
         margin-top: 2rem;
