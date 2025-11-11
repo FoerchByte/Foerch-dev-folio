@@ -22,7 +22,6 @@ const projectsData = [
     { id: 'tic-tac-toe', category: 'games', cardTitleKey: 'ticTacToeCardTitle', cardDescKey: 'ticTacToeCardDesc' },
     { id: 'memory-game', category: 'games', cardTitleKey: 'memoryGameCardTitle', cardDescKey: 'memoryGameCardDesc' },
 ].sort((a, b) => {
-    // ZMIANA: Zaktualizowano kategorie filtrów
     const order = { 'specialist': 1, 'tools': 2, 'creative': 3, 'games': 4 };
     return order[a.category] - order[b.category];
 });
@@ -80,7 +79,6 @@ async function playSound(type = 'click') {
 
 // --- Funkcje pomocnicze ---
 const t = (key, args) => {
-    // ZMIANA: Dodano sprawdzenie, czy translations[currentLang] istnieje
     const langSet = translations[currentLang] || translations['pl'];
     const translation = langSet[key];
     return typeof translation === 'function' ? translation(args) : translation || key;
@@ -106,14 +104,9 @@ const showConfirmationModal = (message, onConfirm) => {
 }
 
 async function fetchAndRenderTemplate(route) {
-    // ZMIANA: Mapowanie nowej trasy /changelog na stary plik /pages/about.html
-    // Oraz nowej trasy / (home) na plik /pages/home.html
-    let templateFile = route;
-    if (route === 'changelog') {
-        templateFile = 'about'; // Nowa trasa /changelog używa starego pliku about.html
-    } else if (route === 'home') {
-        templateFile = 'home'; // Nowa trasa / (home) używa nowego pliku home.html
-    }
+    // ZMIANA: Usunięto logikę mapowania. Router jest teraz czysty.
+    // Trasa 'changelog' będzie teraz automatycznie szukać 'pages/changelog.html'
+    const templateFile = route;
 
     try {
         const response = await fetch(`./pages/${templateFile}.html`);
@@ -123,9 +116,9 @@ async function fetchAndRenderTemplate(route) {
         return html;
     } catch (error) {
         console.error("Błąd ładowania szablonu:", error);
-        // ZMIANA: Jeśli nie znajdzie home.html (bo go jeszcze nie ma), załaduj about jako fallback
+        // ZMIANA: Jeśli nie znajdzie home.html (bo go jeszcze nie ma), załaduj changelog jako fallback
         if (route === 'home') {
-            console.warn("Nie znaleziono home.html, ładowanie changelog (about.html) jako fallback.");
+            console.warn("Nie znaleziono home.html, ładowanie changelog jako fallback.");
             return await fetchAndRenderTemplate('changelog');
         }
         return `<h2>Błąd 404</h2><p>Nie udało się załadować treści strony.</p>`;
@@ -133,7 +126,7 @@ async function fetchAndRenderTemplate(route) {
 }
 
 function setTheme(theme) {
-    document.body.classList.toggle('light-mode', theme === 'light'); // ZMIANA: Teraz przełączamy light-mode, bo dark jest domyślny
+    document.body.classList.toggle('light-mode', theme === 'light');
     localStorage.setItem('theme', theme);
     currentTheme = theme;
 }
@@ -168,10 +161,8 @@ function unloadStyle(id) {
 
 function renderStaticContent() {
     document.documentElement.lang = currentLang;
-    // Tytuł strony (FoerchByte) jest teraz statyczny w index.html i nie jest tłumaczony
-    // document.querySelector('#site-title a').textContent = t('siteTitle'); 
+    // Tytuł strony (FoerchByte) jest teraz statyczny w index.html
     
-    // ZMIANA: Zaktualizowano selektory nawigacji zgodnie z nową strukturą
     document.querySelectorAll('#main-nav a')[0].textContent = t('navProjects');
     document.querySelectorAll('#main-nav a')[1].textContent = t('navChangelog');
     document.querySelectorAll('#main-nav a')[2].textContent = t('navContact');
@@ -181,10 +172,9 @@ function renderStaticContent() {
 
 function getRouteFromPathname() {
     const path = window.location.pathname;
-    // ZMIANA: Domyślną trasą jest 'home', stara trasa 'about' przekierowuje na 'changelog'
     if (path === '/') return 'home';
     if (path === '/about') {
-        window.history.replaceState({}, '', '/changelog'); // Poprawia URL bez przeładowania
+        window.history.replaceState({}, '', '/changelog'); 
         return 'changelog';
     }
     return path.substring(1);
@@ -223,13 +213,12 @@ function loadModuleStyle(route) {
         } else {
             styleToLoad = route;
         }
-    // ZMIANA: Trasa 'about' została zmieniona na 'changelog'
+    // ZMIANA: Trasa 'changelog' ładuje teraz 'changelog.css' (zamiast 'timeline.css')
     } else if (route === 'changelog') {
-        styleToLoad = 'timeline';
+        styleToLoad = 'changelog';
     } else if (route === 'contact') {
         styleToLoad = 'contact';
     } else if (route === 'home') {
-        // NOWOŚĆ: Będziemy potrzebować stylów dla strony głównej
         styleToLoad = 'home'; 
     }
     if (styleToLoad) {
@@ -237,7 +226,8 @@ function loadModuleStyle(route) {
     }
 }
 
-function initializeAboutPage() {
+// ZMIANA: Zmieniono nazwę funkcji dla jasności
+function initializeChangelogPage() {
     const collapsibleSection = document.querySelector('.timeline-section.collapsible');
     if (collapsibleSection) {
         const header = collapsibleSection.querySelector('.collapsible-header');
@@ -254,10 +244,9 @@ async function attachEventListeners(route) {
     const dependencies = { t, showConfirmationModal, playSound };
     
     const routeInitializers = {
-        // NOWOŚĆ: Pusta funkcja dla statycznej strony 'home'
         'home': () => { return []; },
-        // ZMIANA: Logika 'about' przeniesiona do 'changelog'
-        'changelog': () => initializeAboutPage(),
+        // ZMIANA: Logika 'about' przeniesiona do 'changelog' i zmieniono nazwę funkcji
+        'changelog': () => initializeChangelogPage(),
         'projects': () => {
             const filters = document.querySelector('.project-filters');
             filters.addEventListener('click', e => {
@@ -299,7 +288,6 @@ function updateActiveNavLink(activeRoute) {
     document.querySelectorAll('.main-nav a, .project-card').forEach(link => {
         const linkRoute = new URL(link.href).pathname.substring(1);
         link.classList.remove('nav-active');
-        // ZMIANA: Trasa 'home' nie podświetla żadnego linku, co jest zgodne z mockupem
         if (activeRoute !== 'home' && (linkRoute === activeRoute || (linkRoute === 'projects' && projectRoutes.includes(activeRoute)))) {
             link.classList.add('nav-active');
         }
@@ -313,7 +301,6 @@ function navigate(path) {
 
 function initializeApp() {
     const savedTheme = localStorage.getItem('theme');
-    // ZMIANA: Domyślnie preferujemy tryb ciemny, jeśli użytkownik nie wybrał inaczej
     const defaultTheme = 'dark'; 
     setTheme(savedTheme || defaultTheme);
 
