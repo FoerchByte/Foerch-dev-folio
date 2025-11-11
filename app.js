@@ -6,30 +6,140 @@
 
 import { translations } from './modules/translations.js';
 
-// --- Dane projektów (bez zmian) ---
+// --- NOWY MODEL DANYCH PROJEKTÓW ---
+// Zastępuje starą, prostą tablicę. Teraz zawiera klucze do wszystkich
+// danych potrzebnych do zbudowania widoku "Project Registry".
 const projectsData = [
-    { id: 'project-aggregator', category: 'specialist', cardTitleKey: 'aggregatorCardTitle', cardDescKey: 'aggregatorCardDesc' },
-    { id: 'tax-arrears-calculator', category: 'specialist', cardTitleKey: 'taxArrearsCardTitle', cardDescKey: 'taxArrearsCardDesc' },
-    { id: 'statutory-interest-calculator', category: 'specialist', cardTitleKey: 'statutoryInterestCardTitle', cardDescKey: 'statutoryInterestCardDesc' },
-    { id: 'budget-validator', category: 'specialist', cardTitleKey: 'budgetValidatorCardTitle', cardDescKey: 'budgetValidatorCardDesc' },
-    { id: 'weather', category: 'tools', cardTitleKey: 'weatherCardTitle', cardDescKey: 'weatherCardDesc' },
-    { id: 'todo', category: 'tools', cardTitleKey: 'todoCardTitle', cardDescKey: 'todoCardDesc' },
-    { id: 'currency-calculator', category: 'tools', cardTitleKey: 'currencyCalcCardTitle', cardDescKey: 'currencyCalcCardDesc' },
-    { id: 'pomodoro-timer', category: 'tools', cardTitleKey: 'pomodoroTimerCardTitle', cardDescKey: 'pomodoroTimerCardDesc' },
-    { id: 'agency', category: 'creative', cardTitleKey: 'agencyCardTitle', cardDescKey: 'agencyCardDesc' },
-    { id: 'markdown-editor', category: 'creative', cardTitleKey: 'markdownEditorCardTitle', cardDescKey: 'markdownEditorCardDesc' },
-    { id: 'snake-game', category: 'games', cardTitleKey: 'snakeGameCardTitle', cardDescKey: 'snakeGameCardDesc' },
-    { id: 'tic-tac-toe', category: 'games', cardTitleKey: 'ticTacToeCardTitle', cardDescKey: 'ticTacToeCardDesc' },
-    { id: 'memory-game', category: 'games', cardTitleKey: 'memoryGameCardTitle', cardDescKey: 'memoryGameCardDesc' },
-].sort((a, b) => {
-    const order = { 'specialist': 1, 'tools': 2, 'creative': 3, 'games': 4 };
-    return order[a.category] - order[b.category];
-});
+    // --- Specjalistyczne (Automatyzacja) ---
+    { 
+        id: 'project-aggregator', 
+        category: 'specialist',
+        titleKey: 'aggregatorTitle',
+        descKey: 'aggregatorDesc',
+        statusKey: 'aggregatorStatus',
+        dateKey: 'aggregatorDate',
+        tagsKey: 'aggregatorTags'
+    },
+    { 
+        id: 'tax-arrears-calculator', 
+        category: 'specialist',
+        titleKey: 'taxArrearsTitle',
+        descKey: 'taxArrearsDesc',
+        statusKey: 'taxArrearsStatus',
+        dateKey: 'taxArrearsDate',
+        tagsKey: 'taxArrearsTags'
+    },
+    { 
+        id: 'statutory-interest-calculator', 
+        category: 'specialist',
+        titleKey: 'statutoryInterestTitle',
+        descKey: 'statutoryInterestDesc',
+        statusKey: 'statutoryInterestStatus',
+        dateKey: 'statutoryInterestDate',
+        tagsKey: 'statutoryInterestTags'
+    },
+    { 
+        id: 'budget-validator', 
+        category: 'specialist',
+        titleKey: 'budgetValidatorTitle',
+        descKey: 'budgetValidatorDesc',
+        statusKey: 'budgetValidatorStatus',
+        dateKey: 'budgetValidatorDate',
+        tagsKey: 'budgetValidatorTags'
+    },
+    // --- Narzędzia ---
+    { 
+        id: 'weather', 
+        category: 'tools',
+        titleKey: 'weatherTitle',
+        descKey: 'weatherDesc',
+        statusKey: 'weatherStatus',
+        dateKey: 'weatherDate',
+        tagsKey: 'weatherTags'
+    },
+    { 
+        id: 'todo', 
+        category: 'tools',
+        titleKey: 'todoTitle',
+        descKey: 'todoDesc',
+        statusKey: 'todoStatus',
+        dateKey: 'todoDate',
+        tagsKey: 'todoTags'
+    },
+    { 
+        id: 'currency-calculator', 
+        category: 'tools',
+        titleKey: 'currencyCalcTitle',
+        descKey: 'currencyCalcDesc',
+        statusKey: 'currencyCalcStatus',
+        dateKey: 'currencyCalcDate',
+        tagsKey: 'currencyCalcTags'
+    },
+    { 
+        id: 'pomodoro-timer', 
+        category: 'tools',
+        titleKey: 'pomodoroTimerTitle',
+        descKey: 'pomodoroTimerDesc',
+        statusKey: 'pomodoroTimerStatus',
+        dateKey: 'pomodoroTimerDate',
+        tagsKey: 'pomodoroTimerTags'
+    },
+    // --- Kreatywne (Frontend) ---
+    { 
+        id: 'agency', 
+        category: 'creative',
+        titleKey: 'agencyTitle',
+        descKey: 'agencyDesc',
+        statusKey: 'agencyStatus',
+        dateKey: 'agencyDate',
+        tagsKey: 'agencyTags'
+    },
+    { 
+        id: 'markdown-editor', 
+        category: 'creative',
+        titleKey: 'markdownEditorTitle',
+        descKey: 'markdownEditorDesc',
+        statusKey: 'markdownEditorStatus',
+        dateKey: 'markdownEditorDate',
+        tagsKey: 'markdownEditorTags'
+    },
+    // --- Gry ---
+    { 
+        id: 'snake-game', 
+        category: 'games',
+        titleKey: 'snakeGameTitle',
+        descKey: 'snakeGameDesc',
+        statusKey: 'snakeGameStatus',
+        dateKey: 'snakeGameDate',
+        tagsKey: 'snakeGameTags'
+    },
+    { 
+        id: 'tic-tac-toe', 
+        category: 'games',
+        titleKey: 'ticTacToeTitle',
+        descKey: 'ticTacToeDesc',
+        statusKey: 'ticTacToeStatus',
+        dateKey: 'ticTacToeDate',
+        tagsKey: 'ticTacToeTags'
+    },
+    { 
+        id: 'memory-game', 
+        category: 'games',
+        titleKey: 'memoryGameTitle',
+        descKey: 'memoryGameDesc',
+        statusKey: 'memoryGameStatus',
+        dateKey: 'memoryGameDate',
+        tagsKey: 'memoryGameTags'
+    },
+];
+// Uwaga: Usuwamy sortowanie po kategoriach, ponieważ mockup sortuje po dacie (co osiągniemy przez kolejność w tablicy)
+// Możemy posortować po dacie, ale klucze `dateKey` (np. "2023-Q4") nie są łatwo sortowalne.
+// Na razie zostawiamy kolejność ręczną, zgodną z logiką (Specjalistyczne -> Narzędzia -> ...).
+
 
 // --- Zmienne globalne ---
 let currentLang = localStorage.getItem('lang') || 'pl';
 let currentTheme = localStorage.getItem('theme') || 'light';
-let currentProjectFilter = 'all';
 let activeCleanups = [];
 let activeStyleId = null;
 
@@ -39,6 +149,7 @@ let activeStyleId = null;
 let synth;
 
 function initializeAudio() {
+// ... (bez zmian) ...
     if (typeof Tone !== 'undefined' && !synth) {
         synth = new Tone.PolySynth(Tone.Synth, {
             volume: -12,
@@ -49,6 +160,7 @@ function initializeAudio() {
 }
 
 async function playSound(type = 'click') {
+// ... (bez zmian) ...
     if (typeof Tone !== 'undefined' && Tone.context.state !== 'running') {
         await Tone.start();
         initializeAudio();
@@ -79,12 +191,14 @@ async function playSound(type = 'click') {
 
 // --- Funkcje pomocnicze ---
 const t = (key, args) => {
+// ... (bez zmian) ...
     const langSet = translations[currentLang] || translations['pl'];
     const translation = langSet[key];
     return typeof translation === 'function' ? translation(args) : translation || key;
 }
 
 const showConfirmationModal = (message, onConfirm) => {
+// ... (bez zmian) ...
     const modalOverlay = document.createElement('div');
     modalOverlay.className = 'modal-overlay';
     modalOverlay.innerHTML = `
@@ -104,8 +218,7 @@ const showConfirmationModal = (message, onConfirm) => {
 }
 
 async function fetchAndRenderTemplate(route) {
-    // ZMIANA: Usunięto logikę mapowania. Router jest teraz czysty.
-    // Trasa 'changelog' będzie teraz automatycznie szukać 'pages/changelog.html'
+// ... (bez zmian) ...
     const templateFile = route;
 
     try {
@@ -116,7 +229,6 @@ async function fetchAndRenderTemplate(route) {
         return html;
     } catch (error) {
         console.error("Błąd ładowania szablonu:", error);
-        // ZMIANA: Jeśli nie znajdzie home.html (bo go jeszcze nie ma), załaduj changelog jako fallback
         if (route === 'home') {
             console.warn("Nie znaleziono home.html, ładowanie changelog jako fallback.");
             return await fetchAndRenderTemplate('changelog');
@@ -126,23 +238,52 @@ async function fetchAndRenderTemplate(route) {
 }
 
 function setTheme(theme) {
+// ... (bez zmian) ...
     document.body.classList.toggle('light-mode', theme === 'light');
     localStorage.setItem('theme', theme);
     currentTheme = theme;
 }
 
-function renderProjects(filter = 'all') {
-    const projectsGrid = document.getElementById('projects-grid');
-    if (!projectsGrid) return;
-    const filteredProjects = projectsData.filter(p => filter === 'all' || p.category === filter);
-    projectsGrid.innerHTML = filteredProjects.map(project => `
-        <a href="/${project.id}" class="project-card">
-            <h3>${t(project.cardTitleKey)}</h3>
-            <p>${t(project.cardDescKey)}</p>
-        </a>`).join('');
+/**
+ * ZMIANA: Całkowicie nowa funkcja renderująca.
+ * Renderuje listę projektów w stylu "Project Registry" zamiast siatki.
+ */
+function renderProjects() {
+    const projectsList = document.getElementById('project-registry-list');
+    if (!projectsList) return;
+
+    // Budowanie HTML na podstawie nowego modelu danych `projectsData`
+    projectsList.innerHTML = projectsData.map(project => {
+        const statusKey = project.statusKey || '';
+        const statusClass = statusKey.toLowerCase().replace(/[^a-z0-9]/g, '-');
+        
+        // Dzielimy tagi i opakowujemy każdy w <span>
+        const tags = t(project.tagsKey)
+            .split(' ')
+            .map(tag => `<span class="tag">${tag}</span>`)
+            .join(' ');
+
+        return `
+            <li class="project-item">
+                <a href="/${project.id}" class="project-link">
+                    <div class="project-header">
+                        <span class="project-date">${t(project.dateKey)}</span>
+                        <span class="project-status status-${statusClass}">${t(project.statusKey)}</span>
+                    </div>
+                    <h3 class="project-title">${t(project.titleKey)}</h3>
+                    <p class="project-description">${t(project.descKey)}</p>
+                    <div class="project-tags">
+                        ${tags}
+                    </div>
+                </a>
+            </li>
+        `;
+    }).join('');
 }
 
+
 function loadStyle(path) {
+// ... (bez zmian) ...
     const styleId = `style-${path.split('/').pop().split('.')[0]}`;
     if (document.getElementById(styleId)) return;
     const link = document.createElement('link');
@@ -154,14 +295,15 @@ function loadStyle(path) {
 }
 
 function unloadStyle(id) {
+// ... (bez zmian) ...
     if (!id) return;
     const link = document.getElementById(id);
     if (link) link.remove();
 }
 
 function renderStaticContent() {
+// ... (bez zmian) ...
     document.documentElement.lang = currentLang;
-    // Tytuł strony (FoerchByte) jest teraz statyczny w index.html
     
     document.querySelectorAll('#main-nav a')[0].textContent = t('navProjects');
     document.querySelectorAll('#main-nav a')[1].textContent = t('navChangelog');
@@ -171,6 +313,7 @@ function renderStaticContent() {
 }
 
 function getRouteFromPathname() {
+// ... (bez zmian) ...
     const path = window.location.pathname;
     if (path === '/') return 'home';
     if (path === '/about') {
@@ -181,6 +324,7 @@ function getRouteFromPathname() {
 }
 
 async function renderContent(isInitialLoad = false) {
+// ... (bez zmian) ...
     const contentContainer = document.getElementById('app-content');
     const route = getRouteFromPathname();
 
@@ -205,6 +349,7 @@ async function renderContent(isInitialLoad = false) {
 }
 
 function loadModuleStyle(route) {
+// ... (bez zmian) ...
     const projectRoutes = projectsData.map(p => p.id);
     let styleToLoad = null;
     if (projectRoutes.includes(route)) {
@@ -213,21 +358,23 @@ function loadModuleStyle(route) {
         } else {
             styleToLoad = route;
         }
-    // ZMIANA: Trasa 'changelog' ładuje teraz 'changelog.css' (zamiast 'timeline.css')
     } else if (route === 'changelog') {
         styleToLoad = 'changelog';
     } else if (route === 'contact') {
         styleToLoad = 'contact';
     } else if (route === 'home') {
         styleToLoad = 'home'; 
+    // ZMIANA: Strona 'projects' (lista) potrzebuje teraz własnego, dedykowanego pliku CSS
+    } else if (route === 'projects') {
+        styleToLoad = 'projects';
     }
     if (styleToLoad) {
         loadStyle(`./modules/${styleToLoad}.css`);
     }
 }
 
-// ZMIANA: Zmieniono nazwę funkcji dla jasności
 function initializeChangelogPage() {
+// ... (bez zmian) ...
     const collapsibleSection = document.querySelector('.timeline-section.collapsible');
     if (collapsibleSection) {
         const header = collapsibleSection.querySelector('.collapsible-header');
@@ -241,26 +388,20 @@ function initializeChangelogPage() {
 }
 
 async function attachEventListeners(route) {
+// ... (bez zmian) ...
     const dependencies = { t, showConfirmationModal, playSound };
     
     const routeInitializers = {
         'home': () => { return []; },
-        // ZMIANA: Logika 'about' przeniesiona do 'changelog' i zmieniono nazwę funkcji
         'changelog': () => initializeChangelogPage(),
+        
+        // ZMIANA: Logika dla 'projects' jest teraz znacznie prostsza.
+        // Usuwamy stare nasłuchiwacze na filtry.
         'projects': () => {
-            const filters = document.querySelector('.project-filters');
-            filters.addEventListener('click', e => {
-                if (e.target.tagName === 'BUTTON') {
-                    playSound('click');
-                    currentProjectFilter = e.target.dataset.filter;
-                    document.querySelectorAll('.project-filters button').forEach(btn => btn.classList.remove('active'));
-                    e.target.classList.add('active');
-                    renderProjects(currentProjectFilter);
-                }
-            });
-            renderProjects(currentProjectFilter);
+            renderProjects(); // Po prostu renderujemy listę
             return [];
         },
+        
         'todo': async () => { const { initializeTodoApp } = await import('./modules/todo.js'); return initializeTodoApp(dependencies); },
         'weather': async () => { const { initializeWeatherApp } = await import('./modules/weather.js'); return initializeWeatherApp(dependencies); },
         'currency-calculator': async () => { const { initializeCurrencyCalculator } = await import('./modules/currency.js'); return initializeCurrencyCalculator(dependencies); },
@@ -284,6 +425,7 @@ async function attachEventListeners(route) {
 }
 
 function updateActiveNavLink(activeRoute) {
+// ... (bez zmian) ...
     const projectRoutes = projectsData.map(p => p.id);
     document.querySelectorAll('.main-nav a, .project-card').forEach(link => {
         const linkRoute = new URL(link.href).pathname.substring(1);
@@ -295,11 +437,13 @@ function updateActiveNavLink(activeRoute) {
 }
 
 function navigate(path) {
+// ... (bez zmian) ...
     window.history.pushState({}, '', path);
     renderContent();
 }
 
 function initializeApp() {
+// ... (bez zmian) ...
     const savedTheme = localStorage.getItem('theme');
     const defaultTheme = 'dark'; 
     setTheme(savedTheme || defaultTheme);
