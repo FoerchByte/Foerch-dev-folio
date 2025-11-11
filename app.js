@@ -7,8 +7,6 @@
 import { translations } from './modules/translations.js';
 
 // --- NOWY MODEL DANYCH PROJEKTÓW ---
-// Zastępuje starą, prostą tablicę. Teraz zawiera klucze do wszystkich
-// danych potrzebnych do zbudowania widoku "Project Registry".
 const projectsData = [
     // --- Specjalistyczne ---
     { 
@@ -56,7 +54,6 @@ const projectsData = [
         statusKey: 'weatherStatus',
         dateKey: 'weatherDate',
         tagsKey: 'weatherTags',
-        // ZMIANA: Dodano link zewnętrzny i klucz do jego opisu
         externalUrl: 'https://foerch-weather-station.netlify.app',
         linkDescKey: 'weatherLinkDesc'
     },
@@ -213,10 +210,8 @@ const showConfirmationModal = (message, onConfirm) => {
 }
 
 async function fetchAndRenderTemplate(route) {
-    // KROK 1: Zmapuj trasę (route) na rzeczywisty plik HTML
     let templateFile = route;
     
-    // KROK 2: Załaduj i przetłumacz szablon
     try {
         const response = await fetch(`./pages/${templateFile}.html`);
         if (!response.ok) throw new Error(`Nie można załadować szablonu: ${templateFile}.html`);
@@ -240,26 +235,21 @@ function setTheme(theme) {
 }
 
 /**
- * ZMIANA: Całkowicie nowa funkcja renderująca.
- * Renderuje listę projektów w stylu "Project Registry" zamiast siatki.
+ * ZMIANA: Funkcja renderująca - NAPRAWIONA STRUKTURA HTML
  */
 function renderProjects() {
     const projectsList = document.getElementById('project-registry-list');
     if (!projectsList) return;
 
-    // Budowanie HTML na podstawie nowego modelu danych `projectsData`
     projectsList.innerHTML = projectsData.map(project => {
         const statusKey = project.statusKey || '';
-        // Normalizacja statusu do klasy CSS (np. "PRODUKCJA" -> "produkcja")
         const statusClass = t(statusKey).toLowerCase().replace(/[^a-z0-9]/g, '-');
         
-        // Dzielimy tagi i opakowujemy każdy w <span>
         const tags = t(project.tagsKey)
             .split(' ')
             .map(tag => `<span class="tag">${tag}</span>`)
             .join(' ');
 
-        // ZMIANA: Logika linku zewnętrznego
         const externalLink = project.externalUrl
             ? `<a href="${project.externalUrl}" 
                  target="_blank" 
@@ -272,25 +262,31 @@ function renderProjects() {
 
         return `
             <li class="project-item">
-                <!-- NAPRAWA: Tag <a> opakowuje teraz WSZYSTKO, łącznie ze stopką -->
-                <a href="/${project.id}" class="project-link"> 
+                <!-- NAPRAWA: Główny kontener to DIV, nie A -->
+                <div class="project-card-content"> 
                     <div class="project-header">
                         <span class="project-date">${t(project.dateKey)}</span>
                         <span class="project-status status-${statusClass}">${t(project.statusKey)}</span>
                     </div>
-                    <h3 class="project-title">${t(project.titleKey)}</h3>
+                    
+                    <!-- NAPRAWA: Link wewnętrzny jest TYLKO na tytule -->
+                    <a href="/${project.id}" class="project-title-link">
+                        <h3 class="project-title">${t(project.titleKey)}</h3>
+                    </a>
+
                     <p class="project-description">${t(project.descKey)}</p>
                     
-                    <!-- NAPRAWA: Stopka jest teraz W ŚRODKU tagu <a> -->
                     <div class="project-footer">
                         <div class="project-tags">
                             ${tags}
                         </div>
                         <div class="project-external-link-wrapper">
+                            <!-- NAPRAWA: Link zewnętrzny jest teraz jedynym linkiem w stopce,
+                                 co jest w 100% poprawnym HTML -->
                             ${externalLink}
                         </div>
                     </div>
-                </a> <!-- NAPRAWA: Tag <a> zamknięty DOPIERO TUTAJ -->
+                </div> 
             </li>
         `;
     }).join('');
@@ -317,7 +313,6 @@ function unloadStyle(id) {
 function renderStaticContent() {
     document.documentElement.lang = currentLang;
     
-    // Ustawienie linków nawigacyjnych na podstawie kluczy i18n
     document.querySelectorAll('#main-nav a[data-i18n]').forEach(link => {
         const key = link.dataset.i18n;
         link.textContent = t(key);
@@ -328,14 +323,11 @@ function renderStaticContent() {
 
 function getRouteFromPathname() {
     const path = window.location.pathname;
-    // Domyślna trasa to 'home'
     if (path === '/') return 'home';
-    // Przekierowanie starych linków /about na /changelog
     if (path === '/about') {
         window.history.replaceState({}, '', '/changelog'); 
         return 'changelog';
     }
-    // Usuwamy wiodący slash
     return path.substring(1);
 }
 
@@ -367,19 +359,18 @@ function loadModuleStyle(route) {
     const projectRoutes = projectsData.map(p => p.id);
     let styleToLoad = null;
     if (projectRoutes.includes(route)) {
-        // Specjalny przypadek: oba kalkulatory używają tych samych stylów
         if (route === 'statutory-interest-calculator') {
             styleToLoad = 'tax-arrears-calculator';
         } else {
             styleToLoad = route;
         }
-    } else if (route === 'changelog') { // Nowa trasa dla "O mnie"
+    } else if (route === 'changelog') { 
         styleToLoad = 'changelog';
     } else if (route === 'contact') {
         styleToLoad = 'contact';
-    } else if (route === 'home') { // Nowa strona główna
+    } else if (route === 'home') { 
         styleToLoad = 'home';
-    } else if (route === 'projects') { // Strona listy projektów
+    } else if (route === 'projects') { 
         styleToLoad = 'projects';
     }
     if (styleToLoad) {
@@ -388,9 +379,6 @@ function loadModuleStyle(route) {
 }
 
 function initializeChangelogPage() {
-    // Ta funkcja jest teraz specyficzna tylko dla strony changelog
-    // (wcześniej była to 'initializeAboutPage')
-    // ... (jeśli będzie tu jakaś logika, np. rozwijanie, dodamy ją)
     return [];
 }
 
@@ -398,11 +386,10 @@ async function attachEventListeners(route) {
     const dependencies = { t, showConfirmationModal, playSound };
     
     const routeInitializers = {
-        'home': () => { return []; }, // Strona główna jest statyczna
+        'home': () => { return []; }, 
         'changelog': () => initializeChangelogPage(),
-        
         'projects': () => {
-            renderProjects(); // Renderuj listę projektów
+            renderProjects(); 
             return [];
         },
         
@@ -440,14 +427,12 @@ function updateActiveNavLink(activeRoute) {
         if (linkRoute === activeRoute) {
             link.classList.add('nav-active');
         } else if (linkRoute === 'projects' && projectRoutes.includes(activeRoute)) {
-            // Podświetl "Projekty", gdy jesteśmy na stronie jednego z projektów
             link.classList.add('nav-active');
         }
     });
 }
 
 function navigate(path) {
-    // Nie renderuj, jeśli to ten sam URL
     if (window.location.pathname === path) return;
     
     window.history.pushState({}, '', path);
@@ -455,9 +440,7 @@ function navigate(path) {
 }
 
 function initializeApp() {
-    // Ustawienie motywu
     const savedTheme = localStorage.getItem('theme');
-    // ZMIANA: Domyślnie 'dark'
     const defaultTheme = 'dark'; 
     setTheme(savedTheme || defaultTheme);
 
@@ -466,7 +449,6 @@ function initializeApp() {
         setTheme(currentTheme === 'light' ? 'dark' : 'light');
     });
     
-    // Ustawienie języka
     document.getElementById('lang-switcher').addEventListener('click', e => {
         if (e.target.tagName === 'BUTTON') {
             const lang = e.target.dataset.lang;
@@ -475,33 +457,36 @@ function initializeApp() {
                 currentLang = lang;
                 localStorage.setItem('lang', lang);
                 renderStaticContent();
-                renderContent(); // Przerenderuj całą treść w nowym języku
+                renderContent(); 
             }
         }
     });
 
-    // Obsługa nawigacji (History API)
     window.addEventListener('popstate', () => renderContent());
 
     document.addEventListener('click', e => {
         const link = e.target.closest('a');
-        // Ignoruj linki zewnętrzne, linki z atrybutem download i linki specjalne
         if (link && 
             link.origin === window.location.origin && 
             !link.hasAttribute('download') &&
-            !e.ctrlKey && !e.metaKey && // Ignoruj "otwórz w nowej karcie"
-            link.target !== '_blank') // Ignoruj jawne _blank
+            !e.ctrlKey && !e.metaKey && 
+            link.target !== '_blank') 
         {
+            // NAPRAWA: Upewniamy się, że nasz router obsługuje linki wewnątrz linków
+            // (chociaż naprawiliśmy HTML, ta logika jest bezpieczniejsza)
+            if (link.classList.contains('project-external-link')) {
+                // To jest link zewnętrzny, pozwól mu działać (choć ma target=_blank, więc ten kod nie powinien się wykonać)
+                return; 
+            }
+            
             e.preventDefault();
             navigate(link.pathname);
         }
     });
 
-    // Pierwsze ładowanie
     renderStaticContent();
     renderContent(true);
 
-    // Menu mobilne
     const menuToggle = document.getElementById('menu-toggle');
     const siteHeader = document.querySelector('.site-header');
     const navWrapper = document.getElementById('nav-wrapper');
