@@ -55,7 +55,8 @@ export const translations = {
         changelogV3Place: "Urząd Miasta Łodzi",
         changelogV3Date: "06.2023 - obecnie",
         // ZMIANA #3: Dodano Power Automate / SharePoint do opisu
-        changelogV3Desc: "Uzyskanie tytułu Magistra (AI). Wdrożenie pełnego ekosystemu automatyzacji: zastąpienie manualnych procesów skryptami VBA, potokami Power Query oraz formularzami Power Automate/SharePoint. KLUCZOWY WYNIK: Redukcja czasu rocznego rozliczenia 140+ projektów z 78 dni roboczych do zaledwie 3 dni.",
+        // ZMIANA #4: Zmiana "3 dni" na "10 dni"
+        changelogV3Desc: "Uzyskanie tytułu Magistra (AI). Wdrożenie pełnego ekosystemu automatyzacji: zastąpienie manualnych procesów skryptami VBA, potokami Power Query oraz formularzami Power Automate/SharePoint. KLUCZOWY WYNIK: Redukcja czasu rocznego rozliczenia 140+ projektów z 78 dni roboczych do zaledwie 10 dni.",
         // ZMIANA #3: Dodano tagi
         changelogV3Tags: "<span style='color: var(--primary-color)'>[Magister (SI)]</span> [VBA] [Power Query] [Automatyzacja Procesów] [SharePoint] [Power Automate]",
 
@@ -386,7 +387,8 @@ export const translations = {
         changelogV3Place: "City of Łódź Office",
         changelogV3Date: "06.2023 - present",
         // ZMIANA #3: Dodano Power Automate / SharePoint do opisu (EN)
-        changelogV3Desc: "Obtained Master of Science (MSc) in AI. Implemented full automation ecosystem: replaced manual processes with VBA scripts, Power Query pipelines, and Power Automate/SharePoint forms. KEY RESULT: Reduced annual settlement time for 140+ projects from 78 working days to just 3 days.",
+        // ZMIANA #4: Zmiana "3 days" na "10 days" (EN)
+        changelogV3Desc: "Obtained Master of Science (MSc) in AI. Implemented full automation ecosystem: replaced manual processes with VBA scripts, Power Query pipelines, and Power Automate/SharePoint forms. KEY RESULT: Reduced annual settlement time for 140+ projects from 78 working days to just 10 days.",
         // ZMIANA #3: Dodano tagi (EN)
         changelogV3Tags: "<span style='color: var(--primary-color)'>[MSc Degree (AI)]</span> [VBA] [Power Query] [Process Automation] [SharePoint] [Power Automate]",
 
