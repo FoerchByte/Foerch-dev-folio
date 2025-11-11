@@ -11,12 +11,11 @@
 export const translations = {
     pl: {
         siteTitle: "FoerchByte // Portfolio",
-        // ZMIANA: Dostosowanie nawigacji do index.html i mockupów
         navProjects: "Projekty", navChangelog: "Changelog", navContact: "Kontakt",
         
-        // NOWOŚĆ: Klucze dla nowej strony głównej (Hero)
+        // ZMIANA: Dodano <span class="highlight"> dla stylów CSS
         heroSubtitle: "EXECUTIVE_ENGINEER",
-        heroTitle: "Budowanie Systemów Które Skalują",
+        heroTitle: "Budowanie <span class=\"highlight\">Systemów</span> Które Skalują",
         heroDescription: "Architektura wysokowydajnych systemów rozproszonych i infrastruktury z precyzyjną inżynierią i podejmowaniem decyzji w oparciu o dane.",
         heroCta: "ZOBACZ_CASE_STUDIES",
 
@@ -26,7 +25,6 @@ export const translations = {
         aboutSubtitle: "Specjalista ds. Automatyzacji Danych | Frontend Developer",
         aboutDesc1: "Jestem inżynierem, który nie godzi się na \"tak zawsze robiliśmy\". Specjalizuję się w identyfikacji wąskich gardeł w procesach biznesowych i ich bezlitosnej automatyzacji.",
         aboutDesc2: "Łączę twarde kompetencje analityczne (VBA, Power Query, Excel) z nowoczesnym stackiem webowym (JavaScript, API), tworząc narzędzia, które oszczędzają setki godzin pracy rocznie. Moim celem jest budowanie systemów, które działają dla ludzi, a nie odwrotnie.",
-        // ZMIANA: Usunięto "(Dependencies)" dla czystości języka
         aboutSkillsTitle: "Stack Technologiczny",
         skillsHeaderData: "// Automatyzacja i Analiza Danych",
         skillsHeaderFrontend: "// Frontend Development",
@@ -34,7 +32,6 @@ export const translations = {
         aboutCtaProjects: "Zobacz Case Studies",
         aboutCtaCv: "Pobierz pełne CV",
         
-        // ZMIANA: Bardziej polski nagłówek, zachowujący techniczny charakter
         changelogTitle: "Przebieg Kariery (Changelog)",
         
         // v3.0.0 - Inspektor
@@ -215,12 +212,11 @@ export const translations = {
     },
     en: {
         siteTitle: "FoerchByte // Portfolio",
-        // ZMIANA: Dostosowanie nawigacji do index.html i mockupów
         navProjects: "Projects", navChangelog: "Changelog", navContact: "Contact",
 
-        // NOWOŚĆ: Klucze dla nowej strony głównej (Hero)
+        // ZMIANA: Dodano <span class="highlight"> dla stylów CSS
         heroSubtitle: "EXECUTIVE_ENGINEER",
-        heroTitle: "Building Systems That Scale",
+        heroTitle: "Building <span class=\"highlight\">Systems</span> That Scale",
         heroDescription: "Architecting high-performance distributed systems and infrastructure with precision engineering and data-driven decision making.",
         heroCta: "VIEW_CASE_STUDIES",
 
