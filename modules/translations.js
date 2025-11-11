@@ -54,8 +54,10 @@ export const translations = {
         changelogV3Title: "Rewolucja Automatyzacji (Inspektor)",
         changelogV3Place: "Urząd Miasta Łodzi",
         changelogV3Date: "06.2023 - obecnie",
-        changelogV3Desc: "Uzyskanie tytułu Magistra (AI). Wdrożenie pełnego ekosystemu automatyzacji: zastąpienie manualnych procesów skryptami VBA i potokami Power Query. KLUCZOWY WYNIK: Redukcja czasu rocznego rozliczenia 140+ projektów z 78 dni roboczych do zaledwie 3 dni.",
-        changelogV3Tags: "<span style='color: var(--primary-color)'>[Magister (SI)]</span> [VBA] [Power Query] [Automatyzacja Procesów]",
+        // ZMIANA #3: Dodano Power Automate / SharePoint do opisu
+        changelogV3Desc: "Uzyskanie tytułu Magistra (AI). Wdrożenie pełnego ekosystemu automatyzacji: zastąpienie manualnych procesów skryptami VBA, potokami Power Query oraz formularzami Power Automate/SharePoint. KLUCZOWY WYNIK: Redukcja czasu rocznego rozliczenia 140+ projektów z 78 dni roboczych do zaledwie 3 dni.",
+        // ZMIANA #3: Dodano tagi
+        changelogV3Tags: "<span style='color: var(--primary-color)'>[Magister (SI)]</span> [VBA] [Power Query] [Automatyzacja Procesów] [SharePoint] [Power Automate]",
 
         // v2.0.0 - Podinspektor
         changelogV2Title: "Inkubacja Techniczna (Podinspektor)",
@@ -383,8 +385,10 @@ export const translations = {
         changelogV3Title: "Automation Revolution (Inspector)",
         changelogV3Place: "City of Łódź Office",
         changelogV3Date: "06.2023 - present",
-        changelogV3Desc: "Obtained Master of Science (MSc) in AI. Implemented full automation ecosystem: replaced manual processes with VBA scripts and Power Query pipelines. KEY RESULT: Reduced annual settlement time for 140+ projects from 78 working days to just 3 days.",
-        changelogV3Tags: "<span style='color: var(--primary-color)'>[MSc Degree (AI)]</span> [VBA] [Power Query] [Process Automation]",
+        // ZMIANA #3: Dodano Power Automate / SharePoint do opisu (EN)
+        changelogV3Desc: "Obtained Master of Science (MSc) in AI. Implemented full automation ecosystem: replaced manual processes with VBA scripts, Power Query pipelines, and Power Automate/SharePoint forms. KEY RESULT: Reduced annual settlement time for 140+ projects from 78 working days to just 3 days.",
+        // ZMIANA #3: Dodano tagi (EN)
+        changelogV3Tags: "<span style='color: var(--primary-color)'>[MSc Degree (AI)]</span> [VBA] [Power Query] [Process Automation] [SharePoint] [Power Automate]",
 
         // v2.0.0 - Junior Inspector (Incubation)
         changelogV2Title: "Technical Incubation (Junior Inspector)",
