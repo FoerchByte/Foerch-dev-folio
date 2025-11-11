@@ -14,9 +14,17 @@ export const translations = {
         
         // --- Nowa strona główna (Hero) ---
         heroSubtitle: "EXECUTIVE_ENGINEER",
+        // ZMIANA: Dodano span.highlight do tłumaczenia, aby umożliwić stylowanie
         heroTitle: "Budowanie <span class=\"highlight\">Systemów</span> Które Skalują",
-        heroDescription: "Architektura wysokowydajnych systemów rozproszonych i infrastruktury z precyzyjną inżynierią i podejmowaniem decyzji w oparciu o dane.",
+        // ZMIANA: Zaktualizowano o "mięsistą" Wersję E
+        heroDescription: "Moja wartość leży na styku logiki biznesowej i inżynierii oprogramowania. Wykorzystuję analityczne myślenie (Excel, VBA) i precyzję dewelopera (JavaScript, API), aby architektonicznie rozwiązywać złożone problemy z danymi – nie tylko budować aplikacje.",
         heroCta: "ZOBACZ_CASE_STUDIES",
+
+        // Statystyki na stronie głównej (NOWE)
+        heroStatExperience: "LAT DOŚWIADCZENIA (Finanse/VBA)",
+        heroStatProjects: "WDROŻONYCH PROJEKTÓW",
+        heroStatCommits: "COMMITÓW W REPOZYTORIACH",
+        heroStatAutomations: "ZAUTOMATYZOWANE PROCESY",
 
         // --- Nawigacja (zgodna z mockupem) ---
         navProjects: "Projekty",
@@ -326,9 +334,17 @@ export const translations = {
 
         // --- New Hero Page ---
         heroSubtitle: "EXECUTIVE_ENGINEER",
+        // ZMIANA: Added span.highlight for styling
         heroTitle: "Building <span class=\"highlight\">Systems</span> That Scale",
-        heroDescription: "Architecting high-performance distributed systems and infrastructure with precision engineering and data-driven decision making.",
+        // ZMIANA: Updated to "meaty" Version E
+        heroDescription: "My value is at the intersection of business logic and software engineering. I leverage analytical thinking (Excel, VBA) and developer precision (JavaScript, API) to architect solutions for complex data problems—not just build applications.",
         heroCta: "VIEW_CASE_STUDIES",
+
+        // Homepage Stats (NEW)
+        heroStatExperience: "YEARS OF EXPERIENCE (Finance/VBA)",
+        heroStatProjects: "PROJECTS SHIPPED",
+        heroStatCommits: "COMMITS IN REPOSITORIES",
+        heroStatAutomations: "AUTOMATED PROCESSES",
 
         // --- Navigation (Mockup Compliant) ---
         navProjects: "Projects",
