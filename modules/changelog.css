@@ -11,8 +11,8 @@
 
 .about-me-layout {
     display: flex;
-    /* ZMIANA #1: Wyrównanie do dołu, zgodnie z Twoją prośbą */
-    align-items: flex-end;
+    /* ZMIANA (Wniosek #1): Wyrównanie do dołu zdjęcia */
+    align-items: flex-end; 
     gap: 4rem;
     margin-bottom: 5rem;
 }
@@ -76,12 +76,13 @@ body.light-mode .about-me-photo .photo-dark { opacity: 0; z-index: 1; }
 }
 .about-description p { margin-bottom: 1.5rem; }
 
-/* ZMIANA #4: Przywrócenie stylów dla CTA wewnątrz .about-me-content */
+/* ZMIANA: Przeniesiono CTA z powrotem do BIO */
 .about-me-content .about-cta {
     margin-top: 3rem;
     display: flex;
     gap: 1.5rem;
 }
+
 
 /* --- Sekcja "Career Changelog" (Oś czasu) --- */
 
@@ -91,53 +92,49 @@ body.light-mode .about-me-photo .photo-dark { opacity: 0; z-index: 1; }
     padding-top: 4rem;
 }
 
+/* Usunięcie logiki "collapsible" */
 .timeline-container {
     position: relative;
     /* Główna linia "git log" */
     border-left: 2px solid var(--border-color);
     padding-left: 2.5rem;
-    /* ZMIANA: Dodanie "oddechu" na dole kontenera, co przedłuży linię */
-    padding-bottom: 2rem; 
+    /* padding-bottom: 2rem; */ /* Usunięto zły fix */
 }
 
-/* ZMIANA #4: Usunięcie starego, niedziałającego hacka */
-/*
-.timeline-container::after {
-    content: '';
-    display: block;
-    height: 30px; 
-    width: 2px;
-}
-*/
-
+/* ZMIANA (Wniosek #2): Zmieniono item w kafelek */
 .timeline-item {
     position: relative;
-    /* ZMIANA #2: Dodanie stylu "commit block" / "kafelka" */
-    margin-bottom: 2rem;
-    padding: 2rem;
+    /* padding-bottom: 2.5rem; Usunięto */
+    margin-bottom: 2.5rem; /* Zastąpiono marginem */
     background-color: var(--card-background);
     border: 1px solid var(--border-color);
     border-radius: 2px;
+    padding: 1.5rem 2rem;
     transition: all 0.2s ease-in-out;
 }
-/* ZMIANA: Usunięcie tej reguły.
-   Teraz ostatni kafelek będzie miał domyślny 'margin-bottom: 2rem',
-   co da mu "oddech" na dole.
+.timeline-item:hover {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 15px rgba(0, 224, 255, 0.1);
+}
+
+/* ZMIANA: Usunięto tę regułę.
+  Ostatni kafelek będzie miał teraz taki sam margines dolny
+  jak wszystkie inne, co naprawia "ucięty" problem.
 */
-/* ZMIANA: Przywrócenie tej reguły.
-   Kafelek przylega do dołu, a "oddech" tworzy padding kontenera.
-*/
+/*
 .timeline-item:last-child {
     margin-bottom: 0;
 }
+*/
+
 
 /* Kropka "commit" */
 .timeline-item::before {
     content: '';
     position: absolute;
     left: -2.5rem;
-    /* ZMIANA #2: Wyrównanie do góry ramki (uwzględniając padding) */
-    top: 2rem; 
+    /* ZMIANA: Dostosowanie do paddingu kafelka (1.5rem + ~font) */
+    top: 24px; 
     width: 10px;
     height: 10px;
     border-radius: 50%;
@@ -153,10 +150,6 @@ body.light-mode .about-me-photo .photo-dark { opacity: 0; z-index: 1; }
     border-color: var(--primary-color);
     background-color: var(--primary-color);
     box-shadow: 0 0 10px rgba(0, 224, 255, 0.5);
-}
-/* ZMIANA #2: Podświetlenie ramki aktywnego commita */
-.timeline-item:first-child {
-    border-color: var(--primary-color);
 }
 
 .timeline-date {
@@ -213,39 +206,28 @@ body.light-mode .about-me-photo .photo-dark { opacity: 0; z-index: 1; }
     line-height: 1.8;
 }
 
-/* ZMIANA: Style dla sekcji Stacku na dole */
+/* --- Sekcja "Stack Technologiczny" (Przeniesiona na dół) --- */
+
 .stack-section {
     margin-top: 6rem;
     border-top: 1px solid var(--border-color);
     padding-top: 4rem;
 }
 
-.stack-section h3 {
-    /* Używamy stylu .section-title dla spójności */
-    font-size: clamp(2rem, 5vw, 2.5rem);
-    color: var(--text-color);
-    display: block;
-    margin-bottom: 1.5rem;
-    margin-top: 0;
-    font-weight: 700;
-}
-.stack-section h3::before {
-    content: '// ';
-    color: var(--primary-color);
-    font-family: 'Roboto Mono', monospace;
-    font-weight: normal;
-    font-size: 0.8em;
-    margin-right: 0.5rem;
-    opacity: 0.7;
-}
-
-/* ZMIANA #3: Kontener siatki dla stacku */
+/* ZMIANA (Wniosek #3): Układ siatki dla stacku */
 .stack-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 3rem; /* Zwiększony odstęp między grupami */
+    gap: 4rem;
 }
 
+.stack-section h3 {
+    margin-top: 0;
+    margin-bottom: 1rem;
+    color: var(--text-color);
+    font-size: 1.5rem;
+    font-weight: 600;
+}
 .stack-section .skills-header {
     font-family: 'Roboto Mono', monospace;
     color: var(--text-secondary);
@@ -257,9 +239,8 @@ body.light-mode .about-me-photo .photo-dark { opacity: 0; z-index: 1; }
 .stack-section .skills-icons {
     display: flex;
     flex-wrap: wrap;
-    gap: 1rem; 
+    gap: 1rem; /* Zmniejszony odstęp */
 }
-
 .stack-section .skill-item {
     display: flex;
     flex-direction: column;
@@ -278,11 +259,17 @@ body.light-mode .about-me-photo .photo-dark { opacity: 0; z-index: 1; }
     height: 100px;
     text-align: center;
 }
-/* ZMIANA #3: Reset rozmiarów ikon. Wypełnione ikony będą teraz optycznie spójne. */
-.stack-section .skill-item img,
-.stack-section .skill-item svg { 
+/* ZMIANA (Wniosek #3 - Ikony): Rozmiary */
+.stack-section .skill-item img {
     width: 32px;
     height: 32px;
+    filter: grayscale(100%) opacity(0.7);
+    transition: all 0.3s ease-in-out;
+}
+.stack-section .skill-item svg {
+    /* ZMIANA: Zwiększony rozmiar dla lepszej wagi wizualnej */
+    width: 48px; 
+    height: 48px;
     filter: grayscale(100%) opacity(0.7);
     transition: all 0.3s ease-in-out;
 }
@@ -293,20 +280,21 @@ body.light-mode .about-me-photo .photo-dark { opacity: 0; z-index: 1; }
     background-color: rgba(0, 224, 255, 0.05);
     transform: translateY(-5px);
 }
-.stack-section .skill-item:hover img, .stack-section .skill-item:hover svg {
+.stack-section .skill-item:hover img, 
+.stack-section .skill-item:hover svg {
     filter: grayscale(0%) opacity(1);
 }
 
-/* ZMIANA #4: Usunięto style .stack-section .about-cta */
+/* Przyciski CTA nie są już w tej sekcji */
 
 
 /* Responsywność dla Changelog */
 @media (max-width: 900px) {
     .about-me-layout {
         flex-direction: column;
+        /* ZMIANA (Wniosek #1): Reset na mobilkach */
+        align-items: flex-start; 
         gap: 3rem;
-        /* ZMIANA #1: Na mobilce wracamy do wyrównania góry */
-        align-items: flex-start;
     }
     .about-me-photo {
         margin: 0 auto;
@@ -315,21 +303,12 @@ body.light-mode .about-me-photo .photo-dark { opacity: 0; z-index: 1; }
         height: auto;
         aspect-ratio: 4/5;
     }
-
-    /* ZMIANA #4: Style dla przycisków CTA w sekcji .about-me-content na mobilce */
-    .about-me-content .about-cta {
-        flex-direction: column;
-    }
-    .about-me-content .about-cta .cta-button {
-        width: 100%;
-        max-width: 400px; 
-    }
 }
 
+/* ZMIANA (Wniosek #3): Stack na mobilkach */
 @media (max-width: 768px) {
-    /* ZMIANA #3: Układ stacku na 1 kolumnę na mobilkach */
     .stack-grid {
         grid-template-columns: 1fr;
-        gap: 2rem;
+        gap: 3rem;
     }
 }
