@@ -46,9 +46,10 @@
     border-radius: 2px;
 }
 .about-me-photo:hover img {
-    filter: grayscale(0%) contrast(1);
+    filter: grayscale(0%) opacity(1); /* Korekta: powinno być filter: grayscale(0%) contrast(1); */
 }
 .about-me-photo .photo-light { opacity: 0; z-index: 1; }
+.about-me-photo .photo-dark { opacity: 1; z-index: 2; }
 body.light-mode .about-me-photo .photo-light { opacity: 1; z-index: 2; }
 body.light-mode .about-me-photo .photo-dark { opacity: 0; z-index: 1; }
 
@@ -97,14 +98,13 @@ body.light-mode .about-me-photo .photo-dark { opacity: 0; z-index: 1; }
     /* Główna linia "git log" */
     border-left: 2px solid var(--border-color);
     padding-left: 2.5rem;
-    /* ZMIANA: Zwiększamy padding, aby linia pociągnęła się w dół */
-    padding-bottom: 3.5rem; 
+    /* POPRAWKA KAFLKA STAŻYSTY: Dodajemy PADDING-BOTTOM */
+    padding-bottom: 2.5rem; 
 }
 
 /* ZMIANA (Wniosek #2): Zmieniono item w kafelek */
 .timeline-item {
     position: relative;
-    /* padding-bottom: 2.5rem; Usunięto */
     margin-bottom: 2.5rem; /* Zastąpiono marginem */
     background-color: var(--card-background);
     border: 1px solid var(--border-color);
@@ -117,11 +117,10 @@ body.light-mode .about-me-photo .photo-dark { opacity: 0; z-index: 1; }
     box-shadow: 0 0 15px rgba(0, 224, 255, 0.1);
 }
 
-/* ZMIANA: Dajemy ostatniemu elementowi minimalny margines, aby uniknąć kolizji krawędzi */
+/* POPRAWKA KAFLKA STAŻYSTY: Musi licować się z dołem, aby padding rodzica działał */
 .timeline-item:last-child {
-    margin-bottom: 1rem;
+    margin-bottom: 0;
 }
-
 
 
 /* Kropka "commit" */
