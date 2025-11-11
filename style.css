@@ -114,7 +114,7 @@ body.light-mode .site-header {
 .controls-wrapper {
     display: flex;
     align-items: center;
-    gap: 1rem;
+    gap: 1.5rem; /* ZMIANA: Zwiększono odstęp dla spójności */
     margin-left: 1.5rem;
     padding-left: 1.5rem;
     border-left: 1px solid var(--border-color);
@@ -163,13 +163,11 @@ body.light-mode .site-header {
 
 /*
   ZMIANA: CAŁKOWITA POPRAWKA PRZEŁĄCZNIKA JĘZYKA
-  - Usunięto WSZYSTKIE pseudo-elementy ::before i ::after.
-  - Zostawiono czyste przyciski "PL" i "EN" oddzielone spacją.
-  - Zwiększono odstęp (gap) dla czytelności.
+  - Przywrócono style ::before i ::after, aby pasowały do nawigacji.
 */
 .lang-switcher {
     display: flex;
-    gap: 1rem; /* ZMIANA: Zwiększono odstęp (było 0.5rem) */
+    gap: 1.5rem; /* ZMIANA: Zwiększono odstęp (było 1rem) */
 }
 
 .lang-switcher button {
@@ -181,32 +179,41 @@ body.light-mode .site-header {
     color: var(--text-secondary);
     font-family: 'Roboto Mono', monospace;
     font-size: 0.95rem;
-    opacity: 0.5;
+    opacity: 1; /* ZMIANA: Usunięto blaknięcie dla nieaktywnego */
     transition: all 0.2s;
+    position: relative; /* Potrzebne dla pseudo-elementów */
 }
 
 .lang-switcher button.active {
     color: var(--primary-color);
-    opacity: 1;
 }
 
-/* ZMIANA: Usunięto wszystkie reguły ::before i ::after dla przycisków */
-.lang-switcher button::after,
-.lang-switcher button:not(:last-child)::after,
-.lang-switcher button::before,
-.lang-switcher button.active::before, 
-.lang-switcher button.active::after {
-    content: none !important; 
+/* ZMIANA: Przywrócenie stylów [ ] dla przełącznika języka */
+.lang-switcher button::before {
+    content: '[';
+    color: var(--text-secondary);
+    opacity: 0.6;
+    margin-right: 0.2rem;
+    transition: all 0.2s;
+}
+.lang-switcher button::after {
+    content: ']';
+    color: var(--text-secondary);
+    opacity: 0.6;
+    margin-left: 0.2rem;
+    transition: all 0.2s;
+}
+
+/* ZMIANA: Podświetlanie nawiasów przycisku przy najechaniu lub gdy aktywny */
+.lang-switcher button:hover::before, .lang-switcher button:hover::after,
+.lang-switcher button.active::before, .lang-switcher button.active::after {
+    color: var(--primary-color);
+    opacity: 1;
 }
 
 .lang-switcher button:hover {
     color: var(--primary-color);
-    opacity: 1;
 }
-/* Ta reguła nie jest już potrzebna, ale ją zostawiam, gdybyśmy chcieli wrócić */
-/* .lang-switcher button.active::before, .lang-switcher button.active::after {
-    opacity: 1;
-} */
 
 
 .theme-toggle {
@@ -497,6 +504,8 @@ body.light-mode .about-me-photo .photo-dark { opacity: 0; z-index: 1; }
     background-color: transparent;
     border-color: var(--text-secondary);
     color: var(--text-secondary);
+    /* ZMIANA: Ujednolicenie wagi fontu dla obu przycisków CTA */
+    font-weight: 700;
 }
 
 .cta-button.secondary:hover {
