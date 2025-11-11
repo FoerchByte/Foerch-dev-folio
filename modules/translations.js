@@ -14,8 +14,8 @@ export const translations = {
         
         // --- Nowa strona główna (Hero) ---
         heroSubtitle: "EXECUTIVE_ENGINEER",
-        // ZMIANA: Wersja G tytułu
-        heroTitle: "Od <span class=\"highlight\">Analityki</span> do Aplikacji",
+        // ZMIANA: Wersja G tytułu + łamanie linii
+        heroTitle: "Od <span class=\"highlight\">Analityki</span><br>do Aplikacji",
         // ZMIANA: Zaktualizowano o "mięsistą" Wersję E
         heroDescription: "Moja wartość leży na styku logiki biznesowej i inżynierii oprogramowania. Wykorzystuję analityczne myślenie (Excel, VBA) i precyzję dewelopera (JavaScript, API), aby architektonicznie rozwiązywać złożone problemy z danymi – nie tylko budować aplikacje.",
         heroCta: "ZOBACZ_CASE_STUDIES",
@@ -330,15 +330,15 @@ export const translations = {
         errorGeo: "Nie udało się pobrać Twojej lokalizacji. Sprawdź ustawienia przeglądarki i zezwól na dostęp.",
         errorNotFound: "Nie znaleziono miasta.",
         errorAuth: "Błąd autoryzacji. Sprawdź klucz API.",
-        errorServer: ({ status }) => `Błąd serwera (${status}). Spróbuj ponownie.`,
+        errorServer: ({ status }) => `Server error (${status}). Please try again.`,
     },
     en: {
         siteTitle: "FoerchByte // Engineering Portfolio",
 
         // --- New Hero Page ---
         heroSubtitle: "EXECUTIVE_ENGINEER",
-        // ZMIANA: Wersja G tytułu (EN)
-        heroTitle: "From <span class=\"highlight\">Analytics</span> to Applications",
+        // ZMIANA: Wersja G tytułu (EN) + łamanie linii
+        heroTitle: "From <span class=\"highlight\">Analytics</span><br>to Applications",
         // ZMIANA: Updated to "meaty" Version E
         heroDescription: "My value is at the intersection of business logic and software engineering. I leverage analytical thinking (Excel, VBA) and developer precision (JavaScript, API) to architect solutions for complex data problems—not just build applications.",
         heroCta: "VIEW_CASE_STUDIES",
