@@ -53,7 +53,7 @@ body {
     background-image: 
         linear-gradient(var(--grid-line-color) 1px, transparent 1px),
         linear-gradient(to right, var(--grid-line-color) 1px, transparent 1px);
-    background-size: 40px 40px;
+    background-size: 80px 80px; /* ZMIANA: Rzadsza siatka (było 40px) */
     background-position: center center;
     background-attachment: fixed;
 }
