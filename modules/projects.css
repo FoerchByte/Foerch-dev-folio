@@ -9,10 +9,8 @@
 
 .project-subtitle {
     font-family: 'Roboto Mono', monospace;
+    font-size: 1.1rem;
     color: var(--text-secondary);
-    font-size: 1rem;
-    margin-top: -1rem;
-    margin-bottom: 3rem;
     opacity: 0.8;
 }
 
@@ -23,18 +21,18 @@
 }
 
 .project-item {
-    margin-bottom: 1.5rem;
+    margin-bottom: 2rem;
     transition: all 0.3s ease;
 }
 
 .project-link {
     display: block;
-    padding: 2rem;
-    border: 1px solid var(--border-color);
-    border-radius: 2px;
     background-color: var(--card-background);
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    padding: 2rem;
     text-decoration: none;
-    color: inherit;
+    height: 100%;
     transition: all 0.2s ease-in-out;
 }
 
@@ -58,11 +56,10 @@
 }
 
 .project-status {
-    color: var(--text-color);
     display: flex;
     align-items: center;
     gap: 0.5rem;
-    text-transform: uppercase;
+    color: var(--text-color);
     font-weight: 500;
 }
 
@@ -79,19 +76,19 @@
 /* Kolorowanie kropki na podstawie statusu */
 .project-status.status-produkcja::before,
 .project-status.status-production::before {
-    background-color: var(--primary-color);
+    background-color: var(--primary-color); /* Turkus */
     box-shadow: 0 0 8px rgba(0, 224, 255, 0.5);
 }
 
 .project-status.status-aktywny::before,
 .project-status.status-active::before {
-    background-color: var(--success-color);
+    background-color: var(--success-color); /* Zielony */
     box-shadow: 0 0 8px rgba(40, 167, 69, 0.5);
 }
 
 .project-status.status-wdrożony::before,
 .project-status.status-deployed::before {
-    background-color: #f2c811; /* Żółty */
+    background-color: var(--success-color); /* Zielony */
 }
 
 .project-status.status-koncepcja::before,
@@ -153,30 +150,31 @@
     color: var(--primary-color);
 }
 
-/* NOWE STYLE 
+/*
   Dla linku zewnętrznego (np. do Netlify)
 */
 .project-external-link-wrapper {
-    /* Ten wrapper zapewnia, że link jest w nowej linii */
     margin-top: 1.5rem;
+    /* ZMIANA: Dodano padding i linię, aby wizualnie oddzielić link */
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border-color);
 }
 
 .project-external-link {
     display: inline-block;
-    padding: 0.5rem 1rem;
     font-family: 'Roboto Mono', monospace;
-    font-size: 0.85rem;
-    font-weight: 500;
-    color: var(--primary-color);
-    background-color: rgba(0, 224, 255, 0.1);
-    border: 1px solid var(--primary-color);
-    border-radius: 2px;
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    border: 1px solid var(--border-color);
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
     text-decoration: none;
     transition: all 0.2s ease-in-out;
 }
 
 .project-external-link:hover {
-    background-color: var(--primary-color);
-    color: var(--background-color);
+    color: var(--primary-color);
+    border-color: var(--primary-color);
+    background-color: rgba(0, 224, 255, 0.05);
     box-shadow: 0 0 10px rgba(0, 224, 255, 0.4);
 }
