@@ -49,7 +49,6 @@
     filter: grayscale(0%) contrast(1);
 }
 .about-me-photo .photo-light { opacity: 0; z-index: 1; }
-.about-me-photo .photo-dark { opacity: 1; z-index: 2; }
 body.light-mode .about-me-photo .photo-light { opacity: 1; z-index: 2; }
 body.light-mode .about-me-photo .photo-dark { opacity: 0; z-index: 1; }
 
@@ -98,7 +97,7 @@ body.light-mode .about-me-photo .photo-dark { opacity: 0; z-index: 1; }
     /* Główna linia "git log" */
     border-left: 2px solid var(--border-color);
     padding-left: 2.5rem;
-    /* ZMIANA: Dodanie "oddechu" na dole, który pociągnie linię */
+    /* POPRAWKA KAFLKA STAŻYSTY: Dodanie paddingu wewnętrznego */
     padding-bottom: 2.5rem; 
 }
 
@@ -118,7 +117,7 @@ body.light-mode .about-me-photo .photo-dark { opacity: 0; z-index: 1; }
     box-shadow: 0 0 15px rgba(0, 224, 255, 0.1);
 }
 
-/* ZMIANA: Przywrócenie tej reguły jest kluczowe dla działania padding-bottom rodzica */
+/* POPRAWKA KAFLKA STAŻYSTY: Musi licować się z dołem, aby padding rodzica działał */
 .timeline-item:last-child {
     margin-bottom: 0;
 }
