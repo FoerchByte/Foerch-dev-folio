@@ -272,7 +272,8 @@ function renderProjects() {
 
         return `
             <li class="project-item">
-                <a href="/${project.id}" class="project-link">
+                <!-- NAPRAWA: Tag <a> opakowuje teraz WSZYSTKO, łącznie ze stopką -->
+                <a href="/${project.id}" class="project-link"> 
                     <div class="project-header">
                         <span class="project-date">${t(project.dateKey)}</span>
                         <span class="project-status status-${statusClass}">${t(project.statusKey)}</span>
@@ -280,7 +281,7 @@ function renderProjects() {
                     <h3 class="project-title">${t(project.titleKey)}</h3>
                     <p class="project-description">${t(project.descKey)}</p>
                     
-                    <!-- ZMIANA: Nowy kontener "stopki" dla tagów i linku zewn. -->
+                    <!-- NAPRAWA: Stopka jest teraz W ŚRODKU tagu <a> -->
                     <div class="project-footer">
                         <div class="project-tags">
                             ${tags}
@@ -289,7 +290,7 @@ function renderProjects() {
                             ${externalLink}
                         </div>
                     </div>
-                </a>
+                </a> <!-- NAPRAWA: Tag <a> zamknięty DOPIERO TUTAJ -->
             </li>
         `;
     }).join('');
