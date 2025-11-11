@@ -46,7 +46,7 @@
     border-radius: 2px;
 }
 .about-me-photo:hover img {
-    filter: grayscale(0%) opacity(1); /* Korekta: powinno być filter: grayscale(0%) contrast(1); */
+    filter: grayscale(0%) contrast(1); 
 }
 .about-me-photo .photo-light { opacity: 0; z-index: 1; }
 .about-me-photo .photo-dark { opacity: 1; z-index: 2; }
@@ -117,7 +117,8 @@ body.light-mode .about-me-photo .photo-dark { opacity: 0; z-index: 1; }
     box-shadow: 0 0 15px rgba(0, 224, 255, 0.1);
 }
 
-/* POPRAWKA KAFLKA STAŻYSTY: Musi licować się z dołem, aby padding rodzica działał */
+/* ZMIANA (FINALNA): Ostatni element musi mieć zerowy margines na dole, 
+   żeby padding rodzica pociągnął linię za nim. */
 .timeline-item:last-child {
     margin-bottom: 0;
 }
