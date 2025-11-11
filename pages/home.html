@@ -1,24 +1,24 @@
 <!--
-  EN: The new "Hero" section, serving as the default entry point.
-  It's designed to make a strong first impression, aligning with the
-  "Technical Precision" mockup.
-  PL: Nowa sekcja "Hero", służąca jako domyślny punkt wejścia.
-  Zaprojektowana, aby zrobić mocne pierwsze wrażenie, zgodnie z
-  mockupem "Technical Precision".
+  PL: ZMIANA: Cała struktura strony głównej została przebudowana,
+  aby pasowała do 2-kolumnowego layoutu (CSS Grid) z mockupu (hero + statystyki).
+  EN: CHANGE: The entire homepage structure has been rebuilt
+  to match the 2-column (CSS Grid) layout from the mockup (hero + stats).
 -->
 <div class="hero-layout fade-in">
+    
+    <!-- === KOLUMNA LEWA: TREŚĆ === -->
     <div class="hero-content">
         <p class="hero-subtitle">{{heroSubtitle}}</p>
         <h1 class="hero-title">
-            {{heroTitle}}
+            {{heroTitle}} <!-- Tłumaczenie z JS wstawi tu span.highlight -->
         </h1>
         <p class="hero-description">
-            {{heroDescription}}
+            {{heroDescription}} <!-- Tłumaczenie z JS wstawi tu Wersję E -->
         </p>
         <div class="hero-cta-group">
             <a href="/projects" class="cta-button primary">
                 <!-- Ikona SVG dla <> -->
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 0.5rem; color: var(--background-color);"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 0.75rem;"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
                 {{heroCta}}
             </a>
             <!-- Przycisk CV (dawniej na /about) teraz jest tutaj -->
@@ -27,8 +27,52 @@
             </a>
         </div>
     </div>
+
+    <!-- === KOLUMNA PRAWA: STATYSTYKI (NOWY BLOK) === -->
+    <div class="hero-stats">
+        
+        <!-- Karta 1: Doświadczenie -->
+        <div class="stat-card">
+            <div class="stat-icon-wrapper">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg>
+            </div>
+            <!-- Używamy Twoich realnych danych (z CV) zamiast generycznych z mockupu -->
+            <span class="stat-value">5+</span>
+            <span class="stat-label">{{heroStatExperience}}</span>
+        </div>
+        
+        <!-- Karta 2: Projekty -->
+        <div class="stat-card">
+             <div class="stat-icon-wrapper">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
+            </div>
+            <!-- Używamy Twoich realnych danych (13 projektów zdefiniowanych w app.js) -->
+            <span class="stat-value">13</span>
+            <span class="stat-label">{{heroStatProjects}}</span>
+        </div>
+        
+        <!-- Karta 3: Commity -->
+        <div class="stat-card">
+             <div class="stat-icon-wrapper">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="6" y1="3" x2="6" y2="15"></line><circle cx="18" cy="6" r="3"></circle><circle cx="6" cy="18" r="3"></circle><path d="M18 9a9 9 0 0 1-9 9"></path></svg>
+            </div>
+            <span class="stat-value">2K+</span>
+            <span class="stat-label">{{heroStatCommits}}</span>
+        </div>
+
+        <!-- Karta 4: Automatyzacje -->
+        <div class="stat-card">
+             <div class="stat-icon-wrapper">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20.94c1.5 0 2.85-.83 3.53-2.06l1.39-2.45A7.7 7.7 0 0 0 21 11.3V6a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v5.3a7.7 7.7 0 0 0 4.08 5.13l1.39 2.45c.68 1.23 2.03 2.06 3.53 2.06z"></path><line x1="12" y1="2" x2="12" y2="6"></line><line x1="12" y1="22" x2="12" y2="18"></line></svg>
+            </div>
+            <!-- Twoje 4 aplikacje specjalistyczne -->
+            <span class="stat-value">4</span>
+            <span class="stat-label">{{heroStatAutomations}}</span>
+        </div>
+
+    </div>
     
-    <!-- Linki społecznościowe (widoczne na mockupie w lewym dolnym rogu) -->
+    <!-- === IKONY SOCIAL (NAPRAWIONE POZYCJONOWANIE) === -->
     <div class="hero-socials">
         <a href="https://github.com/FoerchByte" target="_blank" aria-label="GitHub">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V21"></path></svg>
