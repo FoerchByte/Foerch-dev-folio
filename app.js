@@ -22,6 +22,7 @@ const projectsData = [
     { id: 'tic-tac-toe', category: 'games', cardTitleKey: 'ticTacToeCardTitle', cardDescKey: 'ticTacToeCardDesc' },
     { id: 'memory-game', category: 'games', cardTitleKey: 'memoryGameCardTitle', cardDescKey: 'memoryGameCardDesc' },
 ].sort((a, b) => {
+    // ZMIANA: Zaktualizowano kategorie filtrów
     const order = { 'specialist': 1, 'tools': 2, 'creative': 3, 'games': 4 };
     return order[a.category] - order[b.category];
 });
@@ -79,7 +80,9 @@ async function playSound(type = 'click') {
 
 // --- Funkcje pomocnicze ---
 const t = (key, args) => {
-    const translation = translations[currentLang][key];
+    // ZMIANA: Dodano sprawdzenie, czy translations[currentLang] istnieje
+    const langSet = translations[currentLang] || translations['pl'];
+    const translation = langSet[key];
     return typeof translation === 'function' ? translation(args) : translation || key;
 }
 
@@ -103,14 +106,28 @@ const showConfirmationModal = (message, onConfirm) => {
 }
 
 async function fetchAndRenderTemplate(route) {
+    // ZMIANA: Mapowanie nowej trasy /changelog na stary plik /pages/about.html
+    // Oraz nowej trasy / (home) na plik /pages/home.html
+    let templateFile = route;
+    if (route === 'changelog') {
+        templateFile = 'about'; // Nowa trasa /changelog używa starego pliku about.html
+    } else if (route === 'home') {
+        templateFile = 'home'; // Nowa trasa / (home) używa nowego pliku home.html
+    }
+
     try {
-        const response = await fetch(`./pages/${route}.html`);
-        if (!response.ok) throw new Error(`Nie można załadować szablonu: ${route}.html`);
+        const response = await fetch(`./pages/${templateFile}.html`);
+        if (!response.ok) throw new Error(`Nie można załadować szablonu: ${templateFile}.html`);
         let html = await response.text();
         html = html.replace(/\{\{([^}]+)\}\}/g, (match, key) => t(key.trim()));
         return html;
     } catch (error) {
         console.error("Błąd ładowania szablonu:", error);
+        // ZMIANA: Jeśli nie znajdzie home.html (bo go jeszcze nie ma), załaduj about jako fallback
+        if (route === 'home') {
+            console.warn("Nie znaleziono home.html, ładowanie changelog (about.html) jako fallback.");
+            return await fetchAndRenderTemplate('changelog');
+        }
         return `<h2>Błąd 404</h2><p>Nie udało się załadować treści strony.</p>`;
     }
 }
@@ -151,18 +168,26 @@ function unloadStyle(id) {
 
 function renderStaticContent() {
     document.documentElement.lang = currentLang;
-    // ZMIANA: Usunięto linijkę nadpisującą #site-title, aby zachować branding FoerchByte i prompt >_
+    // Tytuł strony (FoerchByte) jest teraz statyczny w index.html i nie jest tłumaczony
     // document.querySelector('#site-title a').textContent = t('siteTitle'); 
     
-    document.querySelectorAll('#main-nav a')[0].textContent = t('navAbout');
-    document.querySelectorAll('#main-nav a')[1].textContent = t('navProjects');
+    // ZMIANA: Zaktualizowano selektory nawigacji zgodnie z nową strukturą
+    document.querySelectorAll('#main-nav a')[0].textContent = t('navProjects');
+    document.querySelectorAll('#main-nav a')[1].textContent = t('navChangelog');
     document.querySelectorAll('#main-nav a')[2].textContent = t('navContact');
+    
     document.querySelectorAll('#lang-switcher button').forEach(btn => btn.classList.toggle('active', btn.dataset.lang === currentLang));
 }
 
 function getRouteFromPathname() {
     const path = window.location.pathname;
-    return path === '/' ? 'about' : path.substring(1);
+    // ZMIANA: Domyślną trasą jest 'home', stara trasa 'about' przekierowuje na 'changelog'
+    if (path === '/') return 'home';
+    if (path === '/about') {
+        window.history.replaceState({}, '', '/changelog'); // Poprawia URL bez przeładowania
+        return 'changelog';
+    }
+    return path.substring(1);
 }
 
 async function renderContent(isInitialLoad = false) {
@@ -198,10 +223,14 @@ function loadModuleStyle(route) {
         } else {
             styleToLoad = route;
         }
-    } else if (route === 'about') {
+    // ZMIANA: Trasa 'about' została zmieniona na 'changelog'
+    } else if (route === 'changelog') {
         styleToLoad = 'timeline';
     } else if (route === 'contact') {
         styleToLoad = 'contact';
+    } else if (route === 'home') {
+        // NOWOŚĆ: Będziemy potrzebować stylów dla strony głównej
+        styleToLoad = 'home'; 
     }
     if (styleToLoad) {
         loadStyle(`./modules/${styleToLoad}.css`);
@@ -225,7 +254,10 @@ async function attachEventListeners(route) {
     const dependencies = { t, showConfirmationModal, playSound };
     
     const routeInitializers = {
-        'about': () => initializeAboutPage(),
+        // NOWOŚĆ: Pusta funkcja dla statycznej strony 'home'
+        'home': () => { return []; },
+        // ZMIANA: Logika 'about' przeniesiona do 'changelog'
+        'changelog': () => initializeAboutPage(),
         'projects': () => {
             const filters = document.querySelector('.project-filters');
             filters.addEventListener('click', e => {
@@ -267,7 +299,8 @@ function updateActiveNavLink(activeRoute) {
     document.querySelectorAll('.main-nav a, .project-card').forEach(link => {
         const linkRoute = new URL(link.href).pathname.substring(1);
         link.classList.remove('nav-active');
-        if (linkRoute === activeRoute || (linkRoute === 'projects' && projectRoutes.includes(activeRoute))) {
+        // ZMIANA: Trasa 'home' nie podświetla żadnego linku, co jest zgodne z mockupem
+        if (activeRoute !== 'home' && (linkRoute === activeRoute || (linkRoute === 'projects' && projectRoutes.includes(activeRoute)))) {
             link.classList.add('nav-active');
         }
     });
