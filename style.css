@@ -190,8 +190,10 @@ body.light-mode .site-header {
     opacity: 1;
 }
 
+/* ZMIANA: Bardziej agresywne usunięcie separatora "|" */
+.lang-switcher button::after,
 .lang-switcher button:not(:last-child)::after {
-    content: none; /* Usunięto separator "|" */
+    content: none !important; /* Usunięto separator "|" */
 }
 
 .lang-switcher button::before {
