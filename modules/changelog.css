@@ -11,7 +11,6 @@
 
 .about-me-layout {
     display: flex;
-    /* ZMIANA (Wniosek #1): Wyrównanie do dołu zdjęcia */
     align-items: flex-end; 
     gap: 4rem;
     margin-bottom: 5rem;
@@ -41,7 +40,7 @@
     height: 100%;
     object-fit: cover;
     object-position: center top;
-    filter: grayscale(100%) opacity(0.7);
+    filter: grayscale(100%) contrast(1.1);
     transition: all 0.3s ease-in-out;
     border-radius: 2px;
 }
@@ -87,26 +86,12 @@ body.light-mode .about-me-photo .photo-dark { opacity: 0; z-index: 1; }
 /* --- Sekcja "Career Changelog" (Oś czasu) --- */
 
 .timeline-section {
+    /* ZMIANA: Jednolity odstęp od sekcji Bio */
     margin-top: 6rem;
+    /* ZMIANA: Jedyna linia separatora nad Changelogiem */
     border-top: 1px solid var(--border-color);
     padding-top: 4rem;
-    padding-bottom: 2.5rem; /* ZMIANA: PULL-DOWN dla linii */
 }
-
-/* Nowy wizualny separator (linia) */
-.section-separator {
-    border: none;
-    border-top: 1px solid var(--border-color);
-    margin: 3rem 0; 
-}
-.code-comment {
-    font-family: 'Roboto Mono', monospace;
-    font-size: 1.1rem;
-    color: var(--text-secondary);
-    opacity: 0.8;
-    margin-bottom: 0.5rem;
-}
-
 
 /* Usunięcie logiki "collapsible" */
 .timeline-container {
@@ -114,6 +99,8 @@ body.light-mode .about-me-photo .photo-dark { opacity: 0; z-index: 1; }
     /* Główna linia "git log" */
     border-left: 2px solid var(--border-color);
     padding-left: 2.5rem;
+    /* ZMIANA: DODANO PADDING-BOTTOM DLA PRZESTRZENI POD OSTATNIM KAFELKIEM */
+    padding-bottom: 2.5rem;
 }
 
 /* ZMIANA (Wniosek #2): Zmieniono item w kafelek */
@@ -127,13 +114,12 @@ body.light-mode .about-me-photo .photo-dark { opacity: 0; z-index: 1; }
     transition: all 0.2s ease-in-out;
 }
 .timeline-item:last-child {
-    margin-bottom: 2.5rem; /* ZMIANA: Wymuszamy, by miał margines (dla linii) */
+    margin-bottom: 0; /* ZMIANA: Upewniamy się, że kafelek Stażysty jest przyklejony do paddingu kontenera */
 }
 .timeline-item:hover {
     border-color: var(--primary-color);
     box-shadow: 0 0 15px rgba(0, 224, 255, 0.1);
 }
-
 
 /* Kropka "commit" */
 .timeline-item::before {
@@ -213,11 +199,14 @@ body.light-mode .about-me-photo .photo-dark { opacity: 0; z-index: 1; }
     line-height: 1.8;
 }
 
+
 /* --- Sekcja "Stack Technologiczny" (Przeniesiona na dół) --- */
 
 .stack-section {
-    margin-top: 6rem;
-    padding-top: 4rem;
+    /* ZMIANA: Taki sam odstęp i separator jak timeline-section */
+    margin-top: 6rem; 
+    border-top: 1px solid var(--border-color);
+    padding-top: 4rem; 
 }
 
 /* ZMIANA (Wniosek #3): Układ siatki dla stacku */
@@ -248,15 +237,6 @@ body.light-mode .about-me-photo .photo-dark { opacity: 0; z-index: 1; }
     gap: 1rem; /* Zmniejszony odstęp */
 }
 .stack-section .skill-item {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 0.8rem;
-    font-family: 'Roboto Mono', monospace;
-    font-size: 0.8rem;
-    color: var(--text-secondary);
-    transition: all 0.3s;
     background-color: var(--card-background);
     padding: 1rem;
     border-radius: 2px;
@@ -265,35 +245,29 @@ body.light-mode .about-me-photo .photo-dark { opacity: 0; z-index: 1; }
     height: 100px;
     text-align: center;
 }
-/* ZMIANA (Wniosek #3 - Ikony): Rozmiary */
-.stack-section .skill-item img, .stack-section .skill-item svg.tech-icon {
+/* ZMIANA (Wniosek #3 - Ikony): Rozmiary i Waga Wizualna */
+.stack-section .skill-item img {
     width: 32px;
     height: 32px;
     filter: grayscale(100%) opacity(0.7);
     transition: all 0.3s ease-in-out;
 }
 .stack-section .skill-item svg.tech-icon {
-    /* Używamy transform, aby wizualnie powiększyć SVG (konturowe ikony) */
-    transform: scale(1.5);
-    fill: var(--primary-color);
-    stroke: none; /* Upewniamy się, że nie ma konturu, tylko wypełnienie */
+    /* To jest kluczowe dla SVG - zrównanie wagi wizualnej */
+    width: 32px;
+    height: 32px;
+    fill: var(--primary-color); /* Wypełniamy ikony, aby pasowały optycznie do IMG */
+    filter: grayscale(100%) opacity(0.7);
+    transition: all 0.3s ease-in-out;
+    /* ZMIANA: Zwiększam optyczny rozmiar SVG, by zrównać go z IMG */
+    transform: scale(1.5); 
 }
 
-.stack-section .skill-item:hover {
-    color: var(--primary-color);
-    border-color: var(--primary-color);
-    background-color: rgba(0, 224, 255, 0.05);
-    transform: translateY(-5px);
-}
+/* Hover dla ikon */
 .stack-section .skill-item:hover img, 
 .stack-section .skill-item:hover svg.tech-icon {
     filter: grayscale(0%) opacity(1);
-    transform: scale(1.6); /* Delikatne powiększenie przy hoverze */
-}
-
-/* --- Sekcja CTA (przyciski) --- */
-.about-cta {
-    margin-top: 4rem; /* Odstęp od Stacku */
+    transform: scale(1.6);
 }
 
 
