@@ -41,12 +41,12 @@
     height: 100%;
     object-fit: cover;
     object-position: center top;
-    filter: grayscale(100%) contrast(1.1);
+    filter: grayscale(100%) opacity(0.7);
     transition: all 0.3s ease-in-out;
     border-radius: 2px;
 }
 .about-me-photo:hover img {
-    filter: grayscale(0%) contrast(1); 
+    filter: grayscale(0%) contrast(1);
 }
 .about-me-photo .photo-light { opacity: 0; z-index: 1; }
 .about-me-photo .photo-dark { opacity: 1; z-index: 2; }
@@ -90,7 +90,23 @@ body.light-mode .about-me-photo .photo-dark { opacity: 0; z-index: 1; }
     margin-top: 6rem;
     border-top: 1px solid var(--border-color);
     padding-top: 4rem;
+    padding-bottom: 2.5rem; /* ZMIANA: PULL-DOWN dla linii */
 }
+
+/* Nowy wizualny separator (linia) */
+.section-separator {
+    border: none;
+    border-top: 1px solid var(--border-color);
+    margin: 3rem 0; 
+}
+.code-comment {
+    font-family: 'Roboto Mono', monospace;
+    font-size: 1.1rem;
+    color: var(--text-secondary);
+    opacity: 0.8;
+    margin-bottom: 0.5rem;
+}
+
 
 /* Usunięcie logiki "collapsible" */
 .timeline-container {
@@ -98,29 +114,24 @@ body.light-mode .about-me-photo .photo-dark { opacity: 0; z-index: 1; }
     /* Główna linia "git log" */
     border-left: 2px solid var(--border-color);
     padding-left: 2.5rem;
-    /* POPRAWKA KAFLKA STAŻYSTY: Dodajemy PADDING-BOTTOM */
-    padding-bottom: 2.5rem; 
 }
 
 /* ZMIANA (Wniosek #2): Zmieniono item w kafelek */
 .timeline-item {
     position: relative;
-    margin-bottom: 2.5rem; /* Zastąpiono marginem */
+    margin-bottom: 2.5rem; /* Standardowy margines */
     background-color: var(--card-background);
     border: 1px solid var(--border-color);
     border-radius: 2px;
     padding: 1.5rem 2rem;
     transition: all 0.2s ease-in-out;
 }
+.timeline-item:last-child {
+    margin-bottom: 2.5rem; /* ZMIANA: Wymuszamy, by miał margines (dla linii) */
+}
 .timeline-item:hover {
     border-color: var(--primary-color);
     box-shadow: 0 0 15px rgba(0, 224, 255, 0.1);
-}
-
-/* ZMIANA (FINALNA): Ostatni element musi mieć zerowy margines na dole, 
-   żeby padding rodzica pociągnął linię za nim. */
-.timeline-item:last-child {
-    margin-bottom: 0;
 }
 
 
@@ -130,7 +141,7 @@ body.light-mode .about-me-photo .photo-dark { opacity: 0; z-index: 1; }
     position: absolute;
     left: -2.5rem;
     /* ZMIANA: Dostosowanie do paddingu kafelka (1.5rem + ~font) */
-    top: 24px; 
+    top: 24px; 
     width: 10px;
     height: 10px;
     border-radius: 50%;
@@ -206,7 +217,6 @@ body.light-mode .about-me-photo .photo-dark { opacity: 0; z-index: 1; }
 
 .stack-section {
     margin-top: 6rem;
-    border-top: 1px solid var(--border-color);
     padding-top: 4rem;
 }
 
@@ -256,18 +266,17 @@ body.light-mode .about-me-photo .photo-dark { opacity: 0; z-index: 1; }
     text-align: center;
 }
 /* ZMIANA (Wniosek #3 - Ikony): Rozmiary */
-.stack-section .skill-item img {
+.stack-section .skill-item img, .stack-section .skill-item svg.tech-icon {
     width: 32px;
     height: 32px;
     filter: grayscale(100%) opacity(0.7);
     transition: all 0.3s ease-in-out;
 }
-.stack-section .skill-item svg {
-    /* ZMIANA: Zwiększony rozmiar dla lepszej wagi wizualnej */
-    width: 48px; 
-    height: 48px;
-    filter: grayscale(100%) opacity(0.7);
-    transition: all 0.3s ease-in-out;
+.stack-section .skill-item svg.tech-icon {
+    /* Używamy transform, aby wizualnie powiększyć SVG (konturowe ikony) */
+    transform: scale(1.5);
+    fill: var(--primary-color);
+    stroke: none; /* Upewniamy się, że nie ma konturu, tylko wypełnienie */
 }
 
 .stack-section .skill-item:hover {
@@ -276,12 +285,16 @@ body.light-mode .about-me-photo .photo-dark { opacity: 0; z-index: 1; }
     background-color: rgba(0, 224, 255, 0.05);
     transform: translateY(-5px);
 }
-.stack-section .skill-item:hover img, 
-.stack-section .skill-item:hover svg {
+.stack-section .skill-item:hover img, 
+.stack-section .skill-item:hover svg.tech-icon {
     filter: grayscale(0%) opacity(1);
+    transform: scale(1.6); /* Delikatne powiększenie przy hoverze */
 }
 
-/* Przyciski CTA nie są już w tej sekcji */
+/* --- Sekcja CTA (przyciski) --- */
+.about-cta {
+    margin-top: 4rem; /* Odstęp od Stacku */
+}
 
 
 /* Responsywność dla Changelog */
@@ -289,7 +302,7 @@ body.light-mode .about-me-photo .photo-dark { opacity: 0; z-index: 1; }
     .about-me-layout {
         flex-direction: column;
         /* ZMIANA (Wniosek #1): Reset na mobilkach */
-        align-items: flex-start; 
+        align-items: flex-start; 
         gap: 3rem;
     }
     .about-me-photo {
