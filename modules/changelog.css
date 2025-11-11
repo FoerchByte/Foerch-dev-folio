@@ -97,8 +97,8 @@ body.light-mode .about-me-photo .photo-dark { opacity: 0; z-index: 1; }
     /* Główna linia "git log" */
     border-left: 2px solid var(--border-color);
     padding-left: 2.5rem;
-    /* POPRAWKA KAFLKA STAŻYSTY: Dodanie paddingu wewnętrznego */
-    padding-bottom: 2.5rem; 
+    /* ZMIANA: Zwiększamy padding, aby linia pociągnęła się w dół */
+    padding-bottom: 3.5rem; 
 }
 
 /* ZMIANA (Wniosek #2): Zmieniono item w kafelek */
@@ -117,9 +117,9 @@ body.light-mode .about-me-photo .photo-dark { opacity: 0; z-index: 1; }
     box-shadow: 0 0 15px rgba(0, 224, 255, 0.1);
 }
 
-/* POPRAWKA KAFLKA STAŻYSTY: Musi licować się z dołem, aby padding rodzica działał */
+/* ZMIANA: Dajemy ostatniemu elementowi minimalny margines, aby uniknąć kolizji krawędzi */
 .timeline-item:last-child {
-    margin-bottom: 0;
+    margin-bottom: 1rem;
 }
 
 
