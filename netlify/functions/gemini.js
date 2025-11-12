@@ -12,6 +12,12 @@
 */
 
 exports.handler = async function (event, context) {
+    
+    // === POPRAWKA: Dodano brakujący import `node-fetch` ===
+    // Musi być zdefiniowany wewnątrz handlera dla kompatybilności.
+    const fetch = (await import('node-fetch')).default;
+    // === Koniec poprawki ===
+
     if (event.httpMethod !== 'POST') {
         return { statusCode: 405, body: 'Method Not Allowed' };
     }
@@ -57,6 +63,12 @@ exports.handler = async function (event, context) {
             return { statusCode: response.status, body: JSON.stringify(data) };
         }
         
+        // Poprawka błędu: Czasami Gemini może nie zwrócić `candidates`
+        if (!data.candidates || !data.candidates[0] || !data.candidates[0].content || !data.candidates[0].content.parts || !data.candidates[0].content.parts[0].text) {
+            console.error('Gemini API Error: Invalid response structure', data);
+            throw new Error('Invalid response structure from Gemini API.');
+        }
+
         const improvedText = data.candidates[0].content.parts[0].text;
 
         return {
@@ -68,7 +80,8 @@ exports.handler = async function (event, context) {
         console.error('Serverless function error:', error);
         return {
             statusCode: 500,
-            body: JSON.stringify({ error: 'Failed to process request' }),
+            // Zwracamy ogólny błąd do klienta
+            body: JSON.stringify({ error: 'Failed to process request on server.' }),
         };
     }
 };
