@@ -1,149 +1,223 @@
 /*
-  EN: This stylesheet creates an organized and professional layout for the Contact page.
-  The design focuses on usability and clarity, ensuring that the contact form and
-  AI assistant are easy to use. It embodies the project's dedication to a clean
-  and functional user experience.
-  PL: Ten arkusz stylów tworzy uporządkowany i profesjonalny układ dla strony Kontakt.
-  Projekt koncentruje się na użyteczności i przejrzystości, zapewniając, że formularz
-  kontaktowy i asystent AI są łatwe w użyciu. Uosabia on zaangażowanie projektu
-  w czyste i funkcjonalne doświadczenie użytkownika.
+  EN: Stylesheet for the Contact page (Phase 5).
+  Implements the "Terminal with Modes" layout, including styles for
+  the tab switcher and the integrated AI assistant.
+  PL: Arkusz stylów dla strony Kontakt (Faza 5).
+  Implementuje layout "Terminal z Trybami", włączając style
+  dla przełącznika zakładek i zintegrowanego asystenta AI.
 */
 
-.contact-layout {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 2rem;
+/* Podtytuł strony (komenda "$ send-message...") */
+.contact-subtitle {
+    font-family: 'Roboto Mono', monospace;
+    color: var(--text-secondary);
+    font-size: 1.1rem;
+    margin-bottom: 3rem;
+    text-align: center;
+    opacity: 0.8;
 }
 
-.contact-info p {
-    margin: 0.5rem 0;
+/* Główny kontener formularza */
+.contact-form-wrapper {
+    max-width: 650px; /* Ograniczenie szerokości i wyśrodkowanie */
+    margin: 0 auto;
+    background-color: var(--card-background);
+    padding: 2.5rem;
+    border-radius: 2px; /* Ostre krawędzie */
+    border: 1px solid var(--border-color);
 }
 
-.contact-info a {
+/* === ZMIANA FAZY 5: Style dla przełącznika trybów (Tabs) === */
+.terminal-tabs {
+    display: flex;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 1.5rem;
+}
+
+/* Kopiujemy style `.filter-btn` z `projects.css` dla spójności */
+.terminal-tabs .filter-btn {
+    background: none;
+    border: none;
+    padding: 0;
+    margin: 0;
+    font-family: 'Roboto Mono', monospace;
+    font-size: 1rem;
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: color 0.2s ease-in-out;
+}
+
+.terminal-tabs .filter-btn:hover {
     color: var(--primary-color);
-    text-decoration: none;
+}
+
+.terminal-tabs .filter-btn.active {
+    color: var(--primary-color);
     font-weight: 500;
 }
 
-.contact-info a:hover {
-    text-decoration: underline;
+.terminal-tabs .filter-btn::before {
+    content: '[';
+    color: var(--text-secondary);
+    opacity: 0.7;
+    margin-right: 0.2rem;
+    transition: all 0.2s;
+}
+.terminal-tabs .filter-btn::after {
+    content: ']';
+    color: var(--text-secondary);
+    opacity: 0.7;
+    margin-left: 0.2rem;
+    transition: all 0.2s;
 }
 
-.contact-form-wrapper, .gemini-assistant {
-    background-color: var(--card-background);
-    padding: 2rem;
-    border-radius: 8px;
-    border: 1px solid var(--border-color);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+.terminal-tabs .filter-btn:hover::before, .terminal-tabs .filter-btn:hover::after,
+.terminal-tabs .filter-btn.active::before, .terminal-tabs .filter-btn.active::after {
+    color: var(--primary-color);
+    opacity: 1;
 }
+/* === Koniec stylów dla Tabs === */
 
-.contact-form-wrapper {
-    grid-column: 1 / 2;
-}
 
-.gemini-assistant {
-    grid-column: 2 / 3;
-}
-
-.contact-form-wrapper h3, .gemini-assistant h3 {
-    margin-top: 0;
-    border-bottom: 2px solid var(--primary-color);
-    padding-bottom: 0.5rem;
-}
-
+/* Pola formularza (wspólne dla obu trybów) */
 .form-group {
-    margin-bottom: 1rem;
+    margin-bottom: 1.5rem;
     display: flex;
     flex-direction: column;
 }
 
 .form-group label {
-    font-weight: 500;
+    font-family: 'Roboto Mono', monospace;
+    color: var(--primary-color); /* Etykiety są turkusowe */
     margin-bottom: 0.5rem;
+    font-size: 0.9rem;
 }
 
-.form-group input, .form-group textarea, .gemini-assistant textarea {
+.form-group input, .form-group textarea {
     width: 100%;
-    padding: 0.75rem 1rem;
+    padding: 0.8rem 1rem;
     border: 1px solid var(--border-color);
-    border-radius: 8px;
-    background-color: var(--completed-bg);
+    border-radius: 2px; /* Prawie ostre rogi */
+    background-color: var(--background-color); /* Ciemniejsze tło dla pól */
     color: var(--text-color);
-    transition: border-color 0.2s;
+    font-family: 'Roboto Mono', monospace;
+    font-size: 0.95rem;
+    transition: all 0.2s ease-in-out;
     box-sizing: border-box;
-    font-family: inherit;
-    font-size: 1rem;
 }
 
-.form-group input:focus, .form-group textarea:focus, .gemini-assistant textarea:focus {
+.form-group input::placeholder, .form-group textarea::placeholder {
+    color: var(--border-color); /* Ciemny placeholder */
+    opacity: 0.5;
+}
+
+.form-group input:focus, .form-group textarea:focus {
     border-color: var(--primary-color);
     outline: none;
-    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25);
+    box-shadow: 0 0 0 2px rgba(0, 224, 255, 0.1);
+    background-color: rgba(0, 224, 255, 0.02);
 }
 
-.form-group small {
+.form-group small.error-message {
     color: var(--danger-color);
+    font-family: 'Roboto Mono', monospace;
     font-size: 0.8rem;
-    margin-top: 0.25rem;
+    margin-top: 0.5rem;
+    display: block;
 }
 
+/* Przyciski (wspólne dla obu trybów) */
 #contact-form button, #generate-email-btn {
     width: 100%;
     background-color: var(--primary-color);
-    color: white;
-    border: none;
-    padding: 0.8rem 1.5rem;
-    border-radius: 8px;
+    color: var(--background-color); /* Ciemny tekst na jasnym przycisku */
+    border: 1px solid var(--primary-color);
+    padding: 1rem 1.5rem;
+    border-radius: 2px;
     cursor: pointer;
-    font-weight: 500;
-    transition: background-color 0.2s;
-    margin-top: 1rem;
+    font-family: 'Roboto Mono', monospace;
+    font-weight: 700; /* Pogrubiony */
+    font-size: 1rem;
+    transition: all 0.2s ease-in-out;
+    margin-top: 1.5rem;
     display: flex;
     align-items: center;
     justify-content: center;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Ikona "wyślij" dla Formspree */
+#contact-form button::before {
+    content: '';
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    margin-right: 0.75rem;
+    background-color: var(--background-color); /* Kolor ikony */
+    -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cline x1='22' y1='2' x2='11' y2='13'%3E%3C/line%3E%3Cpolygon points='22 2 15 22 11 13 2 9 22 2'%3E%3C/polygon%3E%3C/svg%3E");
+    mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cline x1='22' y1='2' x2='11' y2='13'%3E%3C/line%3E%3Cpolygon points='22 2 15 22 11 13 2 9 22 2'%3E%3C/polygon%3E%3C/svg%3E");
+    mask-size: contain;
+    mask-repeat: no-repeat;
+    mask-position: center;
 }
 
 #contact-form button:hover, #generate-email-btn:hover {
     background-color: var(--primary-hover-color);
+    border-color: var(--primary-hover-color);
+    box-shadow: 0 0 15px rgba(0, 224, 255, 0.2);
+}
+
+#contact-form button:disabled, #generate-email-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    box-shadow: none;
+}
+
+/* Wiadomość o sukcesie (Formspree) */
+#form-success-message {
+    margin-top: 1.5rem;
+    padding: 1rem;
+    background-color: rgba(40, 167, 69, 0.1);
+    color: var(--success-color);
+    border: 1px solid var(--success-color);
+    border-radius: 4px;
+    text-align: center;
+    font-family: 'Roboto Mono', monospace;
+}
+
+/* === ZMIANA FAZY 5: Style dla Asystenta AI === */
+.gemini-content-subtitle {
+    font-family: 'Roboto Mono', monospace;
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    margin-bottom: 1.5rem;
+    line-height: 1.6;
 }
 
 #gemini-result-container {
-    margin-top: 1rem;
-    padding: 1rem;
+    margin-top: 2rem;
+    padding: 1.5rem;
     border: 1px solid var(--border-color);
-    border-radius: 8px;
-    background-color: var(--completed-bg);
+    border-radius: 2px;
+    background-color: var(--background-color);
 }
 
 #gemini-result {
     white-space: pre-wrap;
     word-wrap: break-word;
     margin: 0;
-    font-family: 'Inter', sans-serif;
-    font-size: 1rem;
+    font-family: 'Roboto Mono', monospace;
+    font-size: 0.95rem;
+    color: var(--text-color);
+    line-height: 1.7;
 }
 
-.contact-sidebar {
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
-}
-
-#form-success-message {
-    margin-top: 1rem;
-    padding: 1rem;
-    background-color: var(--success-color);
-    color: white;
-    border-radius: 8px;
-    text-align: center;
-}
-
-@media (max-width: 768px) {
-    .contact-layout {
-        grid-template-columns: 1fr;
-    }
-
-    .contact-form-wrapper, .contact-sidebar {
-        grid-column: 1 / -1;
-    }
+/* Poprawka dla ładowarki w przycisku AI */
+#generate-email-btn .loader {
+    border: 2px solid var(--background-color); /* Ciemne tło */
+    border-bottom-color: transparent;
+    margin: 0; /* Usuwamy margines, bo jest wyśrodkowany w flex */
 }
