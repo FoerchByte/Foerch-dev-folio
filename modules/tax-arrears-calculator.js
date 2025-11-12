@@ -28,6 +28,9 @@ const taxInterestRates = [
     { startDate: "2025-05-08", rate: 13.50 },
     { startDate: "2025-07-03", rate: 13.00 },
     { startDate: "2025-09-04", rate: 12.50 },
+    // === AKTUALIZACJA FAZY 11 (12.11.2025) ===
+    // Zgodnie z info od Any, nowa stawka od 05.11.2025
+    { startDate: "2025-11-05", rate: 12.00 },
 ].sort((a, b) => new Date(a.startDate) - new Date(b.startDate));
 
 
@@ -175,4 +178,3 @@ export function initializeTaxArrearsCalculator(dependencies) {
 
     return [];
 }
-
