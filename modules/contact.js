@@ -1,18 +1,18 @@
 /*
-  EN: This module manages the interactive elements of the Contact page. It handles
-  form submission using Formspree and features an AI assistant powered by the Gemini API.
-  This is a great example of combining static form handling with dynamic
-  serverless functions to create a more engaging user experience.
-  PL: Ten moduł zarządza interaktywnymi elementami na stronie Kontakt. Obsługuje
-  wysyłanie formularza za pomocą Formspree oraz zawiera asystenta AI opartego na
-  API Gemini. To doskonały przykład łączenia statycznej obsługi formularzy
-  z dynamicznymi funkcjami bezserwerowymi, aby stworzyć bardziej angażujące
-  doświadczenie użytkownika.
+  EN: This module manages the interactive elements of the Contact page (Phase 5).
+  It handles both Formspree submission and the AI assistant (Gemini API)
+  using a tabbed interface within the terminal.
+  PL: Ten moduł zarządza interaktywnymi elementami na stronie Kontakt (Faza 5).
+  Obsługuje wysyłanie formularza Formspree oraz asystenta AI (API Gemini)
+  używając interfejsu zakładek w terminalu.
 */
 let contactT;
 const contactFormspreeEndpoint = 'https://formspree.io/f/mdkdvvvj';
 
+// === Logika Formularza Formspree (Bez zmian) ===
+
 function validateField(field) {
+// ... existing code ...
     const errorEl = field.nextElementSibling;
     let isValid = true;
     if (field.value.trim() === '') {
@@ -31,6 +31,7 @@ function validateField(field) {
 }
 
 async function handleFormSubmit(e) {
+// ... existing code ...
     e.preventDefault();
     const form = e.target;
     const submitBtn = form.querySelector('button[type="submit"]');
@@ -45,6 +46,7 @@ async function handleFormSubmit(e) {
 
     try {
         const response = await fetch(form.action, {
+// ... existing code ...
             method: form.method,
             body: new FormData(form),
             headers: { 'Accept': 'application/json' }
@@ -57,7 +59,6 @@ async function handleFormSubmit(e) {
         }
     } catch (error) {
         console.error('Błąd podczas wysyłania formularza:', error);
-        // ZMIANA: Używamy nowego, bardziej szczegółowego klucza tłumaczenia
         alert(contactT('errorApiGeneric'));
     } finally {
         submitBtn.innerHTML = originalBtnText;
@@ -65,6 +66,9 @@ async function handleFormSubmit(e) {
     }
 }
 
+/* === ZMIANA FAZY 5: Przywrócono logikę Asystenta AI ===
+  (Skopiowano z ...c8017add.../modules/contact.js)
+*/
 async function handleGenerateEmail() {
     const draftInput = document.getElementById('email-draft');
     const resultContainer = document.getElementById('gemini-result-container');
@@ -74,10 +78,11 @@ async function handleGenerateEmail() {
 
     if (!prompt) return;
 
-    const originalBtnText = generateBtn.innerHTML;
-    generateBtn.innerHTML = `<span><span class="loader"></span></span>`;
+    // ZMIANA: Dostosowano ładowarkę do nowego przycisku
+    const originalBtnHTML = generateBtn.innerHTML;
+    generateBtn.innerHTML = `<span class="loader"></span>`;
     generateBtn.disabled = true;
-    resultContainer.style.display = 'none';
+    resultContainer.classList.add('hidden'); // Używamy .hidden
 
     try {
         const response = await fetch('/.netlify/functions/gemini', {
@@ -92,36 +97,72 @@ async function handleGenerateEmail() {
 
         const data = await response.json();
         resultEl.textContent = data.improvedText;
-        resultContainer.style.display = 'block';
+        resultContainer.classList.remove('hidden'); // Używamy .hidden
 
     } catch (error) {
         console.error("Błąd podczas generowania e-maila:", error);
-        // ZMIANA: Używamy nowego, bardziej szczegółowego klucza tłumaczenia
         resultEl.textContent = contactT('errorApiGemini');
-        resultContainer.style.display = 'block';
+        resultContainer.classList.remove('hidden'); // Używamy .hidden
     } finally {
-        generateBtn.innerHTML = originalBtnText;
+        generateBtn.innerHTML = originalBtnHTML;
         generateBtn.disabled = false;
+    }
+}
+
+/* === ZMIANA FAZY 5: Nowa funkcja do przełączania zakładek ===
+*/
+function handleTabSwitch(e, tabsContainer, formContent, aiContent) {
+    const clickedTab = e.target.closest('button');
+    if (!clickedTab) return;
+
+    const activeTab = tabsContainer.querySelector('button.active');
+    if (clickedTab === activeTab) return;
+
+    // Przełącz stan aktywny
+    activeTab.classList.remove('active');
+    clickedTab.classList.add('active');
+
+    // Przełącz widoczność kontenerów
+    if (clickedTab.dataset.tab === 'ai') {
+        formContent.setAttribute('hidden', true);
+        aiContent.removeAttribute('hidden');
+    } else {
+        aiContent.setAttribute('hidden', true);
+        formContent.removeAttribute('hidden');
     }
 }
 
 export function initializeContactPage(dependencies) {
     contactT = dependencies.t;
     const contactForm = document.getElementById('contact-form');
-    const generateEmailBtn = document.getElementById('generate-email-btn');
     
-    if (!contactForm) return [];
+    // === ZMIANA FAZY 5: Elementy Asystenta i Zakładek ===
+    const generateEmailBtn = document.getElementById('generate-email-btn');
+    const tabsContainer = document.getElementById('terminal-tabs');
+    const formContent = document.getElementById('form-content');
+    const aiContent = document.getElementById('ai-content');
+    
+    // Upewniamy się, że główne elementy istnieją
+    if (!contactForm || !generateEmailBtn || !tabsContainer || !formContent || !aiContent) {
+        console.warn('Nie znaleziono wszystkich elementów na stronie Kontakt.');
+        return [];
+    }
 
+    // --- Inicjalizacja Formularza (bez zmian) ---
     contactForm.action = contactFormspreeEndpoint;
     contactForm.method = 'POST';
 
     const fields = ['name', 'email', 'message'].map(id => contactForm.querySelector(`#${id}`));
     fields.forEach(field => {
-        field.addEventListener('blur', () => validateField(field));
+        if (field) {
+            field.addEventListener('blur', () => validateField(field));
+        }
     });
-
     contactForm.addEventListener('submit', handleFormSubmit);
+
+    // --- ZMIANA FAZY 5: Inicjalizacja Asystenta i Zakładek ---
     generateEmailBtn.addEventListener('click', handleGenerateEmail);
+    tabsContainer.addEventListener('click', (e) => handleTabSwitch(e, tabsContainer, formContent, aiContent));
 
     return [];
 }
