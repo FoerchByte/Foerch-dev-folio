@@ -6,6 +6,6 @@
     "vitest": "^1.6.0"
   },
   "dependencies": {
-    "node-fetch": "^3.3.2"
+    "node-fetch": "^2.6.7"
   }
 }
