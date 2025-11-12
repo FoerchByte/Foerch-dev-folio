@@ -201,18 +201,16 @@ body.light-mode .about-me-photo .photo-dark { opacity: 0; z-index: 1; }
     opacity: 0.8;
 }
 
-/* === POPRAWKA FAZY 19: Wprowadzenie Grid Layout dla kafelków === */
+/* === POPRAWKA FAZY 20: Zwiększenie minimalnej szerokości kafelka === */
 .stack-section .skills-icons {
     display: grid;
-    /* Używamy auto-fit: 
-      - Na desktopie (szeroka kolumna) zmieści 4 ikony w 1 linii.
-      - Na mobilkach (wąska kolumna) automatycznie złamie się do 2x2.
-      - minmax(120px, 1fr) naprawia problem łamania "Power Query".
+    /* ZMIANA: Zwiększono minmax ze 120px do 140px.
+      To naprawi łamanie się tekstu "Power Query" i "Power Automate".
     */
-    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
     gap: 1rem; 
 }
-/* === Koniec Poprawki Fazy 19 === */
+/* === Koniec Poprawki Fazy 20 === */
 
 
 .stack-section .skill-item {
@@ -220,7 +218,7 @@ body.light-mode .about-me-photo .photo-dark { opacity: 0; z-index: 1; }
     padding: 1rem;
     border-radius: 2px;
     border: 1px solid var(--border-color);
-    /* USUNIĘTO: width: 100px; (teraz zarządza tym grid) */
+    /* USUNIĘTO: width: 100px; */
     height: 100px;
     text-align: center;
     
@@ -233,11 +231,7 @@ body.light-mode .about-me-photo .photo-dark { opacity: 0; z-index: 1; }
 }
 
 
-/* === POPRAWKA FAZY 19: Ujednolicenie stylów (tylko SVG) === */
-
-/* Usunięto regułę dla <img> */
-
-/* Styl tylko dla <svg> (teraz dla WSZYSTKICH ikon) */
+/* === POPRAWKA FAZY 20: Zwiększenie skali ikon === */
 .stack-section .skill-item svg.tech-icon {
     width: 32px;
     height: 32px;
@@ -246,17 +240,16 @@ body.light-mode .about-me-photo .photo-dark { opacity: 0; z-index: 1; }
     fill: none;
     filter: grayscale(100%) opacity(0.7);
     transition: all 0.3s ease-in-out;
-    /* Zwiększamy skalę, aby ikony SVG miały tę samą "wagę optyczną" */
-    transform: scale(1.4); 
+    /* ZMIANA: Zwiększono skalę z 1.4 na 1.5 dla lepszej "wagi optycznej" */
+    transform: scale(1.5); 
 }
-
-/* Usunięto regułę hover dla <img> */
 
 .stack-section .skill-item:hover svg.tech-icon {
     filter: grayscale(0%) opacity(1);
-    transform: scale(1.5); /* Lekkie powiększenie na hover */
+    /* ZMIANA: Zwiększono skalę hover */
+    transform: scale(1.6); 
 }
-/* === Koniec Poprawki Fazy 19 === */
+/* === Koniec Poprawki Fazy 20 === */
 
 
 /* Responsywność dla Changelog */
