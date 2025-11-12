@@ -15,7 +15,6 @@
 }
 
 /* ZMIANA FAZY 4: Style dla nowych filtrów kategorii
-  (zgodnie z dyskusją - wyglądają jak tagi).
 */
 .project-filters {
     display: flex;
@@ -45,6 +44,30 @@
     color: var(--primary-color);
     font-weight: 500;
 }
+
+/* === NAPRAWA FAZY 4.2: Dodano brakujące nawiasy [ ] dla spójności === */
+.filter-btn::before {
+    content: '[';
+    color: var(--text-secondary); /* Domyślny kolor nawiasu */
+    opacity: 0.7;
+    margin-right: 0.2rem;
+    transition: all 0.2s;
+}
+.filter-btn::after {
+    content: ']';
+    color: var(--text-secondary); /* Domyślny kolor nawiasu */
+    opacity: 0.7;
+    margin-left: 0.2rem;
+    transition: all 0.2s;
+}
+
+/* Podświetlanie nawiasów przycisku przy najechaniu lub gdy aktywny */
+.filter-btn:hover::before, .filter-btn:hover::after,
+.filter-btn.active::before, .filter-btn.active::after {
+    color: var(--primary-color);
+    opacity: 1;
+}
+/* === Koniec naprawy === */
 
 
 /* ZMIANA FAZY 4: Implementacja "Siatki Asymetrycznej"
