@@ -1,20 +1,33 @@
 <!--
-  EN: The new "Project Registry" page.
-  This template replaces the old grid layout with a new list structure
-  that will be populated by app.js to match the technical mockup.
-  PL: Nowa strona "Rejestr Projektów".
-  Ten szablon zastępuje stary układ siatki nową strukturą listy,
-  która zostanie wypełniona przez app.js, aby pasowała do technicznego mockupu.
+  EN: The new "Project Registry" page (Phase 4).
+  This template removes the <ul> list and implements the new
+  Asymmetric Grid layout (`project-grid`) and the category filters.
+  PL: Nowa strona "Rejestr Projektów" (Faza 4).
+  Ten szablon usuwa listę <ul> i implementuje nowy
+  layout "Siatki Asymetrycznej" (`project-grid`) oraz filtry kategorii.
 -->
 <div class="project-registry-header fade-in">
     <h2 class="section-title">{{projectsTitle}}</h2>
     <p class="project-subtitle">{{projectsSubtitle}}</p>
 </div>
 
-<!--
-  Ta lista zostanie dynamicznie wypełniona przez funkcję renderProjects() w app.js
-  na podstawie nowego, bogatego modelu danych projectsData.
+<!-- 
+  ZMIANA FAZY 4: Dodano filtry kategorii, zgodnie z naszą dyskusją.
+  Style dla `.filter-btn` zostaną dodane w `projects.css`.
 -->
-<ul id="project-registry-list" class="project-registry-list fade-in" style="animation-delay: 0.1s;">
+<div class="project-filters fade-in" style="animation-delay: 0.1s;">
+    <button data-filter="all" class="filter-btn active">{{projectsCategoryAll}}</button>
+    <button data-filter="specialist" class="filter-btn">{{projectsCategorySpecialist}}</button>
+    <button data-filter="tools" class="filter-btn">{{projectsCategoryTools}}</button>
+    <button data-filter="creative" class="filter-btn">{{projectsCategoryCreative}}</button>
+    <button data-filter="games" class="filter-btn">{{projectsCategoryGames}}</button>
+</div>
+
+<!--
+  ZMIANA FAZY 4: Zastąpiono `<ul id="project-registry-list">` 
+  nowym kontenerem siatki (Grid).
+  Zawartość (kafelki) zostanie wyrenderowana przez `renderProjects()` w app.js.
+-->
+<div id="project-grid" class="project-grid fade-in" style="animation-delay: 0.2s;">
     <!-- Zawartość generowana przez JavaScript... -->
-</ul>
+</div>
