@@ -612,37 +612,12 @@ body.light-mode .about-me-photo .photo-dark { opacity: 0; z-index: 1; }
     line-height: 1.8;
 }
 
-/* --- Siatka projektów --- */
-.project-filters {
-    margin-bottom: 3rem;
-    display: flex;
-    gap: 1rem;
-    flex-wrap: wrap;
-}
+/* UZASADNIENIE: Usunięto całą sekcję `.project-filters` (ok. 30 linii).
+  Te style były przestarzałe ("pigułki") i powodowały konflikt wizualny
+  z nowymi stylami modułu `projects.css` (które używają stylu `[Tag]`).
+  Style dla filtrów projektów są teraz w całości zarządzane przez swój moduł.
+*/
 
-.project-filters button {
-    background: transparent;
-    border: 1px solid var(--border-color);
-    color: var(--text-secondary);
-    padding: 0.6rem 1.2rem;
-    border-radius: 2px; 
-    cursor: pointer;
-    font-family: 'Roboto Mono', monospace;
-    font-size: 0.9rem;
-    transition: all 0.2s ease-in-out;
-}
-
-.project-filters button:hover {
-    color: var(--primary-color);
-    border-color: var(--primary-color);
-    background-color: rgba(0, 224, 255, 0.05);
-}
-
-.project-filters button.active {
-    background-color: rgba(0, 224, 255, 0.1);
-    border-color: var(--primary-color);
-    color: var(--primary-color);
-}
 
 /* --- Elementy wspólne (np. loader, modal) --- */
 .loader { width: 18px; height: 18px; border: 2px solid var(--primary-color); border-bottom-color: transparent; border-radius: 50%; display: inline-block; box-sizing: border-box; animation: rotation 1s linear infinite; margin-left: 10px; }
