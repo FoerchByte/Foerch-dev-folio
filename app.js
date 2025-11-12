@@ -7,7 +7,21 @@
 import { translations } from './modules/translations.js';
 
 // --- NOWY MODEL DANYCH PROJEKTÓW ---
+// ZMIANA FAZY 4:
+// 1. "Stacja Pogody" (weather) jest teraz pierwszym elementem, aby stać się 'featured'.
+// 2. Usunięto "przekłamany" klucz `dateKey` ze wszystkich obiektów.
 const projectsData = [
+    // --- WYRÓŻNIONY (FEATURED) ---
+    { 
+        id: 'weather', 
+        category: 'tools',
+        titleKey: 'weatherTitle',
+        descKey: 'weatherDesc',
+        statusKey: 'weatherStatus',
+        tagsKey: 'weatherTags',
+        externalUrl: 'https://foerch-weather-station.netlify.app',
+        linkDescKey: 'weatherLinkDesc'
+    },
     // --- Specjalistyczne ---
     { 
         id: 'project-aggregator', 
@@ -15,7 +29,6 @@ const projectsData = [
         titleKey: 'aggregatorTitle',
         descKey: 'aggregatorDesc',
         statusKey: 'aggregatorStatus',
-        dateKey: 'aggregatorDate',
         tagsKey: 'aggregatorTags'
     },
     { 
@@ -24,7 +37,6 @@ const projectsData = [
         titleKey: 'taxArrearsTitle',
         descKey: 'taxArrearsDesc',
         statusKey: 'taxArrearsStatus',
-        dateKey: 'taxArrearsDate',
         tagsKey: 'taxArrearsTags'
     },
     { 
@@ -33,7 +45,6 @@ const projectsData = [
         titleKey: 'statutoryInterestTitle',
         descKey: 'statutoryInterestDesc',
         statusKey: 'statutoryInterestStatus',
-        dateKey: 'statutoryInterestDate',
         tagsKey: 'statutoryInterestTags'
     },
     { 
@@ -42,28 +53,15 @@ const projectsData = [
         titleKey: 'budgetValidatorTitle',
         descKey: 'budgetValidatorDesc',
         statusKey: 'budgetValidatorStatus',
-        dateKey: 'budgetValidatorDate',
         tagsKey: 'budgetValidatorTags'
     },
     // --- Narzędzia ---
-    { 
-        id: 'weather', 
-        category: 'tools',
-        titleKey: 'weatherTitle',
-        descKey: 'weatherDesc',
-        statusKey: 'weatherStatus',
-        dateKey: 'weatherDate',
-        tagsKey: 'weatherTags',
-        externalUrl: 'https://foerch-weather-station.netlify.app',
-        linkDescKey: 'weatherLinkDesc'
-    },
     { 
         id: 'todo', 
         category: 'tools',
         titleKey: 'todoTitle',
         descKey: 'todoDesc',
         statusKey: 'todoStatus',
-        dateKey: 'todoDate',
         tagsKey: 'todoTags'
     },
     { 
@@ -72,7 +70,6 @@ const projectsData = [
         titleKey: 'currencyCalcTitle',
         descKey: 'currencyCalcDesc',
         statusKey: 'currencyCalcStatus',
-        dateKey: 'currencyCalcDate',
         tagsKey: 'currencyCalcTags'
     },
     { 
@@ -81,7 +78,6 @@ const projectsData = [
         titleKey: 'pomodoroTimerTitle',
         descKey: 'pomodoroTimerDesc',
         statusKey: 'pomodoroTimerStatus',
-        dateKey: 'pomodoroTimerDate',
         tagsKey: 'pomodoroTimerTags'
     },
     // --- Kreatywne (Frontend) ---
@@ -91,7 +87,6 @@ const projectsData = [
         titleKey: 'agencyTitle',
         descKey: 'agencyDesc',
         statusKey: 'agencyStatus',
-        dateKey: 'agencyDate',
         tagsKey: 'agencyTags'
     },
     { 
@@ -100,7 +95,6 @@ const projectsData = [
         titleKey: 'markdownEditorTitle',
         descKey: 'markdownEditorDesc',
         statusKey: 'markdownEditorStatus',
-        dateKey: 'markdownEditorDate',
         tagsKey: 'markdownEditorTags'
     },
     // --- Gry ---
@@ -110,7 +104,6 @@ const projectsData = [
         titleKey: 'snakeGameTitle',
         descKey: 'snakeGameDesc',
         statusKey: 'snakeGameStatus',
-        dateKey: 'snakeGameDate',
         tagsKey: 'snakeGameTags'
     },
     { 
@@ -119,7 +112,6 @@ const projectsData = [
         titleKey: 'ticTacToeTitle',
         descKey: 'ticTacToeDesc',
         statusKey: 'ticTacToeStatus',
-        dateKey: 'ticTacToeDate',
         tagsKey: 'ticTacToeTags'
     },
     { 
@@ -128,7 +120,6 @@ const projectsData = [
         titleKey: 'memoryGameTitle',
         descKey: 'memoryGameDesc',
         statusKey: 'memoryGameStatus',
-        dateKey: 'memoryGameDate',
         tagsKey: 'memoryGameTags'
     },
 ];
@@ -138,6 +129,8 @@ let currentLang = localStorage.getItem('lang') || 'pl';
 let currentTheme = localStorage.getItem('theme') || 'light';
 let activeCleanups = [];
 let activeStyleId = null;
+// ZMIANA: Dodano stan dla filtra projektów
+let currentProjectFilter = 'all'; 
 
 // ========================================================================
 // Centralny moduł do obsługi dźwięków
@@ -145,6 +138,7 @@ let activeStyleId = null;
 let synth;
 
 function initializeAudio() {
+// ... existing code ...
     if (typeof Tone !== 'undefined' && !synth) {
         synth = new Tone.PolySynth(Tone.Synth, {
             volume: -12,
@@ -155,6 +149,7 @@ function initializeAudio() {
 }
 
 async function playSound(type = 'click') {
+// ... existing code ...
     if (typeof Tone !== 'undefined' && Tone.context.state !== 'running') {
         await Tone.start();
         initializeAudio();
@@ -185,12 +180,14 @@ async function playSound(type = 'click') {
 
 // --- Funkcje pomocnicze ---
 const t = (key, args) => {
+// ... existing code ...
     const langSet = translations[currentLang] || translations['pl'];
     const translation = langSet[key];
     return typeof translation === 'function' ? translation(args) : translation || key;
 }
 
 const showConfirmationModal = (message, onConfirm) => {
+// ... existing code ...
     const modalOverlay = document.createElement('div');
     modalOverlay.className = 'modal-overlay';
     modalOverlay.innerHTML = `
@@ -210,6 +207,7 @@ const showConfirmationModal = (message, onConfirm) => {
 }
 
 async function fetchAndRenderTemplate(route) {
+// ... existing code ...
     let templateFile = route;
     
     try {
@@ -229,19 +227,30 @@ async function fetchAndRenderTemplate(route) {
 }
 
 function setTheme(theme) {
+// ... existing code ...
     document.body.classList.toggle('light-mode', theme === 'light');
     localStorage.setItem('theme', theme);
     currentTheme = theme;
 }
 
 /**
- * ZMIANA: Funkcja renderująca - NAPRAWIONA STRUKTURA HTML
+ * ZMIANA FAZY 4:
+ * Przepisanie funkcji renderProjects, aby:
+ * 1. Renderowała do `#project-grid` (DIV) zamiast `#project-registry-list` (UL).
+ * 2. Obsługiwała filtrowanie na podstawie `currentProjectFilter`.
+ * 3. Nadawała klasy `.project-item--featured` i `.project-item--small`.
+ * 4. Usunęła renderowanie `project-date` (klucz `dateKey` został usunięty z danych).
  */
 function renderProjects() {
-    const projectsList = document.getElementById('project-registry-list');
-    if (!projectsList) return;
+    const projectsGrid = document.getElementById('project-grid');
+    if (!projectsGrid) return;
 
-    projectsList.innerHTML = projectsData.map(project => {
+    // 1. Logika filtrowania
+    const filteredProjects = projectsData.filter(p => 
+        currentProjectFilter === 'all' || p.category === currentProjectFilter
+    );
+
+    projectsGrid.innerHTML = filteredProjects.map((project, index) => {
         const statusKey = project.statusKey || '';
         const statusClass = t(statusKey).toLowerCase().replace(/[^a-z0-9]/g, '-');
         
@@ -260,16 +269,21 @@ function renderProjects() {
                </a>`
             : '';
 
+        // 2. Logika klas (Siatka Asymetryczna)
+        // Jeśli filtr jest "all", pierwszy element (Stacja Pogody) jest wyróżniony.
+        // Jeśli aktywny jest jakikolwiek inny filtr, wszystkie są małe.
+        const itemClass = (index === 0 && currentProjectFilter === 'all') 
+            ? 'project-item--featured' 
+            : 'project-item--small';
+
+        // 3. Renderowanie HTML (DIV zamiast LI, usunięta data)
         return `
-            <li class="project-item">
-                <!-- NAPRAWA: Główny kontener to DIV, nie A -->
+            <div class="project-item ${itemClass}">
                 <div class="project-card-content"> 
                     <div class="project-header">
-                        <span class="project-date">${t(project.dateKey)}</span>
                         <span class="project-status status-${statusClass}">${t(project.statusKey)}</span>
                     </div>
                     
-                    <!-- NAPRAWA: Link wewnętrzny jest TYLKO na tytule -->
                     <a href="/${project.id}" class="project-title-link">
                         <h3 class="project-title">${t(project.titleKey)}</h3>
                     </a>
@@ -281,19 +295,18 @@ function renderProjects() {
                             ${tags}
                         </div>
                         <div class="project-external-link-wrapper">
-                            <!-- NAPRAWA: Link zewnętrzny jest teraz jedynym linkiem w stopce,
-                                 co jest w 100% poprawnym HTML -->
                             ${externalLink}
                         </div>
                     </div>
                 </div> 
-            </li>
+            </div>
         `;
     }).join('');
 }
 
 
 function loadStyle(path) {
+// ... existing code ...
     const styleId = `style-${path.split('/').pop().split('.')[0]}`;
     if (document.getElementById(styleId)) return;
     const link = document.createElement('link');
@@ -305,12 +318,14 @@ function loadStyle(path) {
 }
 
 function unloadStyle(id) {
+// ... existing code ...
     if (!id) return;
     const link = document.getElementById(id);
     if (link) link.remove();
 }
 
 function renderStaticContent() {
+// ... existing code ...
     document.documentElement.lang = currentLang;
     
     document.querySelectorAll('#main-nav a[data-i18n]').forEach(link => {
@@ -322,6 +337,7 @@ function renderStaticContent() {
 }
 
 function getRouteFromPathname() {
+// ... existing code ...
     const path = window.location.pathname;
     if (path === '/') return 'home';
     if (path === '/about') {
@@ -332,6 +348,7 @@ function getRouteFromPathname() {
 }
 
 async function renderContent(isInitialLoad = false) {
+// ... existing code ...
     const contentContainer = document.getElementById('app-content');
     const route = getRouteFromPathname();
 
@@ -356,6 +373,7 @@ async function renderContent(isInitialLoad = false) {
 }
 
 function loadModuleStyle(route) {
+// ... existing code ...
     const projectRoutes = projectsData.map(p => p.id);
     let styleToLoad = null;
     if (projectRoutes.includes(route)) {
@@ -379,6 +397,7 @@ function loadModuleStyle(route) {
 }
 
 function initializeChangelogPage() {
+// ... existing code ...
     return [];
 }
 
@@ -388,12 +407,35 @@ async function attachEventListeners(route) {
     const routeInitializers = {
         'home': () => { return []; }, 
         'changelog': () => initializeChangelogPage(),
+        
+        // ZMIANA FAZY 4: Nowa logika dla strony /projects
         'projects': () => {
+            // 1. Renderuj wstępną siatkę (domyślnie 'all')
             renderProjects(); 
-            return [];
+            
+            // 2. Dodaj logikę do kontenera filtrów
+            const filtersContainer = document.querySelector('.project-filters');
+            if (filtersContainer) {
+                filtersContainer.addEventListener('click', e => {
+                    if (e.target.tagName === 'BUTTON') {
+                        playSound('click');
+                        // Pobierz nowy filtr
+                        currentProjectFilter = e.target.dataset.filter;
+                        
+                        // Zaktualizuj aktywny przycisk
+                        filtersContainer.querySelector('button.active').classList.remove('active');
+                        e.target.classList.add('active');
+                        
+                        // Przerenderuj siatkę z nowym filtrem
+                        renderProjects();
+                    }
+                });
+            }
+            return []; // Nie ma potrzeby czyszczenia listenera, bo jest na #app-content
         },
         
         'todo': async () => { const { initializeTodoApp } = await import('./modules/todo.js'); return initializeTodoApp(dependencies); },
+// ... existing code ...
         'weather': async () => { const { initializeWeatherApp } = await import('./modules/weather.js'); return initializeWeatherApp(dependencies); },
         'currency-calculator': async () => { const { initializeCurrencyCalculator } = await import('./modules/currency.js'); return initializeCurrencyCalculator(dependencies); },
         'markdown-editor': async () => { const { initializeMarkdownEditor } = await import('./modules/markdown.js'); return initializeMarkdownEditor(dependencies); },
@@ -410,12 +452,14 @@ async function attachEventListeners(route) {
     };
 
     if (routeInitializers[route]) {
+// ... existing code ...
         const cleanups = await routeInitializers[route]();
         if (Array.isArray(cleanups)) activeCleanups = cleanups;
     }
 }
 
 function updateActiveNavLink(activeRoute) {
+// ... existing code ...
     const projectRoutes = projectsData.map(p => p.id);
     
     document.querySelectorAll('.main-nav a').forEach(link => {
@@ -433,6 +477,7 @@ function updateActiveNavLink(activeRoute) {
 }
 
 function navigate(path) {
+// ... existing code ...
     if (window.location.pathname === path) return;
     
     window.history.pushState({}, '', path);
@@ -440,6 +485,7 @@ function navigate(path) {
 }
 
 function initializeApp() {
+// ... existing code ...
     const savedTheme = localStorage.getItem('theme');
     const defaultTheme = 'dark'; 
     setTheme(savedTheme || defaultTheme);
@@ -450,6 +496,7 @@ function initializeApp() {
     });
     
     document.getElementById('lang-switcher').addEventListener('click', e => {
+// ... existing code ...
         if (e.target.tagName === 'BUTTON') {
             const lang = e.target.dataset.lang;
             if (lang !== currentLang) {
@@ -465,6 +512,7 @@ function initializeApp() {
     window.addEventListener('popstate', () => renderContent());
 
     document.addEventListener('click', e => {
+// ... existing code ...
         const link = e.target.closest('a');
         if (link && 
             link.origin === window.location.origin && 
@@ -472,10 +520,7 @@ function initializeApp() {
             !e.ctrlKey && !e.metaKey && 
             link.target !== '_blank') 
         {
-            // NAPRAWA: Upewniamy się, że nasz router obsługuje linki wewnątrz linków
-            // (chociaż naprawiliśmy HTML, ta logika jest bezpieczniejsza)
             if (link.classList.contains('project-external-link')) {
-                // To jest link zewnętrzny, pozwól mu działać (choć ma target=_blank, więc ten kod nie powinien się wykonać)
                 return; 
             }
             
@@ -485,16 +530,19 @@ function initializeApp() {
     });
 
     renderStaticContent();
+// ... existing code ...
     renderContent(true);
 
     const menuToggle = document.getElementById('menu-toggle');
     const siteHeader = document.querySelector('.site-header');
     const navWrapper = document.getElementById('nav-wrapper');
     menuToggle.addEventListener('click', () => {
+// ... existing code ...
         siteHeader.classList.toggle('nav-open');
         menuToggle.setAttribute('aria-expanded', siteHeader.classList.contains('nav-open'));
     });
     navWrapper.addEventListener('click', (e) => {
+// ... existing code ...
         if (e.target.tagName === 'A' || e.target.closest('button')) {
             siteHeader.classList.remove('nav-open');
             menuToggle.setAttribute('aria-expanded', 'false');
