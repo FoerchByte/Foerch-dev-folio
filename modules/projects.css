@@ -286,10 +286,24 @@
         font-size: 1.25rem; /* Ujednolicenie na mobilkach */
     }
     
-    /* === POPRAWKA FAZY 9: Upewniamy się, że oba mają max-width: 100% === */
     .project-item--featured .project-description,
     .project-item--small .project-description {
         font-size: 0.95rem; /* Ujednolicenie na mobilkach */
         max-width: 100%; /* Jawne nadpisanie */
     }
+
+    /* === POPRAWKA FAZY 10: Naprawa overflow stopki na mobilkach === */
+    .project-footer {
+        flex-direction: column; /* Układamy tagi i przycisk pionowo */
+        align-items: flex-start; /* Wyrównujemy do lewej */
+        gap: 1.5rem; /* Odstęp między tagami a przyciskiem */
+    }
+    .project-external-link-wrapper {
+        width: 100%; /* Przycisk zajmie całą szerokość */
+    }
+    .project-external-link {
+        width: 100%;
+        text-align: center; /* Wyśrodkowujemy tekst w przycisku */
+    }
+    /* === Koniec Poprawki Fazy 10 === */
 }
