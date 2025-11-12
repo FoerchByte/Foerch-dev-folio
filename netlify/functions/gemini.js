@@ -1,4 +1,4 @@
-// Wymuszenie re-deploy v2
+// Wymuszenie re-deploy v3 (Poprawka CJS/ESM)
 /*
   EN: This serverless function acts as a secure intermediary for the Gemini AI API.
   It protects the API key by keeping it on the server-side, a crucial practice for
@@ -12,13 +12,13 @@
   na stronie kontaktowej.
 */
 
+// === POPRAWKA FAZY 5.4: Używamy składni CommonJS (require) zamiast ESM (import) ===
+// To jest wymagane, ponieważ reszta pliku używa `exports.handler` (składni CJS).
+const fetch = require('node-fetch');
+// === Koniec poprawki ===
+
 exports.handler = async function (event, context) {
     
-    // === POPRAWKA: Dodano brakujący import `node-fetch` ===
-    // Musi być zdefiniowany wewnątrz handlera dla kompatybilności.
-    const fetch = (await import('node-fetch')).default;
-    // === Koniec poprawki ===
-
     if (event.httpMethod !== 'POST') {
         return { statusCode: 405, body: 'Method Not Allowed' };
     }
