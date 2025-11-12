@@ -14,18 +14,14 @@ export const translations = {
         
         // --- Nowa strona główna (Hero) ---
         heroSubtitle: "EXECUTIVE_ENGINEER",
-        // ZMIANA: Wersja G tytułu + łamanie linii
         heroTitle: "Od <span class=\"highlight\">Analityki</span><br>do Aplikacji",
-        // ZMIANA: Zaktualizowano o "mięsistą" Wersję E
         heroDescription: "Moja wartość leży na styku logiki biznesowej i inżynierii oprogramowania. Wykorzystuję analityczne myślenie (Excel, VBA) i precyzję dewelopera (JavaScript, API), aby architektonicznie rozwiązywać złożone problemy z danymi – nie tylko budować aplikacje.",
         heroCta: "ZOBACZ_CASE_STUDIES",
-        // ZMIANA: Nowy klucz dla przycisku Kontakt
         heroCtaContact: "Skontaktuj się",
 
         // Statystyki na stronie głównej (NOWE)
         heroStatExperience: "LAT DOŚWIADCZENIA (Finanse/VBA)",
         heroStatProjects: "WDROŻONYCH PROJEKTÓW",
-        // ZMIANA: Uściślenie etykiety, aby pasowała do liczby 350+
         heroStatCommits: "COMMITÓW (Ostatni Rok)",
         heroStatAutomations: "ZAUTOMATYZOWANE PROCESY",
 
@@ -45,7 +41,6 @@ export const translations = {
         skillsHeaderData: "// Automatyzja i Analiza Danych",
         skillsHeaderFrontend: "// Frontend Development",
 
-        // ZMIANA #1: Ujednolicenie tekstu przycisku do wersji z wielkich liter
         aboutCtaProjects: "ZOBACZ_CASE_STUDIES",
         aboutCtaCv: "Pobierz pełne CV",
         
@@ -55,7 +50,6 @@ export const translations = {
         changelogV3Title: "Rewolucja Automatyzacji (Inspektor)",
         changelogV3Place: "Urząd Miasta Łodzi",
         changelogV3Date: "06.2023 - obecnie",
-        // ZMIANA #1: Zmiana "3 dni" na "10 dni"
         changelogV3Desc: "Uzyskanie tytułu Magistra (AI). Wdrożenie pełnego ekosystemu automatyzacji: zastąpienie manualnych procesów skryptami VBA, potokami Power Query oraz formularzami Power Automate/SharePoint. KLUCZOWY WYNIK: Redukcja czasu rocznego rozliczenia 140+ projektów z 78 dni roboczych do zaledwie 10 dni.",
         changelogV3Tags: "<span style='color: var(--primary-color)'>[Magister (SI)]</span> [VBA] [Power Query] [Automatyzacja Procesów] [SharePoint] [Power Automate]",
 
@@ -71,7 +65,6 @@ export const translations = {
         changelogV15Place: "Urząd Miasta Łodzi",
         changelogV15Date: "11.2020 - 02.2021",
         changelogV15Desc: "Pierwsza iteracja usprawnień. Zastąpienie ręcznego sumowania danych dynamicznymi formułami (SUMIFS, VLOOKUP) w arkuszach zbiorczych.",
-        // ZMIANA: Dodano nowe tagi
         changelogV15Tags: "[Excel Formuły] [SUMIFS] [VLOOKUP]",
 
         // v1.0.0 - Młodszy Referent
@@ -79,7 +72,6 @@ export const translations = {
         changelogV10Place: "Urząd Miasta Łodzi",
         changelogV10Date: "11.2019 - 11.2020",
         changelogV10Desc: "Onboarding i analiza procesów legacy. Identyfikacja krytycznych ryzyk błędu ludzkiego w 100% manualnym procesie raportowania.",
-        // ZMIANA: Dodano nowe tagi
         changelogV10Tags: "[Analiza Procesów] [Data Entry]",
 
         // v0.5.0 - Stażysta
@@ -87,101 +79,102 @@ export const translations = {
         changelogV05Place: "Urząd Miasta Łodzi",
         changelogV05Date: "07.2019 - 11.2019",
         changelogV05Desc: "Wstępne rozpoznanie środowiska. Archiwizacja i podstawowe porządkowanie dokumentacji budżetowej.",
-        // ZMIANA: Dodano nowe tagi
         changelogV05Tags: "[Archiwizacja] [Excel]",
 
         // --- Strona Projektów (Project Registry) ---
         projectsTitle: "Rejestr Projektów",
         projectsSubtitle: "SELECT * FROM projects WHERE status IN ('Produkcja', 'Wdrożony', 'Koncepcja') ORDER BY impact DESC;",
 
+        // === ZMIANA: Zredagowane, "mięsiste" opisy ===
+
         // 1. Agregator
         aggregatorTitle: "Agregator Rozliczeń Projektowych",
-        aggregatorDesc: "Narzędzie automatyzujące (JS/SheetJS) proces tworzenia rocznych zestawień finansowych z wielu plików Excel.",
+        aggregatorDesc: "Narzędzie klienckie (JS/SheetJS) automatyzujące proces agregacji danych z wielu plików `.xlsx`. Odwzorowuje logikę biznesową procesów księgowych.",
         aggregatorStatus: "PRODUKCJA",
-        aggregatorDate: "2023-Q4",
+        aggregatorDate: "2023-Q4", // USUNIEMY TEN KLUCZ W NASTĘPNYM KROKU
         aggregatorTags: "JavaScript SheetJS Automatyzacja DOM",
 
         // 2. Odsetki Podatkowe
         taxArrearsTitle: "Kalkulator Odsetek Podatkowych",
-        taxArrearsDesc: "Narzędzie biznesowe odwzorowujące złożone przepisy podatkowe (Ordynacja Podatkowa) do obliczania odsetek.",
+        taxArrearsDesc: "Implementacja logiki biznesowej (Ordynacja Podatkowa) do precyzyjnego obliczania odsetek podatkowych ze zmiennymi stawkami.",
         taxArrearsStatus: "PRODUKCJA",
         taxArrearsDate: "2023-Q2",
         taxArrearsTags: "JavaScript Logika-Biznesowa Finanse",
         
         // 3. Odsetki Ustawowe
         statutoryInterestTitle: "Kalkulator Odsetek Ustawowych",
-        statutoryInterestDesc: "Obliczanie odsetek ustawowych i handlowych z pełną historią dynamicznie zmieniających się stawek.",
+        statutoryInterestDesc: "Kalkulator odsetek ustawowych i handlowych z pełną historią dynamicznie zmieniających się stawek (dane NBP).",
         statutoryInterestStatus: "PRODUKCJA",
         statutoryInterestDate: "2023-Q3",
         statutoryInterestTags: "JavaScript Logika-Biznesowa Finanse",
 
         // 4. Walidator Budżetu
         budgetValidatorTitle: "Walidator Danych Budżetowych",
-        budgetValidatorDesc: "Narzędzie do szybkiej weryfikacji spójności danych (liczby kolumn) skopiowanych bezpośrednio z Excela.",
+        budgetValidatorDesc: "Narzędzie do szybkiej weryfikacji spójności danych (liczby kolumn) skopiowanych bezpośrednio z Excela. Oszczędza czas na manualnym debugowaniu.",
         budgetValidatorStatus: "WDROŻONY",
         budgetValidatorDate: "2023-Q1",
         budgetValidatorTags: "JavaScript DOM Narzędzie",
 
         // 5. Stacja Pogody
         weatherTitle: "Stacja Pogody",
-        weatherDesc: "Aplikacja pogodowa z prognozą, geolokalizacją i architekturą serverless (Netlify Functions) do ukrywania kluczy API.",
-        weatherStatus: "KONCEPCJA",
+        weatherDesc: "Aplikacja z prognozą 5-dniową/24h. Wykorzystuje geolokalizację oraz architekturę serverless (Netlify Functions) do bezpiecznego ukrywania kluczy API.",
+        weatherStatus: "PRODUKCJA", // ZMIANA STATUSU
         weatherDate: "2024-Q1",
         weatherTags: "JavaScript API Serverless Netlify",
         weatherLinkDesc: "Zobacz Wdrożenie Live ↗",
 
         // 6. Lista Zadań
         todoTitle: "Aplikacja \"Lista Zadań\"",
-        todoDesc: "Zaawansowana aplikacja To-Do z filtrowaniem, edycją, zapisem w localStorage i obsługą gestów dotykowych (drag-n-drop).",
-        todoStatus: "AKTYWNY",
+        todoDesc: "Zaawansowane To-Do z filtrowaniem, edycją, zapisem w `localStorage` oraz pełną obsługą gestów mobilnych (touch drag-n-drop).",
+        todoStatus: "WDROŻONY", // ZMIANA STATUSU
         todoDate: "2024-Q2",
         todoTags: "JavaScript DOM UI/UX LocalStorage",
 
         // 7. Kalkulator Walut
         currencyCalcTitle: "Kalkulator Walut",
-        currencyCalcDesc: "Przelicznik walut korzystający z aktualnych kursów pobieranych na żywo z publicznego API (Frankfurter.app).",
+        currencyCalcDesc: "Przelicznik walut pobierający kursy na żywo z publicznego API (Frankfurter.app) i obsługujący błędy sieciowe.",
         currencyCalcStatus: "WDROŻONY",
         currencyCalcDate: "2023-Q4",
         currencyCalcTags: "JavaScript API Fetch",
 
         // 8. Pomodoro
         pomodoroTimerTitle: "Asystent Pomodoro",
-        pomodoroTimerDesc: "Narzędzie do zarządzania czasem pracy (technika Pomodoro) z konfigurowalnymi cyklami i powiadomieniami audio.",
+        pomodoroTimerDesc: "Narzędzie do zarządzania czasem (technika Pomodoro) z konfigurowalnymi cyklami, stanem w `localStorage` i powiadomieniami audio (Tone.js).",
         pomodoroTimerStatus: "WDROŻONY",
         pomodoroTimerDate: "2024-Q1",
         pomodoroTimerTags: "JavaScript DOM Audio-API",
 
         // 9. Agency
         agencyTitle: "Projekt \"Creative Agency\"",
-        agencyDesc: "Landing page demonstrujący nowoczesne i w pełni responsywne układy (CSS Grid/Flexbox) dla fikcyjnej agencji.",
+        agencyDesc: "Techniczne demo demonstrujące zaawansowane, w pełni responsywne układy (CSS Grid/Flexbox) oraz dynamiczny slider JS.",
         agencyStatus: "KONCEPCJA",
         agencyDate: "2023-Q3",
         agencyTags: "HTML5 CSS3 Flexbox Grid",
 
         // 10. Edytor Markdown
         markdownEditorTitle: "Edytor Markdown",
-        markdownEditorDesc: "Edytor tekstu z podglądem na żywo (live-preview), analizą treści w czasie rzeczywistym i synchronizacją przewijania.",
-        markdownEditorStatus: "AKTYWNY",
+        markdownEditorDesc: "Edytor tekstu z podglądem na żywo (Marked.js), analizą treści w czasie rzeczywistym i synchronizacją przewijania.",
+        markdownEditorStatus: "WDROŻONY", // ZMIANA STATUSU
         markdownEditorDate: "2023-Q4",
         markdownEditorTags: "JavaScript DOM Marked.js",
 
         // 11. Snake
         snakeGameTitle: "Gra w Węża",
-        snakeGameDesc: "Implementacja klasycznej gry zręcznościowej na elemencie HTML Canvas, z obsługą klawiatury i gestów mobilnych.",
+        snakeGameDesc: "Implementacja klasycznej pętli gry (game loop) i detekcji kolizji na elemencie HTML Canvas. Obsługuje klawiaturę i gesty mobilne.",
         snakeGameStatus: "GRYWALNY",
         snakeGameDate: "2024-Q2",
         snakeGameTags: "JavaScript HTML-Canvas GameDev",
 
         // 12. Tic-Tac-Toe
         ticTacToeTitle: "Kółko i Krzyżyk",
-        ticTacToeDesc: "Klasyczna gra zaimplementowana w czystym JS, oferująca tryb Gracz vs Gracz oraz Gracz vs Komputer (proste AI).",
+        ticTacToeDesc: "Implementacja logiki gry z zarządzaniem stanem, oferująca tryb Gracz vs Gracz oraz Gracz vs Komputer (proste AI).",
         ticTacToeStatus: "GRYWALNY",
         ticTacToeDate: "2024-Q1",
         ticTacToeTags: "JavaScript GameDev AI",
 
         // 13. Memory Game
         memoryGameTitle: "Gra Pamięciowa",
-        memoryGameDesc: "Gra trenująca pamięć (dopasowywanie par) z licznikiem ruchów, timerem i dynamicznym generowaniem planszy.",
+        memoryGameDesc: "Gra trenująca pamięć (dopasowywanie par) z licznikiem ruchów, timerem, dźwiękami (Tone.js) i dynamicznym generowaniem planszy.",
         memoryGameStatus: "GRYWALNY",
         memoryGameDate: "2024-Q1",
         memoryGameTags: "JavaScript DOM GameDev",
@@ -190,9 +183,9 @@ export const translations = {
         // --- Strony Pojedynczych Projektów ---
         
         projectsCategoryAll: "Wszystkie",
-        projectsCategorySpecialist: "Aplikacje Specjalistyczne",
-        projectsCategoryTools: "Narzędzia Użytkowe",
-        projectsCategoryCreative: "Projekty Kreatywne",
+        projectsCategorySpecialist: "Specjalistyczne",
+        projectsCategoryTools: "Narzędzia",
+        projectsCategoryCreative: "Kreatywne",
         projectsCategoryGames: "Gry",
         
         budgetValidatorTitle: "Walidator Danych Budżetowych",
@@ -345,18 +338,14 @@ export const translations = {
 
         // --- New Hero Page ---
         heroSubtitle: "EXECUTIVE_ENGINEER",
-        // ZMIANA: Wersja G tytułu (EN) + łamanie linii
         heroTitle: "From <span class=\"highlight\">Analytics</span><br>to Applications",
-        // ZMIANA: Updated to "meaty" Version E
         heroDescription: "My value is at the intersection of business logic and software engineering. I leverage analytical thinking (Excel, VBA) and developer precision (JavaScript, API) to architect solutions for complex data problems—not just build applications.",
         heroCta: "VIEW_CASE_STUDIES",
-        // ZMIANA: Nowy klucz dla przycisku Kontakt (EN)
         heroCtaContact: "Get in Touch",
 
         // Homepage Stats (NEW)
         heroStatExperience: "YEARS OF EXPERIENCE (Finance/VBA)",
         heroStatProjects: "PROJECTS SHIPPED",
-        // ZMIANA: Uściślenie etykiety (EN)
         heroStatCommits: "COMMITS (Last Year)",
         heroStatAutomations: "AUTOMATED PROCESSES",
 
@@ -376,7 +365,6 @@ export const translations = {
         skillsHeaderData: "// Data Automation & Analysis",
         skillsHeaderFrontend: "// Frontend Development",
 
-        // ZMIANA #1: Ujednolicenie tekstu przycisku do wersji z wielkich liter (EN)
         aboutCtaProjects: "VIEW_CASE_STUDIES",
         aboutCtaCv: "Download Full CV",
 
@@ -386,7 +374,6 @@ export const translations = {
         changelogV3Title: "Automation Revolution (Inspector)",
         changelogV3Place: "City of Łódź Office",
         changelogV3Date: "06.2023 - present",
-        // ZMIANA #1: Zmiana "3 days" na "10 days" (EN)
         changelogV3Desc: "Obtained Master of Science (MSc) in AI. Implemented full automation ecosystem: replaced manual processes with VBA scripts, Power Query pipelines, and Power Automate/SharePoint forms. KEY RESULT: Reduced annual settlement time for 140+ projects from 78 working days to just 10 days.",
         changelogV3Tags: "<span style='color: var(--primary-color)'>[MSc Degree (AI)]</span> [VBA] [Power Query] [Process Automation] [SharePoint] [Power Automate]",
 
@@ -402,7 +389,6 @@ export const translations = {
         changelogV15Place: "City of Łódź Office",
         changelogV15Date: "11.2020 - 02.2021",
         changelogV15Desc: "First iteration of improvements. Replaced manual data totaling with dynamic formulas (SUMIFS, VLOOKUP) in master spreadsheets.",
-        // ZMIANA: Dodano nowe tagi
         changelogV15Tags: "[Excel Formulas] [SUMIFS] [VLOOKUP]",
 
         // v1.0.0 - Junior Clerk (Baseline)
@@ -410,7 +396,6 @@ export const translations = {
         changelogV10Place: "City of Łódź Office",
         changelogV10Date: "11.2019 - 11.2020",
         changelogV10Desc: "Onboarding and analysis of legacy processes. Identified critical human error risks in 100% manual reporting workflows.",
-        // ZMIANA: Dodano nowe tagi
         changelogV10Tags: "[Process Analysis] [Data Entry]",
 
         // v0.5.0 - Intern (Beta Release)
@@ -418,101 +403,102 @@ export const translations = {
         changelogV05Place: "City of Łódź Office",
         changelogV05Date: "07.2019 - 11.2019",
         changelogV05Desc: "Initial environment reconnaissance. Archiving and basic organization of budget documentation.",
-        // ZMIANA: Dodano nowe tagi
         changelogV05Tags: "[Archiving] [Excel]",
 
         // --- Projects Page (Project Registry) ---
         projectsTitle: "Project Registry",
         projectsSubtitle: "SELECT * FROM projects WHERE status IN ('Production', 'Deployed', 'Concept') ORDER BY impact DESC;",
+        
+        // === ZMIANA: Zredagowane, "mięsiste" opisy (EN) ===
 
         // 1. Aggregator
         aggregatorTitle: "Project Settlement Aggregator",
-        aggregatorDesc: "An automation tool (JS/SheetJS) for creating annual financial statements from multiple Excel files.",
+        aggregatorDesc: "Client-side tool (JS/SheetJS) automating data aggregation from multiple `.xlsx` files. Replicates business logic of accounting processes.",
         aggregatorStatus: "PRODUCTION",
-        aggregatorDate: "2023-Q4",
+        aggregatorDate: "2023-Q4", // USUNIEMY TEN KLUCZ W NASTĘPNYM KROKU
         aggregatorTags: "JavaScript SheetJS Automation DOM",
 
         // 2. Tax Arrears
         taxArrearsTitle: "Tax Interest Calculator",
-        taxArrearsDesc: "A business tool replicating complex tax regulations (Tax Ordinance) to calculate interest payments.",
+        taxArrearsDesc: "Implementation of business logic (Tax Ordinance) for precise calculation of tax interest with variable historical rates.",
         taxArrearsStatus: "PRODUCTION",
         taxArrearsDate: "2023-Q2",
         taxArrearsTags: "JavaScript Business-Logic Finance",
         
         // 3. Statutory Interest
         statutoryInterestTitle: "Statutory Interest Calculator",
-        statutoryInterestDesc: "Calculates statutory and commercial interest with a full history of dynamically changing rates.",
+        statutoryInterestDesc: "Calculates statutory and commercial interest with a full history of dynamically changing rates (NBP data).",
         statutoryInterestStatus: "PRODUCTION",
         statutoryInterestDate: "2023-Q3",
         statutoryInterestTags: "JavaScript Business-Logic Finance",
 
         // 4. Budget Validator
         budgetValidatorTitle: "Budget Data Validator",
-        budgetValidatorDesc: "A tool for quick consistency verification (column count) of data copied directly from Excel.",
+        budgetValidatorDesc: "A utility tool for rapid consistency verification (column count) of data copied directly from Excel. Saves time on manual debugging.",
         budgetValidatorStatus: "DEPLOYED",
         budgetValidatorDate: "2023-Q1",
         budgetValidatorTags: "JavaScript DOM Utility",
 
         // 5. Weather Station
         weatherTitle: "Weather Station",
-        weatherDesc: "Weather app with forecasting, geolocation, and a serverless architecture (Netlify Functions) to secure API keys.",
-        weatherStatus: "CONCEPT",
+        weatherDesc: "5-day/24h forecast app. Utilizes geolocation and a serverless architecture (Netlify Functions) for secure API key management.",
+        weatherStatus: "PRODUCTION", // ZMIANA STATUSU
         weatherDate: "2024-Q1",
         weatherTags: "JavaScript API Serverless Netlify",
         weatherLinkDesc: "See Live Deployment ↗",
 
         // 6. To-Do List
         todoTitle: "To-Do List App",
-        todoDesc: "Advanced To-Do app with filtering, editing, localStorage persistence, and touch-enabled drag-n-drop reordering.",
-        todoStatus: "ACTIVE",
+        todoDesc: "Advanced To-Do with filtering, editing, `localStorage` persistence, and full mobile touch gesture support (touch drag-n-drop).",
+        todoStatus: "DEPLOYED", // ZMIANA STATUSU
         todoDate: "2024-Q2",
         todoTags: "JavaScript DOM UI/UX LocalStorage",
 
         // 7. Currency Calculator
         currencyCalcTitle: "Currency Calculator",
-        currencyCalcDesc: "Currency converter using real-time rates fetched live from a public API (Frankfurter.app).",
+        currencyCalcDesc: "Currency converter fetching live rates from a public API (Frankfurter.app) and handling network errors.",
         currencyCalcStatus: "DEPLOYED",
         currencyCalcDate: "2023-Q4",
         currencyCalcTags: "JavaScript API Fetch",
 
         // 8. Pomodoro
         pomodoroTimerTitle: "Pomodoro Assistant",
-        pomodoroTimerDesc: "A time management tool (Pomodoro technique) with customizable cycles and audio notifications.",
+        pomodoroTimerDesc: "Time management tool (Pomodoro technique) with configurable cycles, `localStorage` state, and audio cues (Tone.js).",
         pomodoroTimerStatus: "DEPLOYED",
         pomodoroTimerDate: "2024-Q1",
         pomodoroTimerTags: "JavaScript DOM Audio-API",
 
         // 9. Agency
         agencyTitle: "Project \"Creative Agency\"",
-        agencyDesc: "A landing page demonstrating modern and fully responsive layouts (CSS Grid/Flexbox) for a fictional agency.",
+        agencyDesc: "A technical demo showcasing advanced, fully responsive layouts (CSS Grid/Flexbox) and a dynamic JS slider.",
         agencyStatus: "CONCEPT",
         agencyDate: "2023-Q3",
         agencyTags: "HTML5 CSS3 Flexbox Grid",
 
         // 10. Markdown Editor
         markdownEditorTitle: "Markdown Editor",
-        markdownEditorDesc: "Text editor with a live preview, real-time content analysis, and synchronized scrolling.",
-        markdownEditorStatus: "ACTIVE",
+        markdownEditorDesc: "Text editor with a live preview (Marked.js), real-time content analysis, and synchronized scrolling.",
+        markdownEditorStatus: "DEPLOYED", // ZMIANA STATUSU
         markdownEditorDate: "2023-Q4",
         markdownEditorTags: "JavaScript DOM Marked.js",
 
         // 11. Snake
         snakeGameTitle: "Snake Game",
-        snakeGameDesc: "A classic arcade game implementation on an HTML Canvas element, with support for keyboard and mobile swipe controls.",
+        snakeGameDesc: "Implementation of a classic game loop and collision detection on an HTML Canvas element. Supports keyboard and mobile swipe controls.",
         snakeGameStatus: "PLAYABLE",
         snakeGameDate: "2024-Q2",
         snakeGameTags: "JavaScript HTML-Canvas GameDev",
 
         // 12. Tic-Tac-Toe
         ticTacToeTitle: "Tic-Tac-Toe",
-        ticTacToeDesc: "Classic game implemented in pure JS, featuring Player vs. Player and Player vs. Computer (simple AI) modes.",
+        ticTacToeDesc: "Implementation of game logic with state management, featuring Player vs. Player and Player vs. Computer (simple AI) modes.",
         ticTacToeStatus: "PLAYABLE",
         ticTacToeDate: "2024-Q1",
         ticTacToeTags: "JavaScript GameDev AI",
 
         // 13. Memory Game
         memoryGameTitle: "Memory Game",
-        memoryGameDesc: "A pair-matching memory game with a move counter, timer, and dynamically generated board.",
+        memoryGameDesc: "A pair-matching memory game with a move counter, timer, audio cues (Tone.js), and dynamic board generation.",
         memoryGameStatus: "PLAYABLE",
         memoryGameDate: "2024-Q1",
         memoryGameTags: "JavaScript DOM GameDev",
@@ -520,9 +506,9 @@ export const translations = {
         // --- Single Project Pages ---
         
         projectsCategoryAll: "All",
-        projectsCategorySpecialist: "Specialist Apps",
-        projectsCategoryTools: "Utility Tools",
-        projectsCategoryCreative: "Creative Projects",
+        projectsCategorySpecialist: "Specialist",
+        projectsCategoryTools: "Tools",
+        projectsCategoryCreative: "Creative",
         projectsCategoryGames: "Games",
 
         budgetValidatorTitle: "Budget Data Validator",
