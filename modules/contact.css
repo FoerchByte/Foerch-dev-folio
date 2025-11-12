@@ -1,11 +1,10 @@
 /*
-  EN: This stylesheet is a complete rewrite for the Contact page.
-  It removes all 2-column layout and sidebar styles, focusing only
-  on centering the terminal-style form, matching "image_936cb9.png".
-  PL: Ten arkusz stylów to całkowite przepisanie strony Kontakt.
-  Usuwa wszystkie style dla układu 2-kolumnowego i paska bocznego,
-  skupiając się wyłącznie na wyśrodkowaniu formularza w stylu terminala,
-  zgodnie z "image_936cb9.png".
+  EN: Stylesheet for the Contact page (Phase 5).
+  Implements the "Terminal with Modes" layout, including styles for
+  the tab switcher and the integrated AI assistant.
+  PL: Arkusz stylów dla strony Kontakt (Faza 5).
+  Implementuje layout "Terminal z Trybami", włączając style
+  dla przełącznika zakładek i zintegrowanego asystenta AI.
 */
 
 /* Podtytuł strony (komenda "$ send-message...") */
@@ -28,29 +27,61 @@
     border: 1px solid var(--border-color);
 }
 
-/* Ukryty tytuł (H3), jeśli go dodamy */
-.contact-form-wrapper h3 {
-    margin-top: 0;
-    margin-bottom: 2rem;
-    font-family: 'Roboto Mono', monospace;
-    color: var(--primary-color);
-    font-size: 1.2rem;
+/* === ZMIANA FAZY 5: Style dla przełącznika trybów (Tabs) === */
+.terminal-tabs {
     display: flex;
-    align-items: center;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 1.5rem;
 }
-/* Mrugający kursor przy tytule (opcjonalny) */
-.contact-form-wrapper h3::after {
-    content: '_';
-    animation: blink 1s step-end infinite;
-    margin-left: 5px;
+
+/* Kopiujemy style `.filter-btn` z `projects.css` dla spójności */
+.terminal-tabs .filter-btn {
+    background: none;
+    border: none;
+    padding: 0;
+    margin: 0;
+    font-family: 'Roboto Mono', monospace;
+    font-size: 1rem;
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: color 0.2s ease-in-out;
+}
+
+.terminal-tabs .filter-btn:hover {
+    color: var(--primary-color);
+}
+
+.terminal-tabs .filter-btn.active {
+    color: var(--primary-color);
+    font-weight: 500;
+}
+
+.terminal-tabs .filter-btn::before {
+    content: '[';
+    color: var(--text-secondary);
     opacity: 0.7;
+    margin-right: 0.2rem;
+    transition: all 0.2s;
+}
+.terminal-tabs .filter-btn::after {
+    content: ']';
+    color: var(--text-secondary);
+    opacity: 0.7;
+    margin-left: 0.2rem;
+    transition: all 0.2s;
 }
 
-@keyframes blink {
-    50% { opacity: 0; }
+.terminal-tabs .filter-btn:hover::before, .terminal-tabs .filter-btn:hover::after,
+.terminal-tabs .filter-btn.active::before, .terminal-tabs .filter-btn.active::after {
+    color: var(--primary-color);
+    opacity: 1;
 }
+/* === Koniec stylów dla Tabs === */
 
-/* Pola formularza */
+
+/* Pola formularza (wspólne dla obu trybów) */
 .form-group {
     margin-bottom: 1.5rem;
     display: flex;
@@ -64,7 +95,6 @@
     font-size: 0.9rem;
 }
 
-/* Stylowanie inputów i textarea na modłę terminala */
 .form-group input, .form-group textarea {
     width: 100%;
     padding: 0.8rem 1rem;
@@ -83,7 +113,6 @@
     opacity: 0.5;
 }
 
-/* Efekt skupienia (focus) - techniczny turkus */
 .form-group input:focus, .form-group textarea:focus {
     border-color: var(--primary-color);
     outline: none;
@@ -99,8 +128,8 @@
     display: block;
 }
 
-/* Przyciski w stylu konsolowym */
-#contact-form button {
+/* Przyciski (wspólne dla obu trybów) */
+#contact-form button, #generate-email-btn {
     width: 100%;
     background-color: var(--primary-color);
     color: var(--background-color); /* Ciemny tekst na jasnym przycisku */
@@ -120,7 +149,7 @@
     letter-spacing: 1px;
 }
 
-/* Ikona "wyślij" z mockupu */
+/* Ikona "wyślij" dla Formspree */
 #contact-form button::before {
     content: '';
     display: inline-block;
@@ -135,19 +164,19 @@
     mask-position: center;
 }
 
-#contact-form button:hover {
+#contact-form button:hover, #generate-email-btn:hover {
     background-color: var(--primary-hover-color);
     border-color: var(--primary-hover-color);
     box-shadow: 0 0 15px rgba(0, 224, 255, 0.2);
 }
 
-#contact-form button:disabled {
+#contact-form button:disabled, #generate-email-btn:disabled {
     opacity: 0.5;
     cursor: not-allowed;
     box-shadow: none;
 }
 
-/* Wiadomość o sukcesie */
+/* Wiadomość o sukcesie (Formspree) */
 #form-success-message {
     margin-top: 1.5rem;
     padding: 1rem;
@@ -159,7 +188,36 @@
     font-family: 'Roboto Mono', monospace;
 }
 
-/* Usunięcie stylów dla responsywności 2-kolumnowej */
-@media (max-width: 900px) {
-    /* Już niepotrzebne */
+/* === ZMIANA FAZY 5: Style dla Asystenta AI === */
+.gemini-content-subtitle {
+    font-family: 'Roboto Mono', monospace;
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    margin-bottom: 1.5rem;
+    line-height: 1.6;
+}
+
+#gemini-result-container {
+    margin-top: 2rem;
+    padding: 1.5rem;
+    border: 1px solid var(--border-color);
+    border-radius: 2px;
+    background-color: var(--background-color);
+}
+
+#gemini-result {
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    margin: 0;
+    font-family: 'Roboto Mono', monospace;
+    font-size: 0.95rem;
+    color: var(--text-color);
+    line-height: 1.7;
+}
+
+/* Poprawka dla ładowarki w przycisku AI */
+#generate-email-btn .loader {
+    border: 2px solid var(--background-color); /* Ciemne tło */
+    border-bottom-color: transparent;
+    margin: 0; /* Usuwamy margines, bo jest wyśrodkowany w flex */
 }
