@@ -1,3 +1,4 @@
+// Wymuszenie re-deploy v2
 /*
   EN: This serverless function acts as a secure intermediary for the Gemini AI API.
   It protects the API key by keeping it on the server-side, a crucial practice for
