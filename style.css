@@ -655,7 +655,7 @@ body.light-mode .about-me-photo .photo-dark { opacity: 0; z-index: 1; }
     .contact-layout { grid-template-columns: 1fr; gap: 3rem; }
 }
 
-/* === POPRAWKA FAZY 6: Strefa @media (max-width: 768px) === */
+/* === POPRAWKA FAZY 7: Strefa @media (max-width: 768px) === */
 @media (max-width: 768px) {
     .menu-toggle { 
         display: flex; 
@@ -669,8 +669,9 @@ body.light-mode .about-me-photo .photo-dark { opacity: 0; z-index: 1; }
         width: 80%; 
         max-width: 350px; 
         background-color: var(--card-background); 
-        /* POPRAWKA: Dodano 'display: flex' dla poprawnego działania flex-direction */
-        display: flex;
+        
+        /* POPRAWKA 7.1: Usunięto 'display: flex' ze stanu domyślnego */
+        
         flex-direction: column; 
         justify-content: center; 
         align-items: center; 
@@ -684,6 +685,8 @@ body.light-mode .about-me-photo .photo-dark { opacity: 0; z-index: 1; }
     
     .site-header.nav-open .nav-wrapper { 
         transform: translateX(0); 
+        /* POPRAWKA 7.2: Dodano 'display: flex' DO stanu otwartego */
+        display: flex;
     }
     
     .main-nav { 
@@ -705,7 +708,7 @@ body.light-mode .about-me-photo .photo-dark { opacity: 0; z-index: 1; }
         margin-top: 2rem; 
     }
     
-    /* POPRAWKA FAZY 6: Usunięto błędne `translate()` z animacji "X" */
+    /* POPRAWKA FAZY 6 (Nadal poprawna): Usunięto błędne `translate()` z animacji "X" */
     .site-header.nav-open .menu-toggle .hamburger-bar:nth-child(1) { 
         transform: rotate(45deg);
     }
