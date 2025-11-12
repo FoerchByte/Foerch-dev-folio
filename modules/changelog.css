@@ -1,156 +1,282 @@
-<!--
-  EN: Final version of the Changelog HTML with corrected structure.
-  PL: Finalna wersja HTML Changelog ze skorygowaną strukturą.
--->
-<div class="about-me-layout">
-    <div class="about-me-photo">
-        <img src="FoerchByte.jpg" alt="Michał 'Foerch' Herbich" class="photo-dark">
-        <img src="FoerchByte.jpg" alt="Michał 'Foerch' Herbich" class="photo-light">
-    </div>
-    <div class="about-me-content">
-        <h1 data-i18n="aboutTitle">{{aboutTitle}}</h1>
-        <p class="about-subtitle" data-i18n="aboutSubtitle">{{aboutSubtitle}}</p>
-        <div class="about-description">
-            <p data-i18n="aboutDesc1">{{aboutDesc1}}</p>
-            <p data-i18n="aboutDesc2">{{aboutDesc2}}</p>
-        </div>
-        
-        <div class="about-cta">
-            <a href="/projects" class="cta-button primary">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 0.75rem;"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
-                <span data-i18n="aboutCtaProjects">{{aboutCtaProjects}}</span>
-            </a>
-            <a href="CV_M.Herbich.pdf" class="cta-button secondary" download="CV_Michal_Herbich.pdf">
-                <span data-i18n="aboutCtaCv">{{aboutCtaCv}}</span>
-            </a>
-        </div>
-    </div>
-</div>
+/*
+  EN: Stylesheet for the "Changelog" page.
+  PL: Arkusz stylów dla strony "Changelog".
+*/
 
-<!-- KROK 2: Lista Changelog (Oś czasu) -->
-<div class="timeline-section fade-in" style="animation-delay: 0.2s;">
-    <h2 class="section-title" data-i18n="changelogTitle">{{changelogTitle}}</h2>
-    <div class="timeline-container">
-        
-        <!-- v3.0.0 (Inspektor) -->
-        <div class="timeline-item" data-type="work">
-            <span class="timeline-date" data-i18n="changelogV3Date">{{changelogV3Date}}</span>
-            <h4 class="timeline-title"><code>v3.0.0</code> <span data-i18n="changelogV3Title">{{changelogV3Title}}</span></h4>
-            <p class="timeline-place" data-i18n="changelogV3Place">{{changelogV3Place}}</p>
-            <div class="timeline-content">
-                <p data-i18n="changelogV3Desc">{{changelogV3Desc}}</p>
-                <div class="timeline-tags" data-i18n="changelogV3Tags">{{changelogV3Tags}}</div>
-            </div>
-        </div>
+/* --- Sekcja Bio (Góra strony) --- */
+.about-me-layout {
+    display: flex;
+    align-items: flex-end; 
+    gap: 4rem;
+    margin-bottom: 5rem;
+}
+.about-me-photo {
+    flex-shrink: 0;
+    position: relative;
+    width: 280px;
+    height: 350px;
+    border-radius: 2px; /* Ostrzejsze krawędzie */
+    border: 1px solid var(--border-color);
+    transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+    background-color: var(--card-background);
+}
+.about-me-photo:hover {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 15px rgba(0, 224, 255, 0.1);
+}
+.about-me-photo img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    filter: grayscale(100%) contrast(1.1);
+    transition: all 0.3s ease-in-out;
+    border-radius: 2px;
+}
+.about-me-photo:hover img {
+    filter: grayscale(0%) contrast(1);
+}
+.about-me-photo .photo-light { opacity: 0; z-index: 1; }
+.about-me-photo .photo-dark { opacity: 1; z-index: 2; }
+body.light-mode .about-me-photo .photo-light { opacity: 1; z-index: 2; }
+body.light-mode .about-me-photo .photo-dark { opacity: 0; z-index: 1; }
 
-        <!-- v2.0.0 (Podinspektor + Inżynier) -->
-        <div class="timeline-item" data-type="work">
-            <span class="timeline-date" data-i18n="changelogV2Date">{{changelogV2Date}}</span>
-            <h4 class="timeline-title"><code>v2.0.0</code> <span data-i18n="changelogV2Title">{{changelogV2Title}}</span></h4>
-            <p class="timeline-place" data-i18n="changelogV2Place">{{changelogV2Place}}</p>
-            <div class="timeline-content">
-                <p data-i18n="changelogV2Desc">{{changelogV2Desc}}</p>
-                <div class="timeline-tags" data-i18n="changelogV2Tags">{{changelogV2Tags}}</div>
-            </div>
-        </div>
+.about-me-content { flex: 1; }
+.about-me-content h1 {
+    font-size: clamp(2.5rem, 5vw, 3.5rem);
+    margin: 0 0 0.5rem 0;
+    color: var(--text-color);
+    line-height: 1.1;
+    font-weight: 700;
+}
+.about-subtitle {
+    font-size: 1.1rem;
+    font-weight: 400;
+    color: var(--primary-color);
+    margin-bottom: 2rem;
+    font-family: 'Roboto Mono', monospace;
+}
+.about-description {
+    color: var(--text-secondary);
+    font-size: 1.1rem;
+    max-width: 600px;
+    line-height: 1.7;
+}
+.about-description p { margin-bottom: 1.5rem; }
+.about-me-content .about-cta {
+    margin-top: 3rem;
+    display: flex;
+    gap: 1.5rem;
+}
 
-        <!-- v1.5.0 (Referent) -->
-        <div class="timeline-item" data-type="work">
-            <span class="timeline-date" data-i18n="changelogV15Date">{{changelogV15Date}}</span>
-            <h4 class="timeline-title"><code>v1.5.0</code> <span data-i18n="changelogV15Title">{{changelogV15Title}}</span></h4>
-            <p class="timeline-place" data-i18n="changelogV15Place">{{changelogV15Place}}</p>
-            <div class="timeline-content">
-                <p data-i18n="changelogV15Desc">{{changelogV15Desc}}</p>
-                <div class="timeline-tags" data-i18n="changelogV15Tags">{{changelogV15Tags}}</div>
-            </div>
-        </div>
 
-         <!-- v1.0.0 (Młodszy Referent) -->
-        <div class="timeline-item" data-type="work">
-            <span class="timeline-date" data-i18n="changelogV10Date">{{changelogV10Date}}</span>
-            <h4 class="timeline-title"><code>v1.0.0</code> <span data-i18n="changelogV10Title">{{changelogV10Title}}</span></h4>
-             <p class="timeline-place" data-i18n="changelogV10Place">{{changelogV10Place}}</p>
-            <div class="timeline-content">
-                 <p data-i18n="changelogV10Desc">{{changelogV10Desc}}</p>
-                 <div class="timeline-tags" data-i18n="changelogV10Tags">{{changelogV10Tags}}</div>
-            </div>
-        </div>
+/* --- Sekcja "Career Changelog" (Oś czasu) --- */
+.timeline-section {
+    /* ZMIANA: Jednolity odstęp od sekcji Bio */
+    margin-top: 6rem;
+    border-top: 1px solid var(--border-color);
+    padding-top: 4rem;
+}
+.timeline-container {
+    position: relative;
+    border-left: 2px solid var(--border-color);
+    padding-left: 2.5rem;
+    /* ZMIANA: DODANO PADDING-BOTTOM DLA PRZESTRZENI POD OSTATNIM KAFELKIEM */
+    padding-bottom: 2.5rem;
+}
+.timeline-item {
+    position: relative;
+    margin-bottom: 2.5rem; /* Standardowy margines */
+    background-color: var(--card-background);
+    border: 1px solid var(--border-color);
+    border-radius: 2px;
+    padding: 1.5rem 2rem;
+    transition: all 0.2s ease-in-out;
+}
+.timeline-item:last-child {
+    margin-bottom: 0; 
+}
+.timeline-item:hover {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 15px rgba(0, 224, 255, 0.1);
+}
+.timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -2.5rem;
+    /* ZMIANA: Dostosowanie do paddingu kafelka (1.5rem + ~font) */
+    top: 24px; 
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: var(--background-color);
+    border: 2px solid var(--text-secondary);
+    margin-left: -6px;
+    z-index: 1;
+    transition: all 0.3s ease;
+}
+.timeline-item:first-child::before {
+    border-color: var(--primary-color);
+    background-color: var(--primary-color);
+    box-shadow: 0 0 10px rgba(0, 224, 255, 0.5);
+}
+.timeline-date {
+    font-family: 'Roboto Mono', monospace;
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    margin-bottom: 0.5rem;
+}
+.timeline-title {
+    margin: 0;
+    font-size: 1.25rem;
+    color: var(--text-color);
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+}
+.timeline-title code {
+    font-family: 'Roboto Mono', monospace;
+    background-color: var(--completed-bg);
+    padding: 0.2rem 0.5rem;
+    border-radius: 4px;
+    margin-right: 0.5rem;
+    font-size: 1.1rem;
+    color: var(--text-secondary);
+}
+.timeline-item:first-child .timeline-title code {
+    background-color: rgba(0, 224, 255, 0.1);
+    color: var(--primary-color);
+}
+.timeline-place {
+    margin: 0;
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    font-style: italic;
+}
+.timeline-content {
+    color: var(--text-secondary);
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-top: 1rem;
+}
+.timeline-content p {
+    margin: 0;
+}
+.timeline-tags {
+    margin-top: 1rem;
+    font-family: 'Roboto Mono', monospace;
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    line-height: 1.8;
+}
 
-        <!-- v0.5.0 (Stażysta - Beta) -->
-        <div class="timeline-item" data-type="work">
-            <span class="timeline-date" data-i18n="changelogV05Date">{{changelogV05Date}}</span>
-            <h4 class="timeline-title"><code>v0.5.0</code> <span data-i18n="changelogV05Title">{{changelogV05Title}}</span></h4>
-             <p class="timeline-place" data-i18n="changelogV05Place">{{changelogV05Place}}</p>
-            <div class="timeline-content">
-                 <p data-i18n="changelogV05Desc">{{changelogV05Desc}}</p>
-                 <div class="timeline-tags" data-i18n="changelogV05Tags">{{changelogV05Tags}}</div>
-            </div>
-        </div>
 
-    </div>
-</div>
+/* --- Sekcja "Stack Technologiczny" (Przeniesiona na dół) --- */
 
-<!-- KROK 3: Stack Technologiczny (Przeniesiony na dół) -->
-<div class="stack-section fade-in" style="animation-delay: 0.3s;">
-    <h2 class="section-title" data-i18n="aboutSkillsTitle">{{aboutSkillsTitle}}</h2>
-    <div class="stack-grid">
-        <!-- Automatyzacja i Analiza Danych (Ikony SVG - bez zmian) -->
-        <div>
-            <h4 class="skills-header" data-i18n="skillsHeaderData">{{skillsHeaderData}}</h4>
-            <div class="skills-icons">
-                
-                <div class="skill-item">
-                     <!-- 1. VBA Excel (Ikona: Arkusz) -->
-                     <svg class="tech-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"></path><path d="M14 2v4a2 2 0 0 0 2 2h4"></path><path d="M8 13h1v4"></path><path d="M12 13h1v4"></path><path d="M15 13h1v4"></path><path d="M9 13v1"></path><path d="M13 13v1"></path><path d="M16 13v1"></path></svg>
-                    <span>VBA Excel</span>
-                </div>
-                <div class="skill-item">
-                    <!-- 2. Power Query (Ikona: Filtr) -->
-                    <svg class="tech-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"></polygon></svg>
-                    <span>Power Query</span>
-                </div>
-                <div class="skill-item">
-                    <!-- 3. Power Automate (Ikona: Błyskawica / Automatyzacja) -->
-                    <svg class="tech-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
-                    <span>Power Automate</span>
-                </div>
-                <div class="skill-item">
-                     <!-- 4. SharePoint (Ikona: Sieć / Połączenia) -->
-                     <svg class="tech-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="16" y="16" width="6" height="6" rx="1"></rect><rect x="2" y="16" width="6" height="6" rx="1"></rect><rect x="9" y="2" width="6" height="6" rx="1"></rect><path d="M5 16v-3a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v3"></path><path d="M12 12V8"></path></svg>
-                    <span>SharePoint</span>
-                </div>
+.stack-section {
+    /* ZMIANA: Taki sam odstęp i separator jak timeline-section */
+    margin-top: 6rem; 
+    border-top: 1px solid var(--border-color);
+    padding-top: 4rem; 
+}
+.stack-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+}
+.stack-section h3 {
+    margin-top: 0;
+    margin-bottom: 1rem;
+    color: var(--text-color);
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+.stack-section .skills-header {
+    font-family: 'Roboto Mono', monospace;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+    opacity: 0.8;
+}
 
-            </div>
-        </div>
+/* === POPRAWKA FAZY 19: Wprowadzenie Grid Layout dla kafelków === */
+.stack-section .skills-icons {
+    display: grid;
+    /* Używamy auto-fit: 
+      - Na desktopie (szeroka kolumna) zmieści 4 ikony w 1 linii.
+      - Na mobilkach (wąska kolumna) automatycznie złamie się do 2x2.
+      - minmax(120px, 1fr) naprawia problem łamania "Power Query".
+    */
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 1rem; 
+}
+/* === Koniec Poprawki Fazy 19 === */
 
-        <!-- Frontend Development -->
-        <div>
-            <h4 class="skills-header" data-i18n="skillsHeaderFrontend">{{skillsHeaderFrontend}}</h4>
-            <div class="skills-icons">
-                
-                <!-- === POPRAWKA FAZY 18: Wymiana <img> na spójne <svg> === -->
-                <div class="skill-item">
-                    <!-- 1. JavaScript (Ikona: Plik z kodem) -->
-                    <svg class="tech-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><polyline points="16 18 8 18"></polyline><polyline points="12 14 8 18 12 22"></polyline></svg>
-                    <span>JavaScript</span>
-                </div>
-                 <div class="skill-item">
-                    <!-- 2. HTML5 (Ikona: Plik HTML) -->
-                    <svg class="tech-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><path d="m18 16-2-2 2-2"></path><path d="m12 18-2-2 2-2"></path></svg>
-                    <span>HTML5</span>
-                </div>
-                <div class="skill-item">
-                    <!-- 3. CSS3 (Ikona: Plik CSS) -->
-                    <svg class="tech-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><path d="M10.4 18.6a.9.9 0 0 1-1.8 0l-2-5.5a.9.9 0 0 1 1.8 0l2 5.5Z"></path><path d="m17.4 18.6a.9.9 0 0 1-1.8 0l-2-5.5a.9.9 0 0 1 1.8 0l2 5.5Z"></path></svg>
-                    <span>CSS3</span>
-                </div>
-                 <div class="skill-item">
-                    <!-- 4. Git (Ikona: Rozgałęzienie) -->
-                    <svg class="tech-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="6" y1="3" x2="6" y2="15"></line><circle cx="18" cy="6" r="3"></circle><circle cx="6" cy="18" r="3"></circle><path d="M18 9a9 9 0 0 1-9 9"></path></svg>
-                    <span>Git flow</span>
-                </div>
-                <!-- === Koniec Poprawki === -->
-            </div>
-        </div>
-    </div>
-</div>
+
+.stack-section .skill-item {
+    background-color: var(--card-background);
+    padding: 1rem;
+    border-radius: 2px;
+    border: 1px solid var(--border-color);
+    /* USUNIĘTO: width: 100px; (teraz zarządza tym grid) */
+    height: 100px;
+    text-align: center;
+    
+    /* WŁAŚCIWA POPRAWKA: */
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Centrowanie w pionie */
+    align-items: center;     /* Centrowanie w poziomie */
+    gap: 0.8rem;               /* Odstęp między ikoną a tekstem */
+}
+
+
+/* === POPRAWKA FAZY 19: Ujednolicenie stylów (tylko SVG) === */
+
+/* Usunięto regułę dla <img> */
+
+/* Styl tylko dla <svg> (teraz dla WSZYSTKICH ikon) */
+.stack-section .skill-item svg.tech-icon {
+    width: 32px;
+    height: 32px;
+    stroke: var(--primary-color);
+    stroke-width: 2;
+    fill: none;
+    filter: grayscale(100%) opacity(0.7);
+    transition: all 0.3s ease-in-out;
+    /* Zwiększamy skalę, aby ikony SVG miały tę samą "wagę optyczną" */
+    transform: scale(1.4); 
+}
+
+/* Usunięto regułę hover dla <img> */
+
+.stack-section .skill-item:hover svg.tech-icon {
+    filter: grayscale(0%) opacity(1);
+    transform: scale(1.5); /* Lekkie powiększenie na hover */
+}
+/* === Koniec Poprawki Fazy 19 === */
+
+
+/* Responsywność dla Changelog */
+@media (max-width: 900px) {
+    .about-me-layout {
+        flex-direction: column;
+        align-items: flex-start; 
+        gap: 3rem;
+    }
+    .about-me-photo {
+        margin: 0 auto;
+        width: 100%;
+        max-width: 350px;
+        height: auto;
+        aspect-ratio: 4/5;
+    }
+}
+@media (max-width: 768px) {
+    .stack-grid {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+    }
+}
