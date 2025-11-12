@@ -56,6 +56,8 @@ body {
     background-size: 80px 80px; /* ZMIANA: Rzadsza siatka */
     background-position: center center;
     background-attachment: fixed;
+    /* POPRAWKA FAZY 6: Zapobiega poziomemu przewijaniu na mobilkach, gdy menu jest zepsute */
+    overflow-x: hidden;
 }
 
 .container {
@@ -92,6 +94,9 @@ body.light-mode .site-header {
     font-family: 'Roboto Mono', monospace;
     font-weight: 700;
     letter-spacing: -1px;
+    /* POPRAWKA FAZY 6: Zapewnia, że tytuł strony ma wyższy priorytet niż menu */
+    position: relative;
+    z-index: 101;
 }
 
 .site-title a {
@@ -106,9 +111,11 @@ body.light-mode .site-header {
     color: var(--primary-color);
 }
 
+/* POPRAWKA FAZY 6: Usunięto globalne `display: flex` z .nav-wrapper.
+  Styl dla desktopu zostanie zastosowany przez @media (min-width: 769px) na dole pliku.
+*/
 .nav-wrapper {
-    display: flex;
-    align-items: center;
+    /* Domyślnie (na mobilkach) ten element jest ukryty i kontrolowany przez media query */
 }
 
 .controls-wrapper {
@@ -161,9 +168,6 @@ body.light-mode .site-header {
     opacity: 1;
 }
 
-/*
-  ZMIANA: POPRAWKA PRZEŁĄCZNIKA JĘZYKA (FINALNA)
-*/
 .lang-switcher {
     display: flex;
     gap: 1.5rem; 
@@ -187,7 +191,6 @@ body.light-mode .site-header {
     color: var(--primary-color);
 }
 
-/* ZMIANA: Przywrócenie stylów [ ] dla przełącznika języka */
 .lang-switcher button::before {
     content: '[';
     color: var(--text-secondary);
@@ -203,7 +206,6 @@ body.light-mode .site-header {
     transition: all 0.2s;
 }
 
-/* ZMIANA: Podświetlanie nawiasów przycisku przy najechaniu lub gdy aktywny */
 .lang-switcher button:hover::before, .lang-switcher button:hover::after,
 .lang-switcher button.active::before, .lang-switcher button.active::after {
     color: var(--primary-color);
@@ -504,7 +506,6 @@ body.light-mode .about-me-photo .photo-dark { opacity: 0; z-index: 1; }
     border-color: var(--text-secondary);
     color: var(--text-secondary);
     font-weight: 700;
-    /* ZMIANA: Dodano uppercase dla spójności */
     text-transform: uppercase;
 }
 
@@ -612,11 +613,7 @@ body.light-mode .about-me-photo .photo-dark { opacity: 0; z-index: 1; }
     line-height: 1.8;
 }
 
-/* UZASADNIENIE: Usunięto całą sekcję `.project-filters` (ok. 30 linii).
-  Te style były przestarzałe ("pigułki") i powodowały konflikt wizualny
-  z nowymi stylami modułu `projects.css` (które używają stylu `[Tag]`).
-  Style dla filtrów projektów są teraz w całości zarządzane przez swój moduł.
-*/
+/* Usunięto style .project-filters (przeniesione do modules/projects.css) */
 
 
 /* --- Elementy wspólne (np. loader, modal) --- */
@@ -658,24 +655,79 @@ body.light-mode .about-me-photo .photo-dark { opacity: 0; z-index: 1; }
     .contact-layout { grid-template-columns: 1fr; gap: 3rem; }
 }
 
+/* === POPRAWKA FAZY 6: Strefa @media (max-width: 768px) === */
 @media (max-width: 768px) {
-    .menu-toggle { display: flex; }
+    .menu-toggle { 
+        display: flex; 
+    }
+    
     .nav-wrapper { 
-        position: fixed; top: 0; right: 0; height: 100vh; width: 80%; max-width: 350px; 
+        position: fixed; 
+        top: 0; 
+        right: 0; 
+        height: 100vh; 
+        width: 80%; 
+        max-width: 350px; 
         background-color: var(--card-background); 
-        flex-direction: column; justify-content: center; align-items: center; gap: 2.5rem; 
-        transform: translateX(100%); transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1); 
+        /* POPRAWKA: Dodano 'display: flex' dla poprawnego działania flex-direction */
+        display: flex;
+        flex-direction: column; 
+        justify-content: center; 
+        align-items: center; 
+        gap: 2.5rem; 
+        transform: translateX(100%); 
+        transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1); 
         box-shadow: -10px 0 30px -15px rgba(2, 12, 27, 0.7); 
         border-left: 1px solid var(--primary-color);
         z-index: 99;
     }
-    .site-header.nav-open .nav-wrapper { transform: translateX(0); }
-    .main-nav { flex-direction: column; align-items: center; gap: 2rem; }
-    .main-nav a { font-size: 1.2rem; }
-    .controls-wrapper { margin: 0; padding: 0; border: none; flex-direction: row; gap: 2rem; margin-top: 2rem; }
-    .site-header.nav-open .menu-toggle .hamburger-bar:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
-    .site-header.nav-open .menu-toggle .hamburger-bar:nth-child(2) { opacity: 0; }
-    .site-header.nav-open .menu-toggle .hamburger-bar:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
     
-    .timeline-header { flex-direction: column; gap: 0.5rem; }
+    .site-header.nav-open .nav-wrapper { 
+        transform: translateX(0); 
+    }
+    
+    .main-nav { 
+        flex-direction: column; 
+        align-items: center; 
+        gap: 2rem; 
+    }
+    
+    .main-nav a { 
+        font-size: 1.2rem; 
+    }
+    
+    .controls-wrapper { 
+        margin: 0; 
+        padding: 0; 
+        border: none; 
+        flex-direction: row; 
+        gap: 2rem; 
+        margin-top: 2rem; 
+    }
+    
+    /* POPRAWKA FAZY 6: Usunięto błędne `translate()` z animacji "X" */
+    .site-header.nav-open .menu-toggle .hamburger-bar:nth-child(1) { 
+        transform: rotate(45deg);
+    }
+    .site-header.nav-open .menu-toggle .hamburger-bar:nth-child(2) { 
+        opacity: 0; 
+    }
+    .site-header.nav-open .menu-toggle .hamburger-bar:nth-child(3) { 
+        transform: rotate(-45deg);
+    }
+    
+    .timeline-header { 
+        flex-direction: column; 
+        gap: 0.5rem; 
+    }
+}
+/* === Koniec Poprawki === */
+
+
+/* === POPRAWKA FAZY 6: Dodano brakującą media query dla desktopu === */
+@media (min-width: 769px) {
+    .nav-wrapper {
+        display: flex;
+        align-items: center;
+    }
 }
