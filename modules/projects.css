@@ -195,7 +195,8 @@
 }
 .project-item--featured .project-description {
     font-size: 1.1rem;
-    max-width: 80%; /* Lepsza czytelność w dużym kafelku */
+    /* === POPRAWKA FAZY 9: Usunięto problematyczną regułę === */
+    /* max-width: 80%; */ 
 }
 
 .project-item--small .project-title {
@@ -284,9 +285,11 @@
     .project-item--small .project-title {
         font-size: 1.25rem; /* Ujednolicenie na mobilkach */
     }
+    
+    /* === POPRAWKA FAZY 9: Upewniamy się, że oba mają max-width: 100% === */
     .project-item--featured .project-description,
     .project-item--small .project-description {
         font-size: 0.95rem; /* Ujednolicenie na mobilkach */
-        max-width: 100%;
+        max-width: 100%; /* Jawne nadpisanie */
     }
 }
