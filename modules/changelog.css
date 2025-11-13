@@ -280,13 +280,23 @@ body.light-mode .about-me-photo .photo-dark { opacity: 0; z-index: 1; }
         gap: 3rem;
     }
 
-    /* ZMIANA FAZY 27: Układ 4x1 dla stacku na mobilkach */
+    /* ZMIANA FAZY 28: Strategia "Toolbelt" (Flexbox + Overflow) */
     .stack-section .skills-icons {
-        grid-template-columns: repeat(4, 1fr);
+        display: flex; /* Z grid na flex */
+        overflow-x: auto; /* Dodaje wewnętrzny scroll, jeśli potrzeba */
         gap: 0.75rem; /* Zmniejszony odstęp */
+        
+        /* Dodajemy padding, aby scrollbar nie obcinał cienia */
+        padding-bottom: 1rem; 
+        
+        /* Resetujemy grid, aby flex działał */
+        grid-template-columns: none; 
     }
 
     .stack-section .skill-item {
+        /* Wymuszamy stałą szerokość, aby kafelki nie były ściśnięte */
+        flex: 0 0 80px; 
+        
         padding: 1rem 0.5rem; /* Mniejszy padding poziomy */
         height: 80px; /* Zmniejszona wysokość kafelka */
         font-size: 0.75rem; /* Mniejsza czcionka */
@@ -299,5 +309,5 @@ body.light-mode .about-me-photo .photo-dark { opacity: 0; z-index: 1; }
     .stack-section .skill-item:hover svg.tech-icon {
          transform: scale(1.2);
     }
-    /* Koniec zmiany Fazy 27 */
+    /* Koniec zmiany Fazy 28 */
 }
