@@ -15,10 +15,10 @@ export const translations = {
         // --- Nowa strona główna (Hero) ---
         heroSubtitle: "EXECUTIVE_ENGINEER",
         heroTitle: "Od <span class=\"highlight\">Analityki</span><br>do Aplikacji",
-        // ZMIANA FAZY 23: Bardziej "mięsisty" opis
-        heroDescription: "Specjalizuję się w inżynierii procesów. Przekładam logikę biznesową (VBA, Excel) na precyzyjny, skalowalny kod (JavaScript, API). Moim celem nie jest 'budowanie stron' – jest nim dostarczanie systemów, które *oszczędzają setki godzin pracy* i architektonicznie rozwiązują problemy z danymi.",
+        // ZMIANA FAZY 24: Nowy, mocniejszy opis
+        heroDescription: "Nie jestem deweloperem, który 'robi strony'. Jestem inżynierem, który *rozwiązuje problemy*. Łączę myślenie analityczne z precyzją kodu, aby budować systemy, które automatyzują chaos, oszczędzają setki godzin pracy i zamieniają surowe dane w realną wartość biznesową.",
         heroCta: "ZOBACZ_CASE_STUDIES",
-        // ZMIANA FAZY 23: Nowy klucz dla przycisku bio
+        // Klucz z Fazy 23 (Pozostaje bez zmian)
         heroCtaBio: "Poznaj mój profil",
 
         // Statystyki na stronie głównej (NOWE)
@@ -40,7 +40,7 @@ export const translations = {
         aboutDesc1: "Jestem inżynierem, który nie godzi się na \"tak zawsze robiliśmy\". Specjalizuję się w identyfikacji wąskich gardeł w procesach biznesowych i ich bezlitosnej automatyzacji.",
         aboutDesc2: "Łączę twarde kompetencje analityczne (VBA, Power Query, Excel) z nowoczesnym stackiem webowym (JavaScript, API), tworząc narzędzia, które oszczędzają setki godzin pracy rocznie. Moim celem jest budowanie systemów, które działają dla ludzi, a nie odwrotnie.",
         aboutSkillsTitle: "Stack Technologiczny",
-        skillsHeaderData: "// Automatyzja i Analiza Danych",
+        skillsHeaderData: "// Automatyja i Analiza Danych",
         skillsHeaderFrontend: "// Frontend Development",
 
         aboutCtaProjects: "ZOBACZ_CASE_STUDIES",
@@ -341,10 +341,10 @@ export const translations = {
         // --- New Hero Page ---
         heroSubtitle: "EXECUTIVE_ENGINEER",
         heroTitle: "From <span class=\"highlight\">Analytics</span><br>to Applications",
-        // ZMIANA FAZY 23: "Meaty" description
-        heroDescription: "I specialize in process engineering. I translate business logic (VBA, Excel) into precise, scalable code (JavaScript, API). My goal isn't 'to build sites'—it is to deliver systems that *save hundreds of work-hours* and architecturally solve data problems.",
+        // ZMIANA FAZY 24: New, "meaty" description
+        heroDescription: "I don't just 'build sites'. I engineer *solutions*. I merge analytical thinking with code precision to build systems that automate chaos, save hundreds of work-hours, and translate raw data into tangible business value.",
         heroCta: "VIEW_CASE_STUDIES",
-        // ZMIANA FAZY 23: New key for bio button
+        // Key from Faza 23 (Stays the same)
         heroCtaBio: "See my profile",
 
         // Homepage Stats (NEW)
