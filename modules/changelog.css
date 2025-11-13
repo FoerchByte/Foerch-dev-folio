@@ -197,10 +197,6 @@ body.light-mode .about-me-photo .photo-dark { opacity: 0; z-index: 1; }
     opacity: 0.8;
 }
 
-/* ZMIANA FAZY 32 (PONOWIENIE): 
-  Bazowa reguła .skills-icons jest prosta.
-  Logika kolumn jest TYLKO w media queries.
-*/
 .stack-section .skills-icons {
     display: grid;
     gap: 1rem; 
@@ -238,10 +234,8 @@ body.light-mode .about-me-photo .photo-dark { opacity: 0; z-index: 1; }
 
 /* --- Responsywność --- */
 
-/* ZMIANA FAZY 32 (PONOWIENIE): Logika dla DESKTOPU */
 @media (min-width: 769px) {
     .stack-section .skills-icons {
-         /* Logika z Fazy 19 (auto-fit) jest teraz *tylko* dla desktopu. */
         grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
     }
 }
@@ -262,7 +256,7 @@ body.light-mode .about-me-photo .photo-dark { opacity: 0; z-index: 1; }
     }
 }
 
-/* ZMIANA FAZY 32 (PONOWIENIE): Logika dla trybu PORTRETOWEGO (Portrait) */
+/* ZMIANA FAZY 33: Logika dla trybu PORTRETOWEGO (Portrait) */
 @media (max-width: 768px) {
     .stack-grid {
         grid-template-columns: 1fr;
@@ -271,67 +265,63 @@ body.light-mode .about-me-photo .photo-dark { opacity: 0; z-index: 1; }
 
     .stack-section .skills-icons {
         display: grid; 
-        /* Dokładnie 2 kolumny, które wypełnią przestrzeń (Twój pomysł) */
         grid-template-columns: repeat(2, 1fr); 
         gap: 1rem; 
-        
-        /* Reset na wszelki wypadek */
         overflow-x: unset; 
         flex-direction: unset;
     }
 
     .stack-section .skill-item {
         flex: unset; 
-        flex-direction: column;
-        justify-content: center;
+        /* ZMIANA: Ikona i tekst obok siebie (Twój pomysł) */
+        flex-direction: row;
+        /* ZMIANA: Wyrównanie do lewej w kafelku */
+        justify-content: flex-start;
+        align-items: center;
         
-        /* Zwiększamy padding i usuwamy stałą wysokość, aby kafelki były "większe" */
         height: auto;
-        min-height: 110px; /* Zwiększona wysokość, aby "Power Query" się zmieścił */
-        padding: 1.25rem 1rem; 
+        min-height: 80px; /* Obniżona wysokość, bo układ horyzontalny */
+        padding: 1rem; /* Równy padding */
         
-        /* Zwiększamy font, aby tekst się zmieścił */
-        font-size: 0.95rem; /* Powiększony font */
+        font-size: 0.9rem; /* Mniejszy font, aby zmieścić "Power Automate" */
+        gap: 1rem; /* Odstęp między ikoną a tekstem */
     }
 
     .stack-section .skill-item svg.tech-icon {
-        transform: scale(1.5); /* Powiększona ikona */
+        transform: scale(1.3); /* Zmniejszona ikona */
+        /* Zapewnienie, że ikona się nie kurczy */
+        flex-shrink: 0; 
     }
     
     .stack-section .skill-item:hover svg.tech-icon {
-         transform: scale(1.6);
+         transform: scale(1.4);
     }
 }
 
 /* ZMIANA FAZY 32 (PONOWIENIE): Logika dla trybu HORYZONTALNEGO (Landscape) */
 @media (max-height: 500px) and (orientation: landscape) {
     
-    /* 1. Ustawiamy sekcje stacka jedna pod drugą (Twój pomysł) */
     .stack-grid {
         grid-template-columns: 1fr;
         gap: 2rem;
     }
 
-    /* 2. Implementujemy "Toolbelt" WEWNĄTRZ każdej sekcji (Twój pomysł) */
     .stack-section .skills-icons {
         display: flex; 
         overflow-x: auto; 
         gap: 0.75rem; 
-        padding-bottom: 1rem; /* Daje przestrzeń dla paska przewijania */
-        
-        /* Nadpisujemy reguły z trybu portretowego */
+        padding-bottom: 1rem; 
         grid-template-columns: none; 
     }
 
     .stack-section .skill-item {
-        /* Kafelki "Toolbelt" */
-        flex: 0 0 100px; /* Stała szerokość */
-        height: 90px; /* Stała wysokość */
-        min-height: 90px; /* Nadpisanie min-height */
+        flex: 0 0 100px; 
+        height: 90px; 
+        min-height: 90px; 
         font-size: 0.8rem;
         padding: 1rem 0.5rem;
         
-        /* Upewniamy się, że jest pionowo (ikona nad tekstem) */
+        /* ZMIANA: Wymuszenie powrotu do układu pionowego (ikona nad tekstem) */
         flex-direction: column;
         justify-content: center;
     }
