@@ -12,8 +12,8 @@
         <h1 class="hero-title">
             {{heroTitle}} <!-- Tłumaczenie z JS wstawi tu span.highlight -->
         </h1>
-        <p class="hero-description">
-            {{heroDescription}} <!-- Tłumaczenie z JS wstawi tu Wersję E -->
+        <p class="hero-description" data-i18n="heroDescription">
+            {{heroDescription}} <!-- Zostanie zastąpione "mięsistym" opisem z Fazy 23 -->
         </p>
         <div class="hero-cta-group">
             <a href="/projects" class="cta-button primary">
@@ -22,11 +22,11 @@
                 {{heroCta}}
             </a>
             <!-- 
-              ZMIANA: Przycisk "Pobierz CV" został zastąpiony przyciskiem "Kontakt",
-              zgodnie ze strategiczną decyzją.
+              ZMIANA FAZY 23: Przycisk kieruje teraz do /changelog (Bio),
+              zamiast do /contact. Zaktualizowano również klucz i18n.
             -->
-            <a href="/contact" class="cta-button secondary">
-                {{heroCtaContact}}
+            <a href="/changelog" class="cta-button secondary" data-i18n="heroCtaBio">
+                {{heroCtaBio}}
             </a>
         </div>
 
