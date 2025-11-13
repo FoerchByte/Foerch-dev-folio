@@ -279,4 +279,25 @@ body.light-mode .about-me-photo .photo-dark { opacity: 0; z-index: 1; }
         grid-template-columns: 1fr;
         gap: 3rem;
     }
+
+    /* ZMIANA FAZY 27: Układ 4x1 dla stacku na mobilkach */
+    .stack-section .skills-icons {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 0.75rem; /* Zmniejszony odstęp */
+    }
+
+    .stack-section .skill-item {
+        padding: 1rem 0.5rem; /* Mniejszy padding poziomy */
+        height: 80px; /* Zmniejszona wysokość kafelka */
+        font-size: 0.75rem; /* Mniejsza czcionka */
+    }
+
+    .stack-section .skill-item svg.tech-icon {
+        transform: scale(1.1); /* Mniejsza ikona */
+    }
+    
+    .stack-section .skill-item:hover svg.tech-icon {
+         transform: scale(1.2);
+    }
+    /* Koniec zmiany Fazy 27 */
 }
