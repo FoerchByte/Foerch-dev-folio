@@ -179,7 +179,6 @@ body.light-mode .about-me-photo .photo-dark { opacity: 0; z-index: 1; }
 }
 .stack-grid {
     display: grid;
-    /* ZMIANA FAZY 34: Układ 1-kolumnowy jest domyślny (dla mobilnych @media < 769px) */
     grid-template-columns: 1fr;
     gap: 3rem;
 }
@@ -198,13 +197,10 @@ body.light-mode .about-me-photo .photo-dark { opacity: 0; z-index: 1; }
     opacity: 0.8;
 }
 
-/* ZMIANA FAZY 34: 
-  Logika "Mobile First". To jest teraz styl DOMYŚLNY (tryb portretowy).
-  Kafelki 2x2, szerokie, z ikoną obok tekstu.
+/* Logika "Mobile First". To jest styl DOMYŚLNY (tryb portretowy).
 */
 .stack-section .skills-icons {
     display: grid;
-    /* Domyślnie 2 kolumny, które wypełniają przestrzeń */
     grid-template-columns: repeat(2, 1fr); 
     gap: 1rem; 
 }
@@ -216,14 +212,16 @@ body.light-mode .about-me-photo .photo-dark { opacity: 0; z-index: 1; }
     border: 1px solid var(--border-color);
     text-align: left;
     display: flex;
-    /* Ikona obok tekstu */
     flex-direction: row;
-    justify-content: flex-start; 
+    
+    /* ZMIANA FAZY 35: Kluczowa poprawka wizualna */
+    justify-content: center; /* Zamiast 'flex-start' */
+    
     align-items: center;
     gap: 1rem; /* Odstęp ikona-tekst */
     
     height: auto;
-    min-height: 80px; /* Zapewnia równą wysokość */
+    min-height: 80px; 
     font-size: 0.9rem;
 }
 
@@ -236,7 +234,7 @@ body.light-mode .about-me-photo .photo-dark { opacity: 0; z-index: 1; }
     filter: grayscale(100%) opacity(0.7);
     transition: all 0.3s ease-in-out;
     transform: scale(1.3); 
-    flex-shrink: 0; /* Ikona się nie kurczy */
+    flex-shrink: 0; 
 }
 
 .stack-section .skill-item:hover svg.tech-icon {
@@ -246,20 +244,17 @@ body.light-mode .about-me-photo .photo-dark { opacity: 0; z-index: 1; }
 
 /* --- Responsywność --- */
 
-/* ZMIANA FAZY 34: Logika dla DESKTOPU (nadpisuje "Mobile First") */
+/* Logika dla DESKTOPU (nadpisuje "Mobile First") */
 @media (min-width: 769px) {
-    /* Przywracamy 2 kolumny dla sekcji "Automatyzacja" i "Frontend" */
     .stack-grid {
         grid-template-columns: 1fr 1fr;
         gap: 4rem;
     }
 
-    /* Przywracamy siatkę auto-fit dla kafelków */
     .stack-section .skills-icons {
         grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
     }
 
-    /* Przywracamy kafelki "ikona nad tekstem" */
     .stack-section .skill-item {
         flex-direction: column;
         justify-content: center;
@@ -295,7 +290,7 @@ body.light-mode .about-me-photo .photo-dark { opacity: 0; z-index: 1; }
     }
 }
 
-/* ZMIANA FAZY 34: Logika dla trybu HORYZONTALNEGO (Landscape) (nadpisuje "Mobile First") */
+/* Logika dla trybu HORYZONTALNEGO (Landscape) (nadpisuje "Mobile First") */
 @media (max-height: 500px) and (orientation: landscape) {
     
     .stack-grid {
@@ -308,18 +303,16 @@ body.light-mode .about-me-photo .photo-dark { opacity: 0; z-index: 1; }
         overflow-x: auto; 
         gap: 0.75rem; 
         padding-bottom: 1rem; 
-        grid-template-columns: none; /* Wyłącza siatkę 2x2 */
+        grid-template-columns: none; 
     }
 
     .stack-section .skill-item {
-        /* Kafelki "Toolbelt" */
         flex: 0 0 100px; 
         height: 90px; 
         min-height: 90px; 
         font-size: 0.8rem;
         padding: 1rem 0.5rem;
         
-        /* Wymuszenie powrotu do układu pionowego (ikona nad tekstem) */
         flex-direction: column;
         justify-content: center;
     }
