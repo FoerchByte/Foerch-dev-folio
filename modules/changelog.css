@@ -280,34 +280,37 @@ body.light-mode .about-me-photo .photo-dark { opacity: 0; z-index: 1; }
         gap: 3rem;
     }
 
-    /* ZMIANA FAZY 28: Strategia "Toolbelt" (Flexbox + Overflow) */
+    /* ZMIANA FAZY 29: Strategia "Stabilna Siatka Mobilna 2x2" (Twój pomysł) */
     .stack-section .skills-icons {
-        display: flex; /* Z grid na flex */
-        overflow-x: auto; /* Dodaje wewnętrzny scroll, jeśli potrzeba */
-        gap: 0.75rem; /* Zmniejszony odstęp */
+        /* Przywracamy grid */
+        display: grid; 
+        /* Ustawiamy 2 kolumny, tak jak prosiłeś */
+        grid-template-columns: repeat(2, 1fr); 
+        /* Przywracamy domyślny odstęp */
+        gap: 1rem; 
         
-        /* Dodajemy padding, aby scrollbar nie obcinał cienia */
-        padding-bottom: 1rem; 
-        
-        /* Resetujemy grid, aby flex działał */
-        grid-template-columns: none; 
+        /* Usuwamy artefakty z Fazy 28 (Toolbelt) */
+        overflow-x: unset; 
+        padding-bottom: 0;
     }
 
     .stack-section .skill-item {
-        /* Wymuszamy stałą szerokość, aby kafelki nie były ściśnięte */
-        flex: 0 0 80px; 
+        /* Usuwamy artefakty z Fazy 28 (Toolbelt) */
+        flex: unset; 
         
-        padding: 1rem 0.5rem; /* Mniejszy padding poziomy */
-        height: 80px; /* Zmniejszona wysokość kafelka */
-        font-size: 0.75rem; /* Mniejsza czcionka */
+        /* Przywracamy domyślną wysokość, aby kafelki były "większe" */
+        height: 100px; 
+        /* Przywracamy domyślny font-size */
+        font-size: 0.8rem;
     }
 
     .stack-section .skill-item svg.tech-icon {
-        transform: scale(1.1); /* Mniejsza ikona */
+        /* Przywracamy domyślne skalowanie ikony */
+        transform: scale(1.4); 
     }
     
     .stack-section .skill-item:hover svg.tech-icon {
-         transform: scale(1.2);
+         transform: scale(1.5);
     }
-    /* Koniec zmiany Fazy 28 */
+    /* Koniec zmiany Fazy 29 */
 }
