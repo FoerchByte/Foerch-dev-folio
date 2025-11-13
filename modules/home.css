@@ -4,6 +4,7 @@
 */
 
 /*
+  ZMIANA FAZY 24: (Strategic Retreat)
   1. Wracamy do `align-items: center`, aby kafelki były optycznie wyrównane.
   2. Usuwamy `padding-top: 5rem`, aby zlikwidować "pustkę".
 */
@@ -44,13 +45,33 @@
 }
 
 
-.hero-description {
-    font-size: 1.1rem;
-    color: var(--text-secondary);
-    max-width: 550px;
+/* ZMIANA FAZY 26: Usunięto `.hero-description`.
+  Dodano style dla "Tri-Point Value".
+*/
+.hero-value-props {
     margin-top: 2.5rem;
     margin-bottom: 3.5rem;
-    line-height: 1.7;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+}
+
+.hero-value-props p {
+    font-family: 'Roboto Mono', monospace;
+    font-size: 1.05rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin: 0;
+    display: flex;
+    align-items: flex-start;
+}
+
+.hero-value-props p::before {
+    content: '//';
+    color: var(--primary-color);
+    opacity: 0.6;
+    margin-right: 0.75rem;
+    font-weight: 700;
 }
 
 .hero-cta-group {
@@ -59,16 +80,12 @@
     gap: 1.5rem;
 }
 
-/* ZMIANA: Całkowita przebudowa pozycjonowania ikon social.
-  Usunięto `position: absolute` i `flex-direction: column`.
-  Teraz są to zwykłe elementy blokowe płynące w `.hero-content`.
-*/
 .hero-socials {
-    position: static; /* ZMIANA: Usunięto position: absolute */
+    position: static; 
     display: flex;
-    flex-direction: row; /* ZMIANA: Układ poziomy */
+    flex-direction: row; 
     gap: 1.5rem;
-    margin-top: 4rem; /* ZMIANA: Odstęp od przycisków CTA */
+    margin-top: 4rem; 
 }
 
 .hero-socials a {
@@ -88,7 +105,7 @@
 
 
 /*
-  ZMIANA: NOWA SEKCJA - Panel Statystyk (prawa kolumna)
+  Sekcja Statystyk
 */
 .hero-stats {
     display: grid;
@@ -117,7 +134,6 @@
     box-shadow: 0 10px 30px rgba(0, 224, 255, 0.15);
 }
 
-/* ZMIANA: Nowy styl dla ikony w rogu (zgodnie z nowym szablonem) */
 .stat-icon-wrapper {
     margin-bottom: 0; /* Usunięto stary margines */
     position: absolute;
@@ -130,9 +146,7 @@
     width: 20px; /* ZMIANA: Zmniejszono ikonę */
     height: 20px;
     color: var(--primary-color);
-    /* opacity: 0.7; Usunięto, kontrolujemy na wrapperze */
 }
-/* ZMIANA: Efekt hover dla ikony */
 .stat-card:hover .stat-icon-wrapper {
     opacity: 0.4;
     transform: scale(1.1) rotate(-5deg);
@@ -160,7 +174,6 @@
 
 /* Poprawki responsywne dla strony głównej */
 @media (max-width: 900px) {
-    /* ZMIANA: Na tabletach i mniejszych, wracamy do 1 kolumny */
     .hero-layout {
         grid-template-columns: 1fr;
         min-height: auto;
@@ -169,15 +182,10 @@
     }
     
     .hero-stats {
-        /* Statystyki lądują pod treścią */
         grid-row: 2;
     }
 
     .hero-socials {
-        /* ZMIANA: Ikony social media już nie są absolutne,
-           więc ta reguła nie jest potrzebna do zmiany pozycjonowania,
-           ale możemy ją zostawić dla pewności
-        */
         position: static;
         flex-direction: row;
         margin-top: 2rem;
@@ -191,7 +199,8 @@
         letter-spacing: -1px;
     }
 
-    .hero-description {
+    /* ZMIANA FAZY 26: Dopasowanie "Tri-Point Value" */
+    .hero-value-props {
         font-size: 1rem;
         margin-top: 2rem;
         margin-bottom: 3rem;
@@ -205,7 +214,6 @@
 }
 
 @media (max-width: 480px) {
-    /* ZMIANA: Na bardzo małych ekranach, statystyki też w jednej kolumnie */
     .hero-stats {
         grid-template-columns: 1fr;
     }
