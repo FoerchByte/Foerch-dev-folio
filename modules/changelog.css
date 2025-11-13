@@ -280,13 +280,10 @@ body.light-mode .about-me-photo .photo-dark { opacity: 0; z-index: 1; }
         gap: 3rem;
     }
 
-    /* ZMIANA FAZY 29: Strategia "Stabilna Siatka Mobilna 2x2" (Twój pomysł) */
+    /* ZMIANA FAZY 30: Strategia "Siatka Horyzontalna 2x2" (Twój pomysł) */
     .stack-section .skills-icons {
-        /* Przywracamy grid */
         display: grid; 
-        /* Ustawiamy 2 kolumny, tak jak prosiłeś */
-        grid-template-columns: repeat(2, 1fr); 
-        /* Przywracamy domyślny odstęp */
+        grid-template-columns: repeat(2, 1fr); /* Zachowujemy 2 kolumny */
         gap: 1rem; 
         
         /* Usuwamy artefakty z Fazy 28 (Toolbelt) */
@@ -298,19 +295,28 @@ body.light-mode .about-me-photo .photo-dark { opacity: 0; z-index: 1; }
         /* Usuwamy artefakty z Fazy 28 (Toolbelt) */
         flex: unset; 
         
-        /* Przywracamy domyślną wysokość, aby kafelki były "większe" */
-        height: 100px; 
+        /* ZMIANA: Usuwamy stałą wysokość, aby kafelek był "większy" */
+        height: auto;
+        
+        /* ZMIANA: Zmieniamy kierunek na poziomy */
+        flex-direction: row;
+        justify-content: flex-start; /* Wyrównanie do lewej */
+        gap: 1rem; /* Odstęp między ikoną a tekstem */
+        
+        padding: 1rem; /* Ustawiamy jednolity padding */
+        
         /* Przywracamy domyślny font-size */
-        font-size: 0.8rem;
+        font-size: 0.9rem;
     }
 
     .stack-section .skill-item svg.tech-icon {
-        /* Przywracamy domyślne skalowanie ikony */
-        transform: scale(1.4); 
+        /* ZMIANA: Zmniejszamy skalę, bo ikona jest obok tekstu */
+        transform: scale(1.2); 
+        flex-shrink: 0; /* Zapobiega kurczeniu się ikony */
     }
     
     .stack-section .skill-item:hover svg.tech-icon {
-         transform: scale(1.5);
+         transform: scale(1.3);
     }
-    /* Koniec zmiany Fazy 29 */
+    /* Koniec zmiany Fazy 30 */
 }
