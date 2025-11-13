@@ -215,6 +215,7 @@
 
 @media (max-width: 480px) {
     .hero-stats {
-        grid-template-columns: 1fr;
+        /* ZMIANA FAZY 27: Układ 2x2 na mobilkach */
+        grid-template-columns: 1fr 1fr;
     }
 }
