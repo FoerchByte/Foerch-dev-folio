@@ -5,7 +5,7 @@
   a web project.
   PL: Ten moduł pełni rolę centralnego centrum dla wszystkich tłumaczeń tekstów
   w aplikacji. Zapewnia spójne, dwujęzyczne doświadczenie użytkownika i
-  demonstruje skalowalne podejrzenie do zarządzania i18n (internacjonalizacją)
+  demonstruje skalowalne podejzienie do zarządzania i18n (internacjonalizacją)
   w projekcie webowym.
 */
 export const translations = {
@@ -15,9 +15,11 @@ export const translations = {
         // --- Nowa strona główna (Hero) ---
         heroSubtitle: "EXECUTIVE_ENGINEER",
         heroTitle: "Od <span class=\"highlight\">Analityki</span><br>do Aplikacji",
-        heroDescription: "Moja wartość leży na styku logiki biznesowej i inżynierii oprogramowania. Wykorzystuję analityczne myślenie (Excel, VBA) i precyzję dewelopera (JavaScript, API), aby architektonicznie rozwiązywać złożone problemy z danymi – nie tylko budować aplikacje.",
+        // ZMIANA FAZY 23: Bardziej "mięsisty" opis
+        heroDescription: "Specjalizuję się w inżynierii procesów. Przekładam logikę biznesową (VBA, Excel) na precyzyjny, skalowalny kod (JavaScript, API). Moim celem nie jest 'budowanie stron' – jest nim dostarczanie systemów, które *oszczędzają setki godzin pracy* i architektonicznie rozwiązują problemy z danymi.",
         heroCta: "ZOBACZ_CASE_STUDIES",
-        heroCtaContact: "Skontaktuj się",
+        // ZMIANA FAZY 23: Nowy klucz dla przycisku bio
+        heroCtaBio: "Poznaj mój profil",
 
         // Statystyki na stronie głównej (NOWE)
         heroStatExperience: "LAT DOŚWIADCZENIA (Finanse/VBA)",
@@ -339,9 +341,11 @@ export const translations = {
         // --- New Hero Page ---
         heroSubtitle: "EXECUTIVE_ENGINEER",
         heroTitle: "From <span class=\"highlight\">Analytics</span><br>to Applications",
-        heroDescription: "My value is at the intersection of business logic and software engineering. I leverage analytical thinking (Excel, VBA) and developer precision (JavaScript, API) to architect solutions for complex data problems—not just build applications.",
+        // ZMIANA FAZY 23: "Meaty" description
+        heroDescription: "I specialize in process engineering. I translate business logic (VBA, Excel) into precise, scalable code (JavaScript, API). My goal isn't 'to build sites'—it is to deliver systems that *save hundreds of work-hours* and architecturally solve data problems.",
         heroCta: "VIEW_CASE_STUDIES",
-        heroCtaContact: "Get in Touch",
+        // ZMIANA FAZY 23: New key for bio button
+        heroCtaBio: "See my profile",
 
         // Homepage Stats (NEW)
         heroStatExperience: "YEARS OF EXPERIENCE (Finance/VBA)",
