@@ -15,17 +15,21 @@ export const translations = {
         // --- Nowa strona główna (Hero) ---
         heroSubtitle: "EXECUTIVE_ENGINEER",
         heroTitle: "Od <span class=\"highlight\">Analityki</span><br>do Aplikacji",
-        // ZMIANA FAZY 24: Nowy, mocniejszy opis
-        heroDescription: "Nie jestem deweloperem, który 'robi strony'. Jestem inżynierem, który *rozwiązuje problemy*. Łączę myślenie analityczne z precyzją kodu, aby budować systemy, które automatyzują chaos, oszczędzają setki godzin pracy i zamieniają surowe dane w realną wartość biznesową.",
+        
+        // ZMIANA FAZY 26: Usunięto 'heroDescription', dodano 'Tri-Point Value'
+        heroValue1: "Identyfikuję wąskie gardła i 'procesy legacy' w biznesie.",
+        heroValue2: "Przekładam logikę (VBA, Excel) na skalowalny kod (JavaScript, API).",
+        heroValue3: "Dostarczam systemy, które oszczędzają setki godzin pracy rocznie.",
+
         heroCta: "ZOBACZ_CASE_STUDIES",
-        // Klucz z Fazy 23 (Pozostaje bez zmian)
         heroCtaBio: "Poznaj mój profil",
 
         // Statystyki na stronie głównej (NOWE)
         heroStatExperience: "LAT DOŚWIADCZENIA (Finanse/VBA)",
-        heroStatProjects: "WDROŻONYCH PROJEKTÓW",
+        // ZMIANA FAZY 26: Zmiana nazwy kafelków
+        heroStatTools: "WDROŻONYCH NARZĘDZI",
         heroStatCommits: "COMMITÓW (Ostatni Rok)",
-        heroStatAutomations: "ZAUTOMATYZOWANE PROCESY",
+        heroStatAutomations: "KLUCZOWE AUTOMATYZACJE",
 
         // --- Nawigacja (zgodna z mockupem) ---
         navProjects: "Projekty",
@@ -341,17 +345,21 @@ export const translations = {
         // --- New Hero Page ---
         heroSubtitle: "EXECUTIVE_ENGINEER",
         heroTitle: "From <span class=\"highlight\">Analytics</span><br>to Applications",
-        // ZMIANA FAZY 24: New, "meaty" description
-        heroDescription: "I don't just 'build sites'. I engineer *solutions*. I merge analytical thinking with code precision to build systems that automate chaos, save hundreds of work-hours, and translate raw data into tangible business value.",
+        
+        // ZMIANA FAZY 26: Usunięto 'heroDescription', dodano 'Tri-Point Value' (EN)
+        heroValue1: "I identify business bottlenecks and legacy processes.",
+        heroValue2: "I translate complex logic (VBA, Excel) into scalable code (JavaScript, API).",
+        heroValue3: "I deliver systems that automate workflows and save hundreds of work-hours.",
+
         heroCta: "VIEW_CASE_STUDIES",
-        // Key from Faza 23 (Stays the same)
         heroCtaBio: "See my profile",
 
         // Homepage Stats (NEW)
         heroStatExperience: "YEARS OF EXPERIENCE (Finance/VBA)",
-        heroStatProjects: "PROJECTS SHIPPED",
+        // ZMIANA FAZY 26: Zmiana nazwy kafelków (EN)
+        heroStatTools: "TOOLS SHIPPED",
         heroStatCommits: "COMMITS (Last Year)",
-        heroStatAutomations: "AUTOMATED PROCESSES",
+        heroStatAutomations: "KEY AUTOMATIONS",
 
         // --- Navigation (Mockup Compliant) ---
         navProjects: "Projects",
