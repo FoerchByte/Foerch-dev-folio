@@ -1,9 +1,4 @@
-<!--
-To jest plik README.md.
-GitHub automatycznie zrenderuje ten plik Markdown.
-Nazwij ten plik "README.md" (wielkimi literami) i umieść go w głównym folderze
-swojego repozytorium, aby zastąpić stary.
--->
+
 
 >_ FoerchByte // Engineering Portfolio
 
