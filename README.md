@@ -1,197 +1,223 @@
-Foerch-dev-folio
-[🇵🇱](#polski) |  [🇺🇸](#english)
-<a name="polski"></a>
+<!--
+To jest plik README.md.
+GitHub automatycznie zrenderuje ten plik Markdown.
+Nazwij ten plik "README.md" (wielkimi literami) i umieść go w głównym folderze
+swojego repozytorium, aby zastąpić stary.
+-->
+
+>_ FoerchByte // Engineering Portfolio
+
+🇵🇱 | 🇺🇸
+
+<a name="wersja-polska-polish-version"></a>
 
 Wersja Polska (Polish Version)
 
-Witaj w moim cyfrowym świecie, Foerch-dev-folio!
-Tutaj kod spotyka się z kreatywnością. To nie jest tylko portfolio, ale dowód na moją pasję do tworzenia użytecznych i estetycznych aplikacji internetowych. Od czystego kodu po integrację z API, każdy element tego projektu odzwierciedla moją filozofię pracy.
+> Czym jest ten projekt?
 
-Co Wyróżnia Ten Projekt?
-Zależało mi na tym, aby to portfolio było świadectwem moich umiejętności i filozofii pracy. Dlatego skupiłem się na kilku kluczowych aspektach:
+To nie jest "portfolio". To jest centrum operacyjne i studium przypadku dla mojej marki jako Executive Engineer: specjalisty, który łączy świat analizy finansowej z inżynierią frontendową.
 
-Czysty kod i solidna architektura: Całość zbudowałem w czystym JavaScript (Vanilla JS), aby pokazać głębokie zrozumienie fundamentów web devu. Aplikacja działa jako SPA (Single Page Application), co zapewnia płynne i szybkie przejścia, a jej modularna budowa sprawia, że dodawanie nowych projektów jest proste i przyjemne.
+Ten projekt to moja teza: dowód na to, jak przekładam złożoną logikę biznesową (VBA, Excel, finanse) na skalowalne, bezpieczne i wydajne narzędzia webowe (Vanilla JS, API, Serverless).
 
-Wydajność na pierwszym miejscu: Dzięki Lazy Loading (ładowaniu "leniwemu") aplikacja startuje błyskawicznie, pobierając tylko niezbędny kod. Reszta jest dociągana w tle, gdy jest potrzebna.
+> Filozofia i Główne Założenia
 
-Dostępność dla każdego: Starałem się, aby strona była w pełni dostępna (a11y) dla osób korzystających z czytników ekranu oraz w pełni responsywna (RWD), niezależnie od urządzenia.
+Zbudowałem ten projekt w oparciu o cztery kluczowe filary, które definiują moją pracę:
 
-Bezpieczeństwo i nowoczesność: Wrażliwe dane, jak klucze API, są chronione po stronie serwera dzięki funkcjom bezserwerowym (Netlify Functions). Kluczowa logika jest natomiast objęta testami jednostkowymi (Vitest), co daje pewność, że wszystko działa jak należy.
+Most Między Światami (The "Bridge")
+Moją unikalną wartością jest płynne poruszanie się między Excelem a kodem. Identyfikuję "procesy legacy" i wąskie gardła w operacjach biznesowych, a następnie projektuję i dostarczam cyfrowe rozwiązania, które automatyzują te procesy, oszczędzając setki godzin pracy rocznie.
 
-Mój Warsztat Technologiczny
-Podczas pracy nad tym projektem korzystałem z następujących narzędzi i technologii:
+Inżynieria, Nie Frameworki (Engineering over Frameworks)
+Dlaczego Czysty JavaScript (Vanilla JS)? Ponieważ to świadomy wybór inżynierski. Zamiast ciężkich frameworków (jak React czy Angular) dla prostych narzędzi, dostarczam błyskawicznie ładujące się, niezawodne aplikacje bez żadnych zależności. To gwarantuje minimalny koszt utrzymania, maksymalną wydajność i pełną kontrolę nad kodem.
 
-Frontend:
+Architektura Serverless i Bezpieczeństwo (Serverless & Secure)
+Wrażliwe dane, takie jak klucze API (dla Pogody czy Gemini AI), nigdy nie są ujawniane po stronie klienta. Są bezpiecznie zarządzane na backendzie przy użyciu funkcji bezserwerowych (Netlify Functions), co jest absolutną podstawą profesjonalnych wdrożeń.
 
-HTML5
+Niezawodność Klasy Biznesowej (Business-Grade Reliability)
+Logika finansowa nie może sobie pozwolić na błędy. Dlatego kluczowe moduły obliczeniowe (jak kalkulatory odsetek) są objęte testami jednostkowymi (Vitest), aby zapewnić, że każdy wynik jest precyzyjny i zgodny z wymogami biznesowymi.
 
-CSS3 (zmienne, Flexbox, Grid)
+> Prezentowany Stack Technologiczny
 
-Czysty JavaScript (ES6+ Modules, Async/Await)
+Stack tego projektu odzwierciedla moją rolę "mostu" między dwoma światami:
 
-Backend (Serverless):
+// Automatyzacja i Analiza Danych
 
-Netlify Functions (Node.js)
+Zaawansowany MS Excel (Formuły, Tabele Przestawne)
 
-Narzędzia i Biblioteki:
+VBA (Automatyzacja procesów w środowisku MS Office)
 
-Vitest: Do testów jednostkowych
+Power Query (Transformacja i czyszczenie danych)
 
-Marked.js: Do parsowania Markdown
+// Frontend Development i Inżynieria
 
-Formspree: Do obsługi formularzy kontaktowych
+JavaScript (ES6+ Modules, Async/Await): Czysty, modularny kod.
 
-API Zewnętrzne:
+HTML5 (Semantyka, Dostępność - a11y)
 
-OpenWeatherMap API
+CSS3 (Flexbox, Grid, Zmienne, RWD)
 
-Frankfurter.app API (kursy walut)
+API (Integracja z REST API, Fetch)
 
-Google Gemini AI API
+Serverless (Netlify Functions, Node.js)
 
-Struktura Projektu
-Struktura folderów została zaprojektowana z myślą o przejrzystości i skalowalności:
+Testowanie (Vitest do testów jednostkowych)
 
-/netlify/functions/: Funkcje serverless (backend)
+Git Flow (Zarządzanie wersjami i wdrożeniami)
 
-/modules/: Moduły JS i CSS dla poszczególnych aplikacji
+> Wybrane Studia Przypadków (Case Studies)
 
-/pages/: Szablony HTML dla podstron
+Ten projekt zawiera 13 działających aplikacji. Poniższe trzy najlepiej demonstrują moją unikalną wartość:
 
-index.html: Główny plik HTML
+Kalkulatory Finansowe (Podatkowe i Ustawowe)
 
-app.js: Główny skrypt (router/kontroler)
+Wyzwanie: Przełożenie skomplikowanej, zmiennej w czasie logiki biznesowej (Ordynacja Podatkowa, dane NBP) na niezawodny kod.
 
-style.css: Główne style
+Rozwiązanie: Aplikacja w Vanilla JS, która precyzyjnie oblicza odsetki, dynamicznie wybierając odpowiednie stawki na podstawie dat. Logika jest w 100% pokryta testami jednostkowymi.
 
-Uruchomienie Lokalne
-Chcesz zajrzeć pod maskę? Nic prostszego:
+Agregator Rozliczeń Projektowych
+
+Wyzwanie: Zautomatyzowanie manualnego procesu księgowego polegającego na kopiowaniu danych z dziesiątek arkuszy Excel.
+
+Rozwiązanie: Narzędzie klienckie (SheetJS), które parsuje pliki .xlsx w przeglądarce. Jest to bezpośrednia translacja logiki VBA na JavaScript, eliminująca potrzebę pracy w Excelu.
+
+Stacja Pogody (Architektura Serverless)
+
+Wyzwanie: Bezpieczne korzystanie z zewnętrznego API (OpenWeatherMap) bez ujawniania prywatnego klucza API.
+
+Rozwiązanie: Aplikacja kliencka komunikuje się tylko z moją własną funkcją Netlify, która działa jako bezpieczny pośrednik, dodaje klucz API po stronie serwera i przekazuje zapytanie.
+
+> Uruchomienie Lokalne i Testowanie
+
+Chcesz zajrzeć pod maskę?
 
 Sklonuj repozytorium:
 
-git clone [https://github.com/Foerch-Byte/foerch-dev-folio.git](https://github.com/Foerch-Byte/foerch-dev-folio.git)
-cd foerch-dev-folio
+git clone [https://github.com/FoerchByte/foerch-dev-folio-v2.git](https://github.com/FoerchByte/foerch-dev-folio-v2.git)
+cd foerch-dev-folio-v2
+
 
 Stwórz plik .env:
-W głównym folderze projektu stwórz plik o nazwie .env i wklej do niego swoje klucze API, wzorując się na poniższym przykładzie:
+W głównym folderze stwórz plik .env i dodaj swoje klucze API:
 
-WEATHER_API_KEY=twoj_klucz_do_pogody
+WEATHER_API_KEY=twoj_klucz_pogodowy
+GEMINI_API_KEY=twoj_klucz_gemini
 
-GEMINI_API_KEY=twoj_klucz_do_gemini
 
-Uwaga: Aby w pełni korzystać z funkcji lokalnie, potrzebujesz Netlify CLI. Bez tego, funkcje weather i gemini nie będą działać lokalnie, ale reszta aplikacji tak.
+(Do pełnego uruchomienia funkcji serverless lokalnie wymagany jest Netlify CLI. Bez tego, reszta aplikacji nadal działa.)
 
 Otwórz index.html:
-Najprostszym sposobem na uruchomienie jest użycie rozszerzenia Live Server w Visual Studio Code lub otwarcie pliku index.html bezpośrednio w przeglądarce.
+Użyj rozszerzenia "Live Server" w VS Code lub po prostu otwórz plik w przeglądarce.
 
-Uruchamianie Testów
-Pewność, że kod działa, jest dla mnie kluczowa. Dlatego projekt jest wyposażony w testy jednostkowe. Aby je uruchomić:
+Uruchamianie Testów (Wymagany Node.js):
 
-Zainstaluj zależności deweloperskie:
-
+# Zainstaluj zależności deweloperskie (głównie Vitest)
 npm install
 
-Uruchom testy:
-
+# Uruchom testy
 npm test
 
-Vitest automatycznie znajdzie i uruchomi wszystkie testy w projekcie.
 
+<a name="english-version"></a>
 
-
-
-<a name="english"></a>
 English Version
 
-Welcome to my digital world, Foerch-dev-folio!
-Here, code meets creativity. This is not just a portfolio, but a testament to my passion for building useful and aesthetic web applications. From clean code to API integration, every element of this project reflects my work philosophy.
+> What is this project?
 
-What Makes This Project Special?
-I wanted this portfolio to be a testament to my skills and work philosophy. That's why I focused on a few key aspects:
+This is not a "portfolio". This is the operations center and case study for my brand as an Executive Engineer: a specialist who bridges the world of financial analysis with frontend engineering.
 
-Clean Code & Solid Architecture: I built the entire project in Vanilla JavaScript to demonstrate a deep understanding of web development fundamentals. The application runs as a SPA (Single Page Application), ensuring smooth and fast transitions, and its modular structure makes adding new projects simple and enjoyable.
+This project is my thesis: proof of how I translate complex business logic (VBA, Excel, finance) into scalable, secure, and efficient web tools (Vanilla JS, API, Serverless).
 
-Performance First: Thanks to Lazy Loading, the application starts up instantly by loading only the necessary code. The rest is fetched in the background when needed.
+> Philosophy & Core Principles
 
-Accessibility for Everyone: I've made an effort to ensure the site is fully accessible (a11y) for users with screen readers and fully responsive (RWD), regardless of the device.
+I built this project based on four key pillars that define my work:
 
-Security & Modern Practices: Sensitive data, like API keys, are protected on the server-side using Serverless Functions (Netlify Functions). The core business logic is covered by Unit Tests (Vitest), which ensures that everything works as expected.
+The "Bridge" Between Worlds
+My unique value proposition is the ability to move fluidly between Excel and code. I identify legacy processes and bottlenecks in business operations, then design and deliver digital solutions that automate those processes, saving hundreds of work-hours annually.
 
-My Tech Stack
-While working on this project, I used the following tools and technologies:
+Engineering, Not Frameworks
+Why Vanilla JavaScript? Because it's a deliberate engineering choice. Instead of heavy frameworks (like React or Angular) for simple tools, I deliver instantly-loading, reliable applications with zero dependencies. This guarantees minimal maintenance overhead, maximum performance, and full control over the code.
 
-Frontend:
+Serverless & Secure Architecture
+Sensitive data, such as API keys (for Weather or Gemini AI), is never exposed on the client side. It is securely managed on the backend using Serverless Functions (Netlify Functions), which is an absolute best practice for professional deployments.
 
-HTML5
+Business-Grade Reliability
+Financial logic cannot afford errors. That's why the core calculation modules (like the interest calculators) are covered by Unit Tests (Vitest) to ensure every result is precise and compliant with business requirements.
 
-CSS3 (Variables, Flexbox, Grid)
+> Featured Tech Stack
 
-Vanilla JavaScript (ES6+ Modules, Async/Await)
+The project's stack reflects my role as a "bridge" between two worlds:
 
-Backend (Serverless):
+// Data Automation & Analysis
 
-Netlify Functions (Node.js)
+Advanced MS Excel (Formulas, Pivot Tables)
 
-Tools & Libraries:
+VBA (Process automation within the MS Office suite)
 
-Vitest: For unit testing
+Power Query (Data transformation and cleansing)
 
-Marked.js: For Markdown parsing
+// Frontend Development & Engineering
 
-Formspree: For contact form handling
+JavaScript (ES6+ Modules, Async/Await): Clean, modular code.
 
-External APIs:
+HTML5 (Semantics, Accessibility - a11y)
 
-OpenWeatherMap API
+CSS3 (Flexbox, Grid, Variables, RWD)
 
-Frankfurter.app API (currency rates)
+API (REST API Integration, Fetch)
 
-Google Gemini AI API
+Serverless (Netlify Functions, Node.js)
 
-Project Structure
-The folder structure was designed for clarity and scalability:
+Testing (Vitest for Unit Tests)
 
-/netlify/functions/: Serverless Functions (backend)
+Git Flow (Version control and deployment management)
 
-/modules/: JS and CSS modules for each app
+> Featured Case Studies
 
-/pages/: HTML templates for subpages
+This project contains 13 functional applications. The following three best demonstrate my unique value:
 
-index.html: Main HTML file
+Financial Calculators (Tax & Statutory)
 
-app.js: Main script (router/controller)
+Challenge: Translate complex, time-variable business logic (Polish Tax Ordinance, NBP data) into reliable code.
 
-style.css: Main stylesheet
+Solution: A Vanilla JS application that precisely calculates interest, dynamically selecting the correct rates based on date ranges. The logic is 100% covered by unit tests.
 
-Running Locally
-Want to look under the hood? It's simple:
+Project Settlement Aggregator
+
+Challenge: Automate a manual accounting process of copying data from dozens of separate Excel spreadsheets.
+
+Solution: A client-side tool (SheetJS) that parses .xlsx files in the browser. It's a direct translation of VBA logic into JavaScript, eliminating the need for Excel.
+
+Weather Station (Serverless Architecture)
+
+Challenge: Securely use an external API (OpenWeatherMap) without exposing the private API key.
+
+Solution: The client app communicates only with my own Netlify Function, which acts as a secure proxy, attaches the API key on the server, and forwards the request.
+
+> Local Setup & Testing
+
+Want to look under the hood?
 
 Clone the repository:
 
-git clone [https://github.com/Foerch-Byte/foerch-dev-folio.git](https://github.com/Foerch-Byte/foerch-dev-folio.git)
-cd foerch-dev-folio
+git clone [https://github.com/FoerchByte/foerch-dev-folio-v2.git](https://github.com/FoerchByte/foerch-dev-folio-v2.git)
+cd foerch-dev-folio-v2
+
 
 Create a .env file:
-In the root directory, create a file named .env and paste your API keys into it, using the example below:
+In the root folder, create a .env file and add your API keys:
 
-WEATHER_API_KEY=your_weather_api_key
+WEATHER_API_KEY=your_weather_key
+GEMINI_API_KEY=your_gemini_key
 
-GEMINI_API_KEY=your_gemini_api_key
 
-Note: To fully use the functions locally, you'll need the Netlify CLI. Without it, the weather and gemini functions won't work locally, but the rest of the app will.
+(Running serverless functions locally requires the Netlify CLI. The rest of the app will work without it.)
 
 Open index.html:
-The easiest way to run the project is by using the Live Server extension in Visual Studio Code or by opening the index.html file directly in your browser.
+Use the "Live Server" extension in VS Code or simply open the file in your browser.
 
-Running Tests
-Confidence in my code is key. That's why the project includes unit tests. To run them:
+Running Tests (Node.js required):
 
-Install dev dependencies:
-
+# Install dev dependencies (mainly Vitest)
 npm install
 
-Run the tests:
-
+# Run tests
 npm test
-
-Vitest will automatically find and run all tests in the project.
