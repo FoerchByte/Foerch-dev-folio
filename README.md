@@ -85,7 +85,7 @@ Chcesz zajrzeć pod maskę?
 
 Sklonuj repozytorium:
 
-git clone [https://github.com/FoerchByte/foerch-dev-folio-v2.git](https://github.com/FoerchByte/foerch-dev-folio-v2.git)
+git clone [https://github.com/FoerchByte/foerch-dev-folio-v2.git](https://github.com/FoerchByte/Foerch-dev-folio.git)
 cd foerch-dev-folio-v2
 
 
@@ -192,7 +192,7 @@ Want to look under the hood?
 
 Clone the repository:
 
-git clone [https://github.com/FoerchByte/foerch-dev-folio-v2.git](https://github.com/FoerchByte/foerch-dev-folio-v2.git)
+git clone [https://github.com/FoerchByte/foerch-dev-folio-v2.git](https://github.com/FoerchByte/Foerch-dev-folio.git)
 cd foerch-dev-folio-v2
 
 
