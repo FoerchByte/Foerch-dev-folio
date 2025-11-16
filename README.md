@@ -2,9 +2,8 @@
 
 >_ FoerchByte // Engineering Portfolio
 
-🇵🇱 | 🇺🇸
-
-<a name="wersja-polska-polish-version"></a>
+[🇵🇱](#polski) |  [🇺🇸](#english)
+<a name="polski"></a>
 
 Wersja Polska (Polish Version)
 
@@ -111,7 +110,7 @@ npm install
 npm test
 
 
-<a name="english-version"></a>
+<a name="english"></a>
 
 English Version
 
