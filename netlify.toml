@@ -1,35 +1,11 @@
-Konfiguracja wdrożenia Netlify dla FoerchByte v2.0
-
-Wymusza uruchomienie budowania (dla funkcji) i definiuje środowisko Node.js.
-
 [build]
-
-Ta komenda zapewnia, że Netlify uruchomi proces budowania,
-
-co jest konieczne do poprawnego rozpoznania i wdrożenia funkcji serverless.
-
 command = "echo 'Build command initiated'"
-
-Główny folder do publikacji.
-
 publish = "."
-
-Lokalizacja funkcji serverless (API).
-
 functions = "netlify/functions"
 
-Ustawienia środowiska dla produkcji (production).
-
 [context.production.environment]
-
-Wymusza użycie Node.js 18 dla funkcji serverless.
-
 NODE_VERSION = "18"
 AWS_LAMBDA_JS_RUNTIME = "nodejs18.x"
-
-Przekierowanie "catch-all" dla aplikacji SPA (Single Page Application).
-
-Wszystkie żądania kierują do index.html, aby router JS mógł przejąć kontrolę.
 
 [[redirects]]
 from = "/*"
