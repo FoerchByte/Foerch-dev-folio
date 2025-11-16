@@ -1,13 +1,11 @@
-/*
-  EN: This module serves as the central hub for all text translations in the
-  application. It ensures a consistent, dual-language user experience and
-  demonstrates a scalable approach to managing i18n (internationalization) in
-  a web project.
-  PL: Ten moduł pełni rolę centralnego centrum dla wszystkich tłumaczeń tekstów
-  w aplikacji. Zapewnia spójne, dwujęzyczne doświadczenie użytkownika i
-  demonstruje skalowalne podejzienie do zarządzania i18n (internacjonalizacją)
-  w projekcie webowym.
-*/
+/**
+ * @file modules/translations.js
+ * @description
+ * EN: Central translation hub (i18n). Contains all UI text strings
+ * for Polish (pl) and English (en) languages.
+ * PL: Centralny hub tłumaczeń (i18n). Zawiera wszystkie ciągi tekstowe
+ * interfejsu użytkownika dla języka polskiego (pl) i angielskiego (en).
+ */
 export const translations = {
     pl: {
         siteTitle: "FoerchByte // Engineering Portfolio",
@@ -16,7 +14,6 @@ export const translations = {
         heroSubtitle: "EXECUTIVE_ENGINEER",
         heroTitle: "Od <span class=\"highlight\">Analityki</span><br>do Aplikacji",
         
-        // ZMIANA FAZY 26: Usunięto 'heroDescription', dodano 'Tri-Point Value'
         heroValue1: "Identyfikuję wąskie gardła i 'procesy legacy' w biznesie.",
         heroValue2: "Przekładam logikę (VBA, Excel) na skalowalny kod (JavaScript, API).",
         heroValue3: "Dostarczam systemy, które oszczędzają setki godzin pracy rocznie.",
@@ -26,7 +23,6 @@ export const translations = {
 
         // Statystyki na stronie głównej (NOWE)
         heroStatExperience: "LAT DOŚWIADCZENIA (Finanse/VBA)",
-        // ZMIANA FAZY 26: Zmiana nazwy kafelków
         heroStatTools: "WDROŻONYCH NARZĘDZI",
         heroStatCommits: "COMMITÓW (Ostatni Rok)",
         heroStatAutomations: "KLUCZOWE AUTOMATYZACJE",
@@ -337,7 +333,7 @@ export const translations = {
         errorGeo: "Nie udało się pobrać Twojej lokalizacji. Sprawdź ustawienia przeglądarki i zezwól na dostęp.",
         errorNotFound: "Nie znaleziono miasta.",
         errorAuth: "Błąd autoryzacji. Sprawdź klucz API.",
-        errorServer: ({ status }) => `Server error (${status}). Please try again.`,
+        errorServer: ({ status }) => `Błąd serwera (${status}). Spróbuj ponownie.`,
     },
     en: {
         siteTitle: "FoerchByte // Engineering Portfolio",
@@ -346,7 +342,6 @@ export const translations = {
         heroSubtitle: "EXECUTIVE_ENGINEER",
         heroTitle: "From <span class=\"highlight\">Analytics</span><br>to Applications",
         
-        // ZMIANA FAZY 26: Usunięto 'heroDescription', dodano 'Tri-Point Value' (EN)
         heroValue1: "I identify business bottlenecks and legacy processes.",
         heroValue2: "I translate complex logic (VBA, Excel) into scalable code (JavaScript, API).",
         heroValue3: "I deliver systems that automate workflows and save hundreds of work-hours.",
@@ -356,7 +351,6 @@ export const translations = {
 
         // Homepage Stats (NEW)
         heroStatExperience: "YEARS OF EXPERIENCE (Finance/VBA)",
-        // ZMIANA FAZY 26: Zmiana nazwy kafelków (EN)
         heroStatTools: "TOOLS SHIPPED",
         heroStatCommits: "COMMITS (Last Year)",
         heroStatAutomations: "KEY AUTOMATIONS",
@@ -423,7 +417,7 @@ export const translations = {
         
         // === ZMIANA: Zredagowane, "mięsiste" opisy (EN) ===
 
-        // 1. Aggregator
+        // 1. Agregator
         aggregatorTitle: "Project Settlement Aggregator",
         aggregatorDesc: "Client-side tool (JS/SheetJS) automating data aggregation from multiple `.xlsx` files. Replicates business logic of accounting processes.",
         aggregatorStatus: "PRODUCTION",
