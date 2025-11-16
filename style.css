@@ -490,3 +490,70 @@ body.light-mode .theme-toggle .sun-icon { display: none; }
         align-items: center;
     }
 }
+
+/* ========================================================================
+  POPRAWKA KRYTYCZNA: Przywrócenie brakujących stylów dla przycisków CTA
+  (Używane na /home i /changelog)
+  ========================================================================
+*/
+.about-cta, .hero-cta-group {
+    margin-top: 3rem;
+    display: flex;
+    flex-wrap: wrap; /* Dodane dla responsywności */
+    gap: 1.5rem;
+}
+
+.cta-button {
+    padding: 1rem 2rem;
+    border-radius: 2px; /* Zgodne z v2.0 */
+    text-decoration: none;
+    font-weight: 500;
+    font-family: 'Roboto Mono', monospace;
+    font-size: 1rem;
+    transition: all 0.2s cubic-bezier(0.645, 0.045, 0.355, 1);
+    border: 1px solid var(--primary-color);
+    display: inline-flex; /* Poprawka dla wyrównania ikony */
+    align-items: center; 
+    justify-content: center;
+    text-align: center;
+}
+
+.cta-button.primary {
+    background-color: var(--primary-color);
+    color: var(--background-color);
+    font-weight: 700;
+}
+
+.cta-button.primary:hover {
+    background-color: var(--primary-hover-color);
+    border-color: var(--primary-hover-color);
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 224, 255, 0.3);
+}
+
+.cta-button.secondary {
+    background-color: transparent;
+    border-color: var(--text-secondary);
+    color: var(--text-secondary);
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.cta-button.secondary:hover {
+    border-color: var(--primary-color);
+    color: var(--primary-color);
+    transform: translateY(-3px);
+}
+
+/* Poprawka responsywna dla CTA na mobilkach */
+@media (max-width: 768px) {
+    .about-cta, .hero-cta-group {
+        flex-direction: column;
+        width: 100%;
+        max-width: 350px; /* Dopasowanie do estetyki mobilnej */
+    }
+    
+    .cta-button {
+        width: 100%; /* Przyciski zajmują całą szerokość w kolumnie */
+    }
+}
