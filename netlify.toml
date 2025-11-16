@@ -1,24 +1,37 @@
-# Ostateczna, najbardziej jawna konfiguracja dla Twojego projektu
+Konfiguracja wdrożenia Netlify dla FoerchByte v2.0
+
+Wymusza uruchomienie budowania (dla funkcji) i definiuje środowisko Node.js.
 
 [build]
-  # KLUCZOWA ZMIANA: Ta komenda zmusza Netlify do uruchomienia pełnego procesu
-  # budowania, nawet przy wdrażaniu "przeciągnij i upuść". Dzięki temu
-  # przeczyta on poniższe ustawienia dotyczące funkcji.
-  command = "echo 'Build command initiated'"
-  # Folder, który Netlify ma opublikować (zawiera index.html)
-  publish = "."
-  # Folder, w którym znajdują się Twoje funkcje serwerowe
-  functions = "netlify/functions"
 
-# Kontekst dla wdrożeń produkcyjnych
+Ta komenda zapewnia, że Netlify uruchomi proces budowania,
+
+co jest konieczne do poprawnego rozpoznania i wdrożenia funkcji serverless.
+
+command = "echo 'Build command initiated'"
+
+Główny folder do publikacji.
+
+publish = "."
+
+Lokalizacja funkcji serverless (API).
+
+functions = "netlify/functions"
+
+Ustawienia środowiska dla produkcji (production).
+
 [context.production.environment]
-  # Wymuszamy na Netlify użycie Node.js w wersji 18.
-  NODE_VERSION = "18"
-  # Dodatkowe, jawne ustawienie środowiska uruchomieniowego Lambda.
-  AWS_LAMBDA_JS_RUNTIME = "nodejs18.x"
 
-# Reguła przekierowania dla aplikacji SPA.
+Wymusza użycie Node.js 18 dla funkcji serverless.
+
+NODE_VERSION = "18"
+AWS_LAMBDA_JS_RUNTIME = "nodejs18.x"
+
+Przekierowanie "catch-all" dla aplikacji SPA (Single Page Application).
+
+Wszystkie żądania kierują do index.html, aby router JS mógł przejąć kontrolę.
+
 [[redirects]]
-  from = "/*"
-  to = "/index.html"
-  status = 200
+from = "/*"
+to = "/index.html"
+status = 200
