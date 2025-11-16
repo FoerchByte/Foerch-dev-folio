@@ -1,28 +1,26 @@
 <!--
-  PL: ZMIANA: Cała struktura strony głównej została przebudowana,
-  aby pasowała do 2-kolumnowego layoutu (CSS Grid) z mockupu (hero + statystyki).
-  EN: CHANGE: The entire homepage structure has been rebuilt
-  to match the 2-column (CSS Grid) layout from the mockup (hero + stats).
+  @file pages/home.html
+  @description
+  EN: Template for the "Hero" landing page (v2.0).
+  PL: Szablon dla strony lądowania "Hero" (v2.0).
 -->
 <div class="hero-layout fade-in">
     
-    <!-- === KOLUMNA LEWA: TREŚĆ === -->
+    <!-- === Kolumna Lewa: Treść === -->
     <div class="hero-content">
         <p class="hero-subtitle">{{heroSubtitle}}</p>
         <h1 class="hero-title">
             {{heroTitle}} <!-- Tłumaczenie z JS wstawi tu span.highlight -->
         </h1>
         
-        <!-- 
-          ZMIANA FAZY 26: Usunięto <p class="hero-description">.
-          Wstawiono nowy blok "Tri-Point Value".
-        -->
+        <!-- Blok "Tri-Point Value" -->
         <div class="hero-value-props">
             <p data-i18n="heroValue1">{{heroValue1}}</p>
             <p data-i18n="heroValue2">{{heroValue2}}</p>
             <p data-i18n="heroValue3">{{heroValue3}}</p>
         </div>
 
+        <!-- Przyciski CTA -->
         <div class="hero-cta-group">
             <a href="/projects" class="cta-button primary">
                 <!-- Ikona SVG dla <> -->
@@ -34,6 +32,7 @@
             </a>
         </div>
 
+        <!-- Linki społecznościowe -->
         <div class="hero-socials">
             <a href="https://github.com/FoerchByte" target="_blank" aria-label="GitHub">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V21"></path></svg>
@@ -47,7 +46,7 @@
         </div>
     </div>
 
-    <!-- === KOLUMNA PRAWA: STATYSTYKI (NOWY BLOK) === -->
+    <!-- === Kolumna Prawa: Statystyki === -->
     <div class="hero-stats">
         
         <!-- Karta 1: Doświadczenie -->
