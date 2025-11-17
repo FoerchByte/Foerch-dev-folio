@@ -1,4 +1,9 @@
-/* === modules/budget-validator.css === */
+/**
+ * @file modules/budget-validator.css
+ * @description
+ * EN: Stylesheet for the Budget Data Validator (Case Study).
+ * PL: Arkusz stylów dla Walidatora Danych Budżetowych (Case Study).
+ */
 .budget-validator {
     background-color: var(--card-background);
     padding: 2rem;
