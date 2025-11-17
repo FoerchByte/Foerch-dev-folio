@@ -1,21 +1,21 @@
-/*
-  EN: This module handles the logic for the advanced To-Do List application. It's
-  a showcase of comprehensive DOM manipulation, state management (using localStorage),
-  and user experience enhancements like drag-and-drop reordering for both mouse
-  and touch devices. It demonstrates a robust approach to building a
-  feature-rich utility application.
-  PL: Ten moduł zawiera logikę dla zaawansowanej aplikacji Lista Zadań. Jest on
-  przykładem kompleksowej manipulacji DOM, zarządzania stanem (przy użyciu
-  localStorage) i ulepszeń interfejsu, takich jak przeciąganie i upuszczanie
-  zadań, zarówno dla myszy, jak i urządzeń dotykowych. Demonstruje solidne
-  podejście do budowania bogatej w funkcje aplikacji użytkowej.
-*/
+/**
+ * @file modules/todo.js
+ * @description
+ * EN: Core logic for the To-Do List (Case Study).
+ * Demonstrates DOM manipulation, localStorage state management,
+ * and advanced drag-and-drop (mouse + touch) for reordering.
+ * PL: Kluczowa logika dla Listy Zadań (Case Study).
+ * Demonstruje manipulację DOM, zarządzanie stanem w localStorage
+ * oraz zaawansowane "przeciągnij i upuść" (mysz + dotyk) do zmiany kolejności.
+ */
+
 let todoT, showTodoConfirmationModal, playSound;
 let todos = [];
 let currentFilter = 'all';
 let draggedItem = null;
 
-// ZMIANA: Zmienne do obsługi gestów dotykowych
+// EN: Variables for touch gesture handling (long press for edit, drag for move).
+// PL: Zmienne do obsługi gestów dotykowych (długie przytrzymanie = edycja, przeciągnięcie = ruch).
 let longPressTimer = null;
 let isDragging = false;
 let startY = 0;
@@ -23,12 +23,20 @@ let initialScroll = 0;
 
 let todoList, todoForm, todoInput, todoFooter, todoCounter, clearCompletedBtn, todoFilters;
 
+/**
+ * @description EN: Saves the current 'todos' array to localStorage.
+ * PL: Zapisuje aktualną tablicę 'todos' do localStorage.
+ */
 function saveTodos() {
     localStorage.setItem('todos', JSON.stringify(todos));
 }
 
+/**
+ * @description EN: Renders the filtered list of todos to the DOM.
+ * PL: Renderuje przefiltrowaną listę zadań do DOM.
+ */
 function renderTodos() {
-    const scrollTop = todoList.scrollTop; // Zapisz pozycję przewijania
+    const scrollTop = todoList.scrollTop; // EN: Preserve scroll position
     todoList.innerHTML = '';
     const filteredTodos = getFilteredTodos();
     filteredTodos.forEach(todo => {
@@ -36,15 +44,17 @@ function renderTodos() {
         todoList.appendChild(todoElement);
     });
     updateFooter();
-    todoList.scrollTop = scrollTop; // Przywróć pozycję przewijania
+    todoList.scrollTop = scrollTop; // EN: Restore scroll position
 }
 
+/**
+ * @description EN: Creates an HTML list item element for a single todo object.
+ * PL: Tworzy element listy HTML (li) dla pojedynczego obiektu zadania.
+ */
 function createTodoElement(todo) {
     const li = document.createElement('li');
     li.className = `todo-app__item ${todo.completed ? 'todo-app__item--completed' : ''}`;
     li.dataset.id = todo.id;
-    // ZMIANA: Usunięto atrybut draggable, będziemy zarządzać tym przez JS
-    // li.draggable = true;
 
     li.innerHTML = `
         <div class="todo-app__view">
@@ -57,6 +67,10 @@ function createTodoElement(todo) {
     return li;
 }
 
+/**
+ * @description EN: Updates the footer (task counter, filter states, clear button visibility).
+ * PL: Aktualizuje stopkę (licznik zadań, stany filtrów, widoczność przycisku "Wyczyść").
+ */
 function updateFooter() {
     const activeCount = todos.filter(todo => !todo.completed).length;
     const completedCount = todos.length - activeCount;
@@ -70,6 +84,10 @@ function updateFooter() {
     });
 }
 
+/**
+ * @description EN: Returns the todo list based on the current active filter.
+ * PL: Zwraca listę zadań na podstawie aktywnego filtra.
+ */
 function getFilteredTodos() {
     switch (currentFilter) {
         case 'active': return todos.filter(todo => !todo.completed);
@@ -78,6 +96,10 @@ function getFilteredTodos() {
     }
 }
 
+/**
+ * @description EN: Adds a new todo to the list.
+ * PL: Dodaje nowe zadanie do listy.
+ */
 function addTodo(text) {
     const newTodo = { id: Date.now(), text: text, completed: false };
     todos.push(newTodo);
@@ -90,6 +112,10 @@ function addTodo(text) {
     updateFooter();
 }
 
+/**
+ * @description EN: Toggles the completion state of a todo.
+ * PL: Przełącza stan ukończenia zadania.
+ */
 function toggleTodo(id) {
     const todo = todos.find(t => t.id === id);
     if (todo) {
@@ -97,12 +123,16 @@ function toggleTodo(id) {
         if (todo.completed) {
             playSound('complete');
         }
-        todos.sort((a, b) => a.completed - b.completed);
+        todos.sort((a, b) => a.completed - b.completed); // EN: Completed tasks go to the bottom
         saveTodos();
         renderTodos();
     }
 }
 
+/**
+ * @description EN: Deletes a todo from the list.
+ * PL: Usuwa zadanie z listy.
+ */
 function deleteTodo(id) {
     todos = todos.filter(t => t.id !== id);
     saveTodos();
@@ -114,6 +144,10 @@ function deleteTodo(id) {
     updateFooter();
 }
 
+/**
+ * @description EN: Clears all completed todos after confirmation.
+ * PL: Usuwa wszystkie ukończone zadania po potwierdzeniu.
+ */
 function clearCompleted() {
     const completedCount = todos.filter(todo => todo.completed).length;
     if (completedCount === 0) return;
@@ -125,15 +159,22 @@ function clearCompleted() {
     });
 }
 
+/**
+ * @description EN: Enters editing mode for a specific todo item.
+ * PL: Włącza tryb edycji dla konkretnego zadania.
+ */
 function startEditing(li) {
-    // Zapobiegaj edycji, jeśli trwa przeciąganie
-    if(isDragging) return;
+    if(isDragging) return; // EN: Prevent editing while dragging
     li.classList.add('todo-app__item--editing');
     const input = li.querySelector('.todo-app__edit-input');
     input.focus();
     input.setSelectionRange(input.value.length, input.value.length);
 }
 
+/**
+ * @description EN: Finishes editing mode, saves changes, or deletes if empty.
+ * PL: Kończy tryb edycji, zapisuje zmiany lub usuwa zadanie (jeśli puste).
+ */
 function finishEditing(li, newText) {
     const id = parseInt(li.dataset.id, 10);
     const todo = todos.find(t => t.id === id);
@@ -143,7 +184,7 @@ function finishEditing(li, newText) {
             todo.text = newText;
             li.querySelector('.todo-app__text').textContent = newText;
         } else {
-            deleteTodo(id);
+            deleteTodo(id); // EN: Delete if text is empty
             return;
         }
     }
@@ -152,17 +193,17 @@ function finishEditing(li, newText) {
 }
 
 
-// --- ZMIANA: Logika Drag & Drop dla myszy ---
+// --- Drag & Drop Logic (Mouse) ---
 function handleDragStart(e) {
     draggedItem = e.target;
-    // Dajemy przeglądarce chwilę na "złapanie" elementu
     setTimeout(() => e.target.classList.add('dragging'), 0);
 }
 
 function handleDragEnd(e) {
     e.target.classList.remove('dragging');
     draggedItem = null;
-    // Aktualizujemy tablicę todos na podstawie nowego porządku w DOM
+    // EN: Update the todos array based on the new DOM order.
+    // PL: Zaktualizuj tablicę todos na podstawie nowego porządku w DOM.
     const newOrderIds = [...todoList.children].map(li => parseInt(li.dataset.id));
     todos.sort((a, b) => newOrderIds.indexOf(a.id) - newOrderIds.indexOf(b.id));
     saveTodos();
@@ -178,23 +219,24 @@ function handleDragOver(e) {
     }
 }
 
-// --- ZMIANA: Nowa logika dla gestów dotykowych ---
+// --- Drag & Drop Logic (Touch) ---
 function handleTouchStart(e) {
     const target = e.target;
     const li = target.closest('.todo-app__item');
     if (!li) return;
 
     if (target.closest('.todo-app__drag-handle')) {
-        // Start przeciągania dotykowego
+        // EN: Start touch drag
+        // PL: Rozpocznij przeciąganie dotykiem
         isDragging = true;
         draggedItem = li;
         startY = e.touches[0].clientY;
         initialScroll = todoList.scrollTop;
         li.classList.add('dragging');
-        // Zapobiegamy przewijaniu strony podczas przeciągania zadania
-        document.body.style.overflow = 'hidden';
+        document.body.style.overflow = 'hidden'; // EN: Prevent page scroll
     } else {
-        // Start długiego przytrzymania do edycji
+        // EN: Start long-press timer for editing
+        // PL: Rozpocznij timer długiego przytrzymania do edycji
         longPressTimer = setTimeout(() => {
             startEditing(li);
             longPressTimer = null; 
@@ -208,7 +250,7 @@ function handleTouchMove(e) {
         longPressTimer = null;
     }
     if (isDragging && draggedItem) {
-        e.preventDefault(); // Kluczowe, aby zapobiec scrollowaniu strony
+        e.preventDefault(); // EN: Prevent page scroll
         const currentY = e.touches[0].clientY;
         const afterElement = getDragAfterElement(todoList, currentY);
         if (afterElement == null) {
@@ -228,15 +270,19 @@ function handleTouchEnd(e) {
         draggedItem.classList.remove('dragging');
         isDragging = false;
         draggedItem = null;
-        document.body.style.overflow = ''; // Przywracamy scrollowanie
-        // Aktualizujemy tablicę po zakończeniu przeciągania
+        document.body.style.overflow = ''; // EN: Restore page scroll
+        // EN: Update array order after touch drag ends
+        // PL: Zaktualizuj kolejność tablicy po zakończeniu przeciągania dotykiem
         const newOrderIds = [...todoList.children].map(li => parseInt(li.dataset.id));
         todos.sort((a, b) => newOrderIds.indexOf(a.id) - newOrderIds.indexOf(b.id));
         saveTodos();
     }
 }
 
-
+/**
+ * @description EN: Helper function to find the element to drop 'before'.
+ * PL: Funkcja pomocnicza znajdująca element, 'przed' którym należy upuścić.
+ */
 function getDragAfterElement(container, y) {
     const draggableElements = [...container.querySelectorAll('.todo-app__item:not(.dragging)')];
     return draggableElements.reduce((closest, child) => {
@@ -250,12 +296,18 @@ function getDragAfterElement(container, y) {
     }, { offset: Number.NEGATIVE_INFINITY }).element;
 }
 
-
+/**
+ * @description
+ * EN: Main initialization function for the To-Do module.
+ * PL: Główna funkcja inicjalizująca moduł To-Do.
+ */
 export function initializeTodoApp(dependencies) {
     todoT = dependencies.t;
     showTodoConfirmationModal = dependencies.showConfirmationModal;
     playSound = dependencies.playSound;
 
+    // EN: Get all necessary DOM elements
+    // PL: Pobierz wszystkie niezbędne elementy DOM
     todoList = document.getElementById('todo-list');
     todoForm = document.getElementById('todo-form');
     todoInput = document.getElementById('todo-input');
@@ -264,10 +316,14 @@ export function initializeTodoApp(dependencies) {
     clearCompletedBtn = document.getElementById('clear-completed-btn');
     todoFilters = document.getElementById('todo-filters');
 
+    // EN: Load from localStorage and render
+    // PL: Załaduj z localStorage i renderuj
     todos = JSON.parse(localStorage.getItem('todos')) || [];
     todos.sort((a, b) => a.completed - b.completed);
     renderTodos();
 
+    // EN: Add task listener
+    // PL: Nasłuchiwacz dodawania zadań
     todoForm.addEventListener('submit', e => {
         e.preventDefault();
         const text = todoInput.value.trim();
@@ -278,8 +334,9 @@ export function initializeTodoApp(dependencies) {
         }
     });
 
+    // EN: Main listener for the list (toggle/delete)
+    // PL: Główny nasłuchiwacz listy (przełączanie/usuwanie)
     todoList.addEventListener('click', e => {
-        // Zapobiegaj kliknięciu jeśli trwało przeciąganie lub edycja
         if (isDragging) return;
 
         const target = e.target;
@@ -288,8 +345,7 @@ export function initializeTodoApp(dependencies) {
         const id = parseInt(li.dataset.id, 10);
 
         if (target.classList.contains('todo-app__text')) {
-             // Jeśli timer długiego przytrzymania nadal istnieje, nie przełączaj statusu
-            if(longPressTimer) {
+             if(longPressTimer) {
                 clearTimeout(longPressTimer);
                 longPressTimer = null;
             } else {
@@ -300,6 +356,8 @@ export function initializeTodoApp(dependencies) {
         }
     });
 
+    // EN: Edit listeners (double click, keyboard)
+    // PL: Nasłuchiwacze edycji (podwójne kliknięcie, klawiatura)
     todoList.addEventListener('dblclick', e => {
         const li = e.target.closest('.todo-app__item');
         if (li && !li.classList.contains('todo-app__item--completed')) {
@@ -326,6 +384,8 @@ export function initializeTodoApp(dependencies) {
         }
     });
 
+    // EN: Filter listeners
+    // PL: Nasłuchiwacze filtrów
     todoFilters.addEventListener('click', e => {
         if (e.target.tagName === 'BUTTON') {
             playSound('click');
@@ -339,7 +399,8 @@ export function initializeTodoApp(dependencies) {
         clearCompleted();
     });
     
-    // Ustawienie draggable dla elementów po ich stworzeniu
+    // EN: Drag & Drop (Mouse) Listeners
+    // PL: Nasłuchiwacze Drag & Drop (Mysz)
     todoList.addEventListener('pointerdown', e => {
         if (e.target.closest('.todo-app__drag-handle')) {
             e.target.closest('.todo-app__item').draggable = true;
@@ -356,11 +417,12 @@ export function initializeTodoApp(dependencies) {
     todoList.addEventListener('dragend', handleDragEnd);
     todoList.addEventListener('dragover', handleDragOver);
 
-    // Dodanie obsługi gestów dotykowych
+    // EN: Drag & Drop (Touch) Listeners
+    // PL: Nasłuchiwacze Drag & Drop (Dotyk)
     todoList.addEventListener('touchstart', handleTouchStart, { passive: true });
     todoList.addEventListener('touchmove', handleTouchMove, { passive: false });
     todoList.addEventListener('touchend', handleTouchEnd);
 
 
-    return [];
+    return []; // No persistent intervals to clear
 }
