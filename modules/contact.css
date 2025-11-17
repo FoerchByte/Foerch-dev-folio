@@ -1,12 +1,13 @@
-/*
-  EN: This stylesheet is a complete rewrite for the Contact page (Phase 5).
-  It removes all 2-column layout and sidebar styles, focusing only
-  on centering the terminal-style form, matching "image_936cb9.png".
-  PL: Ten arkusz stylów to całkowite przepisanie strony Kontakt (Faza 5).
-  Usuwa wszystkie style dla układu 2-kolumnowego i paska bocznego,
-  skupiając się wyłącznie na wyśrodkowaniu formularza w stylu terminala,
-  zgodnie z "image_936cb9.png".
-*/
+/**
+ * @file modules/contact.css
+ * @description
+ * EN: Styles for the "Contact" page (v2.0).
+ * Implements the "Terminal with Modes" layout, including styles for
+ * the tab switcher and the integrated AI assistant.
+ * PL: Style dla strony "Kontakt" (v2.0).
+ * Implementuje layout "Terminal z Trybami", włączając style
+ * dla przełącznika zakładek i zintegrowanego asystenta AI.
+ */
 
 /* Podtytuł strony (komenda "$ send-message...") */
 .contact-subtitle {
@@ -28,14 +29,13 @@
     border: 1px solid var(--border-color);
 }
 
-/* === ZMIANA FAZY 5: Style dla zakładek === */
+/* Style dla zakładek */
 .terminal-tabs {
     display: flex;
     gap: 1.5rem;
     margin-bottom: 2.5rem; /* Odstęp od treści poniżej */
     padding-left: 0.25rem; 
 }
-/* Kopiujemy style `.filter-btn` z modułu projects dla spójności */
 .terminal-tabs .filter-btn {
     background: none;
     border: none;
@@ -73,7 +73,6 @@
     color: var(--primary-color);
     opacity: 1;
 }
-/* === Koniec stylów zakładek === */
 
 
 /* Pola formularza (dla obu zakładek) */
@@ -190,7 +189,7 @@
     font-family: 'Roboto Mono', monospace;
 }
 
-/* === ZMIANA FAZY 5: Style dla Asystenta AI === */
+/* Style dla Asystenta AI */
 .gemini-content-subtitle {
     font-family: 'Roboto Mono', monospace;
     color: var(--text-secondary);
@@ -217,10 +216,8 @@
     color: var(--text-color);
     line-height: 1.6;
 }
-/* === Koniec stylów AI === */
 
-
-/* === POPRAWKA FAZY 12: Naprawa zakładek na mobilkach === */
+/* Responsywność dla zakładek na mobilkach */
 @media (max-width: 600px) {
     .contact-form-wrapper {
         padding: 1.5rem;
