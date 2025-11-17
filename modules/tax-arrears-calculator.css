@@ -1,13 +1,11 @@
-/*
-  EN: This stylesheet is the visual story of the Statutory Interest Calculator.
-  It provides a structured and professional layout for displaying complex
-  financial data. It is an example of a clean, functional design that enhances
-  data readability.
-  PL: Ten arkusz stylów to wizualna opowieść o kalkulatorze odsetek ustawowych.
-  Zapewnia on ustrukturyzowany i profesjonalny układ do wyświetlania złożonych
-  danych finansowych. Jest to przykład czystego, funkcjonalnego projektu, który
-  poprawia czytelność danych.
-*/
+/**
+ * @file modules/tax-arrears-calculator.css
+ * @description
+ * EN: Stylesheet for the "Tax Arrears Calculator" and "Statutory Interest Calculator".
+ * Provides a structured layout for displaying complex financial data and results.
+ * PL: Arkusz stylów dla "Kalkulatora Odsetek Podatkowych" oraz "Kalkulatora Odsetek Ustawowych".
+ * Zapewnia ustrukturyzowany układ do wyświetlania złożonych danych finansowych i wyników.
+ */
 .tax-calculator {
     background-color: var(--card-background);
     padding: 2rem;
