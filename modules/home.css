@@ -1,22 +1,21 @@
-/*
-  EN: Styles for the "Hero" (home) page.
-  PL: Style dla strony głównej "Hero".
-*/
+/**
+ * @file modules/home.css
+ * @description
+ * EN: Styles for the "Hero" (home) v2.0 page.
+ * Implements the 2-column layout (hero + stats) and styles the stat cards.
+ * PL: Style dla strony głównej "Hero" v2.0.
+ * Implementuje 2-kolumnowy layout (hero + statystyki) oraz stylizuje karty statystyk.
+ */
 
-/*
-  ZMIANA FAZY 24: (Strategic Retreat)
-  1. Wracamy do `align-items: center`, aby kafelki były optycznie wyrównane.
-  2. Usuwamy `padding-top: 5rem`, aby zlikwidować "pustkę".
-*/
 .hero-layout {
     display: grid;
     grid-template-columns: 2fr 1fr; /* Treść zajmuje 2/3, statystyki 1/3 */
     gap: 5rem;
-    align-items: center; /* ZMIANA: Powrót do 'center' */
+    align-items: center; /* Kafelki są optycznie wyrównane */
     min-height: calc(85vh - 100px); /* 85% wysokości ekranu minus nagłówek */
     position: relative;
     padding-bottom: 0; 
-    padding-top: 0; /* ZMIANA: Usunięto padding-top */
+    padding-top: 0;
 }
 
 .hero-content {
@@ -39,15 +38,11 @@
     letter-spacing: -2px;
 }
 
-/* ZMIANA: Styl dla podświetlonego słowa (wstawianego przez span w JS) */
 .hero-title .highlight {
     color: var(--primary-color);
 }
 
-
-/* ZMIANA FAZY 26: Usunięto `.hero-description`.
-  Dodano style dla "Tri-Point Value".
-*/
+/* Sekcja "Tri-Point Value" */
 .hero-value-props {
     margin-top: 2.5rem;
     margin-bottom: 3.5rem;
@@ -111,7 +106,7 @@
     display: grid;
     grid-template-columns: 1fr 1fr; /* Dwie kolumny wewnątrz panelu statystyk */
     gap: 1.5rem;
-    align-self: center; /* ZMIANA: Powrót do 'center' */
+    align-self: center;
 }
 
 .stat-card {
@@ -124,8 +119,8 @@
     flex-direction: column;
     gap: 0.5rem;
     transition: all 0.2s ease-in-out;
-    position: relative; /* ZMIANA: Kontekst dla ikony */
-    overflow: hidden; /* ZMIANA: Ukrycie części ikony */
+    position: relative;
+    overflow: hidden;
 }
 
 .stat-card:hover {
@@ -135,7 +130,7 @@
 }
 
 .stat-icon-wrapper {
-    margin-bottom: 0; /* Usunięto stary margines */
+    margin-bottom: 0;
     position: absolute;
     top: 0.75rem;
     right: 1rem;
@@ -143,7 +138,7 @@
     transition: all 0.3s ease-in-out;
 }
 .stat-icon-wrapper svg {
-    width: 20px; /* ZMIANA: Zmniejszono ikonę */
+    width: 20px;
     height: 20px;
     color: var(--primary-color);
 }
@@ -154,7 +149,7 @@
 
 .stat-value {
     font-family: 'Roboto Mono', monospace;
-    font-size: 2.5rem; /* ZMIANA: Powiększono czcionkę (było 2rem) */
+    font-size: 2.5rem;
     font-weight: 700;
     color: var(--text-color);
     line-height: 1;
@@ -167,8 +162,7 @@
     line-height: 1.4;
     text-transform: uppercase;
     letter-spacing: 0.5px;
-    /* ZMIANA FAZY 24: Wymuszenie równej wysokości etykiet (2.8rem = 2 linie) */
-    min-height: 2.8rem;
+    min-height: 2.8rem; /* Wymuszenie równej wysokości etykiet (2 linie) */
 }
 
 
@@ -199,7 +193,6 @@
         letter-spacing: -1px;
     }
 
-    /* ZMIANA FAZY 26: Dopasowanie "Tri-Point Value" */
     .hero-value-props {
         font-size: 1rem;
         margin-top: 2rem;
@@ -215,7 +208,6 @@
 
 @media (max-width: 480px) {
     .hero-stats {
-        /* ZMIANA FAZY 27: Układ 2x2 na mobilkach */
         grid-template-columns: 1fr 1fr;
     }
 }
