@@ -1,21 +1,17 @@
-// Wymuszenie re-deploy v3 (Poprawka CJS/ESM)
-/*
-  EN: This serverless function acts as a secure intermediary for the Gemini AI API.
-  It protects the API key by keeping it on the server-side, a crucial practice for
-  security. The function processes a user's text prompt, sends it to the AI, and
-  returns a professionally rephrased response, powering the email assistant feature
-  on the contact page.
-  PL: Ta funkcja bezserwerowa pełni rolę bezpiecznego pośrednika dla API Gemini AI.
-  Chronione są klucze API, co jest kluczową praktyką w zakresie bezpieczeństwa.
-  Funkcja przetwarza zapytanie tekstowe użytkownika, wysyła je do AI i zwraca
-  profesjonalnie przeformułowaną odpowiedź, zasilając funkcję asystenta e-mail
-  na stronie kontaktowej.
-*/
+/**
+ * @file netlify/functions/gemini.js
+ * @description
+ * EN: Serverless function (backend) for the Gemini AI API.
+ * Securely forwards prompts from the client, adds the secret API key,
+ * and returns the AI-generated response.
+ * PL: Funkcja Serverless (backend) dla API Gemini AI.
+ * Bezpiecznie przesyła zapytania od klienta, dodaje tajny klucz API
+ * i zwraca odpowiedź wygenerowaną przez AI.
+ */
 
-// === POPRAWKA FAZY 5.4: Używamy składni CommonJS (require) zamiast ESM (import) ===
-// To jest wymagane, ponieważ reszta pliku używa `exports.handler` (składni CJS).
+// Używamy składni CommonJS (require), aby zachować spójność
+// ze środowiskiem Netlify Functions i zależnościami.
 const fetch = require('node-fetch');
-// === Koniec poprawki ===
 
 exports.handler = async function (event, context) {
     
@@ -41,6 +37,7 @@ exports.handler = async function (event, context) {
             return { statusCode: 400, body: JSON.stringify({ error: 'Prompt is required' }) };
         }
 
+        // Prompt systemowy dla Asystenta Komunikacji
         const requestBody = {
             contents: [{
                 parts: [{
@@ -64,7 +61,6 @@ exports.handler = async function (event, context) {
             return { statusCode: response.status, body: JSON.stringify(data) };
         }
         
-        // Poprawka błędu: Czasami Gemini może nie zwrócić `candidates`
         if (!data.candidates || !data.candidates[0] || !data.candidates[0].content || !data.candidates[0].content.parts || !data.candidates[0].content.parts[0].text) {
             console.error('Gemini API Error: Invalid response structure', data);
             throw new Error('Invalid response structure from Gemini API.');
@@ -81,7 +77,6 @@ exports.handler = async function (event, context) {
         console.error('Serverless function error:', error);
         return {
             statusCode: 500,
-            // Zwracamy ogólny błąd do klienta
             body: JSON.stringify({ error: 'Failed to process request on server.' }),
         };
     }
