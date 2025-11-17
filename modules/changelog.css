@@ -1,7 +1,11 @@
-/*
-  EN: Stylesheet for the "Changelog" page.
-  PL: Arkusz stylów dla strony "Changelog".
-*/
+/**
+ * @file modules/changelog.css
+ * @description
+ * EN: Styles for the "Changelog" (v2.0) page.
+ * Styles the bio section, the career timeline, and the tech stack grid.
+ * PL: Style dla strony "Changelog" (v2.0).
+ * Stylizuje sekcję bio, oś czasu kariery oraz siatkę stacku technologicznego.
+ */
 
 /* --- Sekcja Bio (Góra strony) --- */
 .about-me-layout {
@@ -170,8 +174,7 @@ body.light-mode .about-me-photo .photo-dark { opacity: 0; z-index: 1; }
 }
 
 
-/* --- Sekcja "Stack Technologiczny" (Przeniesiona na dół) --- */
-
+/* --- Sekcja "Stack Technologiczny" --- */
 .stack-section {
     margin-top: 6rem; 
     border-top: 1px solid var(--border-color);
@@ -197,8 +200,7 @@ body.light-mode .about-me-photo .photo-dark { opacity: 0; z-index: 1; }
     opacity: 0.8;
 }
 
-/* Logika "Mobile First". To jest styl DOMYŚLNY (tryb portretowy).
-*/
+/* Logika "Mobile First" (styl domyślny) */
 .stack-section .skills-icons {
     display: grid;
     grid-template-columns: repeat(2, 1fr); 
@@ -213,13 +215,9 @@ body.light-mode .about-me-photo .photo-dark { opacity: 0; z-index: 1; }
     text-align: left;
     display: flex;
     flex-direction: row;
-    
-    /* ZMIANA FAZY 35: Kluczowa poprawka wizualna */
-    justify-content: center; /* Zamiast 'flex-start' */
-    
+    justify-content: center;
     align-items: center;
     gap: 1rem; /* Odstęp ikona-tekst */
-    
     height: auto;
     min-height: 80px; 
     font-size: 0.9rem;
@@ -274,23 +272,7 @@ body.light-mode .about-me-photo .photo-dark { opacity: 0; z-index: 1; }
     }
 }
 
-
-@media (max-width: 900px) {
-    .about-me-layout {
-        flex-direction: column;
-        align-items: flex-start; 
-        gap: 3rem;
-    }
-    .about-me-photo {
-        margin: 0 auto;
-        width: 100%;
-        max-width: 350px;
-        height: auto;
-        aspect-ratio: 4/5;
-    }
-}
-
-/* Logika dla trybu HORYZONTALNEGO (Landscape) (nadpisuje "Mobile First") */
+/* Logika dla trybu HORYZONTALNEGO (Landscape) */
 @media (max-height: 500px) and (orientation: landscape) {
     
     .stack-grid {
@@ -312,12 +294,27 @@ body.light-mode .about-me-photo .photo-dark { opacity: 0; z-index: 1; }
         min-height: 90px; 
         font-size: 0.8rem;
         padding: 1rem 0.5rem;
-        
         flex-direction: column;
         justify-content: center;
     }
 
      .stack-section .skill-item svg.tech-icon {
         transform: scale(1.2); 
+    }
+}
+
+/* Media query dla sekcji Bio */
+@media (max-width: 900px) {
+    .about-me-layout {
+        flex-direction: column;
+        align-items: flex-start; 
+        gap: 3rem;
+    }
+    .about-me-photo {
+        margin: 0 auto;
+        width: 100%;
+        max-width: 350px;
+        height: auto;
+        aspect-ratio: 4/5;
     }
 }
