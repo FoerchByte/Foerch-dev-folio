@@ -1,26 +1,26 @@
 <!--
-  EN: The Contact hub (Phase 5).
-  This template implements the "Terminal with Modes" strategy, integrating
-  the Formspree form and the AI Assistant into one unified, tabbed interface.
-  PL: Centrum kontaktu (Faza 5).
-  Ten szablon wdraża strategię "Terminal z Trybami", integrując
-  formularz Formspree i Asystenta AI w jeden spójny, przełączany interfejs.
+  @file pages/contact.html
+  @description
+  EN: Template for the "Contact" page (v2.0).
+  Implements the "Terminal with Modes" layout (Formspree + AI Assistant).
+  PL: Szablon dla strony "Kontakt" (v2.0).
+  Implementuje layout "Terminal z Trybami" (Formspree + Asystent AI).
 -->
 <h2 class="section-title">{{contactTitle}}</h2>
 <p class="contact-subtitle">{{contactContent}}</p>
 
 <!-- 
-  Główny kontener "terminala", który teraz zawiera przełącznik trybów.
+  Główny kontener "terminala", który zawiera przełącznik trybów.
 -->
 <div class="contact-form-wrapper fade-in">
 
-    <!-- ZMIANA FAZY 5: Dodano przełącznik trybów (Tabs) -->
+    <!-- Przełącznik trybów (Tabs) -->
     <div class="terminal-tabs" id="terminal-tabs">
         <button data-tab="form" class="filter-btn active" data-i18n="contactFormTitle">{{contactFormTitle}}</button>
         <button data-tab="ai" class="filter-btn" data-i18n="geminiTitle">{{geminiTitle}}</button>
     </div>
 
-    <!-- ZMIANA FAZY 5: Kontener dla Formularza Formspree -->
+    <!-- Kontener dla Formularza Formspree -->
     <div id="form-content">
         <form id="contact-form">
             <div class="form-group">
@@ -43,7 +43,7 @@
         <div id="form-success-message" class="hidden">{{formSuccess}}</div>
     </div>
 
-    <!-- ZMIANA FAZY 5: Kontener dla Asystenta AI (przywrócony) -->
+    <!-- Kontener dla Asystenta AI -->
     <div id="ai-content" hidden>
         <p class="gemini-content-subtitle" data-i18n="geminiContent">{{geminiContent}}</p>
         <div class="form-group">
