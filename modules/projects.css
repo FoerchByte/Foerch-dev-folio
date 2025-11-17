@@ -1,11 +1,13 @@
-/*
-  EN: Styles for the new "Project Registry" (Phase 4).
-  This CSS implements the Asymmetric Grid (1 featured + N small tiles)
-  and styles the new category filters to look like tags.
-  PL: Style dla nowego "Rejestru Projektów" (Faza 4).
-  Ten CSS implementuje "Siatkę Asymetryczną" (1 wyróżniony + N małych kafelków)
-  i styluje nowe filtry kategorii, aby wyglądały jak tagi.
-*/
+/**
+ * @file modules/projects.css
+ * @description
+ * EN: Styles for the "Project Registry" (v2.0).
+ * Implements the Asymmetric Grid (featured + small tiles)
+ * and styles the category filters and project cards.
+ * PL: Style dla "Rejestru Projektów" (v2.0).
+ * Implementuje "Siatkę Asymetryczną" (wyróżniony + małe kafelki)
+ * oraz stylizuje filtry kategorii i karty projektów.
+ */
 
 .project-subtitle {
     font-family: 'Roboto Mono', monospace;
@@ -14,8 +16,7 @@
     opacity: 0.8;
 }
 
-/* ZMIANA FAZY 4: Style dla nowych filtrów kategorii
-*/
+/* --- Filtry kategorii --- */
 .project-filters {
     display: flex;
     flex-wrap: wrap;
@@ -30,7 +31,7 @@
     padding: 0;
     margin: 0;
     font-family: 'Roboto Mono', monospace;
-    font-size: 1rem; /* Nieco większe niż tagi na kafelkach dla lepszej klikalności */
+    font-size: 1rem;
     color: var(--text-secondary);
     cursor: pointer;
     transition: color 0.2s ease-in-out;
@@ -45,33 +46,28 @@
     font-weight: 500;
 }
 
-/* === NAPRAWA FAZY 4.2: Dodano brakujące nawiasy [ ] dla spójności === */
 .filter-btn::before {
     content: '[';
-    color: var(--text-secondary); /* Domyślny kolor nawiasu */
+    color: var(--text-secondary);
     opacity: 0.7;
     margin-right: 0.2rem;
     transition: all 0.2s;
 }
 .filter-btn::after {
     content: ']';
-    color: var(--text-secondary); /* Domyślny kolor nawiasu */
+    color: var(--text-secondary);
     opacity: 0.7;
     margin-left: 0.2rem;
     transition: all 0.2s;
 }
 
-/* Podświetlanie nawiasów przycisku przy najechaniu lub gdy aktywny */
 .filter-btn:hover::before, .filter-btn:hover::after,
 .filter-btn.active::before, .filter-btn.active::after {
     color: var(--primary-color);
     opacity: 1;
 }
-/* === Koniec naprawy === */
 
-
-/* ZMIANA FAZY 4: Implementacja "Siatki Asymetrycznej"
-*/
+/* --- Siatka Asymetryczna --- */
 .project-grid {
     display: grid;
     /* Domyślnie 3 kolumny dla małych kafelków */
@@ -90,14 +86,13 @@
     grid-column: 1 / -1;
 }
 
-/* 2. STYL KAFLKÓW MAŁYCH (nie wymaga specjalnych reguł siatki) */
+/* 2. STYL KAFLKÓW MAŁYCH (domyślnie zajmuje 1 komórkę) */
 .project-item--small {
-    /* Domyślnie zajmuje 1 komórkę w siatce 3-kolumnowej */
+    /* (brak reguł) */
 }
 
 
-/* WSPÓLNY KAFELEK (dla obu typów)
-*/
+/* --- Wspólny styl Kafelka Projektu --- */
 .project-card-content {
     display: flex;
     flex-direction: column; /* Kluczowe, aby stopka (tagi) była na dole */
@@ -125,8 +120,6 @@
     font-size: 0.85rem;
 }
 
-/* USUNIĘTO: `project-date`, zgodnie z planem */
-
 .project-status {
     display: flex;
     align-items: center;
@@ -144,7 +137,7 @@
     background-color: var(--text-secondary);
 }
 
-/* Kolorowanie kropki statusu (bez zmian) */
+/* Kolorowanie kropki statusu */
 .project-status.status-produkcja::before,
 .project-status.status-production::before {
     background-color: var(--primary-color);
@@ -195,8 +188,6 @@
 }
 .project-item--featured .project-description {
     font-size: 1.1rem;
-    /* === POPRAWKA FAZY 9: Usunięto problematyczną regułę === */
-    /* max-width: 80%; */ 
 }
 
 .project-item--small .project-title {
@@ -207,12 +198,12 @@
 }
 
 
-/* Stopka (bez zmian, działa idealnie) */
+/* Stopka kafelka */
 .project-footer {
     display: flex;
     justify-content: space-between;
     align-items: flex-end; 
-    margin-top: 2rem; /* Zwiększony margines dla "mięsistych" opisów */
+    margin-top: 2rem;
     gap: 1rem;
 }
 
@@ -259,13 +250,12 @@
     background-color: rgba(0, 224, 255, 0.05);
 }
 
-/* Poprawki responsywności dla Siatki Asymetrycznej */
+/* --- Responsywność Siatki Projektów --- */
 @media (max-width: 900px) {
     .project-grid {
         /* Na tabletach przechodzimy na 2 kolumny dla małych kafelków */
         grid-template-columns: repeat(2, 1fr);
     }
-    /* Wyróżniony kafelek nadal zajmuje całą szerokość */
     .project-item--featured {
         grid-column: 1 / -1;
     }
@@ -276,10 +266,6 @@
         /* Na mobilkach wszystko idzie w 1 kolumnę */
         grid-template-columns: 1fr;
     }
-    /* Wyróżniony kafelek wygląda tak samo jak mały */
-    .project-item--featured {
-        grid-column: 1 / -1; /* Już jest 1 / -1 z natury, ale dla pewności */
-    }
 
     .project-item--featured .project-title,
     .project-item--small .project-title {
@@ -289,10 +275,9 @@
     .project-item--featured .project-description,
     .project-item--small .project-description {
         font-size: 0.95rem; /* Ujednolicenie na mobilkach */
-        max-width: 100%; /* Jawne nadpisanie */
+        max-width: 100%;
     }
 
-    /* === POPRAWKA FAZY 10: Naprawa overflow stopki na mobilkach === */
     .project-footer {
         flex-direction: column; /* Układamy tagi i przycisk pionowo */
         align-items: flex-start; /* Wyrównujemy do lewej */
@@ -305,5 +290,4 @@
         width: 100%;
         text-align: center; /* Wyśrodkowujemy tekst w przycisku */
     }
-    /* === Koniec Poprawki Fazy 10 === */
 }
