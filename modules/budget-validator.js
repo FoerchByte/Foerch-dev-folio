@@ -13,12 +13,16 @@
  * Separated for testability (see .test.js).
  * PL: "Czysta" funkcja logiki biznesowej do walidacji danych.
  * Wydzielona dla zapewnienia testowalności (zobacz .test.js).
+ * @param {string} rawData - The raw string data pasted from the textarea.
+ * @returns {object} - A result object { isValid, messageKey, errors, linesChecked }.
  */
 export function validateBudgetDataLogic(rawData) {
     if (!rawData || !rawData.trim()) {
         return { isValid: false, messageKey: 'budgetValidatorEmpty', errors: [], linesChecked: 0 };
     }
 
+    // EN: Filter out empty lines and comment lines (starting with #).
+    // PL: Odfiltruj puste linie i linie komentarzy (zaczynające się od #).
     const lines = rawData.split('\n').filter(line => line.trim() !== '' && !line.trim().startsWith('#'));
 
     if (lines.length === 0) {
@@ -68,11 +72,13 @@ export function initializeBudgetValidator(dependencies) {
      * EN: Handles the click event, runs validation, and renders the result to the DOM.
      * PL: Obsługuje zdarzenie kliknięcia, uruchamia walidację i renderuje wynik w DOM.
      */
-    function validateData() {
+    function handleValidation() {
         const rawData = dataInput.value;
         resultContainer.style.display = 'none';
         resultContent.innerHTML = '';
 
+        // EN: Call the "pure" logic function.
+        // PL: Wywołaj "czystą" funkcję logiki.
         const result = validateBudgetDataLogic(rawData);
 
         if (result.isValid) {
@@ -109,15 +115,11 @@ export function initializeBudgetValidator(dependencies) {
         resultContainer.style.display = 'block';
     }
 
-    validateBtn.addEventListener('click', validateData);
+    validateBtn.addEventListener('click', handleValidation);
 
-    // EN: Export logic function for testing.
-    // PL: Eksportuj funkcję logiki na potrzeby testów.
-    window.validateBudgetDataLogic = validateBudgetDataLogic;
-
-    const cleanup = () => {
-        delete window.validateBudgetDataLogic;
-    }
-
-    return [cleanup];
+    // EN: No cleanup function needed as event listeners are attached to
+    //     elements that are destroyed on route change.
+    // PL: Funkcja czyszcząca nie jest potrzebna, ponieważ nasłuchiwacze
+    //     są podpięte do elementów niszczonych przy zmianie trasy.
+    return [];
 }
