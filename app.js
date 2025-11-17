@@ -1,17 +1,19 @@
 /**
- * app.js - Główny skrypt aplikacji (kontroler/router)
- * Zarządza nawigacją, stanem globalnym i deleguje logikę do modułów.
- * WERSJA Z HISTORY API: Używa "czystych" URL-i bez znaku #.
+ * @file app.js
+ * @description
+ * EN: Main application controller (router). Manages navigation, global state 
+ * (language, theme), and module lazy loading. Uses History API for clean URLs.
+ * PL: Główny kontroler (router) aplikacji. Zarządza nawigacją, stanem globalnym 
+ * (język, motyw) oraz leniwym ładowaniem modułów. Używa History API dla czystych URL-i.
  */
 
 import { translations } from './modules/translations.js';
 
-// --- NOWY MODEL DANYCH PROJEKTÓW ---
-// ZMIANA FAZY 4:
-// 1. "Stacja Pogody" (weather) jest teraz pierwszym elementem, aby stać się 'featured'.
-// 2. Usunięto "przekłamany" klucz `dateKey` ze wszystkich obiektów.
+// EN: Defines the data model for all projects listed in the registry.
+// PL: Definiuje model danych dla wszystkich projektów w rejestrze.
 const projectsData = [
-    // --- WYRÓŻNIONY (FEATURED) ---
+    // EN: The first item is automatically "featured" on the "all" filter.
+    // PL: Pierwszy element jest automatycznie "wyróżniony" na filtrze "all".
     { 
         id: 'weather', 
         category: 'tools',
@@ -129,7 +131,8 @@ let currentLang = localStorage.getItem('lang') || 'pl';
 let currentTheme = localStorage.getItem('theme') || 'light';
 let activeCleanups = [];
 let activeStyleId = null;
-// ZMIANA: Dodano stan dla filtra projektów
+// EN: Stores the currently active filter for the project registry (e.g., 'all', 'specialist').
+// PL: Przechowuje aktualnie aktywny filtr dla rejestru projektów (np. 'all', 'specialist').
 let currentProjectFilter = 'all'; 
 
 // ========================================================================
@@ -138,7 +141,6 @@ let currentProjectFilter = 'all';
 let synth;
 
 function initializeAudio() {
-// ... existing code ...
     if (typeof Tone !== 'undefined' && !synth) {
         synth = new Tone.PolySynth(Tone.Synth, {
             volume: -12,
@@ -149,7 +151,6 @@ function initializeAudio() {
 }
 
 async function playSound(type = 'click') {
-// ... existing code ...
     if (typeof Tone !== 'undefined' && Tone.context.state !== 'running') {
         await Tone.start();
         initializeAudio();
@@ -180,14 +181,12 @@ async function playSound(type = 'click') {
 
 // --- Funkcje pomocnicze ---
 const t = (key, args) => {
-// ... existing code ...
     const langSet = translations[currentLang] || translations['pl'];
     const translation = langSet[key];
     return typeof translation === 'function' ? translation(args) : translation || key;
 }
 
 const showConfirmationModal = (message, onConfirm) => {
-// ... existing code ...
     const modalOverlay = document.createElement('div');
     modalOverlay.className = 'modal-overlay';
     modalOverlay.innerHTML = `
@@ -207,7 +206,6 @@ const showConfirmationModal = (message, onConfirm) => {
 }
 
 async function fetchAndRenderTemplate(route) {
-// ... existing code ...
     let templateFile = route;
     
     try {
@@ -227,25 +225,24 @@ async function fetchAndRenderTemplate(route) {
 }
 
 function setTheme(theme) {
-// ... existing code ...
     document.body.classList.toggle('light-mode', theme === 'light');
     localStorage.setItem('theme', theme);
     currentTheme = theme;
 }
 
 /**
- * ZMIANA FAZY 4:
- * Przepisanie funkcji renderProjects, aby:
- * 1. Renderowała do `#project-grid` (DIV) zamiast `#project-registry-list` (UL).
- * 2. Obsługiwała filtrowanie na podstawie `currentProjectFilter`.
- * 3. Nadawała klasy `.project-item--featured` i `.project-item--small`.
- * 4. Usunęła renderowanie `project-date` (klucz `dateKey` został usunięty z danych).
+ * @description
+ * EN: Renders the project grid based on the `currentProjectFilter`.
+ * The first item in the 'all' view is given a 'featured' class.
+ * PL: Renderuje siatkę projektów na podstawie `currentProjectFilter`.
+ * Pierwszy element w widoku 'all' otrzymuje klasę 'featured'.
  */
 function renderProjects() {
     const projectsGrid = document.getElementById('project-grid');
     if (!projectsGrid) return;
 
-    // 1. Logika filtrowania
+    // EN: Filter projects based on the global state.
+    // PL: Filtrowanie projektów na podstawie stanu globalnego.
     const filteredProjects = projectsData.filter(p => 
         currentProjectFilter === 'all' || p.category === currentProjectFilter
     );
@@ -269,14 +266,14 @@ function renderProjects() {
                </a>`
             : '';
 
-        // 2. Logika klas (Siatka Asymetryczna)
-        // Jeśli filtr jest "all", pierwszy element (Stacja Pogody) jest wyróżniony.
-        // Jeśli aktywny jest jakikolwiek inny filtr, wszystkie są małe.
+        // EN: Asymmetric grid logic: first item is 'featured' only on 'all' filter.
+        // PL: Logika siatki asymetrycznej: pierwszy element jest 'wyróżniony' tylko na filtrze 'all'.
         const itemClass = (index === 0 && currentProjectFilter === 'all') 
             ? 'project-item--featured' 
             : 'project-item--small';
 
-        // 3. Renderowanie HTML (DIV zamiast LI, usunięta data)
+        // EN: Render the project card HTML.
+        // PL: Renderowanie HTML karty projektu.
         return `
             <div class="project-item ${itemClass}">
                 <div class="project-card-content"> 
@@ -306,7 +303,6 @@ function renderProjects() {
 
 
 function loadStyle(path) {
-// ... existing code ...
     const styleId = `style-${path.split('/').pop().split('.')[0]}`;
     if (document.getElementById(styleId)) return;
     const link = document.createElement('link');
@@ -318,14 +314,12 @@ function loadStyle(path) {
 }
 
 function unloadStyle(id) {
-// ... existing code ...
     if (!id) return;
     const link = document.getElementById(id);
     if (link) link.remove();
 }
 
 function renderStaticContent() {
-// ... existing code ...
     document.documentElement.lang = currentLang;
     
     document.querySelectorAll('#main-nav a[data-i18n]').forEach(link => {
@@ -337,9 +331,10 @@ function renderStaticContent() {
 }
 
 function getRouteFromPathname() {
-// ... existing code ...
     const path = window.location.pathname;
     if (path === '/') return 'home';
+    // EN: Redirect old '/about' route to new '/changelog' route.
+    // PL: Przekieruj stary link '/about' na nowy '/changelog'.
     if (path === '/about') {
         window.history.replaceState({}, '', '/changelog'); 
         return 'changelog';
@@ -348,7 +343,6 @@ function getRouteFromPathname() {
 }
 
 async function renderContent(isInitialLoad = false) {
-// ... existing code ...
     const contentContainer = document.getElementById('app-content');
     const route = getRouteFromPathname();
 
@@ -358,6 +352,8 @@ async function renderContent(isInitialLoad = false) {
         await new Promise(resolve => setTimeout(resolve, 300));
     }
 
+    // EN: Cleanup old module styles and event listeners.
+    // PL: Czyszczenie starych stylów modułu i nasłuchiwaczy zdarzeń.
     unloadStyle(activeStyleId);
     activeStyleId = null;
     activeCleanups.forEach(cleanup => cleanup());
@@ -373,10 +369,12 @@ async function renderContent(isInitialLoad = false) {
 }
 
 function loadModuleStyle(route) {
-// ... existing code ...
     const projectRoutes = projectsData.map(p => p.id);
     let styleToLoad = null;
+
     if (projectRoutes.includes(route)) {
+        // EN: Special case: statutory interest calculator reuses tax calculator styles.
+        // PL: Przypadek specjalny: kalkulator odsetek ustawowych używa stylów kalkulatora podatkowego.
         if (route === 'statutory-interest-calculator') {
             styleToLoad = 'tax-arrears-calculator';
         } else {
@@ -391,51 +389,57 @@ function loadModuleStyle(route) {
     } else if (route === 'projects') { 
         styleToLoad = 'projects';
     }
+
     if (styleToLoad) {
         loadStyle(`./modules/${styleToLoad}.css`);
     }
 }
 
 function initializeChangelogPage() {
-// ... existing code ...
+    // EN: Event listeners for the changelog page (bio section).
+    // PL: Nasłuchiwacze zdarzeń dla strony changelog (sekcja bio).
     return [];
 }
 
 async function attachEventListeners(route) {
+    // EN: Dependencies injected into each module.
+    // PL: Zależności wstrzykiwane do każdego modułu.
     const dependencies = { t, showConfirmationModal, playSound };
     
+    // EN: Module loader map.
+    // PL: Mapa ładowania modułów.
     const routeInitializers = {
         'home': () => { return []; }, 
         'changelog': () => initializeChangelogPage(),
         
-        // ZMIANA FAZY 4: Nowa logika dla strony /projects
         'projects': () => {
-            // 1. Renderuj wstępną siatkę (domyślnie 'all')
+            // EN: Initial render of the project grid.
+            // PL: Wstępne renderowanie siatki projektów.
             renderProjects(); 
             
-            // 2. Dodaj logikę do kontenera filtrów
+            // EN: Attach listener to the filter container.
+            // PL: Podpięcie nasłuchiwacza do kontenera filtrów.
             const filtersContainer = document.querySelector('.project-filters');
             if (filtersContainer) {
                 filtersContainer.addEventListener('click', e => {
                     if (e.target.tagName === 'BUTTON') {
                         playSound('click');
-                        // Pobierz nowy filtr
                         currentProjectFilter = e.target.dataset.filter;
                         
-                        // Zaktualizuj aktywny przycisk
                         filtersContainer.querySelector('button.active').classList.remove('active');
                         e.target.classList.add('active');
                         
-                        // Przerenderuj siatkę z nowym filtrem
+                        // EN: Re-render the grid with the new filter.
+                        // PL: Ponowne renderowanie siatki z nowym filtrem.
                         renderProjects();
                     }
                 });
             }
-            return []; // Nie ma potrzeby czyszczenia listenera, bo jest na #app-content
+            return [];
         },
         
+        // --- Lazy-loaded project modules ---
         'todo': async () => { const { initializeTodoApp } = await import('./modules/todo.js'); return initializeTodoApp(dependencies); },
-// ... existing code ...
         'weather': async () => { const { initializeWeatherApp } = await import('./modules/weather.js'); return initializeWeatherApp(dependencies); },
         'currency-calculator': async () => { const { initializeCurrencyCalculator } = await import('./modules/currency.js'); return initializeCurrencyCalculator(dependencies); },
         'markdown-editor': async () => { const { initializeMarkdownEditor } = await import('./modules/markdown.js'); return initializeMarkdownEditor(dependencies); },
@@ -452,14 +456,12 @@ async function attachEventListeners(route) {
     };
 
     if (routeInitializers[route]) {
-// ... existing code ...
         const cleanups = await routeInitializers[route]();
         if (Array.isArray(cleanups)) activeCleanups = cleanups;
     }
 }
 
 function updateActiveNavLink(activeRoute) {
-// ... existing code ...
     const projectRoutes = projectsData.map(p => p.id);
     
     document.querySelectorAll('.main-nav a').forEach(link => {
@@ -471,13 +473,14 @@ function updateActiveNavLink(activeRoute) {
         if (linkRoute === activeRoute) {
             link.classList.add('nav-active');
         } else if (linkRoute === 'projects' && projectRoutes.includes(activeRoute)) {
+            // EN: Keep 'Projects' link active when viewing a single project.
+            // PL: Utrzymaj link 'Projekty' aktywny podczas oglądania pojedynczego projektu.
             link.classList.add('nav-active');
         }
     });
 }
 
 function navigate(path) {
-// ... existing code ...
     if (window.location.pathname === path) return;
     
     window.history.pushState({}, '', path);
@@ -485,7 +488,8 @@ function navigate(path) {
 }
 
 function initializeApp() {
-// ... existing code ...
+    // EN: Set theme based on localStorage or system preference (defaults to dark).
+    // PL: Ustaw motyw na podstawie localStorage lub preferencji systemowych (domyślnie ciemny).
     const savedTheme = localStorage.getItem('theme');
     const defaultTheme = 'dark'; 
     setTheme(savedTheme || defaultTheme);
@@ -496,7 +500,6 @@ function initializeApp() {
     });
     
     document.getElementById('lang-switcher').addEventListener('click', e => {
-// ... existing code ...
         if (e.target.tagName === 'BUTTON') {
             const lang = e.target.dataset.lang;
             if (lang !== currentLang) {
@@ -509,10 +512,13 @@ function initializeApp() {
         }
     });
 
+    // EN: Handle browser back/forward navigation.
+    // PL: Obsługa nawigacji wstecz/do przodu w przeglądarce.
     window.addEventListener('popstate', () => renderContent());
 
+    // EN: Hijack local links to use the SPA router.
+    // PL: Przechwytywanie lokalnych linków, aby użyć routera SPA.
     document.addEventListener('click', e => {
-// ... existing code ...
         const link = e.target.closest('a');
         if (link && 
             link.origin === window.location.origin && 
@@ -520,6 +526,8 @@ function initializeApp() {
             !e.ctrlKey && !e.metaKey && 
             link.target !== '_blank') 
         {
+            // EN: Exception for external links in project cards.
+            // PL: Wyjątek dla zewnętrznych linków na kartach projektów.
             if (link.classList.contains('project-external-link')) {
                 return; 
             }
@@ -529,20 +537,23 @@ function initializeApp() {
         }
     });
 
+    // EN: Initial render on page load.
+    // PL: Pierwsze renderowanie po załadowaniu strony.
     renderStaticContent();
-// ... existing code ...
     renderContent(true);
 
+    // EN: Mobile menu logic.
+    // PL: Logika menu mobilnego.
     const menuToggle = document.getElementById('menu-toggle');
     const siteHeader = document.querySelector('.site-header');
     const navWrapper = document.getElementById('nav-wrapper');
     menuToggle.addEventListener('click', () => {
-// ... existing code ...
         siteHeader.classList.toggle('nav-open');
         menuToggle.setAttribute('aria-expanded', siteHeader.classList.contains('nav-open'));
     });
     navWrapper.addEventListener('click', (e) => {
-// ... existing code ...
+        // EN: Close mobile menu on link or button click.
+        // PL: Zamknij menu mobilne po kliknięciu linku lub przycisku.
         if (e.target.tagName === 'A' || e.target.closest('button')) {
             siteHeader.classList.remove('nav-open');
             menuToggle.setAttribute('aria-expanded', 'false');
@@ -550,4 +561,5 @@ function initializeApp() {
     });
 }
 
+// --- Uruchomienie aplikacji ---
 initializeApp();
