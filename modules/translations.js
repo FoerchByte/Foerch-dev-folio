@@ -31,6 +31,7 @@ export const translations = {
         navProjects: "Projekty",
         navChangelog: "Changelog",
         navContact: "Kontakt",
+        navRoiCalc: "Kalkulator ROI",
         
         backToProjects: "‹ Wróć do rejestru",
         
@@ -40,7 +41,7 @@ export const translations = {
         aboutDesc1: "Jestem inżynierem, który nie godzi się na \"tak zawsze robiliśmy\". Specjalizuję się w identyfikacji wąskich gardeł w procesach biznesowych i ich bezlitosnej automatyzacji.",
         aboutDesc2: "Łączę twarde kompetencje analityczne (VBA, Power Query, Excel) z nowoczesnym stackiem webowym (JavaScript, API), tworząc narzędzia, które oszczędzają setki godzin pracy rocznie. Moim celem jest budowanie systemów, które działają dla ludzi, a nie odwrotnie.",
         aboutSkillsTitle: "Stack Technologiczny",
-        skillsHeaderData: "// Automatyja i Analiza Danych",
+        skillsHeaderData: "// Automatyzacja i Analiza Danych",
         skillsHeaderFrontend: "// Frontend Development",
 
         aboutCtaProjects: "ZOBACZ_CASE_STUDIES",
@@ -87,99 +88,90 @@ export const translations = {
         projectsTitle: "Rejestr Projektów",
         projectsSubtitle: "SELECT * FROM projects WHERE status IN ('Produkcja', 'Wdrożony', 'Koncepcja') ORDER BY impact DESC;",
 
-        // === ZMIANA: Zredagowane, "mięsiste" opisy ===
-
         // 1. Agregator
         aggregatorTitle: "Agregator Rozliczeń Projektowych",
         aggregatorDesc: "Narzędzie klienckie (JS/SheetJS) automatyzujące proces agregacji danych z wielu plików `.xlsx`. Odwzorowuje logikę biznesową procesów księgowych.",
         aggregatorStatus: "PRODUKCJA",
-        aggregatorDate: "2023-Q4", // USUNIEMY TEN KLUCZ W NASTĘPNYM KROKU
         aggregatorTags: "JavaScript SheetJS Automatyzacja DOM",
 
         // 2. Odsetki Podatkowe
         taxArrearsTitle: "Kalkulator Odsetek Podatkowych",
         taxArrearsDesc: "Implementacja logiki biznesowej (Ordynacja Podatkowa) do precyzyjnego obliczania odsetek podatkowych ze zmiennymi stawkami.",
         taxArrearsStatus: "PRODUKCJA",
-        taxArrearsDate: "2023-Q2",
         taxArrearsTags: "JavaScript Logika-Biznesowa Finanse",
         
         // 3. Odsetki Ustawowe
         statutoryInterestTitle: "Kalkulator Odsetek Ustawowych",
         statutoryInterestDesc: "Kalkulator odsetek ustawowych i handlowych z pełną historią dynamicznie zmieniających się stawek (dane NBP).",
         statutoryInterestStatus: "PRODUKCJA",
-        statutoryInterestDate: "2023-Q3",
         statutoryInterestTags: "JavaScript Logika-Biznesowa Finanse",
 
         // 4. Walidator Budżetu
         budgetValidatorTitle: "Walidator Danych Budżetowych",
         budgetValidatorDesc: "Narzędzie do szybkiej weryfikacji spójności danych (liczby kolumn) skopiowanych bezpośrednio z Excela. Oszczędza czas na manualnym debugowaniu.",
         budgetValidatorStatus: "WDROŻONY",
-        budgetValidatorDate: "2023-Q1",
         budgetValidatorTags: "JavaScript DOM Narzędzie",
 
         // 5. Stacja Pogody
         weatherTitle: "Stacja Pogody",
         weatherDesc: "Aplikacja z prognozą 5-dniową/24h. Wykorzystuje geolokalizację oraz architekturę serverless (Netlify Functions) do bezpiecznego ukrywania kluczy API.",
-        weatherStatus: "PRODUKCJA", // ZMIANA STATUSU
-        weatherDate: "2024-Q1",
+        weatherStatus: "PRODUKCJA",
         weatherTags: "JavaScript API Serverless Netlify",
         weatherLinkDesc: "Zobacz Wdrożenie Live ↗",
 
         // 6. Lista Zadań
         todoTitle: "Aplikacja \"Lista Zadań\"",
         todoDesc: "Zaawansowane To-Do z filtrowaniem, edycją, zapisem w `localStorage` oraz pełną obsługą gestów mobilnych (touch drag-n-drop).",
-        todoStatus: "WDROŻONY", // ZMIANA STATUSU
-        todoDate: "2024-Q2",
+        todoStatus: "WDROŻONY",
         todoTags: "JavaScript DOM UI/UX LocalStorage",
 
         // 7. Kalkulator Walut
         currencyCalcTitle: "Kalkulator Walut",
         currencyCalcDesc: "Przelicznik walut pobierający kursy na żywo z publicznego API (Frankfurter.app) i obsługujący błędy sieciowe.",
         currencyCalcStatus: "WDROŻONY",
-        currencyCalcDate: "2023-Q4",
         currencyCalcTags: "JavaScript API Fetch",
 
         // 8. Pomodoro
         pomodoroTimerTitle: "Asystent Pomodoro",
         pomodoroTimerDesc: "Narzędzie do zarządzania czasem (technika Pomodoro) z konfigurowalnymi cyklami, stanem w `localStorage` i powiadomieniami audio (Tone.js).",
         pomodoroTimerStatus: "WDROŻONY",
-        pomodoroTimerDate: "2024-Q1",
         pomodoroTimerTags: "JavaScript DOM Audio-API",
 
         // 9. Agency
         agencyTitle: "Projekt \"Creative Agency\"",
         agencyDesc: "Techniczne demo demonstrujące zaawansowane, w pełni responsywne układy (CSS Grid/Flexbox) oraz dynamiczny slider JS.",
         agencyStatus: "KONCEPCJA",
-        agencyDate: "2023-Q3",
         agencyTags: "HTML5 CSS3 Flexbox Grid",
 
         // 10. Edytor Markdown
         markdownEditorTitle: "Edytor Markdown",
         markdownEditorDesc: "Edytor tekstu z podglądem na żywo (Marked.js), analizą treści w czasie rzeczywistym i synchronizacją przewijania.",
-        markdownEditorStatus: "WDROŻONY", // ZMIANA STATUSU
-        markdownEditorDate: "2023-Q4",
+        markdownEditorStatus: "WDROŻONY",
         markdownEditorTags: "JavaScript DOM Marked.js",
 
         // 11. Snake
         snakeGameTitle: "Gra w Węża",
         snakeGameDesc: "Implementacja klasycznej pętli gry (game loop) i detekcji kolizji na elemencie HTML Canvas. Obsługuje klawiaturę i gesty mobilne.",
         snakeGameStatus: "GRYWALNY",
-        snakeGameDate: "2024-Q2",
         snakeGameTags: "JavaScript HTML-Canvas GameDev",
 
         // 12. Tic-Tac-Toe
         ticTacToeTitle: "Kółko i Krzyżyk",
         ticTacToeDesc: "Implementacja logiki gry z zarządzaniem stanem, oferująca tryb Gracz vs Gracz oraz Gracz vs Komputer (proste AI).",
         ticTacToeStatus: "GRYWALNY",
-        ticTacToeDate: "2024-Q1",
         ticTacToeTags: "JavaScript GameDev AI",
 
         // 13. Memory Game
         memoryGameTitle: "Gra Pamięciowa",
         memoryGameDesc: "Gra trenująca pamięć (dopasowywanie par) z licznikiem ruchów, timerem, dźwiękami (Tone.js) i dynamicznym generowaniem planszy.",
         memoryGameStatus: "GRYWALNY",
-        memoryGameDate: "2024-Q1",
         memoryGameTags: "JavaScript DOM GameDev",
+
+        // 14. ROI Calculator
+        roiCalculatorTitle: "Kalkulator ROI z Automatyzacji",
+        roiCalculatorDesc: "Narzędzie biznesowe wyliczające zwrot z inwestycji w automatyzację procesów. Pomaga uświadomić klientom realne oszczędności czasu i pieniędzy.",
+        roiCalculatorStatus: "PRODUKCJA",
+        roiCalculatorTags: "JavaScript Logika-Biznesowa Finanse Bento",
 
         
         // --- Strony Pojedynczych Projektów ---
@@ -190,7 +182,6 @@ export const translations = {
         projectsCategoryCreative: "Kreatywne",
         projectsCategoryGames: "Gry",
         
-        budgetValidatorTitle: "Walidator Danych Budżetowych",
         budgetValidatorSubtitle: "Wklej poniżej dane skopiowane np. z programu Excel (rozdzielane tabulatorami). Narzędzie sprawdzi, czy każdy wiersz ma taką samą liczbę kolumn.",
         budgetValidatorTextareaLabel: "Dane do walidacji",
         budgetValidatorValidateBtn: "Waliduj dane",
@@ -200,7 +191,6 @@ export const translations = {
         budgetValidatorErrorLine: ({ line, expected, found }) => `Błąd w wierszu ${line}: Oczekiwano ${expected} kolumn, znaleziono ${found}.`,
         budgetValidatorEmpty: "Pole z danymi jest puste.",
         
-        statutoryInterestTitle: "Kalkulator Odsetek Ustawowych",
         statutoryInterestTypeLabel: "Rodzaj odsetek",
         statutoryInterestStandard: "Ustawowe za opóźnienie",
         statutoryInterestCommercial: "W transakcjach handlowych",
@@ -209,7 +199,6 @@ export const translations = {
         statutoryInterestEndDateLabel: "Data zapłaty / dzień obliczenia",
         statutoryInterestDataSource: "Stawki odsetek zgodne z obwieszczeniami Ministra Sprawiedliwości i danymi NBP.",
         
-        aggregatorTitle: "Agregator Rozliczeń Projektowych",
         aggregatorSubtitle: "Wersja demonstracyjna na potrzeby portfolio. Wgraj przykładowe pliki, aby wygenerować raport.",
         aggregatorStep1: "1. Wskaż źródła danych",
         aggregatorStep2: "2. Wprowadź informacje o projektach",
@@ -227,13 +216,13 @@ export const translations = {
         aggregatorErrorBase: "Proszę wprowadzić bazę nazw projektów.",
         aggregatorErrorNoData: "Nie znaleziono pasujących danych w przesłanych plikach.",
         
-        todoTitle: "Lista Zadań", todoPlaceholder: "Co jest do zrobienia?", todoAddBtn: "Dodaj",
+        todoPlaceholder: "Co jest do zrobienia?", todoAddBtn: "Dodaj",
         todoCounter: (count) => `${count} zadań pozostało`,
         todoFilterAll: "Wszystkie", todoFilterActive: "Aktywne", todoFilterCompleted: "Ukończone",
         todoClearCompleted: "Wyczyść ukończone", todoConfirmClear: (count) => `Czy na pewno chcesz usunąć ${count} ukończonych zadań?`,
         confirmYes: "Tak", confirmNo: "Anuluj",
         
-        weatherTitle: "Stacja Pogody", weatherPlaceholder: "Wpisz nazwę miasta...", weatherSearchBtn: "Szukaj",
+        weatherPlaceholder: "Wpisz nazwę miasta...", weatherSearchBtn: "Szukaj",
         weatherGeoBtn: "Użyj mojej lokalizacji",
         weatherForecastTitle: "Prognoza na 5 dni",
         weatherHourlyForecastTitle: "Prognoza godzinowa",
@@ -248,7 +237,6 @@ export const translations = {
         
         currencyTitle: "Kalkulator Walut", currencyAmount: "Kwota", currencyFrom: "Z", currencyTo: "Na", currencyDataSource: "Kursy walut dostarczane przez Frankfurter.app",
         
-        markdownEditorTitle: "Zaawansowany Edytor Markdown",
         markdownEditorSubtitle: "Skorzystaj z paska narzędzi, aby szybko formatować tekst. Podgląd aktualizuje się na żywo i synchronizuje z edytorem.",
         markdownHowToUse: "Wskazówka: Zaznacz tekst, a następnie kliknij przycisk, aby zastosować formatowanie.",
         markdownBold: "Pogrubienie",
@@ -259,24 +247,24 @@ export const translations = {
         markdownWords: "Słowa",
         markdownCharacters: "Znaki",
         
-        pomodoroTimerTitle: "Asystent Pomodoro", pomodoroModeWork: "Praca", pomodoroModeShortBreak: "Krótka Przerwa", pomodoroModeLongBreak: "Długa Przerwa", pomodoroStart: "Start", pomodoroPause: "Pauza", pomodoroReset: "Reset",
+        pomodoroModeWork: "Praca", pomodoroModeShortBreak: "Krótka Przerwa", pomodoroModeLongBreak: "Długa Przerwa", pomodoroStart: "Start", pomodoroPause: "Pauza", pomodoroReset: "Reset",
         pomodoroSettingsTitle: "Ustawienia", pomodoroWorkLabel: "Czas pracy (min)", pomodoroShortBreakLabel: "Krótka przerwa (min)", pomodoroLongBreakLabel: "Długa przerwa (min)", pomodoroSaveSettings: "Zapisz",
         pomodoroSettingsSaved: "Zapisano!",
         pomodoroCyclesTitle: "Ukończone cykle (cel: 4)",
         
-        ticTacToeTitle: "Gra w Kółko i Krzyżyk", ticTacToeTurn: (player) => `Ruch gracza: ${player}`, ticTacToeWinner: (player) => `Wygrywa gracz ${player}!`, ticTacToeDraw: "Remis!", ticTacToeRestart: "Zagraj ponownie",
+        ticTacToeTurn: (player) => `Ruch gracza: ${player}`, ticTacToeWinner: (player) => `Wygrywa gracz ${player}!`, ticTacToeDraw: "Remis!", ticTacToeRestart: "Zagraj ponownie",
         ticTacToeModePVP: "Gracz vs Gracz", ticTacToeModePVC: "Gracz vs Komputer", ticTacToeScore: "Wynik", ticTacToeChooseSide: "Wybierz swoją stronę:", ticTacToePlay: "Rozpocznij grę",
         
-        memoryGameTitle: "Gra Pamięciowa", memoryGameMoves: "Ruchy", memoryGameTime: "Czas", memoryGameRestart: "Zagraj ponownie",
+        memoryGameMoves: "Ruchy", memoryGameTime: "Czas", memoryGameRestart: "Zagraj ponownie",
         memoryGameWin: ({ moves, time }) => `Gratulacje! Wygrałeś w ${moves} ruchach i czasie ${time}s!`,
         
-        snakeGameTitle: "Gra w Węża", snakeGameScore: "Wynik", snakeGameHighScore: "Najlepszy wynik", snakeGamePause: "PAUZA", snakeGameOver: "Koniec gry!", snakeGameRestart: "Zagraj ponownie",
+        snakeGameScore: "Wynik", snakeGameHighScore: "Najlepszy wynik", snakeGamePause: "PAUZA", snakeGameOver: "Koniec gry!", snakeGameRestart: "Zagraj ponownie",
         snakeGameStartMsg: "Naciśnij klawisz lub przesuń palcem, aby rozpocząć",
         snakeGameControls: "Sterowanie: Klawisze strzałek, WSAD lub gesty. Pauza: Spacja.",
         
-        agencyTitle: "Kreatywna Agencja", agencyHeroTitle: "Tworzymy cyfrowe doświadczenia.", agencyHeroSubtitle: "Specjalizujemy się w projektowaniu stron internetowych, brandingu i marketingu online, które pomagają Twojej firmie rosnąć.",
+        agencyHeroTitle: "Tworzymy cyfrowe doświadczenia.", agencyHeroSubtitle: "Specjalizujemy się w projektowaniu stron internetowych, brandingu i marketingu online, które pomagają Twojej firmie rosnąć.",
         agencyServicesTitle: "Nasze Usługi", service1Title: "Web Design", service1Desc: "Nowoczesne i responsywne strony internetowe.", service2Title: "Branding", service2Desc: "Tworzenie silnej i spójnej tożsamości marki.", service3Title: "Marketing Online", service3Desc: "Zwiększanie widoczności w internecie.",
-        agencyProcessTitle: "Nasz Proces Pracy", processStep1Title: "Odkrycie", processStep1Desc: "Analizujemy Twoje potrzeby i cele.", processStep2Title: "Projekt", processStep2Desc: "Tworzymy strategie i makiety.", processStep3Title: "Realizacja", processStep3Desc: "Budujemy i programujemy rozwiązanie.", processStep4Title: "Wdrożenie", processStep4Desc: "Uruchamiamy projekt i zapewniamy wsparcie.",
+        agencyProcessTitle: "Nasze Proces Pracy", processStep1Title: "Odkrycie", processStep1Desc: "Analizujemy Twoje potrzeby i cele.", processStep2Title: "Projekt", processStep2Desc: "Tworzymy strategie i makiety.", processStep3Title: "Realizacja", processStep3Desc: "Budujemy i programujemy rozwiązanie.", processStep4Title: "Wdrożenie", processStep4Desc: "Uruchamiamy projekt i zapewniamy wsparcie.",
         agencyPortfolioTitle: "Nasze Portfolio", portfolioItem1: "Branding dla Firmy A", portfolioItem2: "Strona dla Firmy B", portfolioItem3: "Aplikacja dla Firmy C", portfolioItem4: "Marketing dla Firmy D", portfolioItem5: "Sklep E-commerce dla Firmy E", portfolioItem6: "Identyfikacja Wizualna dla Firmy F",
         agencyStatsTitle: "Zaufali nam w liczbach", statsClients: "Zadowolonych Klientów", statsProjects: "Ukończonych Projektów", statsCoffee: "Wypitych Kaw",
         agencyTeamTitle: "Nasz Zespół", teamMember1Name: "Piotr Wiśniewski", teamMember1Role: "CEO & Founder", teamMember2Name: "Jan Nowak", teamMember2Role: "Lead Designer", teamMember3Name: "Anna Kowalska", teamMember3Role: "Lead Developer",
@@ -308,7 +296,6 @@ export const translations = {
         
         loading: "Przetwarzanie...",
 
-        taxArrearsTitle: "Kalkulator Odsetek za Zwłokę",
         taxArrearsAmountLabel: "Kwota zaległości (PLN)",
         taxArrearsStartDateLabel: "Termin płatności",
         taxArrearsEndDateLabel: "Data wpłaty / dzień obliczenia",
@@ -359,6 +346,7 @@ export const translations = {
         navProjects: "Projects",
         navChangelog: "Changelog",
         navContact: "Contact",
+        navRoiCalc: "ROI Calculator",
 
         backToProjects: "‹ Back to registry",
 
@@ -415,99 +403,90 @@ export const translations = {
         projectsTitle: "Project Registry",
         projectsSubtitle: "SELECT * FROM projects WHERE status IN ('Production', 'Deployed', 'Concept') ORDER BY impact DESC;",
         
-        // === ZMIANA: Zredagowane, "mięsiste" opisy (EN) ===
-
         // 1. Agregator
         aggregatorTitle: "Project Settlement Aggregator",
         aggregatorDesc: "Client-side tool (JS/SheetJS) automating data aggregation from multiple `.xlsx` files. Replicates business logic of accounting processes.",
         aggregatorStatus: "PRODUCTION",
-        aggregatorDate: "2023-Q4", // USUNIEMY TEN KLUCZ W NASTĘPNYM KROKU
         aggregatorTags: "JavaScript SheetJS Automation DOM",
 
         // 2. Tax Arrears
         taxArrearsTitle: "Tax Interest Calculator",
         taxArrearsDesc: "Implementation of business logic (Tax Ordinance) for precise calculation of tax interest with variable historical rates.",
         taxArrearsStatus: "PRODUCTION",
-        taxArrearsDate: "2023-Q2",
         taxArrearsTags: "JavaScript Business-Logic Finance",
         
         // 3. Statutory Interest
         statutoryInterestTitle: "Statutory Interest Calculator",
         statutoryInterestDesc: "Calculates statutory and commercial interest with a full history of dynamically changing rates (NBP data).",
         statutoryInterestStatus: "PRODUCTION",
-        statutoryInterestDate: "2023-Q3",
         statutoryInterestTags: "JavaScript Business-Logic Finance",
 
         // 4. Budget Validator
         budgetValidatorTitle: "Budget Data Validator",
         budgetValidatorDesc: "A utility tool for rapid consistency verification (column count) of data copied directly from Excel. Saves time on manual debugging.",
         budgetValidatorStatus: "DEPLOYED",
-        budgetValidatorDate: "2023-Q1",
         budgetValidatorTags: "JavaScript DOM Utility",
 
         // 5. Weather Station
         weatherTitle: "Weather Station",
         weatherDesc: "5-day/24h forecast app. Utilizes geolocation and a serverless architecture (Netlify Functions) for secure API key management.",
-        weatherStatus: "PRODUCTION", // ZMIANA STATUSU
-        weatherDate: "2024-Q1",
+        weatherStatus: "PRODUCTION",
         weatherTags: "JavaScript API Serverless Netlify",
         weatherLinkDesc: "See Live Deployment ↗",
 
         // 6. To-Do List
         todoTitle: "To-Do List App",
         todoDesc: "Advanced To-Do with filtering, editing, `localStorage` persistence, and full mobile touch gesture support (touch drag-n-drop).",
-        todoStatus: "DEPLOYED", // ZMIANA STATUSU
-        todoDate: "2024-Q2",
+        todoStatus: "DEPLOYED",
         todoTags: "JavaScript DOM UI/UX LocalStorage",
 
         // 7. Currency Calculator
         currencyCalcTitle: "Currency Calculator",
         currencyCalcDesc: "Currency converter fetching live rates from a public API (Frankfurter.app) and handling network errors.",
         currencyCalcStatus: "DEPLOYED",
-        currencyCalcDate: "2023-Q4",
         currencyCalcTags: "JavaScript API Fetch",
 
         // 8. Pomodoro
         pomodoroTimerTitle: "Pomodoro Assistant",
         pomodoroTimerDesc: "Time management tool (Pomodoro technique) with configurable cycles, `localStorage` state, and audio cues (Tone.js).",
         pomodoroTimerStatus: "DEPLOYED",
-        pomodoroTimerDate: "2024-Q1",
         pomodoroTimerTags: "JavaScript DOM Audio-API",
 
         // 9. Agency
         agencyTitle: "Project \"Creative Agency\"",
         agencyDesc: "A technical demo showcasing advanced, fully responsive layouts (CSS Grid/Flexbox) and a dynamic JS slider.",
         agencyStatus: "CONCEPT",
-        agencyDate: "2023-Q3",
         agencyTags: "HTML5 CSS3 Flexbox Grid",
 
         // 10. Markdown Editor
         markdownEditorTitle: "Markdown Editor",
         markdownEditorDesc: "Text editor with a live preview (Marked.js), real-time content analysis, and synchronized scrolling.",
-        markdownEditorStatus: "DEPLOYED", // ZMIANA STATUSU
-        markdownEditorDate: "2023-Q4",
+        markdownEditorStatus: "DEPLOYED",
         markdownEditorTags: "JavaScript DOM Marked.js",
 
         // 11. Snake
         snakeGameTitle: "Snake Game",
         snakeGameDesc: "Implementation of a classic game loop and collision detection on an HTML Canvas element. Supports keyboard and mobile swipe controls.",
         snakeGameStatus: "PLAYABLE",
-        snakeGameDate: "2024-Q2",
         snakeGameTags: "JavaScript HTML-Canvas GameDev",
 
         // 12. Tic-Tac-Toe
         ticTacToeTitle: "Tic-Tac-Toe",
         ticTacToeDesc: "Implementation of game logic with state management, featuring Player vs. Player and Player vs. Computer (simple AI) modes.",
         ticTacToeStatus: "PLAYABLE",
-        ticTacToeDate: "2024-Q1",
         ticTacToeTags: "JavaScript GameDev AI",
 
         // 13. Memory Game
         memoryGameTitle: "Memory Game",
         memoryGameDesc: "A pair-matching memory game with a move counter, timer, audio cues (Tone.js), and dynamic board generation.",
         memoryGameStatus: "PLAYABLE",
-        memoryGameDate: "2024-Q1",
         memoryGameTags: "JavaScript DOM GameDev",
+
+        // 14. ROI Calculator
+        roiCalculatorTitle: "Automation ROI Calculator",
+        roiCalculatorDesc: "A business tool calculating the return on investment for process automation. Helps clients realize real time and money savings.",
+        roiCalculatorStatus: "PRODUCTION",
+        roiCalculatorTags: "JavaScript Business-Logic Finance Bento",
         
         // --- Single Project Pages ---
         
@@ -517,7 +496,6 @@ export const translations = {
         projectsCategoryCreative: "Creative",
         projectsCategoryGames: "Games",
 
-        budgetValidatorTitle: "Budget Data Validator",
         budgetValidatorSubtitle: "Paste data copied from a program like Excel (tab-separated) below. The tool will check if each row has the same number of columns.",
         budgetValidatorTextareaLabel: "Data to validate",
         budgetValidatorValidateBtn: "Validate Data",
@@ -527,7 +505,6 @@ export const translations = {
         budgetValidatorErrorLine: ({ line, expected, found }) => `Error in line ${line}: Expected ${expected} columns, found ${found}.`,
         budgetValidatorEmpty: "The data field is empty.",
         
-        statutoryInterestTitle: "Statutory Interest Calculator",
         statutoryInterestTypeLabel: "Type of interest",
         statutoryInterestStandard: "Statutory for delay",
         statutoryInterestCommercial: "In commercial transactions",
@@ -536,7 +513,6 @@ export const translations = {
         statutoryInterestEndDateLabel: "Date of payment / calculation",
         statutoryInterestDataSource: "Interest rates are in accordance with the announcements of the Minister of Justice and NBP data.",
         
-        aggregatorTitle: "Project Settlement Aggregator",
         aggregatorSubtitle: "A demo version for portfolio purposes. Upload sample files to generate a report.",
         aggregatorStep1: "1. Provide Data Sources",
         aggregatorStep2: "2. Enter Project Information",
@@ -554,7 +530,7 @@ export const translations = {
         aggregatorErrorBase: "Please provide the project name database.",
         aggregatorErrorNoData: "No matching data was found in the uploaded files.",
         
-        todoTitle: "To-Do List", todoPlaceholder: "What needs to be done?", todoAddBtn: "Add",
+        todoPlaceholder: "What needs to be done?", todoAddBtn: "Add",
         todoCounter: (count) => `${count} items left`,
         todoFilterAll: "All",
         todoFilterActive: "Active",
@@ -562,7 +538,7 @@ export const translations = {
         todoClearCompleted: "Clear completed", todoConfirmClear: (count) => `Are you sure you want to delete ${count} completed tasks?`,
         confirmYes: "Yes", confirmNo: "Cancel",
         
-        weatherTitle: "Weather Station", weatherPlaceholder: "Enter city name...", weatherSearchBtn: "Search",
+        weatherPlaceholder: "Enter city name...", weatherSearchBtn: "Search",
         weatherGeoBtn: "Use my location",
         weatherForecastTitle: "5-Day Forecast",
         weatherHourlyForecastTitle: "Hourly Forecast",
@@ -575,9 +551,8 @@ export const translations = {
         weatherSunrise: "Sunrise",
         weatherSunset: "Sunset",
         
-        currencyTitle: "Currency Calculator", currencyAmount: "Amount", currencyFrom: "From", currencyTo: "To", currencyDataSource: "Exchange rates provided by Frankfurter.app",
+        currencyAmount: "Amount", currencyFrom: "From", currencyTo: "To", currencyDataSource: "Exchange rates provided by Frankfurter.app",
         
-        markdownEditorTitle: "Advanced Markdown Editor",
         markdownEditorSubtitle: "Use the toolbar to quickly format text. The preview updates live and syncs with the editor.",
         markdownHowToUse: "Tip: Select text and then click a button to apply formatting.",
         markdownBold: "Bold",
@@ -588,22 +563,22 @@ export const translations = {
         markdownWords: "Words",
         markdownCharacters: "Characters",
         
-        pomodoroTimerTitle: "Pomodoro Assistant", pomodoroModeWork: "Work", pomodoroModeShortBreak: "Short Break", pomodoroModeLongBreak: "Long Break", pomodoroStart: "Start", pomodoroPause: "Pause", pomodoroReset: "Reset",
+        pomodoroModeWork: "Work", pomodoroModeShortBreak: "Short Break", pomodoroModeLongBreak: "Long Break", pomodoroStart: "Start", pomodoroPause: "Pause", pomodoroReset: "Reset",
         pomodoroSettingsTitle: "Settings", pomodoroWorkLabel: "Work time (min)", pomodoroShortBreakLabel: "Short break (min)", pomodoroLongBreakLabel: "Long break (min)", pomdoroSaveSettings: "Save",
         pomodoroSettingsSaved: "Saved!",
         pomodoroCyclesTitle: "Completed cycles (target: 4)",
         
-        ticTacToeTitle: "Tic-Tac-Toe", ticTacToeTurn: (player) => `Player ${player}'s turn`, ticTacToeWinner: (player) => `Player ${player} wins!`, ticTacToeDraw: "It's a draw!", ticTacToeRestart: "Play Again",
+        ticTacToeTurn: (player) => `Player ${player}'s turn`, ticTacToeWinner: (player) => `Player ${player} wins!`, ticTacToeDraw: "It's a draw!", ticTacToeRestart: "Play Again",
         ticTacToeModePVP: "Player vs Player", ticTacToeModePVC: "Player vs Computer", ticTacToeScore: "Score", ticTacToeChooseSide: "Choose your side:", ticTacToePlay: "Start Game",
         
-        memoryGameTitle: "Memory Game", memoryGameMoves: "Moves", memoryGameTime: "Time", memoryGameRestart: "Play Again",
+        memoryGameMoves: "Moves", memoryGameTime: "Time", memoryGameRestart: "Play Again",
         memoryGameWin: ({ moves, time }) => `Congratulations! You won in ${moves} moves and ${time}s!`,
 
-        snakeGameTitle: "Snake Game", snakeGameScore: "Score", snakeGameHighScore: "High Score", snakeGamePause: "PAUSED", snakeGameOver: "Game Over!", snakeGameRestart: "Play Again",
+        snakeGameScore: "Score", snakeGameHighScore: "High Score", snakeGamePause: "PAUSED", snakeGameOver: "Game Over!", snakeGameRestart: "Play Again",
         snakeGameStartMsg: "Press any key or swipe to start",
         snakeGameControls: "Controls: Arrow keys, WASD or swipe gestures. Pause: Spacebar.",
         
-        agencyTitle: "Creative Agency", agencyHeroTitle: "We build digital experiences.", agencyHeroSubtitle: "We specialize in web design, branding, and online marketing to help your business grow.",
+        agencyHeroTitle: "We build digital experiences.", agencyHeroSubtitle: "We specialize in web design, branding, and online marketing to help your business grow.",
         agencyServicesTitle: "Our Services", service1Title: "Web Design", service1Desc: "Modern and responsive websites.", service2Title: "Branding", service2Desc: "Creating a strong and consistent brand identity.", service3Title: "Online Marketing", service3Desc: "Increasing your online visibility.",
         agencyProcessTitle: "Our Work Process", processStep1Title: "Discovery", processStep1Desc: "We analyze your needs and goals.", processStep2Title: "Design", processStep2Desc: "We create strategies and mockups.",
         processStep3Title: "Development", processStep3Desc: "We build and code the solution.", processStep4Title: "Deployment", processStep4Desc: "We launch the project and provide support.",
@@ -638,7 +613,6 @@ export const translations = {
         
         loading: "Processing...",
 
-        taxArrearsTitle: "Tax Interest Calculator",
         taxArrearsAmountLabel: "Arrears amount (PLN)",
         taxArrearsStartDateLabel: "Due date",
         taxArrearsEndDateLabel: "Date of payment / calculation",
@@ -666,4 +640,3 @@ export const translations = {
         errorServer: ({ status }) => `Server error (${status}). Please try again.`,
     }
 };
-
