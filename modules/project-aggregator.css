@@ -1,9 +1,11 @@
-/*
-  EN: Stylesheet for the Project Settlement Aggregator.
-  It provides a clean, step-by-step layout for the data aggregation tool.
-  PL: Arkusz stylów dla Agregatora Rozliczeń Projektowych.
-  Zapewnia przejrzysty, krokowy układ dla narzędzia do agregacji danych.
-*/
+/**
+ * @file modules/project-aggregator.css
+ * @description
+ * EN: Stylesheet for the Project Settlement Aggregator (Case Study).
+ * Provides a clean, step-by-step layout for the data aggregation tool.
+ * PL: Arkusz stylów dla Agregatora Rozliczeń Projektowych (Case Study).
+ * Zapewnia przejrzysty, krokowy układ dla narzędzia do agregacji danych.
+ */
 
 .project-aggregator-app {
     background-color: var(--card-background);

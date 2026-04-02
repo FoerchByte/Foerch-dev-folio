@@ -1,11 +1,13 @@
-/*
-  EN: This module contains the logic for the Project Settlement Aggregator.
-  It demonstrates parsing XLSX files directly in the browser using SheetJS,
-  data aggregation, and dynamic rendering of results.
-  PL: Ten moduł zawiera logikę Agregatora Rozliczeń Projektowych.
-  Demonstruje parsowanie plików XLSX w przeglądarce przy użyciu SheetJS,
-  agregację danych i dynamiczne renderowanie wyników.
-*/
+/**
+ * @file modules/project-aggregator.js
+ * @description
+ * EN: Core logic for the Project Settlement Aggregator (Case Study).
+ * Demonstrates client-side XLSX parsing (SheetJS), data aggregation,
+ * and dynamic report rendering.
+ * PL: Kluczowa logika dla Agregatora Rozliczeń Projektowych (Case Study).
+ * Demonstruje parsowanie plików XLSX po stronie klienta (SheetJS),
+ * agregację danych i dynamiczne renderowanie raportu.
+ */
 
 export function initializeProjectAggregator(dependencies) {
     const { t } = dependencies;
@@ -25,8 +27,7 @@ export function initializeProjectAggregator(dependencies) {
     if (!fileInput) return []; // Elementy nie istnieją, zakończ
 
     /**
-     * @pl Funkcja pomocnicza do przełączania stanu ładowania przycisku.
-     * @en Helper function to toggle the button's loading state.
+     * @description Przełącza stan ładowania przycisku generowania.
      * @param {boolean} isLoading - Czy pokazać stan ładowania.
      */
     const toggleLoadingState = (isLoading) => {
@@ -46,8 +47,7 @@ export function initializeProjectAggregator(dependencies) {
     };
     
     /**
-     * @pl Wyświetla komunikat o błędzie.
-     * @en Displays an error message.
+     * @description Wyświetla komunikat o błędzie.
      * @param {string} messageKey - Klucz tłumaczenia dla błędu.
      */
     const displayError = (messageKey) => {
@@ -58,8 +58,7 @@ export function initializeProjectAggregator(dependencies) {
     };
 
     /**
-     * @pl Czyści poprzednie wyniki i błędy.
-     * @en Clears previous results and errors.
+     * @description Czyści poprzednie wyniki i błędy.
      */
     const clearPreviousResults = () => {
         resultsSection.classList.add('hidden');
@@ -68,8 +67,7 @@ export function initializeProjectAggregator(dependencies) {
     };
 
     /**
-     * @pl Dynamicznie generuje przykładowe pliki .xlsx i inicjuje ich pobieranie.
-     * @en Dynamically generates sample .xlsx files and initiates their download.
+     * @description Dynamicznie generuje przykładowe pliki .xlsx i inicjuje ich pobieranie.
      */
     const handleDownloadSamples = () => {
         const sampleData = [
@@ -112,8 +110,7 @@ export function initializeProjectAggregator(dependencies) {
     };
 
     /**
-     * @pl Przetwarza listę nazw projektów na obiekt mapujący numer na nazwę.
-     * @en Processes the project name list into an object mapping number to name.
+     * @description Przetwarza listę nazw projektów na obiekt mapujący numer na nazwę.
      */
     const parseProjectBase = (baseText) => {
         const projectMap = {};
@@ -127,8 +124,7 @@ export function initializeProjectAggregator(dependencies) {
     };
 
     /**
-     * @pl Główna funkcja generująca raport.
-     * @en Main function to generate the report.
+     * @description Główna funkcja generująca raport.
      */
     const handleGenerateReport = async () => {
         clearPreviousResults();
@@ -180,8 +176,7 @@ export function initializeProjectAggregator(dependencies) {
     };
 
     /**
-     * @pl Renderuje tabelę z wynikami raportu w DOM.
-     * @en Renders the report results table in the DOM.
+     * @description Renderuje tabelę z wynikami raportu w DOM.
      */
     const renderReport = (data) => {
         if (Object.keys(data).length === 0) {
@@ -222,5 +217,9 @@ export function initializeProjectAggregator(dependencies) {
     generateBtn.addEventListener('click', handleGenerateReport);
     downloadSamplesBtn.addEventListener('click', handleDownloadSamples);
 
-    return []; // No cleanup needed for this module
+    // EN: No cleanup needed for this module as listeners are on elements
+    //     that are destroyed when the route changes.
+    // PL: Czyszczenie nie jest potrzebne, ponieważ nasłuchiwacze są na elementach,
+    //     które są niszczone przy zmianie trasy.
+    return [];
 }

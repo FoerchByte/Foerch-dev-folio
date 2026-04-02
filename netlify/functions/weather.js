@@ -1,23 +1,18 @@
-/*
-  EN: This serverless function securely handles requests for weather data from the
-  OpenWeatherMap API. It protects your API key by managing it on the backend,
-  and it intelligently routes requests based on either a city name or
-  geographical coordinates. This is a crucial component for the Weather Station
-  application, ensuring its functionality is both safe and reliable.
-  PL: Ta funkcja bezserwerowa bezpiecznie obsługuje żądania dotyczące danych
-  pogodowych z API OpenWeatherMap. Chroni Twój klucz API, zarządzając nim
-  po stronie serwera i inteligentnie kieruje żądania na podstawie nazwy miasta
-  lub współrzędnych geograficznych. Jest to kluczowy element dla aplikacji
-  Stacja Pogody, zapewniając jej funkcjonalność i bezpieczeństwo.
-*/
+/**
+ * @file netlify/functions/weather.js
+ * @description
+ * EN: Serverless function (backend) for the OpenWeatherMap API.
+ * Securely routes requests based on city or coordinates, adds the secret API key,
+ * and returns the forecast data.
+ * PL: Funkcja Serverless (backend) dla API OpenWeatherMap.
+ * Bezpiecznie kieruje żądania na podstawie miasta lub współrzędnych, dodaje tajny klucz API
+ * i zwraca dane prognozy.
+ */
 
-// EN: The top-level 'require' has been removed. We are now using a dynamic import inside the handler for better compatibility with different Node.js environments on Netlify.
-// PL: Usunięto 'require' z najwyższego poziomu. Teraz używamy dynamicznego importu wewnątrz funkcji handler, aby zapewnić lepszą kompatybilność z różnymi środowiskami Node.js na Netlify.
+// Używamy składni CommonJS (require) dla spójności (zgodnie z gemini.js i package.json)
+const fetch = require('node-fetch');
 
 exports.handler = async function (event, context) {
-    // EN: Dynamically import the 'node-fetch' library. This modern approach works reliably in ES Modules environments.
-    // PL: Dynamiczny import biblioteki 'node-fetch'. To nowoczesne podejście, które działa niezawodnie w środowiskach ES Modules.
-    const fetch = (await import('node-fetch')).default;
     const apiKey = process.env.WEATHER_API_KEY;
     
     if (!apiKey) {
@@ -57,12 +52,9 @@ exports.handler = async function (event, context) {
             body: JSON.stringify(data),
         };
     } catch (error) {
-        // EN: Enhanced error logging to provide more context for debugging, including the URL that was called.
-        // PL: Rozszerzone logowanie błędów, aby zapewnić więcej kontekstu podczas debugowania, włączając w to URL, który był wywoływany.
         console.error("Weather function error:", {
             message: error.message,
-            stack: error.stack,
-            url: apiUrl
+            url: apiUrl // Logujemy URL, który zawiódł
         });
         return {
             statusCode: 500,

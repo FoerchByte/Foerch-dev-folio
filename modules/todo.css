@@ -1,11 +1,9 @@
-/*
-  EN: The stylesheet for the To-Do List app. It's designed to be clean and functional,
-  prioritizing a seamless user experience. This module showcases a classic
-  utility application that gets the job done without unnecessary frills.
-  PL: Arkusz stylów dla aplikacji z listą zadań. Projekt jest czysty i funkcjonalny,
-  stawiając na płynne doświadczenie użytkownika. Ten moduł to klasyczny przykład
-  aplikacji użytkowej, która spełnia swoje zadanie bez zbędnych dodatków.
-*/
+/**
+ * @file modules/todo.css
+ * @description
+ * EN: Stylesheet for the To-Do List (Case Study).
+ * PL: Arkusz stylów dla aplikacji Lista Zadań (Case Study).
+ */
 .todo-app {
     background-color: var(--card-background);
     padding: 2rem;
@@ -153,13 +151,11 @@
     cursor: pointer;
 }
 
-/* ZMIANA: Poprawki dla urządzeń mobilnych */
 @media (max-width: 768px) {
     .todo-app {
         padding: 1.5rem 1rem;
     }
     
-    /* ZMIANA: Dodajemy style dla formularza na mobilkach */
     .todo-app__form {
         flex-direction: column;
     }

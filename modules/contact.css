@@ -1,11 +1,13 @@
-/*
-  EN: Stylesheet for the Contact page (Phase 5).
-  Implements the "Terminal with Modes" layout, including styles for
-  the tab switcher and the integrated AI assistant.
-  PL: Arkusz stylów dla strony Kontakt (Faza 5).
-  Implementuje layout "Terminal z Trybami", włączając style
-  dla przełącznika zakładek i zintegrowanego asystenta AI.
-*/
+/**
+ * @file modules/contact.css
+ * @description
+ * EN: Styles for the "Contact" page (v2.0).
+ * Implements the "Terminal with Modes" layout, including styles for
+ * the tab switcher and the integrated AI assistant.
+ * PL: Style dla strony "Kontakt" (v2.0).
+ * Implementuje layout "Terminal z Trybami", włączając style
+ * dla przełącznika zakładek i zintegrowanego asystenta AI.
+ */
 
 /* Podtytuł strony (komenda "$ send-message...") */
 .contact-subtitle {
@@ -27,37 +29,31 @@
     border: 1px solid var(--border-color);
 }
 
-/* === ZMIANA FAZY 5: Style dla przełącznika trybów (Tabs) === */
+/* Style dla zakładek */
 .terminal-tabs {
     display: flex;
     gap: 1.5rem;
-    margin-bottom: 2rem;
-    border-bottom: 1px solid var(--border-color);
-    padding-bottom: 1.5rem;
+    margin-bottom: 2.5rem; /* Odstęp od treści poniżej */
+    padding-left: 0.25rem; 
 }
-
-/* Kopiujemy style `.filter-btn` z `projects.css` dla spójności */
 .terminal-tabs .filter-btn {
     background: none;
     border: none;
     padding: 0;
     margin: 0;
     font-family: 'Roboto Mono', monospace;
-    font-size: 1rem;
+    font-size: 1rem; 
     color: var(--text-secondary);
     cursor: pointer;
     transition: color 0.2s ease-in-out;
 }
-
 .terminal-tabs .filter-btn:hover {
     color: var(--primary-color);
 }
-
 .terminal-tabs .filter-btn.active {
     color: var(--primary-color);
     font-weight: 500;
 }
-
 .terminal-tabs .filter-btn::before {
     content: '[';
     color: var(--text-secondary);
@@ -72,16 +68,14 @@
     margin-left: 0.2rem;
     transition: all 0.2s;
 }
-
 .terminal-tabs .filter-btn:hover::before, .terminal-tabs .filter-btn:hover::after,
 .terminal-tabs .filter-btn.active::before, .terminal-tabs .filter-btn.active::after {
     color: var(--primary-color);
     opacity: 1;
 }
-/* === Koniec stylów dla Tabs === */
 
 
-/* Pola formularza (wspólne dla obu trybów) */
+/* Pola formularza (dla obu zakładek) */
 .form-group {
     margin-bottom: 1.5rem;
     display: flex;
@@ -128,7 +122,7 @@
     display: block;
 }
 
-/* Przyciski (wspólne dla obu trybów) */
+/* Przyciski (dla obu zakładek) */
 #contact-form button, #generate-email-btn {
     width: 100%;
     background-color: var(--primary-color);
@@ -149,7 +143,7 @@
     letter-spacing: 1px;
 }
 
-/* Ikona "wyślij" dla Formspree */
+/* Ikona "wyślij" dla formularza */
 #contact-form button::before {
     content: '';
     display: inline-block;
@@ -176,8 +170,36 @@
     box-shadow: none;
 }
 
-/* Wiadomość o sukcesie (Formspree) */
+/* Loader wewnątrz przycisku (dla obu) */
+#contact-form button .loader, #generate-email-btn .loader {
+    border-color: var(--background-color); /* Ciemny loader na jasnym przycisku */
+    border-bottom-color: transparent;
+    margin: 0; /* Usuwamy domyślny margines z global.css */
+}
+
+/* Wiadomość o sukcesie (Formularz) */
 #form-success-message {
+    margin-top: 1.5rem;
+    padding: 1rem;
+    background-color: rgba(40, 167, 69, 0.1);
+    color: var(--success-color);
+    border: 1px solid var(--success-color);
+    border-radius: 4px;
+    text-align: center;
+    font-family: 'Roboto Mono', monospace;
+}
+
+/* Style dla Asystenta AI */
+.gemini-content-subtitle {
+    font-family: 'Roboto Mono', monospace;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    margin-bottom: 1.5rem;
+    margin-top: 0;
+    line-height: 1.5;
+}
+
+#gemini-result-container {
     margin-top: 1.5rem;
     padding: 1rem;
     background-color: rgba(40, 167, 69, 0.1);
@@ -209,15 +231,21 @@
     white-space: pre-wrap;
     word-wrap: break-word;
     margin: 0;
-    font-family: 'Roboto Mono', monospace;
-    font-size: 0.95rem;
+    font-family: 'Roboto Mono', monospace; /* Używamy mono dla wyniku */
+    font-size: 0.9rem;
     color: var(--text-color);
-    line-height: 1.7;
+    line-height: 1.6;
 }
 
-/* Poprawka dla ładowarki w przycisku AI */
-#generate-email-btn .loader {
-    border: 2px solid var(--background-color); /* Ciemne tło */
-    border-bottom-color: transparent;
-    margin: 0; /* Usuwamy margines, bo jest wyśrodkowany w flex */
+/* Responsywność dla zakładek na mobilkach */
+@media (max-width: 600px) {
+    .contact-form-wrapper {
+        padding: 1.5rem;
+    }
+    
+    .terminal-tabs {
+        flex-direction: column; /* Zamiast obok siebie, jeden pod drugim */
+        align-items: flex-start; /* Wyrównanie do lewej */
+        gap: 1rem; /* Odstęp między przyciskami */
+    }
 }

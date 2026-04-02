@@ -1,11 +1,10 @@
 <!--
-  EN: A modern weather application that fetches and displays real-time weather
-  data from an external API. This project showcases skills in asynchronous
-  programming, API integration, and creating a dynamic, responsive user interface.
-  PL: Nowoczesna aplikacja pogodowa, która pobiera i wyświetla dane pogodowe
-  w czasie rzeczywistym z zewnętrznego API. Ten projekt demonstruje umiejętności
-  w programowaniu asynchronicznym, integracji z API oraz tworzeniu dynamicznego,
-  responsywnego interfejsu użytkownika.
+  @file pages/weather.html
+  @description
+  EN: Template for the "Weather Station" (Case Study).
+  Demonstrates API integration and serverless function usage.
+  PL: Szablon dla "Stacji Pogody" (Case Study).
+  Demonstruje integrację API i użycie funkcji serverless.
 -->
 <a href="/projects" class="project-title-link">{{backToProjects}}</a>
 <h2 class="project-page-title">{{weatherTitle}}</h2>
@@ -17,7 +16,10 @@
     </div>
     <div id="weather-result-container" class="weather-app__result" aria-live="polite"></div>
     
-    <!-- ZMIANA: Struktura zawiera teraz obie prognozy i przełącznik, którego widoczność będzie kontrolowana przez CSS. -->
+    <!-- 
+      Kontener na obie prognozy (godzinową i dzienną).
+      Widoczność jest kontrolowana przez CSS i przełącznik.
+    -->
     <div id="forecasts-wrapper" style="display: none;">
         <div class="forecast-switcher" id="forecast-switcher">
             <button data-forecast="hourly" class="active">{{weatherHourlyForecastTitle}}</button>
@@ -35,4 +37,3 @@
         </div>
     </div>
 </div>
-

@@ -1,14 +1,64 @@
-/*
-  EN: This module contains the logic for the Budget Validator, a tool that
-  validates data integrity based on a simple column count. It demonstrates
-  a practical use of string manipulation, data validation, and clear error
-  handling, all essential skills for building robust web applications.
-  PL: Ten moduł zawiera logikę dla walidatora budżetu, narzędzia, które
-  sprawdza spójność danych na podstawie prostej liczby kolumn. Pokazuje
-  praktyczne zastosowanie manipulacji ciągami znaków, walidacji danych i
-  przejrzystej obsługi błędów, co jest kluczowe w budowaniu solidnych
-  aplikacji internetowych.
-*/
+/**
+ * @file modules/budget-validator.js
+ * @description
+ * EN: Core logic for the Budget Data Validator (Case Study).
+ * Validates the column consistency of tab-separated data pasted from Excel.
+ * PL: Kluczowa logika dla Walidatora Danych Budżetowych (Case Study).
+ * Weryfikuje spójność kolumn danych rozdzielanych tabulatorami, wklejonych z Excela.
+ */
+
+/**
+ * @description
+ * EN: "Pure" business logic function for data validation.
+ * Separated for testability (see .test.js).
+ * PL: "Czysta" funkcja logiki biznesowej do walidacji danych.
+ * Wydzielona dla zapewnienia testowalności (zobacz .test.js).
+ * @param {string} rawData - The raw string data pasted from the textarea.
+ * @returns {object} - A result object { isValid, messageKey, errors, linesChecked }.
+ */
+export function validateBudgetDataLogic(rawData) {
+    if (!rawData || !rawData.trim()) {
+        return { isValid: false, messageKey: 'budgetValidatorEmpty', errors: [], linesChecked: 0 };
+    }
+
+    // EN: Filter out empty lines and comment lines (starting with #).
+    // PL: Odfiltruj puste linie i linie komentarzy (zaczynające się od #).
+    const lines = rawData.split('\n').filter(line => line.trim() !== '' && !line.trim().startsWith('#'));
+
+    if (lines.length === 0) {
+        return { isValid: false, messageKey: 'budgetValidatorEmpty', errors: [], linesChecked: 0 };
+    }
+
+    const errors = [];
+    const expectedColumns = lines[0].split('\t').length;
+
+    for (let i = 0; i < lines.length; i++) {
+        const columns = lines[i].split('\t').length;
+        if (columns !== expectedColumns) {
+            // EN: Find the original line number (including empty lines/comments) for a user-friendly error.
+            // PL: Znajdź oryginalny numer linii (wliczając puste linie/komentarze) dla błędu zrozumiałego dla użytkownika.
+            const originalLineNumber = rawData.split('\n').indexOf(lines[i]) + 1;
+            errors.push({
+                line: originalLineNumber,
+                expected: expectedColumns,
+                found: columns
+            });
+        }
+    }
+
+    if (errors.length > 0) {
+        return { isValid: false, messageKey: 'budgetValidatorError', errors: errors, linesChecked: lines.length };
+    }
+
+    return { isValid: true, messageKey: 'budgetValidatorSuccess', errors: [], linesChecked: lines.length };
+}
+
+
+/**
+ * @description
+ * EN: Initializes the Budget Validator module, handling DOM interactions.
+ * PL: Inicjalizuje moduł Walidatora Budżetu, obsługując interakcje z DOM.
+ */
 export function initializeBudgetValidator(dependencies) {
     const { t } = dependencies;
 
@@ -17,51 +67,40 @@ export function initializeBudgetValidator(dependencies) {
     const resultContainer = document.getElementById('result-container');
     const resultContent = document.getElementById('result-content');
 
-    function validateData() {
+    /**
+     * @description
+     * EN: Handles the click event, runs validation, and renders the result to the DOM.
+     * PL: Obsługuje zdarzenie kliknięcia, uruchamia walidację i renderuje wynik w DOM.
+     */
+    function handleValidation() {
         const rawData = dataInput.value;
         resultContainer.style.display = 'none';
         resultContent.innerHTML = '';
 
-        if (!rawData.trim()) {
-            showResult(t('budgetValidatorEmpty'), 'error');
-            return;
-        }
+        // EN: Call the "pure" logic function.
+        // PL: Wywołaj "czystą" funkcję logiki.
+        const result = validateBudgetDataLogic(rawData);
 
-        const lines = rawData.split('\n').filter(line => line.trim() !== '' && !line.trim().startsWith('#'));
-
-        if (lines.length === 0) {
-            showResult(t('budgetValidatorEmpty'), 'error');
-            return;
-        }
-
-        const errors = [];
-        const expectedColumns = lines[0].split('\t').length;
-
-        for (let i = 0; i < lines.length; i++) {
-            const columns = lines[i].split('\t').length;
-            if (columns !== expectedColumns) {
-                const originalLineNumber = rawData.split('\n').indexOf(lines[i]) + 1;
-                errors.push({
-                    line: originalLineNumber,
-                    expected: expectedColumns,
-                    found: columns
-                });
-            }
-        }
-
-        if (errors.length > 0) {
-            let errorHTML = `<ul class="budget-validator__error-list">`;
-            errors.forEach(err => {
-                // POPRAWKA: Przekazujemy dane jako obiekt
-                errorHTML += `<li class="budget-validator__error-item">${t('budgetValidatorErrorLine', { line: err.line, expected: err.expected, found: err.found })}</li>`;
-            });
-            errorHTML += `</ul>`;
-            showResult(t('budgetValidatorError'), 'error', errorHTML);
+        if (result.isValid) {
+            showResult(t(result.messageKey, { rows: result.linesChecked }), 'success');
         } else {
-            showResult(t('budgetValidatorSuccess', { rows: lines.length }), 'success');
+            let detailsHTML = '';
+            if (result.errors.length > 0) {
+                detailsHTML = `<ul class="budget-validator__error-list">`;
+                result.errors.forEach(err => {
+                    detailsHTML += `<li class="budget-validator__error-item">${t('budgetValidatorErrorLine', { line: err.line, expected: err.expected, found: err.found })}</li>`;
+                });
+                detailsHTML += `</ul>`;
+            }
+            showResult(t(result.messageKey), 'error', detailsHTML);
         }
     }
 
+    /**
+     * @description
+     * EN: Renders the validation result (success or error) into the result container.
+     * PL: Renderuje wynik walidacji (sukces lub błąd) w kontenerze wyników.
+     */
     function showResult(message, type, detailsHTML = '') {
         const messageClass = type === 'success' 
             ? 'budget-validator__result-message--success' 
@@ -76,7 +115,11 @@ export function initializeBudgetValidator(dependencies) {
         resultContainer.style.display = 'block';
     }
 
-    validateBtn.addEventListener('click', validateData);
+    validateBtn.addEventListener('click', handleValidation);
 
+    // EN: No cleanup function needed as event listeners are attached to
+    //     elements that are destroyed on route change.
+    // PL: Funkcja czyszcząca nie jest potrzebna, ponieważ nasłuchiwacze
+    //     są podpięte do elementów niszczonych przy zmianie trasy.
     return [];
 }

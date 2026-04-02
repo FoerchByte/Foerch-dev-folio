@@ -1,46 +1,195 @@
-/*
-  EN: This module serves as the central hub for all text translations in the
-  application. It ensures a consistent, dual-language user experience and
-  demonstrates a scalable approach to managing i18n (internationalization) in
-  a web project.
-  PL: Ten moduł pełni rolę centralnego centrum dla wszystkich tłumaczeń tekstów
-  w aplikacji. Zapewnia spójne, dwujęzyczne doświadczenie użytkownika i
-  demonstruje skalowalne podejście do zarządzania i18n (internacjonalizacją)
-  w projekcie webowym.
-*/
+/**
+ * @file modules/translations.js
+ * @description
+ * EN: Central translation hub (i18n). Contains all UI text strings
+ * for Polish (pl) and English (en) languages.
+ * PL: Centralny hub tłumaczeń (i18n). Zawiera wszystkie ciągi tekstowe
+ * interfejsu użytkownika dla języka polskiego (pl) i angielskiego (en).
+ */
 export const translations = {
     pl: {
-        siteTitle: "Cyfrowe Portfolio",
-        navAbout: "O mnie", navProjects: "Projekty", navContact: "Kontakt",
-        backToProjects: "‹ Wróć do projektów",
-        aboutTitle: "Cześć, jestem Michał!",
-        aboutSubtitle: "Frontend Developer z pasją do tworzenia.",
-        aboutContent: "Specjalizuję się w budowaniu nowoczesnych, interaktywnych aplikacji internetowych. Moim celem jest pisanie czystego, wydajnego kodu i dbanie o jak najlepsze doświadczenia użytkownika (UX). Poniżej znajdziesz technologie, z którymi pracuję na co dzień.",
-        aboutSkillsTitle: "Moje Główne Technologie",
-        aboutCtaProjects: "Zobacz moje projekty",
-        aboutCtaCv: "Pobierz CV",
-        projectsTitle: "Moje Projekty", projectsSubtitle: "Poniżej znajdują się interaktywne aplikacje, które zbudowałem. Kliknij na kartę, aby je wypróbować.",
+        siteTitle: "FoerchByte // Engineering Portfolio",
+        
+        // --- Nowa strona główna (Hero) ---
+        heroSubtitle: "EXECUTIVE_ENGINEER",
+        heroTitle: "Od <span class=\"highlight\">Analityki</span><br>do Aplikacji",
+        
+        heroValue1: "Identyfikuję wąskie gardła i 'procesy legacy' w biznesie.",
+        heroValue2: "Przekładam logikę (VBA, Excel) na skalowalny kod (JavaScript, API).",
+        heroValue3: "Dostarczam systemy, które oszczędzają setki godzin pracy rocznie.",
+
+        heroCta: "ZOBACZ_CASE_STUDIES",
+        heroCtaBio: "Poznaj mój profil",
+
+        // Statystyki na stronie głównej (NOWE)
+        heroStatExperience: "LAT DOŚWIADCZENIA (Finanse/VBA)",
+        heroStatTools: "WDROŻONYCH NARZĘDZI",
+        heroStatCommits: "COMMITÓW (Ostatni Rok)",
+        heroStatAutomations: "KLUCZOWE AUTOMATYZACJE",
+
+        // --- Nawigacja (zgodna z mockupem) ---
+        navProjects: "Projekty",
+        navChangelog: "Changelog",
+        navContact: "Kontakt",
+        
+        backToProjects: "‹ Wróć do rejestru",
+        
+        // --- Sekcja "Changelog" (dawne "O mnie") ---
+        aboutTitle: "Michał 'Foerch' Herbich",
+        aboutSubtitle: "Specjalista ds. Automatyzacji Danych | Frontend Developer",
+        aboutDesc1: "Jestem inżynierem, który nie godzi się na \"tak zawsze robiliśmy\". Specjalizuję się w identyfikacji wąskich gardeł w procesach biznesowych i ich bezlitosnej automatyzacji.",
+        aboutDesc2: "Łączę twarde kompetencje analityczne (VBA, Power Query, Excel) z nowoczesnym stackiem webowym (JavaScript, API), tworząc narzędzia, które oszczędzają setki godzin pracy rocznie. Moim celem jest budowanie systemów, które działają dla ludzi, a nie odwrotnie.",
+        aboutSkillsTitle: "Stack Technologiczny",
+        skillsHeaderData: "// Automatyja i Analiza Danych",
+        skillsHeaderFrontend: "// Frontend Development",
+
+        aboutCtaProjects: "ZOBACZ_CASE_STUDIES",
+        aboutCtaCv: "Pobierz pełne CV",
+        
+        changelogTitle: "Przebieg Kariery (Changelog)",
+        
+        // v3.0.0 - Inspektor
+        changelogV3Title: "Rewolucja Automatyzacji (Inspektor)",
+        changelogV3Place: "Urząd Miasta Łodzi",
+        changelogV3Date: "06.2023 - obecnie",
+        changelogV3Desc: "Uzyskanie tytułu Magistra (AI). Wdrożenie pełnego ekosystemu automatyzacji: zastąpienie manualnych procesów skryptami VBA, potokami Power Query oraz formularzami Power Automate/SharePoint. KLUCZOWY WYNIK: Redukcja czasu rocznego rozliczenia 140+ projektów z 78 dni roboczych do zaledwie 10 dni.",
+        changelogV3Tags: "<span style='color: var(--primary-color)'>[Magister (SI)]</span> [VBA] [Power Query] [Automatyzacja Procesów] [SharePoint] [Power Automate]",
+
+        // v2.0.0 - Podinspektor
+        changelogV2Title: "Inkubacja Techniczna (Podinspektor)",
+        changelogV2Place: "Urząd Miasta Łodzi",
+        changelogV2Date: "03.2021 - 05.2023",
+        changelogV2Desc: "Etap budowania fundamentów. Uzyskanie tytułu Inżyniera Informatyki. Optymalizacja warsztatu pracy (setup 3-monitorowy) i wdrażanie pierwszych zaawansowanych modeli danych w Power Query do obsługi sprawozdań >40k wierszy.",
+        changelogV2Tags: "<span style='color: var(--primary-color)'>[Inżynier (Informatyka)]</span> [Advanced Excel] [Hardware Setup]",
+
+        // v1.5.0 - Referent
+        changelogV15Title: "Optymalizacja Formułami (Referent)",
+        changelogV15Place: "Urząd Miasta Łodzi",
+        changelogV15Date: "11.2020 - 02.2021",
+        changelogV15Desc: "Pierwsza iteracja usprawnień. Zastąpienie ręcznego sumowania danych dynamicznymi formułami (SUMIFS, VLOOKUP) w arkuszach zbiorczych.",
+        changelogV15Tags: "[Excel Formuły] [SUMIFS] [VLOOKUP]",
+
+        // v1.0.0 - Młodszy Referent
+        changelogV10Title: "Manualna Baza (Młodszy Referent)",
+        changelogV10Place: "Urząd Miasta Łodzi",
+        changelogV10Date: "11.2019 - 11.2020",
+        changelogV10Desc: "Onboarding i analiza procesów legacy. Identyfikacja krytycznych ryzyk błędu ludzkiego w 100% manualnym procesie raportowania.",
+        changelogV10Tags: "[Analiza Procesów] [Data Entry]",
+
+        // v0.5.0 - Stażysta
+        changelogV05Title: "Wersja Beta (Stażysta)",
+        changelogV05Place: "Urząd Miasta Łodzi",
+        changelogV05Date: "07.2019 - 11.2019",
+        changelogV05Desc: "Wstępne rozpoznanie środowiska. Archiwizacja i podstawowe porządkowanie dokumentacji budżetowej.",
+        changelogV05Tags: "[Archiwizacja] [Excel]",
+
+        // --- Strona Projektów (Project Registry) ---
+        projectsTitle: "Rejestr Projektów",
+        projectsSubtitle: "SELECT * FROM projects WHERE status IN ('Produkcja', 'Wdrożony', 'Koncepcja') ORDER BY impact DESC;",
+
+        // === ZMIANA: Zredagowane, "mięsiste" opisy ===
+
+        // 1. Agregator
+        aggregatorTitle: "Agregator Rozliczeń Projektowych",
+        aggregatorDesc: "Narzędzie klienckie (JS/SheetJS) automatyzujące proces agregacji danych z wielu plików `.xlsx`. Odwzorowuje logikę biznesową procesów księgowych.",
+        aggregatorStatus: "PRODUKCJA",
+        aggregatorDate: "2023-Q4", // USUNIEMY TEN KLUCZ W NASTĘPNYM KROKU
+        aggregatorTags: "JavaScript SheetJS Automatyzacja DOM",
+
+        // 2. Odsetki Podatkowe
+        taxArrearsTitle: "Kalkulator Odsetek Podatkowych",
+        taxArrearsDesc: "Implementacja logiki biznesowej (Ordynacja Podatkowa) do precyzyjnego obliczania odsetek podatkowych ze zmiennymi stawkami.",
+        taxArrearsStatus: "PRODUKCJA",
+        taxArrearsDate: "2023-Q2",
+        taxArrearsTags: "JavaScript Logika-Biznesowa Finanse",
+        
+        // 3. Odsetki Ustawowe
+        statutoryInterestTitle: "Kalkulator Odsetek Ustawowych",
+        statutoryInterestDesc: "Kalkulator odsetek ustawowych i handlowych z pełną historią dynamicznie zmieniających się stawek (dane NBP).",
+        statutoryInterestStatus: "PRODUKCJA",
+        statutoryInterestDate: "2023-Q3",
+        statutoryInterestTags: "JavaScript Logika-Biznesowa Finanse",
+
+        // 4. Walidator Budżetu
+        budgetValidatorTitle: "Walidator Danych Budżetowych",
+        budgetValidatorDesc: "Narzędzie do szybkiej weryfikacji spójności danych (liczby kolumn) skopiowanych bezpośrednio z Excela. Oszczędza czas na manualnym debugowaniu.",
+        budgetValidatorStatus: "WDROŻONY",
+        budgetValidatorDate: "2023-Q1",
+        budgetValidatorTags: "JavaScript DOM Narzędzie",
+
+        // 5. Stacja Pogody
+        weatherTitle: "Stacja Pogody",
+        weatherDesc: "Aplikacja z prognozą 5-dniową/24h. Wykorzystuje geolokalizację oraz architekturę serverless (Netlify Functions) do bezpiecznego ukrywania kluczy API.",
+        weatherStatus: "PRODUKCJA", // ZMIANA STATUSU
+        weatherDate: "2024-Q1",
+        weatherTags: "JavaScript API Serverless Netlify",
+        weatherLinkDesc: "Zobacz Wdrożenie Live ↗",
+
+        // 6. Lista Zadań
+        todoTitle: "Aplikacja \"Lista Zadań\"",
+        todoDesc: "Zaawansowane To-Do z filtrowaniem, edycją, zapisem w `localStorage` oraz pełną obsługą gestów mobilnych (touch drag-n-drop).",
+        todoStatus: "WDROŻONY", // ZMIANA STATUSU
+        todoDate: "2024-Q2",
+        todoTags: "JavaScript DOM UI/UX LocalStorage",
+
+        // 7. Kalkulator Walut
+        currencyCalcTitle: "Kalkulator Walut",
+        currencyCalcDesc: "Przelicznik walut pobierający kursy na żywo z publicznego API (Frankfurter.app) i obsługujący błędy sieciowe.",
+        currencyCalcStatus: "WDROŻONY",
+        currencyCalcDate: "2023-Q4",
+        currencyCalcTags: "JavaScript API Fetch",
+
+        // 8. Pomodoro
+        pomodoroTimerTitle: "Asystent Pomodoro",
+        pomodoroTimerDesc: "Narzędzie do zarządzania czasem (technika Pomodoro) z konfigurowalnymi cyklami, stanem w `localStorage` i powiadomieniami audio (Tone.js).",
+        pomodoroTimerStatus: "WDROŻONY",
+        pomodoroTimerDate: "2024-Q1",
+        pomodoroTimerTags: "JavaScript DOM Audio-API",
+
+        // 9. Agency
+        agencyTitle: "Projekt \"Creative Agency\"",
+        agencyDesc: "Techniczne demo demonstrujące zaawansowane, w pełni responsywne układy (CSS Grid/Flexbox) oraz dynamiczny slider JS.",
+        agencyStatus: "KONCEPCJA",
+        agencyDate: "2023-Q3",
+        agencyTags: "HTML5 CSS3 Flexbox Grid",
+
+        // 10. Edytor Markdown
+        markdownEditorTitle: "Edytor Markdown",
+        markdownEditorDesc: "Edytor tekstu z podglądem na żywo (Marked.js), analizą treści w czasie rzeczywistym i synchronizacją przewijania.",
+        markdownEditorStatus: "WDROŻONY", // ZMIANA STATUSU
+        markdownEditorDate: "2023-Q4",
+        markdownEditorTags: "JavaScript DOM Marked.js",
+
+        // 11. Snake
+        snakeGameTitle: "Gra w Węża",
+        snakeGameDesc: "Implementacja klasycznej pętli gry (game loop) i detekcji kolizji na elemencie HTML Canvas. Obsługuje klawiaturę i gesty mobilne.",
+        snakeGameStatus: "GRYWALNY",
+        snakeGameDate: "2024-Q2",
+        snakeGameTags: "JavaScript HTML-Canvas GameDev",
+
+        // 12. Tic-Tac-Toe
+        ticTacToeTitle: "Kółko i Krzyżyk",
+        ticTacToeDesc: "Implementacja logiki gry z zarządzaniem stanem, oferująca tryb Gracz vs Gracz oraz Gracz vs Komputer (proste AI).",
+        ticTacToeStatus: "GRYWALNY",
+        ticTacToeDate: "2024-Q1",
+        ticTacToeTags: "JavaScript GameDev AI",
+
+        // 13. Memory Game
+        memoryGameTitle: "Gra Pamięciowa",
+        memoryGameDesc: "Gra trenująca pamięć (dopasowywanie par) z licznikiem ruchów, timerem, dźwiękami (Tone.js) i dynamicznym generowaniem planszy.",
+        memoryGameStatus: "GRYWALNY",
+        memoryGameDate: "2024-Q1",
+        memoryGameTags: "JavaScript DOM GameDev",
+
+        
+        // --- Strony Pojedynczych Projektów ---
+        
         projectsCategoryAll: "Wszystkie",
-        projectsCategorySpecialist: "Aplikacje Specjalistyczne",
-        projectsCategoryTools: "Narzędzia Użytkowe",
-        projectsCategoryCreative: "Projekty Kreatywne",
+        projectsCategorySpecialist: "Specjalistyczne",
+        projectsCategoryTools: "Narzędzia",
+        projectsCategoryCreative: "Kreatywne",
         projectsCategoryGames: "Gry",
-        aggregatorCardTitle: "Agregator Rozliczeń Projektowych",
-        aggregatorCardDesc: "Portfolio wersja narzędzia, które automatyzuje proces tworzenia rocznych zestawień projektowych.",
-        todoCardTitle: "Aplikacja \"Lista Zadań\"", todoCardDesc: "Zaawansowana aplikacja To-Do z filtrowaniem, edycją, zapisem w pamięci i zmianą kolejności zadań.",
-        weatherCardTitle: "Stacja Pogody", weatherCardDesc: "Aplikacja pogodowa z prognozą 5-dniową, geolokalizacją i wykorzystaniem zewnętrznego API.",
-        agencyCardTitle: "Projekt \"Kreatywna Agencja\"", agencyCardDesc: "Strona wizytówka dla agencji marketingowej z interaktywnymi elementami.",
-        currencyCalcCardTitle: "Kalkulator Walut", currencyCalcCardDesc: "Przelicznik walut korzystający z aktualnych kursów pobieranych z zewnętrznego API.",
-        markdownEditorCardTitle: "Zaawansowany Edytor Markdown", markdownEditorCardDesc: "Edytor tekstu z podglądem na żywo, paskiem narzędzi i synchronizowanym przewijaniem.",
-        pomodoroTimerCardTitle: "Asystent Pomodoro", pomodoroTimerCardDesc: "Inteligentny asystent do zarządzania pracą i przerwami z automatycznym śledzeniem cykli.",
-        ticTacToeCardTitle: "Gra w Kółko i Krzyżyk", ticTacToeCardDesc: "Klasyczna gra logiczna z możliwością gry z komputerem, stworzona w czystym JavaScript.",
-        memoryGameCardTitle: "Gra Pamięciowa", memoryGameCardDesc: "Klasyczna gra w dopasowywanie par kart z licznikiem ruchów i czasu.",
-        snakeGameCardTitle: "Gra w Węża", snakeGameCardDesc: "Klasyczna gra zręcznościowa w węża, stworzona z użyciem HTML Canvas.",
-        taxArrearsCardTitle: "Kalkulator Odsetek Podatkowych", taxArrearsCardDesc: "Narzędzie do obliczania odsetek za zwłokę od zaległości podatkowych zgodnie z obowiązującymi stawkami.",
-        statutoryInterestCardTitle: "Kalkulator Odsetek Ustawowych",
-        statutoryInterestCardDesc: "Obliczanie odsetek ustawowych za opóźnienie oraz za opóźnienie w transakcjach handlowych.",
-        budgetValidatorCardTitle: "Walidator Danych Budżetowych",
-        budgetValidatorCardDesc: "Proste narzędzie do sprawdzania spójności danych tabelarycznych, np. skopiowanych z arkusza kalkulacyjnego.",
+        
         budgetValidatorTitle: "Walidator Danych Budżetowych",
         budgetValidatorSubtitle: "Wklej poniżej dane skopiowane np. z programu Excel (rozdzielane tabulatorami). Narzędzie sprawdzi, czy każdy wiersz ma taką samą liczbę kolumn.",
         budgetValidatorTextareaLabel: "Dane do walidacji",
@@ -50,6 +199,7 @@ export const translations = {
         budgetValidatorError: "Znaleziono błędy w danych:",
         budgetValidatorErrorLine: ({ line, expected, found }) => `Błąd w wierszu ${line}: Oczekiwano ${expected} kolumn, znaleziono ${found}.`,
         budgetValidatorEmpty: "Pole z danymi jest puste.",
+        
         statutoryInterestTitle: "Kalkulator Odsetek Ustawowych",
         statutoryInterestTypeLabel: "Rodzaj odsetek",
         statutoryInterestStandard: "Ustawowe za opóźnienie",
@@ -58,6 +208,7 @@ export const translations = {
         statutoryInterestStartDateLabel: "Data wymagalności",
         statutoryInterestEndDateLabel: "Data zapłaty / dzień obliczenia",
         statutoryInterestDataSource: "Stawki odsetek zgodne z obwieszczeniami Ministra Sprawiedliwości i danymi NBP.",
+        
         aggregatorTitle: "Agregator Rozliczeń Projektowych",
         aggregatorSubtitle: "Wersja demonstracyjna na potrzeby portfolio. Wgraj przykładowe pliki, aby wygenerować raport.",
         aggregatorStep1: "1. Wskaż źródła danych",
@@ -65,7 +216,7 @@ export const translations = {
         aggregatorFilesLabel: "Pliki projektowe (.xlsx)",
         aggregatorDownloadSamples: "Pobierz przykładowe pliki",
         aggregatorBaseLabel: "Baza nazw projektów",
-        aggregatorPlaceholder: "Wklej tutaj listę, aby aplikacja mogła dopasować nazwy do numerów znalezionych w plikach.\nPrzykład:\n938 AKADEMIA PROFESJONALNEGO HOTELARZA\n939 Projekt Innowacji Edukacyjnych",
+        aggregatorPlaceholder: "Wklej tutaj listę, aby aplikacja mogła dopasować nazwy do numerów znalezionych w plikach.\nPrzykład:\n938 PROFESSIONAL HOTELIER ACADEMY\n939 Educational Innovation Project",
         aggregatorGenerateReport: "Generuj Raport",
         aggregatorReportTitle: "Wygenerowany Raport",
         aggregatorColNumber: "Numer Projektu",
@@ -75,11 +226,13 @@ export const translations = {
         aggregatorErrorFiles: "Proszę wybrać przynajmniej jeden plik .xlsx.",
         aggregatorErrorBase: "Proszę wprowadzić bazę nazw projektów.",
         aggregatorErrorNoData: "Nie znaleziono pasujących danych w przesłanych plikach.",
+        
         todoTitle: "Lista Zadań", todoPlaceholder: "Co jest do zrobienia?", todoAddBtn: "Dodaj",
         todoCounter: (count) => `${count} zadań pozostało`,
         todoFilterAll: "Wszystkie", todoFilterActive: "Aktywne", todoFilterCompleted: "Ukończone",
         todoClearCompleted: "Wyczyść ukończone", todoConfirmClear: (count) => `Czy na pewno chcesz usunąć ${count} ukończonych zadań?`,
         confirmYes: "Tak", confirmNo: "Anuluj",
+        
         weatherTitle: "Stacja Pogody", weatherPlaceholder: "Wpisz nazwę miasta...", weatherSearchBtn: "Szukaj",
         weatherGeoBtn: "Użyj mojej lokalizacji",
         weatherForecastTitle: "Prognoza na 5 dni",
@@ -92,7 +245,9 @@ export const translations = {
         weatherPressure: "Ciśnienie",
         weatherSunrise: "Wschód słońca",
         weatherSunset: "Zachód słońca",
+        
         currencyTitle: "Kalkulator Walut", currencyAmount: "Kwota", currencyFrom: "Z", currencyTo: "Na", currencyDataSource: "Kursy walut dostarczane przez Frankfurter.app",
+        
         markdownEditorTitle: "Zaawansowany Edytor Markdown",
         markdownEditorSubtitle: "Skorzystaj z paska narzędzi, aby szybko formatować tekst. Podgląd aktualizuje się na żywo i synchronizuje z edytorem.",
         markdownHowToUse: "Wskazówka: Zaznacz tekst, a następnie kliknij przycisk, aby zastosować formatowanie.",
@@ -103,19 +258,24 @@ export const translations = {
         markdownCode: "Wstaw kod",
         markdownWords: "Słowa",
         markdownCharacters: "Znaki",
+        
         pomodoroTimerTitle: "Asystent Pomodoro", pomodoroModeWork: "Praca", pomodoroModeShortBreak: "Krótka Przerwa", pomodoroModeLongBreak: "Długa Przerwa", pomodoroStart: "Start", pomodoroPause: "Pauza", pomodoroReset: "Reset",
         pomodoroSettingsTitle: "Ustawienia", pomodoroWorkLabel: "Czas pracy (min)", pomodoroShortBreakLabel: "Krótka przerwa (min)", pomodoroLongBreakLabel: "Długa przerwa (min)", pomodoroSaveSettings: "Zapisz",
         pomodoroSettingsSaved: "Zapisano!",
         pomodoroCyclesTitle: "Ukończone cykle (cel: 4)",
+        
         ticTacToeTitle: "Gra w Kółko i Krzyżyk", ticTacToeTurn: (player) => `Ruch gracza: ${player}`, ticTacToeWinner: (player) => `Wygrywa gracz ${player}!`, ticTacToeDraw: "Remis!", ticTacToeRestart: "Zagraj ponownie",
         ticTacToeModePVP: "Gracz vs Gracz", ticTacToeModePVC: "Gracz vs Komputer", ticTacToeScore: "Wynik", ticTacToeChooseSide: "Wybierz swoją stronę:", ticTacToePlay: "Rozpocznij grę",
+        
         memoryGameTitle: "Gra Pamięciowa", memoryGameMoves: "Ruchy", memoryGameTime: "Czas", memoryGameRestart: "Zagraj ponownie",
         memoryGameWin: ({ moves, time }) => `Gratulacje! Wygrałeś w ${moves} ruchach i czasie ${time}s!`,
+        
         snakeGameTitle: "Gra w Węża", snakeGameScore: "Wynik", snakeGameHighScore: "Najlepszy wynik", snakeGamePause: "PAUZA", snakeGameOver: "Koniec gry!", snakeGameRestart: "Zagraj ponownie",
         snakeGameStartMsg: "Naciśnij klawisz lub przesuń palcem, aby rozpocząć",
         snakeGameControls: "Sterowanie: Klawisze strzałek, WSAD lub gesty. Pauza: Spacja.",
+        
         agencyTitle: "Kreatywna Agencja", agencyHeroTitle: "Tworzymy cyfrowe doświadczenia.", agencyHeroSubtitle: "Specjalizujemy się w projektowaniu stron internetowych, brandingu i marketingu online, które pomagają Twojej firmie rosnąć.",
-        agencyServicesTitle: "Nasze Usługi", service1Title: "Projektowanie Stron", service1Desc: "Nowoczesne i responsywne strony internetowe.", service2Title: "Branding", service2Desc: "Tworzenie silnej i spójnej tożsamości marki.", service3Title: "Marketing Online", service3Desc: "Zwiększanie widoczności w internecie.",
+        agencyServicesTitle: "Nasze Usługi", service1Title: "Web Design", service1Desc: "Nowoczesne i responsywne strony internetowe.", service2Title: "Branding", service2Desc: "Tworzenie silnej i spójnej tożsamości marki.", service3Title: "Marketing Online", service3Desc: "Zwiększanie widoczności w internecie.",
         agencyProcessTitle: "Nasz Proces Pracy", processStep1Title: "Odkrycie", processStep1Desc: "Analizujemy Twoje potrzeby i cele.", processStep2Title: "Projekt", processStep2Desc: "Tworzymy strategie i makiety.", processStep3Title: "Realizacja", processStep3Desc: "Budujemy i programujemy rozwiązanie.", processStep4Title: "Wdrożenie", processStep4Desc: "Uruchamiamy projekt i zapewniamy wsparcie.",
         agencyPortfolioTitle: "Nasze Portfolio", portfolioItem1: "Branding dla Firmy A", portfolioItem2: "Strona dla Firmy B", portfolioItem3: "Aplikacja dla Firmy C", portfolioItem4: "Marketing dla Firmy D", portfolioItem5: "Sklep E-commerce dla Firmy E", portfolioItem6: "Identyfikacja Wizualna dla Firmy F",
         agencyStatsTitle: "Zaufali nam w liczbach", statsClients: "Zadowolonych Klientów", statsProjects: "Ukończonych Projektów", statsCoffee: "Wypitych Kaw",
@@ -124,48 +284,30 @@ export const translations = {
         testimonial1: "Niesamowita dbałość o szczegóły. Nasza nowa strona przerosła nasze oczekiwania!", testimonial1Author: "Janina z Firmy X",
         testimonial2: "Profesjonalizm i kreatywność na najwyższym poziomie. Polecam!", testimonial2Author: "Marek z Firmy Y",
         testimonial3: "Szybka realizacja i świetna komunikacja na każdym etapie projektu.", testimonial3Author: "Ewa z Firmy Z",
-        testimonial4: "Zespół, który naprawdę słucha klienta. Efekty mówią same za siebie.", testimonial4Author: "Tomasz z Firmy A",
-        testimonial5: "Dzięki nim nasza sprzedaż online wzrosła o 200%. Niesamowite!", testimonial5Author: "Katarzyna z Firmy B",
-        testimonial6: "Pełen profesjonalizm i zaangażowanie. Na pewno wrócimy z kolejnymi projektami.", testimonial6Author: "Adam z Firmy C",
-        agencyContactTitle: "Skontaktuj się z nami", formName: "Imię", formEmail: "Email", formMessage: "Wiadomość", formSend: "Wyślij", formSuccess: "Dziękujemy za wiadomość! Skontaktujemy się wkrótce.",
-        contactTitle: "Kontakt", contactContent: "Masz pytanie lub propozycję współpracy? Chętnie odpowiem na Twoją wiadomość. Skorzystaj z formularza poniżej lub znajdź mnie w mediach społecznościowych.",
-        contactFormTitle: "Napisz do mnie", formErrorEmpty: "To pole jest wymagane.", formErrorEmail: "Proszę podać poprawny adres e-mail.",
-        geminiTitle: "✨ Asystent E-mail (Gemini AI)", geminiContent: "Wpisz poniżej krótką wiadomość, a ja pomogę Ci ubrać ją w profesjonalne słowa.",
-        geminiPlaceholder: "np. hej, mam pytanie o projekt X, kiedy możemy pogadać?", geminiBtn: "Ulepsz e-mail",
-        loading: "Ładowanie...",
-        timelineTitle: "Moje Doświadczenie i Edukacja",
-        timelineWork5Title: "Inspektor",
-        timelineWork5Place: "Urząd Miasta Łodzi",
-        timelineWork5Date: "06.2023 - obecnie",
-        timelineWork5Desc: "Zaawansowana analiza danych finansowych przy użyciu MS Excel, w tym tabel przestawnych, do tworzenia kompleksowych raportów i zestawień budżetowych.",
-        timelineWork4Title: "Podinspektor",
-        timelineWork4Place: "Urząd Miasta Łodzi",
-        timelineWork4Date: "03.2021 - 05.2023",
-        timelineWork4Desc: "Samodzielne prowadzenie procesu rozliczania projektów finansowanych ze środków europejskich, weryfikacja dokumentacji i sporządzanie sprawozdawczości.",
-        timelineWork3Title: "Referent",
-        timelineWork3Place: "Urząd Miasta Łodzi",
-        timelineWork3Date: "11.2020 - 02.2021",
-        timelineWork3Desc: "Wykonywanie podstawowych operacji księgowych w systemie finansowym miasta dotyczących transakcji finansowanych ze środków unijnych.",
-        timelineWork2Title: "Młodszy Referent",
-        timelineWork2Place: "Urząd Miasta Łodzi",
-        timelineWork2Date: "11.2019 - 11.2020",
-        timelineWork2Desc: "Bieżące wprowadzanie i aktualizacja danych w systemach informatycznych wspierających zarządzanie finansami miasta.",
-        timelineWork1Title: "Stażysta",
-        timelineWork1Place: "Urząd Miasta Łodzi",
-        timelineWork1Date: "07.2019 - 11.2019",
-        timelineWork1Desc: "Archiwizacja i porządkowanie dokumentacji Wydziału Budżetu, przygotowywanie danych w programie MS Excel.",
-        timelineEdu3Title: "Magister",
-        timelineEdu3Place: "Społeczna Akademia Nauk w Łodzi",
-        timelineEdu3Date: "10.2023 - 03.2025",
-        timelineEdu3Desc: "Kierunek: Informatyka, Specjalizacja: Zastosowania sztucznej inteligencji.",
-        timelineEdu2Title: "Inżynier",
-        timelineEdu2Place: "Społeczna Akademia Nauk w Łodzi",
-        timelineEdu2Date: "10.2019 - 03.2023",
-        timelineEdu2Desc: "Kierunek: Informatyka, Specjalizacja: Technologie programowania.",
-        timelineEdu1Title: "Technik Informatyk",
-        timelineEdu1Place: "Zespół Szkół Techniczno - Informatycznych",
-        timelineEdu1Date: "09.2013 - 05.2017",
-        timelineEdu1Desc: "Zdobycie kwalifikacji zawodowych w dziedzinie informatyki na poziomie technika.",
+        testimonial4: "A team that really listens to the client. The results speak for themselves.", testimonial4Author: "Thomas from Company A",
+        testimonial5: "Thanks to them, our online sales increased by 200%. Amazing!", testimonial5Author: "Catherine from Company B",
+        testimonial6: "Full professionalism and commitment. We will definitely be back with more projects.", testimonial6Author: "Adam from Company C",
+        agencyContactTitle: "Contact Us", formName: "Imię", formEmail: "Email", formMessage: "Wiadomość", formSend: "Wyślij", formSuccess: "Dziękujemy za wiadomość! Skontaktujemy się wkrótce.",
+        
+        // --- Strona Kontaktowa (Terminal) ---
+        contactTitle: "Inicjalizacja Połączenia",
+        contactContent: "$ polecenie: send-message --recipient:foerchbyte --priority:high",
+        contactFormTitle: "Formularz Transmisji",
+        formName: "$ --imie:",
+        formEmail: "$ --email:",
+        formMessage: "$ --wiadomosc:",
+        formSend: "WYKONAJ",
+        formSuccess: "Transmisja zakończona sukcesem. Oczekuj na odpowiedź.",
+        formErrorEmpty: "Błąd: Pole jest wymagane.",
+        formErrorEmail: "Błąd: Wymagany poprawny format adresu e-mail.",
+        
+        geminiTitle: "Asystent Komunikacji (AI)",
+        geminiContent: "// Wpisz roboczą wersję wiadomości, a system zoptymalizuje ją pod kątem profesjonalnego tonu.",
+        geminiPlaceholder: "np. siema, chce pogadac o projekcie, kiedy masz czas?",
+        geminiBtn: "OPTYMIZUJ",
+        
+        loading: "Przetwarzanie...",
+
         taxArrearsTitle: "Kalkulator Odsetek za Zwłokę",
         taxArrearsAmountLabel: "Kwota zaległości (PLN)",
         taxArrearsStartDateLabel: "Termin płatności",
@@ -183,6 +325,7 @@ export const translations = {
         taxArrearsErrorDate: "Data wpłaty musi być późniejsza niż termin płatności.",
         taxArrearsErrorAmount: "Proszę podać prawidłową kwotę zaległości.",
         taxArrearsDataSource: "Stawki odsetek zgodne z obwieszczeniami Ministra Finansów.",
+        
         errorApiGeneric: "Wystąpił błąd. Spróbuj ponownie później.",
         errorApiWeather: "Nie udało się pobrać danych o pogodzie. Spróbuj ponownie.",
         errorApiCurrency: "Nie udało się pobrać kursów walut.",
@@ -193,37 +336,187 @@ export const translations = {
         errorServer: ({ status }) => `Błąd serwera (${status}). Spróbuj ponownie.`,
     },
     en: {
-        siteTitle: "Digital Portfolio",
-        navAbout: "About Me", navProjects: "Projects", navContact: "Contact",
-        backToProjects: "‹ Back to projects",
-        aboutTitle: "Hi, I'm Michael!",
-        aboutSubtitle: "A Frontend Developer with a passion for creation.",
-        aboutContent: "I specialize in building modern, interactive web applications. My goal is to write clean, efficient code and ensure the best user experience (UX). Below are the technologies I work with daily.",
-        aboutSkillsTitle: "My Main Technologies",
-        aboutCtaProjects: "See my projects",
-        aboutCtaCv: "Download CV",
-        projectsTitle: "My Projects", projectsSubtitle: "Below are the interactive applications I have built. Click on a card to try them out.",
+        siteTitle: "FoerchByte // Engineering Portfolio",
+
+        // --- New Hero Page ---
+        heroSubtitle: "EXECUTIVE_ENGINEER",
+        heroTitle: "From <span class=\"highlight\">Analytics</span><br>to Applications",
+        
+        heroValue1: "I identify business bottlenecks and legacy processes.",
+        heroValue2: "I translate complex logic (VBA, Excel) into scalable code (JavaScript, API).",
+        heroValue3: "I deliver systems that automate workflows and save hundreds of work-hours.",
+
+        heroCta: "VIEW_CASE_STUDIES",
+        heroCtaBio: "See my profile",
+
+        // Homepage Stats (NEW)
+        heroStatExperience: "YEARS OF EXPERIENCE (Finance/VBA)",
+        heroStatTools: "TOOLS SHIPPED",
+        heroStatCommits: "COMMITS (Last Year)",
+        heroStatAutomations: "KEY AUTOMATIONS",
+
+        // --- Navigation (Mockup Compliant) ---
+        navProjects: "Projects",
+        navChangelog: "Changelog",
+        navContact: "Contact",
+
+        backToProjects: "‹ Back to registry",
+
+        // --- "Changelog" Section (formerly "About") ---
+        aboutTitle: "Michael 'Foerch' Herbich",
+        aboutSubtitle: "Data Automation Specialist | Frontend Developer",
+        aboutDesc1: "I am an engineer who refuses to accept \"that's how we've always done it.\" I specialize in identifying bottlenecks in business processes and relentlessly automating them.",
+        aboutDesc2: "I combine hard analytical skills (VBA, Power Query, Excel) with a modern web stack (JavaScript, APIs) to build tools that save hundreds of work hours annually. My goal is to build systems that work for people, not the other way around.",
+        aboutSkillsTitle: "Tech Stack",
+        skillsHeaderData: "// Data Automation & Analysis",
+        skillsHeaderFrontend: "// Frontend Development",
+
+        aboutCtaProjects: "VIEW_CASE_STUDIES",
+        aboutCtaCv: "Download Full CV",
+
+        changelogTitle: "Career Changelog (Version History)",
+
+        // v3.0.0 - Inspector (Revolution + MSc)
+        changelogV3Title: "Automation Revolution (Inspector)",
+        changelogV3Place: "City of Łódź Office",
+        changelogV3Date: "06.2023 - present",
+        changelogV3Desc: "Obtained Master of Science (MSc) in AI. Implemented full automation ecosystem: replaced manual processes with VBA scripts, Power Query pipelines, and Power Automate/SharePoint forms. KEY RESULT: Reduced annual settlement time for 140+ projects from 78 working days to just 10 days.",
+        changelogV3Tags: "<span style='color: var(--primary-color)'>[MSc Degree (AI)]</span> [VBA] [Power Query] [Process Automation] [SharePoint] [Power Automate]",
+
+        // v2.0.0 - Junior Inspector (Incubation)
+        changelogV2Title: "Technical Incubation (Junior Inspector)",
+        changelogV2Place: "City of Łódź Office",
+        changelogV2Date: "03.2021 - 05.2023",
+        changelogV2Desc: "Foundation building phase. Obtained Engineering degree in Computer Science. Optimized workspace (3-monitor setup) and implemented first advanced data models in Power Query for >40k row reports.",
+        changelogV2Tags: "<span style='color: var(--primary-color)'>[BEng Degree (CS)]</span> [Advanced Excel] [Hardware Setup]",
+
+        // v1.5.0 - Clerk (Optimization)
+        changelogV15Title: "Formula Optimization (Clerk)",
+        changelogV15Place: "City of Łódź Office",
+        changelogV15Date: "11.2020 - 02.2021",
+        changelogV15Desc: "First iteration of improvements. Replaced manual data totaling with dynamic formulas (SUMIFS, VLOOKUP) in master spreadsheets.",
+        changelogV15Tags: "[Excel Formulas] [SUMIFS] [VLOOKUP]",
+
+        // v1.0.0 - Junior Clerk (Baseline)
+        changelogV10Title: "Manual Baseline (Junior Clerk)",
+        changelogV10Place: "City of Łódź Office",
+        changelogV10Date: "11.2019 - 11.2020",
+        changelogV10Desc: "Onboarding and analysis of legacy processes. Identified critical human error risks in 100% manual reporting workflows.",
+        changelogV10Tags: "[Process Analysis] [Data Entry]",
+
+        // v0.5.0 - Intern (Beta Release)
+        changelogV05Title: "Beta Release (Intern)",
+        changelogV05Place: "City of Łódź Office",
+        changelogV05Date: "07.2019 - 11.2019",
+        changelogV05Desc: "Initial environment reconnaissance. Archiving and basic organization of budget documentation.",
+        changelogV05Tags: "[Archiving] [Excel]",
+
+        // --- Projects Page (Project Registry) ---
+        projectsTitle: "Project Registry",
+        projectsSubtitle: "SELECT * FROM projects WHERE status IN ('Production', 'Deployed', 'Concept') ORDER BY impact DESC;",
+        
+        // === ZMIANA: Zredagowane, "mięsiste" opisy (EN) ===
+
+        // 1. Agregator
+        aggregatorTitle: "Project Settlement Aggregator",
+        aggregatorDesc: "Client-side tool (JS/SheetJS) automating data aggregation from multiple `.xlsx` files. Replicates business logic of accounting processes.",
+        aggregatorStatus: "PRODUCTION",
+        aggregatorDate: "2023-Q4", // USUNIEMY TEN KLUCZ W NASTĘPNYM KROKU
+        aggregatorTags: "JavaScript SheetJS Automation DOM",
+
+        // 2. Tax Arrears
+        taxArrearsTitle: "Tax Interest Calculator",
+        taxArrearsDesc: "Implementation of business logic (Tax Ordinance) for precise calculation of tax interest with variable historical rates.",
+        taxArrearsStatus: "PRODUCTION",
+        taxArrearsDate: "2023-Q2",
+        taxArrearsTags: "JavaScript Business-Logic Finance",
+        
+        // 3. Statutory Interest
+        statutoryInterestTitle: "Statutory Interest Calculator",
+        statutoryInterestDesc: "Calculates statutory and commercial interest with a full history of dynamically changing rates (NBP data).",
+        statutoryInterestStatus: "PRODUCTION",
+        statutoryInterestDate: "2023-Q3",
+        statutoryInterestTags: "JavaScript Business-Logic Finance",
+
+        // 4. Budget Validator
+        budgetValidatorTitle: "Budget Data Validator",
+        budgetValidatorDesc: "A utility tool for rapid consistency verification (column count) of data copied directly from Excel. Saves time on manual debugging.",
+        budgetValidatorStatus: "DEPLOYED",
+        budgetValidatorDate: "2023-Q1",
+        budgetValidatorTags: "JavaScript DOM Utility",
+
+        // 5. Weather Station
+        weatherTitle: "Weather Station",
+        weatherDesc: "5-day/24h forecast app. Utilizes geolocation and a serverless architecture (Netlify Functions) for secure API key management.",
+        weatherStatus: "PRODUCTION", // ZMIANA STATUSU
+        weatherDate: "2024-Q1",
+        weatherTags: "JavaScript API Serverless Netlify",
+        weatherLinkDesc: "See Live Deployment ↗",
+
+        // 6. To-Do List
+        todoTitle: "To-Do List App",
+        todoDesc: "Advanced To-Do with filtering, editing, `localStorage` persistence, and full mobile touch gesture support (touch drag-n-drop).",
+        todoStatus: "DEPLOYED", // ZMIANA STATUSU
+        todoDate: "2024-Q2",
+        todoTags: "JavaScript DOM UI/UX LocalStorage",
+
+        // 7. Currency Calculator
+        currencyCalcTitle: "Currency Calculator",
+        currencyCalcDesc: "Currency converter fetching live rates from a public API (Frankfurter.app) and handling network errors.",
+        currencyCalcStatus: "DEPLOYED",
+        currencyCalcDate: "2023-Q4",
+        currencyCalcTags: "JavaScript API Fetch",
+
+        // 8. Pomodoro
+        pomodoroTimerTitle: "Pomodoro Assistant",
+        pomodoroTimerDesc: "Time management tool (Pomodoro technique) with configurable cycles, `localStorage` state, and audio cues (Tone.js).",
+        pomodoroTimerStatus: "DEPLOYED",
+        pomodoroTimerDate: "2024-Q1",
+        pomodoroTimerTags: "JavaScript DOM Audio-API",
+
+        // 9. Agency
+        agencyTitle: "Project \"Creative Agency\"",
+        agencyDesc: "A technical demo showcasing advanced, fully responsive layouts (CSS Grid/Flexbox) and a dynamic JS slider.",
+        agencyStatus: "CONCEPT",
+        agencyDate: "2023-Q3",
+        agencyTags: "HTML5 CSS3 Flexbox Grid",
+
+        // 10. Markdown Editor
+        markdownEditorTitle: "Markdown Editor",
+        markdownEditorDesc: "Text editor with a live preview (Marked.js), real-time content analysis, and synchronized scrolling.",
+        markdownEditorStatus: "DEPLOYED", // ZMIANA STATUSU
+        markdownEditorDate: "2023-Q4",
+        markdownEditorTags: "JavaScript DOM Marked.js",
+
+        // 11. Snake
+        snakeGameTitle: "Snake Game",
+        snakeGameDesc: "Implementation of a classic game loop and collision detection on an HTML Canvas element. Supports keyboard and mobile swipe controls.",
+        snakeGameStatus: "PLAYABLE",
+        snakeGameDate: "2024-Q2",
+        snakeGameTags: "JavaScript HTML-Canvas GameDev",
+
+        // 12. Tic-Tac-Toe
+        ticTacToeTitle: "Tic-Tac-Toe",
+        ticTacToeDesc: "Implementation of game logic with state management, featuring Player vs. Player and Player vs. Computer (simple AI) modes.",
+        ticTacToeStatus: "PLAYABLE",
+        ticTacToeDate: "2024-Q1",
+        ticTacToeTags: "JavaScript GameDev AI",
+
+        // 13. Memory Game
+        memoryGameTitle: "Memory Game",
+        memoryGameDesc: "A pair-matching memory game with a move counter, timer, audio cues (Tone.js), and dynamic board generation.",
+        memoryGameStatus: "PLAYABLE",
+        memoryGameDate: "2024-Q1",
+        memoryGameTags: "JavaScript DOM GameDev",
+        
+        // --- Single Project Pages ---
+        
         projectsCategoryAll: "All",
-        projectsCategorySpecialist: "Specialist Apps",
-        projectsCategoryTools: "Utility Tools",
-        projectsCategoryCreative: "Creative Projects",
+        projectsCategorySpecialist: "Specialist",
+        projectsCategoryTools: "Tools",
+        projectsCategoryCreative: "Creative",
         projectsCategoryGames: "Games",
-        aggregatorCardTitle: "Project Settlement Aggregator",
-        aggregatorCardDesc: "A portfolio version of a tool that automates the creation of annual project financial statements.",
-        todoCardTitle: "To-Do List App", todoCardDesc: "An advanced To-Do application with filtering, editing, local storage saving, and task reordering.",
-        weatherCardTitle: "Weather Station", weatherCardDesc: "A weather application with a 5-day forecast, geolocation, and external API integration.",
-        agencyCardTitle: "Project \"Creative Agency\"", agencyCardDesc: "A landing page for a marketing agency with interactive elements.",
-        currencyCalcCardTitle: "Currency Calculator", currencyCalcCardDesc: "A currency converter using real-time exchange rates from an external API.",
-        markdownEditorCardTitle: "Advanced Markdown Editor", markdownEditorCardDesc: "A text editor with a live preview, toolbar, and synchronized scrolling.",
-        pomodoroTimerCardTitle: "Pomodoro Assistant", pomodoroTimerCardDesc: "An intelligent assistant for managing work and breaks with automatic cycle tracking.",
-        ticTacToeCardTitle: "Tic-Tac-Toe Game", ticTacToeCardDesc: "A classic logic game with a player vs. computer mode, created in pure JavaScript.",
-        memoryGameCardTitle: "Memory Game", memoryGameCardDesc: "A classic card matching game with a move and time counter.",
-        snakeGameCardTitle: "Snake Game", snakeGameCardDesc: "A classic arcade snake game, created using HTML Canvas.",
-        taxArrearsCardTitle: "Tax Interest Calculator", taxArrearsCardDesc: "A tool to calculate interest on tax arrears according to current official rates.",
-        statutoryInterestCardTitle: "Statutory Interest Calculator",
-        statutoryInterestCardDesc: "Calculate statutory interest for delay and for delay in commercial transactions.",
-        budgetValidatorCardTitle: "Budget Data Validator",
-        budgetValidatorCardDesc: "A simple tool to check the consistency of tabular data, e.g., copied from a spreadsheet.",
+
         budgetValidatorTitle: "Budget Data Validator",
         budgetValidatorSubtitle: "Paste data copied from a program like Excel (tab-separated) below. The tool will check if each row has the same number of columns.",
         budgetValidatorTextareaLabel: "Data to validate",
@@ -233,6 +526,7 @@ export const translations = {
         budgetValidatorError: "Errors found in the data:",
         budgetValidatorErrorLine: ({ line, expected, found }) => `Error in line ${line}: Expected ${expected} columns, found ${found}.`,
         budgetValidatorEmpty: "The data field is empty.",
+        
         statutoryInterestTitle: "Statutory Interest Calculator",
         statutoryInterestTypeLabel: "Type of interest",
         statutoryInterestStandard: "Statutory for delay",
@@ -241,6 +535,7 @@ export const translations = {
         statutoryInterestStartDateLabel: "Due date",
         statutoryInterestEndDateLabel: "Date of payment / calculation",
         statutoryInterestDataSource: "Interest rates are in accordance with the announcements of the Minister of Justice and NBP data.",
+        
         aggregatorTitle: "Project Settlement Aggregator",
         aggregatorSubtitle: "A demo version for portfolio purposes. Upload sample files to generate a report.",
         aggregatorStep1: "1. Provide Data Sources",
@@ -258,6 +553,7 @@ export const translations = {
         aggregatorErrorFiles: "Please select at least one .xlsx file.",
         aggregatorErrorBase: "Please provide the project name database.",
         aggregatorErrorNoData: "No matching data was found in the uploaded files.",
+        
         todoTitle: "To-Do List", todoPlaceholder: "What needs to be done?", todoAddBtn: "Add",
         todoCounter: (count) => `${count} items left`,
         todoFilterAll: "All",
@@ -265,6 +561,7 @@ export const translations = {
         todoFilterCompleted: "Completed",
         todoClearCompleted: "Clear completed", todoConfirmClear: (count) => `Are you sure you want to delete ${count} completed tasks?`,
         confirmYes: "Yes", confirmNo: "Cancel",
+        
         weatherTitle: "Weather Station", weatherPlaceholder: "Enter city name...", weatherSearchBtn: "Search",
         weatherGeoBtn: "Use my location",
         weatherForecastTitle: "5-Day Forecast",
@@ -277,7 +574,9 @@ export const translations = {
         weatherPressure: "Pressure",
         weatherSunrise: "Sunrise",
         weatherSunset: "Sunset",
+        
         currencyTitle: "Currency Calculator", currencyAmount: "Amount", currencyFrom: "From", currencyTo: "To", currencyDataSource: "Exchange rates provided by Frankfurter.app",
+        
         markdownEditorTitle: "Advanced Markdown Editor",
         markdownEditorSubtitle: "Use the toolbar to quickly format text. The preview updates live and syncs with the editor.",
         markdownHowToUse: "Tip: Select text and then click a button to apply formatting.",
@@ -288,17 +587,22 @@ export const translations = {
         markdownCode: "Insert code",
         markdownWords: "Words",
         markdownCharacters: "Characters",
+        
         pomodoroTimerTitle: "Pomodoro Assistant", pomodoroModeWork: "Work", pomodoroModeShortBreak: "Short Break", pomodoroModeLongBreak: "Long Break", pomodoroStart: "Start", pomodoroPause: "Pause", pomodoroReset: "Reset",
-        pomodoroSettingsTitle: "Settings", pomodoroWorkLabel: "Work time (min)", pomodoroShortBreakLabel: "Short break (min)", pomodoroLongBreakLabel: "Long break (min)", pomodoroSaveSettings: "Save",
+        pomodoroSettingsTitle: "Settings", pomodoroWorkLabel: "Work time (min)", pomodoroShortBreakLabel: "Short break (min)", pomodoroLongBreakLabel: "Long break (min)", pomdoroSaveSettings: "Save",
         pomodoroSettingsSaved: "Saved!",
         pomodoroCyclesTitle: "Completed cycles (target: 4)",
+        
         ticTacToeTitle: "Tic-Tac-Toe", ticTacToeTurn: (player) => `Player ${player}'s turn`, ticTacToeWinner: (player) => `Player ${player} wins!`, ticTacToeDraw: "It's a draw!", ticTacToeRestart: "Play Again",
         ticTacToeModePVP: "Player vs Player", ticTacToeModePVC: "Player vs Computer", ticTacToeScore: "Score", ticTacToeChooseSide: "Choose your side:", ticTacToePlay: "Start Game",
+        
         memoryGameTitle: "Memory Game", memoryGameMoves: "Moves", memoryGameTime: "Time", memoryGameRestart: "Play Again",
         memoryGameWin: ({ moves, time }) => `Congratulations! You won in ${moves} moves and ${time}s!`,
+
         snakeGameTitle: "Snake Game", snakeGameScore: "Score", snakeGameHighScore: "High Score", snakeGamePause: "PAUSED", snakeGameOver: "Game Over!", snakeGameRestart: "Play Again",
         snakeGameStartMsg: "Press any key or swipe to start",
         snakeGameControls: "Controls: Arrow keys, WASD or swipe gestures. Pause: Spacebar.",
+        
         agencyTitle: "Creative Agency", agencyHeroTitle: "We build digital experiences.", agencyHeroSubtitle: "We specialize in web design, branding, and online marketing to help your business grow.",
         agencyServicesTitle: "Our Services", service1Title: "Web Design", service1Desc: "Modern and responsive websites.", service2Title: "Branding", service2Desc: "Creating a strong and consistent brand identity.", service3Title: "Online Marketing", service3Desc: "Increasing your online visibility.",
         agencyProcessTitle: "Our Work Process", processStep1Title: "Discovery", processStep1Desc: "We analyze your needs and goals.", processStep2Title: "Design", processStep2Desc: "We create strategies and mockups.",
@@ -314,45 +618,27 @@ export const translations = {
         testimonial5: "Thanks to them, our online sales increased by 200%. Amazing!", testimonial5Author: "Catherine from Company B",
         testimonial6: "Full professionalism and commitment. We will definitely be back with more projects.", testimonial6Author: "Adam from Company C",
         agencyContactTitle: "Contact Us", formName: "Name", formEmail: "Email", formMessage: "Message", formSend: "Send", formSuccess: "Thank you for your message! We will get back to you shortly.",
-        contactTitle: "Contact", contactContent: "Have a question or a project proposal? I'd love to hear from you. Use the form below or find me on social media.",
-        contactFormTitle: "Send me a message", formErrorEmpty: "This field is required.", formErrorEmail: "Please enter a valid email address.",
-        geminiTitle: "✨ Email Assistant (Gemini AI)", geminiContent: "Enter a short message below, and I will help you phrase it professionally.",
-        geminiPlaceholder: "e.g., hey, I have a question about project X, when can we talk?", geminiBtn: "Improve Email",
-        loading: "Loading...",
-        timelineTitle: "My Experience & Education",
-        timelineWork5Title: "Inspector",
-        timelineWork5Place: "City of Łódź Office",
-        timelineWork5Date: "06.2023 - Present",
-        timelineWork5Desc: "Advanced analysis of financial data using MS Excel, including pivot tables, to create comprehensive budget reports and statements.",
-        timelineWork4Title: "Junior Inspector",
-        timelineWork4Place: "City of Łódź Office",
-        timelineWork4Date: "03.2021 - 05.2023",
-        timelineWork4Desc: "Independently managing the settlement process for projects financed from European funds, including document verification and reporting.",
-        timelineWork3Title: "Clerk",
-        timelineWork3Place: "City of Łódź Office",
-        timelineWork3Date: "11.2020 - 02.2021",
-        timelineWork3Desc: "Performing basic accounting operations in the city's financial system related to transactions financed by EU funds.",
-        timelineWork2Title: "Junior Clerk",
-        timelineWork2Place: "City of Łódź Office",
-        timelineWork2Date: "11.2019 - 11.2020",
-        timelineWork2Desc: "Ongoing data entry and updates in IT systems supporting the city's financial management.",
-        timelineWork1Title: "Intern",
-        timelineWork1Place: "City of Łódź Office",
-        timelineWork1Date: "07.2019 - 11.2019",
-        timelineWork1Desc: "Archiving and organizing Budget Department documentation, preparing data in MS Excel.",
-        timelineEdu3Title: "Master of Science",
-        timelineEdu3Place: "University of Social Sciences in Łódź",
-        timelineEdu3Date: "10.2023 - 03.2025",
-        timelineEdu3Desc: "Field of Study: Computer Science, Specialization: Applications of Artificial Intelligence.",
-        timelineEdu2Title: "Bachelor of Engineering",
-        timelineEdu2Place: "University of Social Sciences in Łódź",
-        timelineEdu2Date: "10.2019 - 03.2023",
-        timelineEdu2Desc: "Field of Study: Computer Science, Specialization: Programming Technologies.",
-        timelineEdu1Title: "IT Technician",
-        timelineEdu1Place: "Technical and IT School Complex",
-        timelineEdu1Date: "09.2013 - 05.2017",
-        timelineEdu1Desc: "Obtained professional qualifications in the field of IT at the technician level.",
-        taxArrearsTitle: "Tax Arrears Interest Calculator",
+        
+        // --- Contact Page (Terminal) ---
+        contactTitle: "Initialize Connection",
+        contactContent: "$ command: send-message --recipient:foerchbyte --priority:high",
+        contactFormTitle: "Transmission Form",
+        formName: "$ --name:",
+        formEmail: "$ --email:",
+        formMessage: "$ --payload:",
+        formSend: "EXECUTE",
+        formSuccess: "Transmission successful. Awaiting response.",
+        formErrorEmpty: "Error: Field is required.",
+        formErrorEmail: "Error: Valid email address required.",
+
+        geminiTitle: "Comms Assistant (AI)",
+        geminiContent: "// Input message draft. System will optimize for professional tone.",
+        geminiPlaceholder: "e.g., hey, need to talk about the project, when are you free?",
+        geminiBtn: "OPTIMIZE",
+        
+        loading: "Processing...",
+
+        taxArrearsTitle: "Tax Interest Calculator",
         taxArrearsAmountLabel: "Arrears amount (PLN)",
         taxArrearsStartDateLabel: "Due date",
         taxArrearsEndDateLabel: "Date of payment / calculation",
@@ -369,6 +655,7 @@ export const translations = {
         taxArrearsErrorDate: "The payment date must be later than the due date.",
         taxArrearsErrorAmount: "Please enter a valid arrears amount.",
         taxArrearsDataSource: "Interest rates are in accordance with the announcements of the Minister of Finance.",
+        
         errorApiGeneric: "An error occurred. Please try again later.",
         errorApiWeather: "Failed to fetch weather data. Please try again.",
         errorApiCurrency: "Failed to fetch currency rates.",
