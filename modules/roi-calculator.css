@@ -1,314 +1,258 @@
-/* PL: Moduł - Kalkulator ROI Bento */
+/* PL: Moduł - Kalkulator ROI Bento (Integrated Edition) */
 
-#roi-calculator-view {
-    /* Upewnijmy się, że zajmuje cały dostępny obszar widoku routera */
-    width: 100%;
-    min-height: calc(100vh - 80px); /* Zakładając, że masz jakiś header */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #f8fafc;
-    color: #0f172a;
-    padding: 2rem 1rem;
+.roi-page-container {
+    max-width: 1000px;
+    margin: 0 auto;
 }
 
+/* PL: Naprawa struktury tekstowej, aby pasowała do Walidatora */
+.section-subtitle {
+    font-family: 'Roboto Mono', monospace;
+    font-size: 1.1rem;
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+    font-weight: 700;
+}
+
+.section-instructions {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    max-width: 800px;
+    margin-bottom: 2.5rem;
+}
+
+/* PL: Bento Grid - Integracja z tłem portfolio */
 .bento-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: auto auto;
+    grid-template-rows: auto auto auto;
     gap: 1.5rem;
-    max-width: 1000px;
-    width: 100%;
 }
 
 .bento-card {
-    background-color: #ffffff;
-    border-radius: 1.5rem;
-    padding: 1.75rem;
-    box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.03);
+    background-color: var(--card-background); /* Zmiana z bieli na granat portfolio */
+    border-radius: 4px; /* Zmiana z 1.5rem na surowsze 4px */
+    padding: 1.5rem;
+    border: 1px solid var(--border-color);
     display: flex;
     flex-direction: column;
-    border: 1px solid rgba(0,0,0,0.03);
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-    position: relative;
+    transition: all 0.2s ease;
 }
 
 .bento-card:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05);
+    border-color: var(--primary-color);
+    box-shadow: 0 0 20px rgba(0, 224, 255, 0.05);
 }
 
-/* Układ siatki Desktop */
+/* PL: Rozpiętość kafelków */
+.bento-span-4 { grid-column: span 4; }
 .bento-span-2 { grid-column: span 2; }
-.bento-span-1 { grid-column: span 1; }
 .bento-row-span-2 { grid-row: span 2; }
 
-/* Typografia nagłówka */
-.bento-header-wrapper {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    margin-bottom: 0.5rem;
-}
-.bento-main-title {
-    font-size: 1.875rem;
-    line-height: 2.25rem;
-    font-weight: 900;
-    letter-spacing: -0.025em;
-    color: #111827;
-    margin: 0;
-}
-.bento-description {
-    font-size: 0.875rem;
-    line-height: 1.625;
-    color: #6b7280;
-    margin: 0;
+/* PL: Karta z wynikiem (Premium Dark) */
+.bento-card-dark {
+    background: linear-gradient(135deg, #0d1b2a 0%, #1b263b 100%);
+    border-color: var(--primary-color);
 }
 
-/* Karta z Głównym Wynikiem */
-.bento-card-dark {
-    background-color: #0f172a;
-    color: #ffffff;
-}
 .bento-result-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 0.5rem;
+    margin-bottom: 1.5rem;
 }
-.bento-subtitle {
-    font-size: 0.875rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    color: #94a3b8;
-    margin: 0;
-}
-.bento-btn-copy {
-    font-size: 0.75rem;
-    font-weight: 700;
-    color: #cbd5e1;
-    background-color: #1e293b;
-    padding: 0.375rem 0.75rem;
-    border-radius: 0.5rem;
-    border: none;
-    cursor: pointer;
-    transition: background-color 0.2s;
-    display: flex;
-    align-items: center;
-    gap: 0.25rem;
-}
-.bento-btn-copy:hover { background-color: #334155; }
-.bento-icon { width: 1rem; height: 1rem; }
 
-.bento-result-body {
-    margin-top: auto;
-    padding-top: 1rem;
+.bento-subtitle {
+    font-family: 'Roboto Mono', monospace;
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
+
+.bento-btn-copy {
+    background: transparent;
+    border: 1px solid var(--primary-color);
+    color: var(--primary-color);
+    padding: 0.5rem 1rem;
+    font-family: 'Roboto Mono', monospace;
+    font-size: 0.75rem;
+    cursor: pointer;
+    border-radius: 2px;
+}
+
+.bento-btn-copy:hover {
+    background: var(--primary-color);
+    color: var(--background-color);
+}
+
 .bento-cost-display {
     display: flex;
     align-items: baseline;
     gap: 0.5rem;
 }
+
 .bento-cost-value {
-    font-size: 3rem;
-    line-height: 1;
-    font-weight: 900;
-    letter-spacing: -0.05em;
-}
-.bento-cost-currency {
-    font-size: 1.25rem;
-    font-weight: 500;
-    color: #94a3b8;
-}
-.bento-badge-danger {
-    margin-top: 1rem;
-    display: inline-block;
-    background-color: rgba(244, 63, 94, 0.2);
-    color: #fb7185;
-    font-size: 0.75rem;
+    font-size: 4rem;
     font-weight: 700;
-    padding: 0.375rem 0.75rem;
-    border-radius: 0.5rem;
-    border: 1px solid rgba(244, 63, 94, 0.3);
+    color: var(--text-color);
+    font-family: 'Roboto Mono', monospace;
 }
 
-/* Karta Kontrolek (Suwaki) */
+.bento-cost-currency {
+    color: var(--primary-color);
+    font-weight: 700;
+}
+
+.bento-badge-danger {
+    color: #ff4d4d;
+    font-family: 'Roboto Mono', monospace;
+    font-size: 0.75rem;
+    font-weight: 700;
+}
+
+/* PL: Kontrolki - Suwaki (Customized for Dark Mode) */
 .bento-controls {
+    margin-top: 1.5rem;
     display: flex;
     flex-direction: column;
     gap: 2rem;
-    margin-top: 0.5rem;
 }
+
 .bento-control-header {
     display: flex;
     justify-content: space-between;
-    align-items: flex-end;
-    margin-bottom: 0.75rem;
-}
-.bento-control-header label {
-    font-size: 0.875rem;
-    font-weight: 500;
-    color: #374151;
-}
-.bento-val-display {
-    font-size: 1.25rem;
-    font-weight: 700;
-    color: #2563eb;
+    font-family: 'Roboto Mono', monospace;
+    margin-bottom: 0.5rem;
 }
 
-/* Suwaki Range */
+.bento-val-display {
+    color: var(--primary-color);
+    font-weight: 700;
+}
+
+/* PL: Styling suwaka */
 input[type=range] {
     -webkit-appearance: none;
-    width: 100%;
-    background: transparent;
-}
-input[type=range]::-webkit-slider-thumb {
-    -webkit-appearance: none;
-    height: 20px;
-    width: 20px;
-    border-radius: 50%;
-    background: #3b82f6;
-    cursor: pointer;
-    margin-top: -8px;
-    box-shadow: 0 2px 6px rgba(59, 130, 246, 0.4);
-    transition: transform 0.1s;
-}
-input[type=range]::-webkit-slider-thumb:active {
-    transform: scale(1.2);
-}
-input[type=range]::-webkit-slider-runnable-track {
-    width: 100%;
-    height: 6px;
-    cursor: pointer;
-    background: #e2e8f0;
-    border-radius: 3px;
+    background: var(--border-color);
+    height: 4px;
+    border-radius: 2px;
 }
 
-/* Karta Wykresu */
-.bento-card-chart {
-    background-color: #eff6ff;
-    border: none;
+input[type=range]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 16px;
+    height: 16px;
+    background: var(--primary-color);
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 0 10px rgba(0, 224, 255, 0.5);
 }
-.bento-text-blue { color: #1e40af; }
+
+/* PL: Karta Wykresu */
+.bento-card-chart {
+    background-color: rgba(0, 224, 255, 0.02);
+}
+
 .bento-chart-container {
     flex-grow: 1;
     display: flex;
     align-items: flex-end;
     justify-content: space-between;
-    gap: 0.5rem;
-    height: 10rem;
-    padding-top: 1rem;
-    position: relative;
+    height: 120px;
+    margin: 1rem 0;
+    gap: 1rem;
 }
+
 .bento-bar-wrapper {
-    width: 100%;
+    flex: 1;
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
     height: 100%;
 }
+
 .bento-bar-label {
-    font-size: 0.625rem;
+    font-size: 0.65rem;
     text-align: center;
-    color: rgba(37, 99, 235, 0.6);
-    margin-bottom: 0.25rem;
-    font-weight: 700;
-}
-.bento-bar-1 { background-color: #bfdbfe; border-top-left-radius: 0.375rem; border-top-right-radius: 0.375rem; width: 100%; }
-.bento-bar-2 { background-color: #93c5fd; border-top-left-radius: 0.375rem; border-top-right-radius: 0.375rem; width: 100%; }
-.bento-bar-3 { background-color: #3b82f6; border-top-left-radius: 0.375rem; border-top-right-radius: 0.375rem; width: 100%; position: relative; }
-.bento-bar-shadow { box-shadow: 0 0 15px rgba(59, 130, 246, 0.3); }
-.bento-fire-icon { position: absolute; top: -0.75rem; right: -0.5rem; font-size: 1.25rem; }
-
-.bento-chart-summary { margin-top: 1.5rem; text-align: center; }
-.bento-summary-label { font-size: 0.75rem; color: rgba(37, 99, 235, 0.8); font-weight: 500; }
-.bento-summary-value { font-size: 1.25rem; font-weight: 900; color: #1e3a8a; margin-top: 0.25rem; }
-
-/* Karta CTA (Call To Action) */
-.bento-card-cta {
-    background-color: #ecfdf5;
-    border: none;
-    justify-content: space-between;
-}
-.bento-icon-wrapper {
-    width: 3rem;
-    height: 3rem;
-    background-color: #d1fae5;
-    border-radius: 9999px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 1rem;
-}
-.bento-icon-large { width: 1.5rem; height: 1.5rem; color: #059669; }
-.bento-cta-title { font-size: 1.125rem; font-weight: 700; color: #064e3b; margin: 0 0 0.5rem 0; }
-.bento-cta-desc { font-size: 0.75rem; color: #047857; font-weight: 500; margin: 0 0 1rem 0; }
-.bento-btn-primary {
-    width: 100%;
-    background-color: #059669;
-    color: white;
-    font-weight: 700;
-    font-size: 0.875rem;
-    padding: 0.75rem 0;
-    border-radius: 0.75rem;
-    border: none;
-    cursor: pointer;
-    transition: background-color 0.2s;
-}
-.bento-btn-primary:hover { background-color: #047857; }
-.shadow-lg { box-shadow: 0 10px 15px -3px rgba(5, 150, 105, 0.2), 0 4px 6px -2px rgba(5, 150, 105, 0.1); }
-.active-scale:active { transform: scale(0.95); }
-
-/* Narzędzia i ukrywanie */
-.sr-only {
-    position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden;
-    clip: rect(0, 0, 0, 0); white-space: nowrap; border-width: 0;
-}
-.opacity-0 { opacity: 0; }
-.z-hidden { z-index: -50; }
-
-/* Animacje i Toast */
-.transition-all { transition-property: all; transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1); transition-duration: 300ms; }
-.fade-up {
-    animation: fadeUp 0.6s ease-out forwards;
-    opacity: 0;
-    transform: translateY(15px);
-}
-@keyframes fadeUp {
-    to { opacity: 1; transform: translateY(0); }
+    color: var(--text-secondary);
+    margin-bottom: 0.5rem;
 }
 
-.bento-toast {
-    position: fixed;
-    bottom: -50px;
+.bento-bar-1, .bento-bar-2, .bento-bar-3 {
+    background: var(--border-color);
+    transition: height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.bento-bar-3 {
+    background: var(--primary-color);
+    position: relative;
+}
+
+.bento-fire-icon {
+    position: absolute;
+    top: -20px;
     left: 50%;
     transform: translateX(-50%);
-    background: #1e293b;
-    color: white;
-    padding: 0.75rem 1.5rem;
-    border-radius: 9999px;
-    font-size: 0.875rem;
-    font-weight: 500;
-    opacity: 0;
-    transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-    z-index: 50;
-    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-}
-.bento-toast.show {
-    bottom: 20px;
-    opacity: 1;
 }
 
-/* Responsywność */
+.bento-chart-summary {
+    text-align: center;
+    border-top: 1px solid var(--border-color);
+    padding-top: 1rem;
+}
+
+.bento-summary-value {
+    color: var(--primary-color);
+    font-family: 'Roboto Mono', monospace;
+    font-weight: 700;
+}
+
+/* PL: Karta CTA */
+.bento-card-cta {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgba(40, 167, 69, 0.05);
+    border-color: rgba(40, 167, 69, 0.3);
+}
+
+.bento-cta-title {
+    font-family: 'Roboto Mono', monospace;
+    font-size: 1.1rem;
+    color: #28a745;
+    margin: 0;
+}
+
+.bento-cta-desc {
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+    margin: 0.5rem 0 0 0;
+}
+
+/* PL: Toast i Narzędzia */
+.bento-toast {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%) translateY(100px);
+    background: var(--primary-color);
+    color: var(--background-color);
+    padding: 0.75rem 1.5rem;
+    font-family: 'Roboto Mono', monospace;
+    font-weight: 700;
+    transition: transform 0.3s;
+}
+
+.bento-toast.show {
+    transform: translateX(-50%) translateY(0);
+}
+
 @media (max-width: 768px) {
-    #roi-calculator-view {
-        padding: 1rem 0.5rem;
-    }
     .bento-grid {
         grid-template-columns: 1fr;
-        gap: 1rem;
     }
-    .bento-span-2, .bento-span-1 { grid-column: span 1; }
-    .bento-row-span-2 { grid-row: auto; }
+    .bento-span-4, .bento-span-2 { grid-column: span 1; }
+    .bento-card-cta { flex-direction: column; text-align: center; gap: 1rem; }
 }
