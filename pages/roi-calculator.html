@@ -4,7 +4,7 @@
         {{backToProjects}}
     </a>
 
-    <!-- PL: Tytuły i instrukcje w systemowym stylu (Jak w Walidatorze) -->
+    <!-- PL: Tytuły i instrukcje w systemowym stylu -->
     <h2 class="project-page-title">{{roiCalculatorTitle}}</h2>
     <p class="section-subtitle">{{roiCalculatorSubtitle}}</p>
     <p class="section-instructions">{{roiCalculatorInstructions}}</p>
@@ -12,12 +12,13 @@
     <!-- PL: Właściwa siatka Bento -->
     <div class="bento-grid">
         
-        <!-- KAFELEK 1: WYNIK GŁÓWNY (Ciemny, kontrastowy akcent) -->
+        <!-- KAFELEK 1: WYNIK GŁÓWNY -->
         <div class="bento-card bento-span-4 bento-card-dark">
             <div class="bento-result-header">
-                <h2 class="bento-subtitle">Roczny koszt ręcznej pracy</h2>
-                <button onclick="copyReport()" class="bento-btn-copy" id="btn-copy">
-                    <i class="fas fa-copy"></i> Kopiuj Raport
+                <h2 class="bento-subtitle">{{roiYearlyCostTitle}}</h2>
+                <!-- Brak inline onclick, JS zarządza logiką! -->
+                <button class="bento-btn-copy" id="btn-copy">
+                    <i class="fas fa-copy"></i> {{roiCopyReport}}
                 </button>
             </div>
             <div class="bento-result-body">
@@ -26,26 +27,28 @@
                     <span class="bento-cost-currency">PLN</span>
                 </div>
                 <div class="bento-badge-danger">
-                    // PRZEPALONE NA POWTARZALNE ZADANIA
+                    {{roiWastedBadge}}
                 </div>
             </div>
         </div>
 
         <!-- KAFELEK 2: KONTROLKI (Suwaki) -->
         <div class="bento-card bento-span-2 bento-row-span-2">
-            <h2 class="bento-subtitle-light">Parametry Zespołu</h2>
+            <h2 class="bento-subtitle-light">{{roiTeamParamsTitle}}</h2>
             <div class="bento-controls">
+                
                 <div class="bento-control-group">
                     <div class="bento-control-header">
-                        <label>Czas na ręczne zadania (h/tydz)</label>
+                        <label>{{roiHoursLabel}}</label>
                         <div class="bento-val-display"><span id="hoursVal">10</span>h</div>
                     </div>
+                    <!-- Brak inline oninput! -->
                     <input type="range" id="hoursInput" min="1" max="40" value="10">
                 </div>
 
                 <div class="bento-control-group">
                     <div class="bento-control-header">
-                        <label>Stawka godzinowa (PLN)</label>
+                        <label>{{roiRateLabel}}</label>
                         <div class="bento-val-display"><span id="rateVal">80</span></div>
                     </div>
                     <input type="range" id="rateInput" min="30" max="300" step="5" value="80">
@@ -53,35 +56,36 @@
 
                 <div class="bento-control-group">
                     <div class="bento-control-header">
-                        <label>Liczba pracowników</label>
+                        <label>{{roiTeamLabel}}</label>
                         <div class="bento-val-display"><span id="teamVal">2</span></div>
                     </div>
                     <input type="range" id="teamInput" min="1" max="20" value="2">
                 </div>
+
             </div>
         </div>
 
         <!-- KAFELEK 3: WYKRES (Prognoza 5-letnia) -->
         <div class="bento-card bento-span-2 bento-row-span-2 bento-card-chart">
-            <h2 class="bento-subtitle-light">Prognoza strat 5-letnia</h2>
+            <h2 class="bento-subtitle-light">{{roiForecastTitle}}</h2>
             <div class="bento-chart-container">
                 <div class="bento-bar-wrapper">
-                    <div class="bento-bar-label">ROK 1</div>
+                    <div class="bento-bar-label">{{roiYear1}}</div>
                     <div id="bar1" class="bento-bar-1"></div>
                 </div>
                 <div class="bento-bar-wrapper">
-                    <div class="bento-bar-label">ROK 3</div>
+                    <div class="bento-bar-label">{{roiYear3}}</div>
                     <div id="bar2" class="bento-bar-2"></div>
                 </div>
                 <div class="bento-bar-wrapper">
-                    <div class="bento-bar-label">ROK 5</div>
+                    <div class="bento-bar-label">{{roiYear5}}</div>
                     <div id="bar3" class="bento-bar-3">
                         <div class="bento-fire-icon">🔥</div>
                     </div>
                 </div>
             </div>
             <div class="bento-chart-summary">
-                <div class="bento-summary-label">Skumulowana strata:</div>
+                <div class="bento-summary-label">{{roiAccumulatedLoss}}</div>
                 <div class="bento-summary-value" id="fiveYearCost">0 PLN</div>
             </div>
         </div>
@@ -89,18 +93,18 @@
         <!-- KAFELEK 4: WEZWANIE DO DZIAŁANIA -->
         <div class="bento-card bento-span-4 bento-card-cta">
             <div class="cta-content">
-                <h2 class="bento-cta-title">// ROZWIĄZANIE_PROBLEMU</h2>
+                <h2 class="bento-cta-title">{{roiSolutionTitle}}</h2>
                 <p class="bento-cta-desc">
-                    Skrypt Python / GAS kosztuje ułamek tej kwoty, pracuje 24/7 i zwraca się średnio w 2 tygodnie.
+                    {{roiSolutionDesc}}
                 </p>
             </div>
-            <button onclick="generateEmail()" id="btn-email" class="cta-button bento-cta-btn">
-                Zleć Automatyzację
+            <button id="btn-email" class="cta-button bento-cta-btn">
+                {{roiOrderBtn}}
             </button>
         </div>
     </div>
 
     <!-- Ukryte elementy narzędziowe -->
     <textarea id="clipboardHelper" class="sr-only" readonly></textarea>
-    <div id="toast" class="bento-toast">Raport skopiowany!</div>
+    <div id="toast" class="bento-toast">{{roiToastCopied}}</div>
 </div>
