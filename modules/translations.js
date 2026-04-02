@@ -60,7 +60,7 @@ export const translations = {
         changelogV2Title: "Inkubacja Techniczna (Podinspektor)",
         changelogV2Place: "Urząd Miasta Łodzi",
         changelogV2Date: "03.2021 - 05.2023",
-        changelogV2Desc: "Etap budowania fundamentów. Uzyskanie tytułu Inżyniera Informatyki. Optymalizacja warsztatu pracy (setup 3-monitorowy) i wdrażanie pierwszych zaawansowanych modeli danych w Power Query do obsługi sprawozdań >40k wierszy.",
+        changelogV2Desc: "Etap budowania fundamentów. Uzyskanie tytułu Inżyniera Informatyki. Optymalizacja warsztatu pracy (setup 3-monitorowy) i wdrażanie pierwszych zaawansowanych modeli danych in Power Query do obsługi sprawozdań >40k wierszy.",
         changelogV2Tags: "<span style='color: var(--primary-color)'>[Inżynier (Informatyka)]</span> [Advanced Excel] [Hardware Setup]",
 
         // v1.5.0 - Referent
@@ -110,7 +110,7 @@ export const translations = {
         budgetValidatorTitle: "Walidator Danych Budżetowych",
         budgetValidatorDesc: "Narzędzie do szybkiej weryfikacji spójności danych (liczby kolumn) skopiowanych bezpośrednio z Excela. Oszczędza czas na manualnym debugowaniu.",
         budgetValidatorStatus: "WDROŻONY",
-        budgetValidatorTags: "JavaScript DOM Narzędzie",
+        budgetValidatorTags: "JavaScript DOM Narzędzie Bento",
 
         // 5. Stacja Pogody
         weatherTitle: "Stacja Pogody",
@@ -182,7 +182,8 @@ export const translations = {
         projectsCategoryCreative: "Kreatywne",
         projectsCategoryGames: "Gry",
         
-        budgetValidatorSubtitle: "Wklej poniżej dane skopiowane np. z programu Excel (rozdzielane tabulatorami). Narzędzie sprawdzi, czy każdy wiersz ma taką samą liczbę kolumn.",
+        budgetValidatorSubtitle: "Analiza Spójności Danych",
+        budgetValidatorInstructions: "Wklej poniżej dane skopiowane z Excela (tab-separated). System zweryfikuje liczbę kolumn w każdym wierszu, aby wyeliminować błędy przed importem.",
         budgetValidatorTextareaLabel: "Dane do walidacji",
         budgetValidatorValidateBtn: "Waliduj dane",
         budgetValidatorResultTitle: "Wynik walidacji",
@@ -190,6 +191,9 @@ export const translations = {
         budgetValidatorError: "Znaleziono błędy w danych:",
         budgetValidatorErrorLine: ({ line, expected, found }) => `Błąd w wierszu ${line}: Oczekiwano ${expected} kolumn, znaleziono ${found}.`,
         budgetValidatorEmpty: "Pole z danymi jest puste.",
+
+        roiCalculatorSubtitle: "Analiza Opłacalności Automatyzacji",
+        roiCalculatorInstructions: "Dostosuj parametry swojego zespołu, aby obliczyć koszt braku automatyzacji. Zobacz, ile Twoja firma traci rocznie na powtarzalnych zadaniach.",
         
         statutoryInterestTypeLabel: "Rodzaj odsetek",
         statutoryInterestStandard: "Ustawowe za opóźnienie",
@@ -425,7 +429,7 @@ export const translations = {
         budgetValidatorTitle: "Budget Data Validator",
         budgetValidatorDesc: "A utility tool for rapid consistency verification (column count) of data copied directly from Excel. Saves time on manual debugging.",
         budgetValidatorStatus: "DEPLOYED",
-        budgetValidatorTags: "JavaScript DOM Utility",
+        budgetValidatorTags: "JavaScript DOM Utility Bento",
 
         // 5. Weather Station
         weatherTitle: "Weather Station",
@@ -496,7 +500,8 @@ export const translations = {
         projectsCategoryCreative: "Creative",
         projectsCategoryGames: "Games",
 
-        budgetValidatorSubtitle: "Paste data copied from a program like Excel (tab-separated) below. The tool will check if each row has the same number of columns.",
+        budgetValidatorSubtitle: "Data Consistency Analysis",
+        budgetValidatorInstructions: "Paste data copied from Excel (tab-separated) below. The system will verify the column count in each row to eliminate displacement errors before import.",
         budgetValidatorTextareaLabel: "Data to validate",
         budgetValidatorValidateBtn: "Validate Data",
         budgetValidatorResultTitle: "Validation Result",
@@ -504,6 +509,9 @@ export const translations = {
         budgetValidatorError: "Errors found in the data:",
         budgetValidatorErrorLine: ({ line, expected, found }) => `Error in line ${line}: Expected ${expected} columns, found ${found}.`,
         budgetValidatorEmpty: "The data field is empty.",
+
+        roiCalculatorSubtitle: "Automation Profitability Analysis",
+        roiCalculatorInstructions: "Adjust your team parameters to calculate the cost of lacking automation. See how much your company loses annually on repetitive tasks.",
         
         statutoryInterestTypeLabel: "Type of interest",
         statutoryInterestStandard: "Statutory for delay",
