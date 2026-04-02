@@ -1,11 +1,12 @@
-/* PL: Moduł - Kalkulator ROI Bento (Integrated Edition) */
+/* PL: Moduł - Kalkulator ROI Bento (Hybrid Edition) */
 
 .roi-page-container {
     max-width: 1000px;
     margin: 0 auto;
+    padding-bottom: 2rem;
 }
 
-/* PL: Naprawa struktury tekstowej, aby pasowała do Walidatora */
+/* --- Integracja z nagłówkami portfolio --- */
 .section-subtitle {
     font-family: 'Roboto Mono', monospace;
     font-size: 1.1rem;
@@ -13,16 +14,18 @@
     margin-bottom: 1rem;
     text-transform: uppercase;
     font-weight: 700;
+    display: block;
 }
 
 .section-instructions {
     color: var(--text-secondary);
-    font-size: 0.95rem;
+    font-size: 1rem;
     max-width: 800px;
     margin-bottom: 2.5rem;
+    line-height: 1.6;
 }
 
-/* PL: Bento Grid - Integracja z tłem portfolio */
+/* --- Bento Grid --- */
 .bento-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -30,30 +33,48 @@
     gap: 1.5rem;
 }
 
+/* ZŁOTY ŚRODEK: Miękkie rogi (20px), adaptacyjne tło, delikatny, dyfuzyjny cień */
 .bento-card {
-    background-color: var(--card-background); /* Zmiana z bieli na granat portfolio */
-    border-radius: 4px; /* Zmiana z 1.5rem na surowsze 4px */
-    padding: 1.5rem;
+    background-color: var(--card-background);
+    border-radius: 20px;
+    padding: 2rem;
     border: 1px solid var(--border-color);
     display: flex;
     flex-direction: column;
-    transition: all 0.2s ease;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15); /* Cień dla Dark Mode */
+}
+
+/* Dopasowanie dla trybu jasnego - wygląda jak oryginalne "White Bento" */
+body.light-mode .bento-card {
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.04);
+    border-color: rgba(0,0,0,0.05);
 }
 
 .bento-card:hover {
+    transform: translateY(-4px);
     border-color: var(--primary-color);
-    box-shadow: 0 0 20px rgba(0, 224, 255, 0.05);
+    box-shadow: 0 12px 30px rgba(0, 224, 255, 0.1);
 }
 
-/* PL: Rozpiętość kafelków */
+body.light-mode .bento-card:hover {
+    box-shadow: 0 15px 35px rgba(0, 123, 255, 0.15);
+}
+
+/* Rozpiętość */
 .bento-span-4 { grid-column: span 4; }
 .bento-span-2 { grid-column: span 2; }
 .bento-row-span-2 { grid-row: span 2; }
 
-/* PL: Karta z wynikiem (Premium Dark) */
+/* --- WYNIK GŁÓWNY: Zawsze ciemny, kontrastowy akcent --- */
 .bento-card-dark {
-    background: linear-gradient(135deg, #0d1b2a 0%, #1b263b 100%);
-    border-color: var(--primary-color);
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+    border: none; 
+    color: #f8fafc;
+}
+
+body.light-mode .bento-card-dark {
+    box-shadow: 0 15px 40px rgba(15, 23, 42, 0.2);
 }
 
 .bento-result-header {
@@ -65,26 +86,43 @@
 
 .bento-subtitle {
     font-family: 'Roboto Mono', monospace;
-    font-size: 0.8rem;
-    color: var(--text-secondary);
+    font-size: 0.85rem;
+    color: #94a3b8; /* Zawsze jasnoszary na ciemnym kafelku */
     text-transform: uppercase;
     letter-spacing: 1px;
+    font-weight: 600;
+    margin: 0;
+}
+
+.bento-subtitle-light {
+    font-family: 'Roboto Mono', monospace;
+    font-size: 0.85rem;
+    color: var(--text-secondary); /* Adaptacyjny dla zwykłych kafelków */
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 600;
+    margin: 0;
 }
 
 .bento-btn-copy {
-    background: transparent;
-    border: 1px solid var(--primary-color);
-    color: var(--primary-color);
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    color: #cbd5e1;
     padding: 0.5rem 1rem;
     font-family: 'Roboto Mono', monospace;
     font-size: 0.75rem;
     cursor: pointer;
-    border-radius: 2px;
+    border-radius: 8px;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
 }
 
 .bento-btn-copy:hover {
     background: var(--primary-color);
     color: var(--background-color);
+    border-color: var(--primary-color);
 }
 
 .bento-cost-display {
@@ -94,65 +132,91 @@
 }
 
 .bento-cost-value {
-    font-size: 4rem;
-    font-weight: 700;
-    color: var(--text-color);
-    font-family: 'Roboto Mono', monospace;
+    font-size: 4.5rem;
+    font-weight: 900;
+    color: #ffffff;
+    font-family: 'Inter', sans-serif;
+    letter-spacing: -0.05em;
+    line-height: 1;
 }
 
 .bento-cost-currency {
     color: var(--primary-color);
     font-weight: 700;
+    font-size: 1.5rem;
 }
 
 .bento-badge-danger {
+    margin-top: 1.25rem;
+    display: inline-block;
     color: #ff4d4d;
+    background: rgba(255, 77, 77, 0.1);
+    padding: 0.4rem 0.8rem;
+    border-radius: 6px;
     font-family: 'Roboto Mono', monospace;
     font-size: 0.75rem;
     font-weight: 700;
 }
 
-/* PL: Kontrolki - Suwaki (Customized for Dark Mode) */
+/* --- KONTROLKI (Suwaki) --- */
 .bento-controls {
     margin-top: 1.5rem;
     display: flex;
     flex-direction: column;
-    gap: 2rem;
+    gap: 2.5rem;
 }
 
 .bento-control-header {
     display: flex;
     justify-content: space-between;
     font-family: 'Roboto Mono', monospace;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.75rem;
+}
+
+.bento-control-header label {
+    font-weight: 500;
+    color: var(--text-color);
+    font-size: 0.95rem;
 }
 
 .bento-val-display {
     color: var(--primary-color);
     font-weight: 700;
+    font-size: 1.1rem;
 }
 
-/* PL: Styling suwaka */
 input[type=range] {
     -webkit-appearance: none;
     background: var(--border-color);
-    height: 4px;
-    border-radius: 2px;
+    height: 6px;
+    border-radius: 3px;
+    width: 100%;
 }
 
 input[type=range]::-webkit-slider-thumb {
     -webkit-appearance: none;
-    width: 16px;
-    height: 16px;
+    width: 20px;
+    height: 20px;
     background: var(--primary-color);
     border-radius: 50%;
     cursor: pointer;
-    box-shadow: 0 0 10px rgba(0, 224, 255, 0.5);
+    box-shadow: 0 0 12px rgba(0, 224, 255, 0.4);
+    margin-top: -7px;
+    transition: transform 0.1s;
 }
 
-/* PL: Karta Wykresu */
+body.light-mode input[type=range]::-webkit-slider-thumb {
+    box-shadow: 0 0 12px rgba(0, 123, 255, 0.4);
+}
+
+input[type=range]::-webkit-slider-thumb:active {
+    transform: scale(1.2);
+}
+
+/* --- KARTA WYKRESU --- */
 .bento-card-chart {
-    background-color: rgba(0, 224, 255, 0.02);
+    background-color: var(--completed-bg); /* Delikatnie inne tło z palety portfolio */
+    border: none;
 }
 
 .bento-chart-container {
@@ -160,9 +224,10 @@ input[type=range]::-webkit-slider-thumb {
     display: flex;
     align-items: flex-end;
     justify-content: space-between;
-    height: 120px;
-    margin: 1rem 0;
-    gap: 1rem;
+    height: 140px;
+    margin: 1.5rem 0;
+    gap: 1.5rem;
+    padding: 0 1rem;
 }
 
 .bento-bar-wrapper {
@@ -174,81 +239,118 @@ input[type=range]::-webkit-slider-thumb {
 }
 
 .bento-bar-label {
-    font-size: 0.65rem;
+    font-size: 0.7rem;
     text-align: center;
     color: var(--text-secondary);
     margin-bottom: 0.5rem;
+    font-weight: 700;
 }
 
-.bento-bar-1, .bento-bar-2, .bento-bar-3 {
+.bento-bar-1, .bento-bar-2 {
     background: var(--border-color);
-    transition: height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    border-radius: 6px 6px 0 0;
+    transition: height 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
 .bento-bar-3 {
     background: var(--primary-color);
+    border-radius: 6px 6px 0 0;
     position: relative;
+    transition: height 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: 0 0 20px rgba(0, 224, 255, 0.3);
+}
+
+body.light-mode .bento-bar-3 {
+    box-shadow: 0 0 20px rgba(0, 123, 255, 0.3);
 }
 
 .bento-fire-icon {
     position: absolute;
-    top: -20px;
+    top: -25px;
     left: 50%;
     transform: translateX(-50%);
+    font-size: 1.2rem;
 }
 
 .bento-chart-summary {
     text-align: center;
     border-top: 1px solid var(--border-color);
-    padding-top: 1rem;
+    padding-top: 1.25rem;
+}
+
+.bento-summary-label {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    margin-bottom: 0.25rem;
 }
 
 .bento-summary-value {
     color: var(--primary-color);
-    font-family: 'Roboto Mono', monospace;
-    font-weight: 700;
+    font-size: 1.5rem;
+    font-weight: 900;
 }
 
-/* PL: Karta CTA */
+/* --- KARTA CTA --- */
 .bento-card-cta {
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
     background-color: rgba(40, 167, 69, 0.05);
-    border-color: rgba(40, 167, 69, 0.3);
+    border: 1px solid rgba(40, 167, 69, 0.2);
+}
+
+.cta-content {
+    flex: 1;
 }
 
 .bento-cta-title {
     font-family: 'Roboto Mono', monospace;
-    font-size: 1.1rem;
-    color: #28a745;
-    margin: 0;
+    font-size: 1.2rem;
+    color: var(--success-color);
+    margin: 0 0 0.5rem 0;
 }
 
 .bento-cta-desc {
     color: var(--text-secondary);
-    font-size: 0.85rem;
-    margin: 0.5rem 0 0 0;
+    font-size: 0.95rem;
+    margin: 0;
+    max-width: 90%;
 }
 
-/* PL: Toast i Narzędzia */
+.bento-cta-btn {
+    background-color: var(--success-color);
+    border-color: var(--success-color);
+    color: #fff;
+    padding: 1rem 2.5rem;
+    border-radius: 8px;
+    white-space: nowrap;
+    text-transform: uppercase;
+}
+
+.bento-cta-btn:hover {
+    background-color: #218838;
+    border-color: #218838;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(40, 167, 69, 0.3);
+}
+
+/* --- TOAST --- */
 .bento-toast {
     position: fixed;
     bottom: 30px;
     left: 50%;
     transform: translateX(-50%) translateY(20px);
-    background: var(--primary-color);
+    background: var(--text-color);
     color: var(--background-color);
-    padding: 0.75rem 1.5rem;
-    font-family: 'Roboto Mono', monospace;
+    padding: 0.75rem 2rem;
+    border-radius: 30px;
     font-weight: 700;
     opacity: 0;
     visibility: hidden;
     pointer-events: none;
     transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     z-index: 2000;
-    border-radius: 2px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
 }
 
 .bento-toast.show {
@@ -257,10 +359,21 @@ input[type=range]::-webkit-slider-thumb {
     transform: translateX(-50%) translateY(0);
 }
 
-@media (max-width: 768px) {
+/* --- RESPONSIVE --- */
+@media (max-width: 900px) {
+    .bento-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+    .bento-span-4 { grid-column: span 2; }
+    .bento-card-cta { flex-direction: column; text-align: left; align-items: flex-start; gap: 1.5rem; }
+    .bento-cta-desc { max-width: 100%; }
+}
+
+@media (max-width: 600px) {
     .bento-grid {
         grid-template-columns: 1fr;
     }
     .bento-span-4, .bento-span-2 { grid-column: span 1; }
-    .bento-card-cta { flex-direction: column; text-align: center; gap: 1rem; }
+    .bento-cost-value { font-size: 3rem; }
+    .bento-cta-btn { width: 100%; }
 }
