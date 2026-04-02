@@ -563,3 +563,4 @@ function initializeApp() {
 
 // --- Uruchomienie aplikacji ---
 initializeApp();
+

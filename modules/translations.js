@@ -666,3 +666,4 @@ export const translations = {
         errorServer: ({ status }) => `Server error (${status}). Please try again.`,
     }
 };
+
