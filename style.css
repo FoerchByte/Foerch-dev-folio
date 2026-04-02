@@ -7,6 +7,9 @@
  * Definiuje motywy (ciemny/jasny), typografię, nawigację i bazowe układy.
  */
 
+/* --- Importy modułów (Module Imports) --- */
+@import url("./modules/roi-calculator.css");
+
 /* --- Globalny reset box-sizing --- */
 *, *::before, *::after {
     box-sizing: border-box;
@@ -16,11 +19,11 @@
 :root {
     --primary-color: #00E0FF;           /* Techniczny turkus (akcent) */
     --primary-hover-color: #00A8C0;    /* Ciemniejszy turkus */
-    --text-color: #CCD6F6;              /* Jasny, techniczny tekst */
+    --text-color: #CCD6F6;               /* Jasny, techniczny tekst */
     --text-secondary: #8892B0;          /* Szary tekst dla detali i linków */
     --background-color: #020C1B;        /* Główne tło (bardzo ciemny granat) */
-    --card-background: #112240;         /* Tło kart (nieco jaśniejszy granat) */
-    --border-color: #1E3A5F;            /* Kolor obramowań */
+    --card-background: #112240;          /* Tło kart (nieco jaśniejszy granat) */
+    --border-color: #1E3A5F;             /* Kolor obramowań */
     --grid-line-color: rgba(40, 68, 105, 0.15); /* Bardzo delikatna siatka */
 
     --success-color: #28a745;
@@ -557,4 +560,3 @@ body.light-mode .theme-toggle .sun-icon { display: none; }
         width: 100%; /* Przyciski zajmują całą szerokość w kolumnie */
     }
 }
-
