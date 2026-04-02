@@ -4,13 +4,15 @@
         {{backToProjects}}
     </a>
 
-    <!-- PL: Tytuł i podtytuł w systemowym stylu -->
+    <!-- PL: Tytuły i instrukcje w systemowym stylu (Jak w Walidatorze) -->
     <h2 class="project-page-title">{{roiCalculatorTitle}}</h2>
     <p class="section-subtitle">{{roiCalculatorSubtitle}}</p>
     <p class="section-instructions">{{roiCalculatorInstructions}}</p>
 
-    <div class="bento-grid mt-8">
-        <!-- KAFELEK 1: WYNIK GŁÓWNY (Ciemny, techniczny) -->
+    <!-- PL: Właściwa siatka Bento -->
+    <div class="bento-grid">
+        
+        <!-- KAFELEK 1: WYNIK GŁÓWNY (Ciemny, kontrastowy akcent) -->
         <div class="bento-card bento-span-4 bento-card-dark">
             <div class="bento-result-header">
                 <h2 class="bento-subtitle">Roczny koszt ręcznej pracy</h2>
@@ -24,14 +26,14 @@
                     <span class="bento-cost-currency">PLN</span>
                 </div>
                 <div class="bento-badge-danger">
-                    // STRATA OPERACYJNA R/R
+                    // PRZEPALONE NA POWTARZALNE ZADANIA
                 </div>
             </div>
         </div>
 
-        <!-- KAFELEK 2: KONTROLKI (Systemowe suwaki) -->
+        <!-- KAFELEK 2: KONTROLKI (Suwaki) -->
         <div class="bento-card bento-span-2 bento-row-span-2">
-            <h2 class="bento-subtitle">Parametry Zespołu</h2>
+            <h2 class="bento-subtitle-light">Parametry Zespołu</h2>
             <div class="bento-controls">
                 <div class="bento-control-group">
                     <div class="bento-control-header">
@@ -61,7 +63,7 @@
 
         <!-- KAFELEK 3: WYKRES (Prognoza 5-letnia) -->
         <div class="bento-card bento-span-2 bento-row-span-2 bento-card-chart">
-            <h2 class="bento-subtitle">Prognoza strat 5-letnia</h2>
+            <h2 class="bento-subtitle-light">Prognoza strat 5-letnia</h2>
             <div class="bento-chart-container">
                 <div class="bento-bar-wrapper">
                     <div class="bento-bar-label">ROK 1</div>
@@ -92,12 +94,13 @@
                     Skrypt Python / GAS kosztuje ułamek tej kwoty, pracuje 24/7 i zwraca się średnio w 2 tygodnie.
                 </p>
             </div>
-            <button onclick="generateEmail()" id="btn-email" class="cta-button primary">
+            <button onclick="generateEmail()" id="btn-email" class="cta-button bento-cta-btn">
                 Zleć Automatyzację
             </button>
         </div>
     </div>
 
+    <!-- Ukryte elementy narzędziowe -->
     <textarea id="clipboardHelper" class="sr-only" readonly></textarea>
     <div id="toast" class="bento-toast">Raport skopiowany!</div>
 </div>
