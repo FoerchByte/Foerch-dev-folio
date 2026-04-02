@@ -57,6 +57,14 @@ const projectsData = [
         statusKey: 'budgetValidatorStatus',
         tagsKey: 'budgetValidatorTags'
     },
+    { 
+        id: 'roi-calculator', 
+        category: 'specialist',
+        titleKey: 'roiCalculatorTitle',
+        descKey: 'roiCalculatorDesc',
+        statusKey: 'roiCalculatorStatus',
+        tagsKey: 'roiCalculatorTags'
+    },
     // --- Narzędzia ---
     { 
         id: 'todo', 
@@ -453,6 +461,7 @@ async function attachEventListeners(route) {
         'statutory-interest-calculator': async () => { const { initializeStatutoryInterestCalculator } = await import('./modules/statutory-interest-calculator.js'); return initializeStatutoryInterestCalculator(dependencies); },
         'budget-validator': async () => { const { initializeBudgetValidator } = await import('./modules/budget-validator.js'); return initializeBudgetValidator(dependencies); },
         'project-aggregator': async () => { const { initializeProjectAggregator } = await import('./modules/project-aggregator.js'); return initializeProjectAggregator(dependencies); },
+        'roi-calculator': async () => { const { initRoiCalculator } = await import('./modules/roi-calculator.js'); initRoiCalculator(); return []; },
     };
 
     if (routeInitializers[route]) {
@@ -563,4 +572,3 @@ function initializeApp() {
 
 // --- Uruchomienie aplikacji ---
 initializeApp();
-
