@@ -1,0 +1,120 @@
+<div class="bento-grid-container" id="roi-calculator-view">
+    <div class="bento-grid">
+        
+        <!-- KAFELEK 1: NAGŁÓWEK (Szeroki) -->
+        <div class="bento-card bento-span-2 fade-up" style="animation-delay: 0ms; justify-content: center;">
+            <div class="bento-header-wrapper">
+                <h1 class="bento-main-title">Ile kosztuje Cię brak automatyzacji?</h1>
+            </div>
+            <p class="bento-description">
+                Symulacja kosztów powtarzalnych zadań (Excel, raportowanie, maile). Oblicz, ile Twoja firma traci rocznie i skopiuj raport, aby pokazać go decydentom.
+            </p>
+        </div>
+
+        <!-- KAFELEK 2: WYNIK GŁÓWNY (Akcent, Ciemny) -->
+        <div class="bento-card bento-span-2 bento-card-dark fade-up" style="animation-delay: 100ms;">
+            <div class="bento-result-header">
+                <h2 class="bento-subtitle">Roczny koszt ręcznej pracy</h2>
+                <button onclick="copyReport()" class="bento-btn-copy" id="btn-copy">
+                    <svg class="bento-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
+                    Kopiuj Raport
+                </button>
+            </div>
+            <div class="bento-result-body">
+                <div class="bento-cost-display">
+                    <span class="bento-cost-value" id="yearlyCost">0</span>
+                    <span class="bento-cost-currency">PLN</span>
+                </div>
+                <div class="bento-badge-danger">
+                    Przepalone na powtarzalne klikanie
+                </div>
+            </div>
+        </div>
+
+        <!-- KAFELEK 3: KONTROLKI (Suwaki) -->
+        <div class="bento-card bento-span-2 bento-row-span-2 fade-up" style="animation-delay: 200ms;">
+            <h2 class="bento-subtitle">Parametry Twojego Zespołu</h2>
+            
+            <div class="bento-controls">
+                <!-- Suwak 1: Czas -->
+                <div class="bento-control-group">
+                    <div class="bento-control-header">
+                        <label>Czas na ręczne zadania (tygodniowo)</label>
+                        <div class="bento-val-display"><span id="hoursVal">10</span>h</div>
+                    </div>
+                    <input type="range" id="hoursInput" min="1" max="40" value="10" oninput="calculateROI()">
+                </div>
+
+                <!-- Suwak 2: Stawka -->
+                <div class="bento-control-group">
+                    <div class="bento-control-header">
+                        <label>Średnia stawka godzinowa brutto</label>
+                        <div class="bento-val-display"><span id="rateVal">80</span> PLN</div>
+                    </div>
+                    <input type="range" id="rateInput" min="30" max="300" step="5" value="80" oninput="calculateROI()">
+                </div>
+
+                <!-- Suwak 3: Liczba pracowników -->
+                <div class="bento-control-group">
+                    <div class="bento-control-header">
+                        <label>Wielkość zespołu</label>
+                        <div class="bento-val-display"><span id="teamVal">2</span> os.</div>
+                    </div>
+                    <input type="range" id="teamInput" min="1" max="20" value="2" oninput="calculateROI()">
+                </div>
+            </div>
+        </div>
+
+        <!-- KAFELEK 4: WIZUALIZACJA (Wykres oszczędności) -->
+        <div class="bento-card bento-span-1 bento-row-span-2 fade-up bento-card-chart" style="animation-delay: 300ms;">
+            <h2 class="bento-subtitle bento-text-blue">Prognoza 5-letnia</h2>
+            
+            <div class="bento-chart-container">
+                <!-- Wizualne słupki symulujące koszty -->
+                <div class="bento-bar-wrapper">
+                    <div class="bento-bar-label">ROK 1</div>
+                    <div id="bar1" class="bento-bar-1 transition-all"></div>
+                </div>
+                <div class="bento-bar-wrapper">
+                    <div class="bento-bar-label">ROK 3</div>
+                    <div id="bar2" class="bento-bar-2 transition-all"></div>
+                </div>
+                <div class="bento-bar-wrapper">
+                    <div class="bento-bar-label">ROK 5</div>
+                    <div id="bar3" class="bento-bar-3 transition-all bento-bar-shadow">
+                        <div class="bento-fire-icon">🔥</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="bento-chart-summary">
+                <div class="bento-summary-label">Skumulowana strata:</div>
+                <div class="bento-summary-value" id="fiveYearCost">0 PLN</div>
+            </div>
+        </div>
+
+        <!-- KAFELEK 5: CALL TO ACTION -->
+        <div class="bento-card bento-span-1 bento-row-span-2 fade-up bento-card-cta" style="animation-delay: 400ms;">
+            <div>
+                <div class="bento-icon-wrapper">
+                    <svg class="bento-icon-large" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                </div>
+                <h2 class="bento-cta-title">Rozwiązanie</h2>
+                <p class="bento-cta-desc">
+                    Skrypt Python / GAS kosztuje ułamek tej kwoty, pracuje 24/7 i zwraca się średnio w 2 tygodnie.
+                </p>
+            </div>
+            
+            <button onclick="generateEmail()" id="btn-email" class="bento-btn-primary active-scale shadow-lg">
+                Zleć Automatyzację
+            </button>
+        </div>
+
+    </div>
+
+    <!-- Niewidoczny element do obsługi kopiowania do schowka -->
+    <textarea id="clipboardHelper" class="sr-only opacity-0 absolute z-hidden"></textarea>
+    
+    <!-- Element Toasta -->
+    <div id="toast" class="bento-toast">Raport skopiowany do schowka!</div>
+</div>
